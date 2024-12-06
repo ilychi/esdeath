@@ -15,9 +15,9 @@ updates:
     pull-request-branch-name:
       separator: "-"
     assignees:
-      - "hchichi"
+      - "ilychi"
     reviewers:
-      - "hchichi"
+      - "ilychi"
     open-pull-requests-limit: 10
     target-branch: "main"
     versioning-strategy: "auto"
