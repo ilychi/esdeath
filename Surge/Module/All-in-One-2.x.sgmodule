@@ -3,8 +3,8 @@
 #!include=KeliAds, BlockAds, Weibo, WeiboIntl, RedPaper, Zhihu, Snowball, DuiTang, WeChatMP, WeChatOA, WeChatURL, QQMusic, NetEaseMusic, Himalaya, YouTube, VideoGo, Spotify, JD, Taobao, SMZDM, FleaMarket, iMaiCai, Cainiao, Amap, DiDi, 12306, Umetrip, SFExpress, MeiTu, Keep, MailMaster, ColorfulClouds, BooHee, Aiinquiry, QiXinBao, Caixin, UnnooQuan, QuickSearch, Eleme, Meituan
 #!url=https://chichi.sh/ADBlock
 #!category=🚭 AD Block
-#!author=@hchichi & Everyone in the community
-#!source=Rules@hchichi | Xiaohongshu@ddgksf2013 | Amap@kokoryh | Cainiao@Keywos | Weibo@RuCu6 | Zhihu@RuCu6 | MiniProgram@bunizao | Chores@bunizao | Tools@ScriptHub
+#!author=@ilychi & Everyone in the community
+#!source=Rules@ilychi | Xiaohongshu@ddgksf2013 | Amap@kokoryh | Cainiao@Keywos | Weibo@RuCu6 | Zhihu@RuCu6 | MiniProgram@bunizao | Chores@bunizao | Tools@ScriptHub
 #------------------------------------------------------
 
 [Rule]
