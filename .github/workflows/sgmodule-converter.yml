@@ -94,9 +94,8 @@ jobs:
               echo "Using mapped category for $base_url: $category"
             else
               # 使用备用逻辑进行分类
-              if [[ "$plugin_url" == *"remove_ads"* || "$plugin_name" == *"remove_ads"* || \
-                    "$plugin_url" == *"Advertisers"* || "$plugin_name" == *"Advertisers"* || \
-                    "$plugin_url" == *"去广告"* || "$plugin_name" == *"去广告"* ]]; then
+              if [[ "$plugin_url" =~ [Rr]emove[_-]?[Aa]ds|[Aa]dvertisers|去广告 || \
+                    "$plugin_name" =~ [Rr]emove[_-]?[Aa]ds|[Aa]dvertisers|去广告 ]]; then
                 category="🚫 AD Block"
               elif [[ "$plugin_url" == *"checkin"* || "$plugin_name" == *"checkin"* || \
                       "$plugin_url" == *"DailyBonus"* || "$plugin_name" == *"DailyBonus"* || \

@@ -1,12 +1,12 @@
 // AIGC
-// Last updated: 2024/12/6 17:26:54
+// Last updated: 2024/12/23 07:32:24
 // DOMAIN: 36
-// DOMAIN-SUFFIX: 54
-// DOMAIN-KEYWORD: 4
+// DOMAIN-SUFFIX: 55
+// DOMAIN-KEYWORD: 6
 // IP-CIDR: 1
 // IP-CIDR6: 1
 // OTHER: 2
-// Total: 98
+// Total: 101
 // This file contains rules for AIGC services, including OpenAI, Google Gemini, Claude, Perplexity, etc.
 // Data sources:
 //  - https://kelee.one/Tool/Loon/Rule/AI.list
@@ -51,7 +51,9 @@ DOMAIN,sydney.bing.com
 DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
 DOMAIN,www.bing.com
 DOMAIN-KEYWORD,Claude
+DOMAIN-KEYWORD,alkalimakersuite-pa.clients6.google.com
 DOMAIN-KEYWORD,anthropic
+DOMAIN-KEYWORD,labs.google
 DOMAIN-KEYWORD,openai
 DOMAIN-KEYWORD,openaicom
 DOMAIN-SUFFIX,ai.com
@@ -106,6 +108,7 @@ DOMAIN-SUFFIX,pplx.ai
 DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com
 DOMAIN-SUFFIX,sentry.io
 DOMAIN-SUFFIX,smoot.apple.com
+DOMAIN-SUFFIX,sora.com
 DOMAIN-SUFFIX,stripe.com
 DOMAIN-SUFFIX,x.ai
 IP-CIDR,160.79.104.0/23,no-resolve

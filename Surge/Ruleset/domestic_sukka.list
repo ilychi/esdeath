@@ -1,13 +1,13 @@
 // Domestic Rules (Sukka)
-// Last updated: 2024/12/6 17:31:45
+// Last updated: 2024/12/23 07:37:40
 // DOMAIN: 33
-// DOMAIN-SUFFIX: 894
+// DOMAIN-SUFFIX: 895
 // DOMAIN-KEYWORD: 9
 // IP-CIDR: 2
 // PROCESS-NAME: 36
 // USER-AGENT: 4
 // OTHER: 1
-// Total: 979
+// Total: 980
 // This file contains known domains and IPs that are avaliable in the Mainland China.
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/domestic.conf
@@ -250,6 +250,7 @@ DOMAIN-SUFFIX,btschool.club
 DOMAIN-SUFFIX,byteacctimg.com
 DOMAIN-SUFFIX,bytecdn.cn
 DOMAIN-SUFFIX,byted-static.com
+DOMAIN-SUFFIX,bytedance.com
 DOMAIN-SUFFIX,bytedance.com.com
 DOMAIN-SUFFIX,bytednsdoc.com
 DOMAIN-SUFFIX,bytegoofy.com

@@ -10,7 +10,7 @@
 [Rule]
 
 RULE-SET,https://raw.githubusercontent.com/ilychi/esdeath/main/Chores/ruleset/direct.list,DIRECT,extended-matching
-RULE-SET,https://raw.githubusercontent.com/ilychi/esdeath/main/Chores/ruleset/reject.list,REJECT,pre-matching,extended-matching
+RULE-SET,https://raw.githubusercontent.com/ilychi/esdeath/main/Chores/ruleset/reject.list,REJECT,extended-matching
 
 [URL Rewrite]
 
