@@ -1,12 +1,12 @@
-// Last updated: 2024/12/6 17:31:45
+// Last updated: 2024/12/23 07:37:40
 // DOMAIN: 50
-// DOMAIN-SUFFIX: 192
+// DOMAIN-SUFFIX: 194
 // DOMAIN-KEYWORD: 16
 // IP-CIDR: 15
 // IP-CIDR6: 4
 // PROCESS-NAME: 14
 // USER-AGENT: 49
-// Total: 340
+// Total: 342
 // Data sources:
 //  - https://ruleset.skk.moe/List/ip/stream.conf
 DOMAIN,44wilhpljf.execute-api.ap-southeast-1.amazonaws.com
@@ -91,6 +91,7 @@ DOMAIN-SUFFIX,amebame.com
 DOMAIN-SUFFIX,amebaownd.com
 DOMAIN-SUFFIX,amebaowndme.com
 DOMAIN-SUFFIX,ameblo.jp
+DOMAIN-SUFFIX,ani.gamer.com.tw
 DOMAIN-SUFFIX,applemusic.com
 DOMAIN-SUFFIX,atv-ps.amazon.com
 DOMAIN-SUFFIX,avodmp4s3ww-a.akamaihd.net
@@ -137,7 +138,6 @@ DOMAIN-SUFFIX,fls-na.amazon.com
 DOMAIN-SUFFIX,fox.com
 DOMAIN-SUFFIX,foxdcg.com
 DOMAIN-SUFFIX,foxplus.com
-DOMAIN-SUFFIX,gamer.com.tw
 DOMAIN-SUFFIX,googlevideo.com
 DOMAIN-SUFFIX,hayabusa.dev
 DOMAIN-SUFFIX,hayabusa.io
@@ -145,6 +145,8 @@ DOMAIN-SUFFIX,hayabusa.media
 DOMAIN-SUFFIX,hbo.com
 DOMAIN-SUFFIX,hboasia.com
 DOMAIN-SUFFIX,hbogo.com
+DOMAIN-SUFFIX,hbogoasia.com
+DOMAIN-SUFFIX,hbogoasia.hk
 DOMAIN-SUFFIX,hbomax.com
 DOMAIN-SUFFIX,hbomaxcdn.com
 DOMAIN-SUFFIX,hbonow.com
