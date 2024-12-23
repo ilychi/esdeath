@@ -89,23 +89,15 @@ jobs:
             
             # 确定分类
             if [[ -n "${category_map[$base_url]}" ]]; then
-              # 使用从 README.md 中提取的分类
               category="${category_map[$base_url]}"
               echo "Using mapped category for $base_url: $category"
             else
-              # 使用备用逻辑进行分类
-              if [[ "$plugin_url" == *"remove_ads"* || "$plugin_name" == *"remove_ads"* || \
-                    "$plugin_url" == *"Advertisers"* || "$plugin_name" == *"Advertisers"* || \
-                    "$plugin_url" == *"去广告"* || "$plugin_name" == *"去广告"* || \
-                    "$plugin_url" == *"blockAds"* || "$plugin_name" == *"blockAds"* || \
-                    "$plugin_url" == *"Block"* || "$plugin_name" == *"Block"* || \
-                    "$plugin_url" == *"anti-ad"* || "$plugin_name" == *"anti-ad"* || \
-                    "$plugin_name" == *"Remove_ads"* ]]; then
+              # 转换为小写进行匹配
+              combined_lower=$(echo "$plugin_url$plugin_name" | tr '[:upper:]' '[:lower:]')
+              
+              if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad) ]]; then
                 category="🚫 AD Block"
-              elif [[ "$plugin_url" == *"checkin"* || "$plugin_name" == *"checkin"* || \
-                      "$plugin_url" == *"DailyBonus"* || "$plugin_name" == *"DailyBonus"* || \
-                      "$plugin_url" == *"sign"* || "$plugin_name" == *"sign"* || \
-                      "$plugin_url" == *"签到"* || "$plugin_name" == *"签到"* ]]; then
+              elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus) ]]; then
                 category="✅ Checkin"
               else
                 category="🔨 Tools"
