@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2024/12/24 22:03:00
-// DOMAIN: 1997
+// Last updated: 2024/12/24 22:15:12
+// DOMAIN: 1999
 // DOMAIN-SUFFIX: 865
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 33
-// Total: 2906
+// Total: 2908
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -543,6 +543,7 @@ DOMAIN,cdn.sunofbeaches.com
 DOMAIN,cdn.svgator.com
 DOMAIN,cdn.tailwindcss.com
 DOMAIN,cdn.termius.com
+DOMAIN,cdn.thenewstack.io
 DOMAIN,cdn.tinypass.com
 DOMAIN,cdn.tolt.io
 DOMAIN,cdn.tracxn.com
@@ -1580,6 +1581,7 @@ DOMAIN,st.dynamicyield.com
 DOMAIN,st1.zoom.us
 DOMAIN,st2.zoom.us
 DOMAIN,st3.zoom.us
+DOMAIN,st6-20.vk.com
 DOMAIN,staging-pubfeed.linkby.com
 DOMAIN,start-page.buffer.com
 DOMAIN,static-00.iconduck.com
