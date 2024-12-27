@@ -1,5 +1,5 @@
 // Common Static CDNs
-// Last updated: 2024/12/27 21:41:06
+// Last updated: 2024/12/27 22:03:43
 // DOMAIN: 1999
 // DOMAIN-SUFFIX: 865
 // DOMAIN-KEYWORD: 6
@@ -1685,7 +1685,6 @@ DOMAIN,static.filestackapi.com
 DOMAIN,static.foxbusiness.com
 DOMAIN,static.foxnews.com
 DOMAIN,static.freeimages.com
-DOMAIN,static.frostming.com
 DOMAIN,static.getbutton.io
 DOMAIN,static.gettyimages.com
 DOMAIN,static.global.visioncritical.com
@@ -1975,6 +1974,7 @@ DOMAIN,web-static.pages.iheart.com
 DOMAIN,web-toolbar.playstation.com
 DOMAIN,webassets.linear.app
 DOMAIN,webfonts.zoho.com
+DOMAIN,webp.frostming.com
 DOMAIN,website-cdn.ipinfo.io
 DOMAIN,widget.freshworks.com
 DOMAIN,widget.intercom.io
