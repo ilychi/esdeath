@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2024/12/29 18:40:37
-// DOMAIN: 2000
+// Last updated: 2024/12/29 19:03:36
+// DOMAIN: 2001
 // DOMAIN-SUFFIX: 866
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 33
-// Total: 2910
+// Total: 2911
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1627,6 +1627,7 @@ DOMAIN,static-production.npmjs.com
 DOMAIN,static-r.kamihimeproject.net
 DOMAIN,static-redesign.cnbcfm.com
 DOMAIN,static-resource.np.community.playstation.net
+DOMAIN,static-secure-uploads.ui.com
 DOMAIN,static-sg-cdn.eporner.com
 DOMAIN,static-sv.fc2.com
 DOMAIN,static-web-prod.skillshare.com
