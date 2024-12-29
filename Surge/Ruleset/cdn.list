@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2024/12/29 12:41:24
-// DOMAIN: 1999
-// DOMAIN-SUFFIX: 865
+// Last updated: 2024/12/29 13:03:01
+// DOMAIN: 2000
+// DOMAIN-SUFFIX: 866
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 33
-// Total: 2908
+// Total: 2910
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -569,6 +569,7 @@ DOMAIN,cdn.vidyard.com
 DOMAIN,cdn.viglink.com
 DOMAIN,cdn.wccftech.com
 DOMAIN,cdn.weglot.com
+DOMAIN,cdn.wikiwiki.jp
 DOMAIN,cdn.windowsreport.com
 DOMAIN,cdn.wishpond.net
 DOMAIN,cdn.worldvectorlogo.com
@@ -2331,6 +2332,7 @@ DOMAIN-SUFFIX,hgagecdn.com
 DOMAIN-SUFFIX,highwinds-cdn.com
 DOMAIN-SUFFIX,himg.nl
 DOMAIN-SUFFIX,hits.b3log.org
+DOMAIN-SUFFIX,hommec.com
 DOMAIN-SUFFIX,howtogeekimages.com
 DOMAIN-SUFFIX,hs-scripts.com
 DOMAIN-SUFFIX,hs-scripts.net
