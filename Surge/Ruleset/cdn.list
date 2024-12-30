@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2024/12/30 21:09:03
-// DOMAIN: 2001
+// Last updated: 2024/12/30 21:20:36
+// DOMAIN: 2003
 // DOMAIN-SUFFIX: 870
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 33
-// Total: 2915
+// Total: 2917
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1141,6 +1141,7 @@ DOMAIN,jsdelivr.ioiox.net
 DOMAIN,jslibs.blackmagicdesign.com
 DOMAIN,jsonplaceholder.typicode.com
 DOMAIN,jssdk.opin.media
+DOMAIN,k-cdn.depot.dev
 DOMAIN,kdata1.com
 DOMAIN,keyframe-cdn.abcnews.com
 DOMAIN,lain.bgm.tv
@@ -1306,6 +1307,7 @@ DOMAIN,oss.moe.cat
 DOMAIN,ovo.wxw.moe
 DOMAIN,ovp.itv.com
 DOMAIN,p-smith.com
+DOMAIN,p.depot.dev
 DOMAIN,p.inari.site
 DOMAIN,p.sda1.dev
 DOMAIN,p.typekit.net
