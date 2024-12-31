@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2024/12/31 18:03:57
-// DOMAIN: 2008
+// Last updated: 2024/12/31 18:17:12
+// DOMAIN: 2009
 // DOMAIN-SUFFIX: 870
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 33
-// Total: 2922
+// Total: 2923
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -174,6 +174,7 @@ DOMAIN,assets.nationbuilder.com
 DOMAIN,assets.newrepublic.com
 DOMAIN,assets.nflxext.com
 DOMAIN,assets.nintendo.com
+DOMAIN,assets.nxtrace.org
 DOMAIN,assets.onestore.ms
 DOMAIN,assets.ontrack.com
 DOMAIN,assets.openshift.com
