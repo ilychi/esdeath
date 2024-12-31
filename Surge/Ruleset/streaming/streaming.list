@@ -1,12 +1,12 @@
-// Last updated: 2025/1/1 01:39:40
-// DOMAIN: 50
+// Last updated: 2025/1/1 02:03:33
+// DOMAIN: 51
 // DOMAIN-SUFFIX: 195
 // DOMAIN-KEYWORD: 15
 // IP-CIDR: 15
 // IP-CIDR6: 4
 // PROCESS-NAME: 14
 // USER-AGENT: 49
-// Total: 342
+// Total: 343
 // Data sources:
 //  - https://ruleset.skk.moe/List/ip/stream.conf
 DOMAIN,44wilhpljf.execute-api.ap-southeast-1.amazonaws.com
@@ -36,6 +36,7 @@ DOMAIN,d3c7rimkq79yfu.cloudfront.net
 DOMAIN,dashasiafox.akamaized.net
 DOMAIN,dfp6rglgjqszk.cloudfront.net
 DOMAIN,dmqdd6hw24ucf.cloudfront.net
+DOMAIN,ds-linear-abematv.akamaized.net
 DOMAIN,edge.api.brightcove.com
 DOMAIN,gamer-cds.cdn.hinet.net
 DOMAIN,gamer2-cds.cdn.hinet.net
