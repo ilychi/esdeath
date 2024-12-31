@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2024/12/31 13:16:51
-// DOMAIN: 2003
+// Last updated: 2024/12/31 13:40:28
+// DOMAIN: 2004
 // DOMAIN-SUFFIX: 870
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 33
-// Total: 2917
+// Total: 2918
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1469,6 +1469,7 @@ DOMAIN,s.imgur.com
 DOMAIN,s.namemc.com
 DOMAIN,s.plurk.com
 DOMAIN,s.rfi.fr
+DOMAIN,s.slideme.org
 DOMAIN,s.udn.com.tw
 DOMAIN,s.w-x.co
 DOMAIN,s.w.org
