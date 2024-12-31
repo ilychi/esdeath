@@ -1,13 +1,13 @@
 // Domestic Rules (Sukka)
-// Last updated: 2024/12/31 12:17:08
+// Last updated: 2024/12/31 12:42:11
 // DOMAIN: 33
-// DOMAIN-SUFFIX: 896
+// DOMAIN-SUFFIX: 898
 // DOMAIN-KEYWORD: 9
 // IP-CIDR: 2
 // PROCESS-NAME: 36
 // USER-AGENT: 4
 // OTHER: 1
-// Total: 981
+// Total: 983
 // This file contains known domains and IPs that are avaliable in the Mainland China.
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/domestic.conf
@@ -389,6 +389,7 @@ DOMAIN-SUFFIX,eastgame.org
 DOMAIN-SUFFIX,eastmoney.com
 DOMAIN-SUFFIX,eatuo.com
 DOMAIN-SUFFIX,ebay.cn
+DOMAIN-SUFFIX,edge-byted.com
 DOMAIN-SUFFIX,edu.cn
 DOMAIN-SUFFIX,ele.me
 DOMAIN-SUFFIX,elemecdn.com
@@ -873,6 +874,7 @@ DOMAIN-SUFFIX,vmall.com
 DOMAIN-SUFFIX,vmallres.com
 DOMAIN-SUFFIX,volccdn.com
 DOMAIN-SUFFIX,volces.com
+DOMAIN-SUFFIX,volcvideo.com
 DOMAIN-SUFFIX,wandoujia.com
 DOMAIN-SUFFIX,wangsu.com
 DOMAIN-SUFFIX,weathercn.com
