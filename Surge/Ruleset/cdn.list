@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2024/12/31 15:03:30
-// DOMAIN: 2004
+// Last updated: 2024/12/31 15:16:34
+// DOMAIN: 2008
 // DOMAIN-SUFFIX: 870
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 33
-// Total: 2918
+// Total: 2922
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -300,6 +300,7 @@ DOMAIN,cdn-assets.circleci.com
 DOMAIN,cdn-bundler.nice-team.net
 DOMAIN,cdn-c.leavemealone.com
 DOMAIN,cdn-client.medium.com
+DOMAIN,cdn-dynmedia-1.microsoft.com
 DOMAIN,cdn-edge.karte.io
 DOMAIN,cdn-eu.dynamicyield.com
 DOMAIN,cdn-fck.tnaflix.com
@@ -347,6 +348,7 @@ DOMAIN,cdn.babylonjs.com
 DOMAIN,cdn.bfe.dev
 DOMAIN,cdn.bigcloud.click
 DOMAIN,cdn.birdie.so
+DOMAIN,cdn.botframework.com
 DOMAIN,cdn.branch.io
 DOMAIN,cdn.britannica.com
 DOMAIN,cdn.bsky.social
@@ -941,6 +943,7 @@ DOMAIN,image.send.grammarly.com
 DOMAIN,image.ship.vercel.com
 DOMAIN,image.shutterstock.com
 DOMAIN,image.status.io
+DOMAIN,image.telanganatoday.com
 DOMAIN,image.theblockbeats.info
 DOMAIN,image.thefly.com
 DOMAIN,image.tmdb.org
@@ -1229,6 +1232,7 @@ DOMAIN,media.ra.kroll.com
 DOMAIN,media.shopimind.com
 DOMAIN,media.smooch.io
 DOMAIN,media.steampowered.com
+DOMAIN,media.telanganatoday.com
 DOMAIN,media.tenor.com
 DOMAIN,media.themoviedb.org
 DOMAIN,media.theporndude.com
