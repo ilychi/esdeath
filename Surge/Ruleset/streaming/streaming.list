@@ -1,7 +1,7 @@
-// Last updated: 2025/1/1 01:15:36
+// Last updated: 2025/1/1 01:39:40
 // DOMAIN: 50
-// DOMAIN-SUFFIX: 194
-// DOMAIN-KEYWORD: 16
+// DOMAIN-SUFFIX: 195
+// DOMAIN-KEYWORD: 15
 // IP-CIDR: 15
 // IP-CIDR6: 4
 // PROCESS-NAME: 14
@@ -62,7 +62,6 @@ DOMAIN,youtubei.googleapis.com
 DOMAIN-KEYWORD,-spotify-com
 DOMAIN-KEYWORD,-tiktokcdn-com
 DOMAIN-KEYWORD,.hbogoasia.
-DOMAIN-KEYWORD,abematv.akamaized.net
 DOMAIN-KEYWORD,apiproxy-device-prod-nlb-
 DOMAIN-KEYWORD,avoddashs
 DOMAIN-KEYWORD,bbcfmt
@@ -179,6 +178,7 @@ DOMAIN-SUFFIX,kktv.com.tw
 DOMAIN-SUFFIX,kktv.me
 DOMAIN-SUFFIX,linetv.tw
 DOMAIN-SUFFIX,litv.tv
+DOMAIN-SUFFIX,location-plus.nhk.jp
 DOMAIN-SUFFIX,max.com
 DOMAIN-SUFFIX,media-amazon.com
 DOMAIN-SUFFIX,muscdn.com
