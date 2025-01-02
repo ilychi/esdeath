@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/2 22:18:14
-// DOMAIN: 2012
-// DOMAIN-SUFFIX: 874
+// Last updated: 2025/1/2 22:41:13
+// DOMAIN: 2013
+// DOMAIN-SUFFIX: 875
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2931
+// Total: 2933
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -408,6 +408,7 @@ DOMAIN,cdn.fourthwall.com
 DOMAIN,cdn.freebiesupply.com
 DOMAIN,cdn.freecodecamp.org
 DOMAIN,cdn.freshdesk.com
+DOMAIN,cdn.gamemonkey.org
 DOMAIN,cdn.getkoala.com
 DOMAIN,cdn.gettr.com
 DOMAIN,cdn.ghostery.com
@@ -2309,6 +2310,7 @@ DOMAIN-SUFFIX,fsvod1.com
 DOMAIN-SUFFIX,ftcdn.net
 DOMAIN-SUFFIX,futurecdn.net
 DOMAIN-SUFFIX,gadgets360cdn.com
+DOMAIN-SUFFIX,gamesgamescdn.com
 DOMAIN-SUFFIX,gateway.originprotocol.com
 DOMAIN-SUFFIX,gateway.pinata.cloud
 DOMAIN-SUFFIX,gateway.serph.network
