@@ -1,12 +1,15 @@
 // 网易云音乐
-// Last updated: 2025/1/4 02:16:32
+// Last updated: 2025/1/4 02:43:57
 // DOMAIN: 1
+// DOMAIN-SUFFIX: 2
 // IP-CIDR: 17
 // USER-AGENT: 2
-// Total: 20
+// Total: 22
 // Data sources:
 //  - https://ruleset.skk.moe/List/ip/neteasemusic.conf
 DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
+DOMAIN-SUFFIX,music.126.net
+DOMAIN-SUFFIX,music.163.com
 IP-CIDR,101.71.154.241/32,no-resolve
 IP-CIDR,103.126.92.132/31,no-resolve
 IP-CIDR,112.13.119.17/32,no-resolve
