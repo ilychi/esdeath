@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/3 17:39:35
-// DOMAIN: 2029
+// Last updated: 2025/1/3 18:03:06
+// DOMAIN: 2035
 // DOMAIN-SUFFIX: 877
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2951
+// Total: 2957
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -422,6 +422,7 @@ DOMAIN,cdn.freebiesupply.com
 DOMAIN,cdn.freecodecamp.org
 DOMAIN,cdn.freshdesk.com
 DOMAIN,cdn.gamemonkey.org
+DOMAIN,cdn.gdl.gg
 DOMAIN,cdn.getkoala.com
 DOMAIN,cdn.gettr.com
 DOMAIN,cdn.ghostery.com
@@ -454,6 +455,7 @@ DOMAIN,cdn.judge.me
 DOMAIN,cdn.jwplayer.com
 DOMAIN,cdn.kinopio.club
 DOMAIN,cdn.kinsta.com
+DOMAIN,cdn.ko-fi.com
 DOMAIN,cdn.koala.live
 DOMAIN,cdn.kobo.com
 DOMAIN,cdn.langshop.app
@@ -686,6 +688,7 @@ DOMAIN,code.iconify.design
 DOMAIN,code.ionicframework.com
 DOMAIN,code.jquery.com
 DOMAIN,code.piano.io
+DOMAIN,code.upscope.io
 DOMAIN,common-header.nimg.jp
 DOMAIN,compass-ssl.xbox.com
 DOMAIN,components.clever-cloud.com
@@ -1155,6 +1158,7 @@ DOMAIN,js.smile.io
 DOMAIN,js.stripe.com
 DOMAIN,js.txxx.tube
 DOMAIN,js.upload.io
+DOMAIN,js.upscope.io
 DOMAIN,js.userflow.com
 DOMAIN,js.verygoodvault.com
 DOMAIN,js1.chargebee.com
@@ -1169,6 +1173,7 @@ DOMAIN,keyframe-cdn.abcnews.com
 DOMAIN,lain.bgm.tv
 DOMAIN,latency-test.lab.skk.moe
 DOMAIN,latency-test.skk.moe
+DOMAIN,launcher-files.modrinth.com
 DOMAIN,launcher.spot.im
 DOMAIN,launchercontent.mojang.com
 DOMAIN,lc.nssurge.com
@@ -1851,6 +1856,7 @@ DOMAIN,steamvideo-a.akamaihd.net
 DOMAIN,storage-b.picacomic.com
 DOMAIN,storage.crisp.chat
 DOMAIN,storage.gra.cloud.ovh.net
+DOMAIN,storage.ko-fi.com
 DOMAIN,storage.moegirl.tw
 DOMAIN,storage.sciencecast.org
 DOMAIN,storage.withfabric.xyz
