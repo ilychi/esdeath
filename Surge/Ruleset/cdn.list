@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/3 11:20:52
-// DOMAIN: 2016
-// DOMAIN-SUFFIX: 876
+// Last updated: 2025/1/3 11:42:26
+// DOMAIN: 2029
+// DOMAIN-SUFFIX: 877
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2937
+// Total: 2951
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -289,6 +289,18 @@ DOMAIN,c.navattic.com
 DOMAIN,c.s-microsoft.com
 DOMAIN,c.speedtestcustom.com
 DOMAIN,c.start.me
+DOMAIN,c1.patreon.com
+DOMAIN,c10.patreon.com
+DOMAIN,c11.patreon.com
+DOMAIN,c13.patreon.com
+DOMAIN,c14.patreon.com
+DOMAIN,c16.patreon.com
+DOMAIN,c17.patreon.com
+DOMAIN,c4.patreon.com
+DOMAIN,c5.patreon.com
+DOMAIN,c6.patreon.com
+DOMAIN,c7.patreon.com
+DOMAIN,c8.patreon.com
 DOMAIN,ca.nfs.pub
 DOMAIN,cacerts.digicert.com
 DOMAIN,cache-05.filehippo.net
@@ -1146,6 +1158,7 @@ DOMAIN,js.upload.io
 DOMAIN,js.userflow.com
 DOMAIN,js.verygoodvault.com
 DOMAIN,js1.chargebee.com
+DOMAIN,jsdelivr.b-cdn.net
 DOMAIN,jsdelivr.ioiox.net
 DOMAIN,jslibs.blackmagicdesign.com
 DOMAIN,jsonplaceholder.typicode.com
@@ -2603,6 +2616,7 @@ DOMAIN-SUFFIX,pages.dev
 DOMAIN-SUFFIX,parastorage.com
 DOMAIN-SUFFIX,pastebin.com
 DOMAIN-SUFFIX,patientpop.com
+DOMAIN-SUFFIX,patreonusercontent.com
 DOMAIN-SUFFIX,payloadcms.app
 DOMAIN-SUFFIX,pcdn.co
 DOMAIN-SUFFIX,permaweb.eu.org
