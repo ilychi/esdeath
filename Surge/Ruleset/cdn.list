@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/4 20:17:32
-// DOMAIN: 2035
+// Last updated: 2025/1/4 20:49:36
+// DOMAIN: 2036
 // DOMAIN-SUFFIX: 877
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2957
+// Total: 2958
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -367,6 +367,7 @@ DOMAIN,cdn.branch.io
 DOMAIN,cdn.britannica.com
 DOMAIN,cdn.bsky.social
 DOMAIN,cdn.builder.io
+DOMAIN,cdn.buymeacoffee.com
 DOMAIN,cdn.c1.amplience.net
 DOMAIN,cdn.calibermind.com
 DOMAIN,cdn.cameo.com
