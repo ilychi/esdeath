@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/5 20:17:21
+// Last updated: 2025/1/5 20:49:18
 // DOMAIN: 2035
-// DOMAIN-SUFFIX: 877
+// DOMAIN-SUFFIX: 873
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2957
+// Total: 2953
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2075,7 +2075,6 @@ DOMAIN-SUFFIX,adtidy.org
 DOMAIN-SUFFIX,agechecker-northern-apps.com
 DOMAIN-SUFFIX,agechecker.northern-apps.com
 DOMAIN-SUFFIX,airio3.live
-DOMAIN-SUFFIX,akamai-content-delivery.com
 DOMAIN-SUFFIX,akamai-content-network.com
 DOMAIN-SUFFIX,alexdav.id
 DOMAIN-SUFFIX,alonestreaming.com
@@ -2676,7 +2675,6 @@ DOMAIN-SUFFIX,pxlecdn.com
 DOMAIN-SUFFIX,pypi.org
 DOMAIN-SUFFIX,pythonhosted.org
 DOMAIN-SUFFIX,pztv.ca
-DOMAIN-SUFFIX,pzvcdn.com
 DOMAIN-SUFFIX,qooqlevideo.com
 DOMAIN-SUFFIX,quay.io
 DOMAIN-SUFFIX,quip-cdn.com
@@ -2854,7 +2852,6 @@ DOMAIN-SUFFIX,ut-assets.com
 DOMAIN-SUFFIX,uvcdn.com
 DOMAIN-SUFFIX,v-cdn.net
 DOMAIN-SUFFIX,v2ex.co
-DOMAIN-SUFFIX,v82u1l.com
 DOMAIN-SUFFIX,vanillicon.com
 DOMAIN-SUFFIX,vercel.app
 DOMAIN-SUFFIX,vercel.dev
@@ -2882,7 +2879,6 @@ DOMAIN-SUFFIX,web.app
 DOMAIN-SUFFIX,webp.se
 DOMAIN-SUFFIX,webpkgcache.com
 DOMAIN-SUFFIX,website-files.com
-DOMAIN-SUFFIX,whweitao.com
 DOMAIN-SUFFIX,widget.cluster.groovehq.com
 DOMAIN-SUFFIX,widget.clutch.co
 DOMAIN-SUFFIX,widgets.marketplace.aws.dev

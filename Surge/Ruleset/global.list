@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - General Global Services
-# Last Updated: 2025-01-05T09:45:48.421Z
-# Size: 717
+# Last Updated: 2025-01-05T12:31:11.583Z
+# Size: 716
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -412,7 +412,6 @@ DOMAIN-SUFFIX,grammarly.com
 DOMAIN-SUFFIX,hentaifox.com
 DOMAIN-SUFFIX,hentaipaw.com
 DOMAIN-SUFFIX,herokuapp.com
-DOMAIN-SUFFIX,herokussl.com
 DOMAIN-SUFFIX,homedepot.com
 DOMAIN-SUFFIX,instagram.com
 DOMAIN-SUFFIX,line-apps.com
