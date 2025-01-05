@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/6 00:16:16
+// Last updated: 2025/1/6 00:43:07
 // DOMAIN: 2035
-// DOMAIN-SUFFIX: 864
+// DOMAIN-SUFFIX: 863
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2944
+// Total: 2943
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2362,7 +2362,6 @@ DOMAIN-SUFFIX,hardbin.com
 DOMAIN-SUFFIX,hbfile.net
 DOMAIN-SUFFIX,hdzyk-cdn.com
 DOMAIN-SUFFIX,hembed.com
-DOMAIN-SUFFIX,hey10.cjkypo.com
 DOMAIN-SUFFIX,hgagecdn.com
 DOMAIN-SUFFIX,highwinds-cdn.com
 DOMAIN-SUFFIX,himg.nl
@@ -2461,7 +2460,6 @@ DOMAIN-SUFFIX,ipfs.slang.cx
 DOMAIN-SUFFIX,ipfs.sloppyta.co
 DOMAIN-SUFFIX,ipfs.smartholdem.io
 DOMAIN-SUFFIX,ipfs.soul-network.com
-DOMAIN-SUFFIX,ipfs.tayfundogdas.me
 DOMAIN-SUFFIX,ipfs.telos.miami
 DOMAIN-SUFFIX,ipfs.tribecap.co
 DOMAIN-SUFFIX,ipfs.trusti.id
@@ -2655,6 +2653,7 @@ DOMAIN-SUFFIX,proxy.startpage.com
 DOMAIN-SUFFIX,proxy.ustclug.org
 DOMAIN-SUFFIX,proxy1.startpage.com
 DOMAIN-SUFFIX,proxy2.startpage.com
+DOMAIN-SUFFIX,proxy3.startpage.com
 DOMAIN-SUFFIX,pstatic.net
 DOMAIN-SUFFIX,pstorage.space
 DOMAIN-SUFFIX,public.cdn.office.net
