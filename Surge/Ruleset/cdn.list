@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/6 18:16:17
-// DOMAIN: 2035
+// Last updated: 2025/1/6 18:42:29
+// DOMAIN: 2036
 // DOMAIN-SUFFIX: 863
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2943
+// Total: 2944
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -271,6 +271,7 @@ DOMAIN,blacklist.tampermonkey.net
 DOMAIN,blade-public-static.blade-group.com
 DOMAIN,blob.sololearn.com
 DOMAIN,boards.greenhouse.io
+DOMAIN,bookface-static.ycombinator.com
 DOMAIN,bot.ivy.ai
 DOMAIN,brick.a.ssl.fastly.net
 DOMAIN,brick.freetls.fastly.net
