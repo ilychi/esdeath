@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/7 23:33:17
-// DOMAIN: 2049
+// Last updated: 2025/1/7 23:59:04
+// DOMAIN: 2050
 // DOMAIN-SUFFIX: 864
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2958
+// Total: 2959
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -35,6 +35,7 @@ DOMAIN,ak.sail-horizon.com
 DOMAIN,akidoo.top
 DOMAIN,alt.idgesg.net
 DOMAIN,amp.azure.net
+DOMAIN,analytics.twitter.com
 DOMAIN,analytics.welcomesoftware.com
 DOMAIN,anchor.digitalocean.com
 DOMAIN,android-safebrowsing.google.com
