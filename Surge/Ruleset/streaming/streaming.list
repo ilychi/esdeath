@@ -1,12 +1,12 @@
-// Last updated: 2025/1/8 12:41:32
+// Last updated: 2025/1/8 13:03:41
 // DOMAIN: 51
-// DOMAIN-SUFFIX: 195
+// DOMAIN-SUFFIX: 194
 // DOMAIN-KEYWORD: 15
 // IP-CIDR: 15
 // IP-CIDR6: 4
 // PROCESS-NAME: 14
 // USER-AGENT: 49
-// Total: 343
+// Total: 342
 // Data sources:
 //  - https://ruleset.skk.moe/List/ip/stream.conf
 DOMAIN,44wilhpljf.execute-api.ap-southeast-1.amazonaws.com
@@ -221,7 +221,6 @@ DOMAIN-SUFFIX,sho.com
 DOMAIN-SUFFIX,showtime.com
 DOMAIN-SUFFIX,skyking.com.tw
 DOMAIN-SUFFIX,smartmediarep.com
-DOMAIN-SUFFIX,sndcdn.com
 DOMAIN-SUFFIX,socdm.com
 DOMAIN-SUFFIX,soundcloud.com
 DOMAIN-SUFFIX,spoti.fi
