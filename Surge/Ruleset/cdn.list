@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/10 20:19:10
-// DOMAIN: 2059
+// Last updated: 2025/1/10 20:52:13
+// DOMAIN: 2056
 // DOMAIN-SUFFIX: 867
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2971
+// Total: 2968
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1384,7 +1384,6 @@ DOMAIN,pic-bstarstatic.akamaized.net
 DOMAIN,pic.7mmtv.me
 DOMAIN,pic.cangku.moe
 DOMAIN,pic.imge.cc
-DOMAIN,pic.libilibi.top
 DOMAIN,pic.macked.app
 DOMAIN,pic.onlinewebfonts.com
 DOMAIN,pic.skk.moe
@@ -1623,7 +1622,6 @@ DOMAIN,sp-spiegel-de.spiegel.de
 DOMAIN,sp.nba.com
 DOMAIN,sp.replit.com
 DOMAIN,spcdn.incartupsell.com
-DOMAIN,spoppe-b.azureedge.net
 DOMAIN,spoprod-a.akamaihd.net
 DOMAIN,sprig.figma.com
 DOMAIN,st-eu.dynamicyield.com
@@ -1816,7 +1814,6 @@ DOMAIN,static.skyassets.com
 DOMAIN,static.snapchat.com
 DOMAIN,static.snaptube.in
 DOMAIN,static.snyk.io
-DOMAIN,static.socratic.org
 DOMAIN,static.solarwinds.com
 DOMAIN,static.spankbang.com
 DOMAIN,static.srcspot.com
