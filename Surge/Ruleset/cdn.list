@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/10 20:04:03
+// Last updated: 2025/1/10 20:19:10
 // DOMAIN: 2059
-// DOMAIN-SUFFIX: 865
+// DOMAIN-SUFFIX: 867
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2969
+// Total: 2971
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2104,6 +2104,7 @@ DOMAIN-SUFFIX,amaicdn.com
 DOMAIN-SUFFIX,ampproject.org
 DOMAIN-SUFFIX,anpoimages.com
 DOMAIN-SUFFIX,ant.design
+DOMAIN-SUFFIX,aolcdn.com
 DOMAIN-SUFFIX,api.instabug.com
 DOMAIN-SUFFIX,api.loganalytics.io
 DOMAIN-SUFFIX,app-analytics-services.com
@@ -2574,6 +2575,7 @@ DOMAIN-SUFFIX,mlcdn.com
 DOMAIN-SUFFIX,mm.bing.net
 DOMAIN-SUFFIX,mmtcdn.com
 DOMAIN-SUFFIX,mngbcn.com
+DOMAIN-SUFFIX,monitor.azure.com
 DOMAIN-SUFFIX,motherlessmedia.com
 DOMAIN-SUFFIX,msftconnecttest.com
 DOMAIN-SUFFIX,msftncsi.com
