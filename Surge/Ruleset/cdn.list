@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/13 22:17:19
-// DOMAIN: 2062
+// Last updated: 2025/1/13 22:42:26
+// DOMAIN: 2064
 // DOMAIN-SUFFIX: 868
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 34
-// Total: 2975
+// Total: 2977
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -405,6 +405,7 @@ DOMAIN,cdn.db-ip.com
 DOMAIN,cdn.decrypt.co
 DOMAIN,cdn.deta.space
 DOMAIN,cdn.dnsimple.com
+DOMAIN,cdn.document360.io
 DOMAIN,cdn.donmai.us
 DOMAIN,cdn.dotaoutpost.com
 DOMAIN,cdn.download.it
@@ -2039,6 +2040,7 @@ DOMAIN,webfonts.zoho.com
 DOMAIN,webp.frostming.com
 DOMAIN,website-cdn.ipinfo.io
 DOMAIN,webstatic.chargebee.com
+DOMAIN,widget.docsbot.ai
 DOMAIN,widget.freshworks.com
 DOMAIN,widget.intercom.io
 DOMAIN,widget.kapa.ai
