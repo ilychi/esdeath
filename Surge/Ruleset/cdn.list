@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/19 21:17:17
+// Last updated: 2025/1/19 21:39:34
 // DOMAIN: 2073
 // DOMAIN-SUFFIX: 873
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
-// OTHER: 34
-// Total: 2991
+// OTHER: 35
+// Total: 2992
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2970,6 +2970,7 @@ DOMAIN-WILDCARD,*.kuaikan-cdn?.com
 DOMAIN-WILDCARD,*.lz-cdn?.com
 DOMAIN-WILDCARD,*.lz-cdn??.com
 DOMAIN-WILDCARD,appcenter-filemanagement-*.cloudapp.net
+DOMAIN-WILDCARD,assets*.freshdesk.com
 DOMAIN-WILDCARD,blog-imgs-??.2nt.com
 DOMAIN-WILDCARD,blog-imgs-??.fc2.com
 DOMAIN-WILDCARD,cdn-msp?.18comic.vip
