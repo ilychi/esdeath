@@ -1,11 +1,11 @@
 // Common Static CDNs
-// Last updated: 2025/1/20 13:17:03
+// Last updated: 2025/1/20 13:41:18
 // DOMAIN: 2074
 // DOMAIN-SUFFIX: 874
-// DOMAIN-KEYWORD: 6
+// DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
-// OTHER: 35
+// OTHER: 34
 // Total: 2994
 // Made by Sukka, All rights reserved
 // Data sources:
@@ -2085,6 +2085,7 @@ DOMAIN,xpaywalletcdn.azureedge.net
 DOMAIN,yep.video.yahoo.com
 DOMAIN,yummlystatic.com
 DOMAIN,zephr-templates.cnbc.com
+DOMAIN-KEYWORD,-cdn.eporner.com
 DOMAIN-KEYWORD,-files.gitbook.io
 DOMAIN-KEYWORD,-res.cloudinary.com
 DOMAIN-KEYWORD,cdnstatic.
@@ -2991,7 +2992,6 @@ DOMAIN-WILDCARD,rr?---??.ouo.si
 DOMAIN-WILDCARD,s3.*.wasabisys.com
 DOMAIN-WILDCARD,sdk.*.braze.eu
 DOMAIN-WILDCARD,static*.tgstat.ru
-DOMAIN-WILDCARD,static-??-cdn.eporner.com
 DOMAIN-WILDCARD,t?.nhentai.net
 DOMAIN-WILDCARD,v.rn???.xyz
 DOMAIN-WILDCARD,video*.cloudokyo.cloud
