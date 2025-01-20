@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/20 12:16:53
+// Last updated: 2025/1/20 12:42:55
 // DOMAIN: 2074
-// DOMAIN-SUFFIX: 873
+// DOMAIN-SUFFIX: 874
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 35
-// Total: 2993
+// Total: 2994
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2359,6 +2359,7 @@ DOMAIN-SUFFIX,fonts.com
 DOMAIN-SUFFIX,fonts.net
 DOMAIN-SUFFIX,forbesimg.com
 DOMAIN-SUFFIX,forgecdn.net
+DOMAIN-SUFFIX,fourhoi.com
 DOMAIN-SUFFIX,framercdn.com
 DOMAIN-SUFFIX,framerstatic.com
 DOMAIN-SUFFIX,framerusercontent.com
