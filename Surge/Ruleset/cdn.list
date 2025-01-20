@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/20 18:16:47
-// DOMAIN: 2110
-// DOMAIN-SUFFIX: 913
+// Last updated: 2025/1/20 18:42:24
+// DOMAIN: 2109
+// DOMAIN-SUFFIX: 912
 // DOMAIN-KEYWORD: 8
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3078
+// Total: 3076
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1317,7 +1317,6 @@ DOMAIN,media3.giphy.com
 DOMAIN,media3.kissjav.com
 DOMAIN,media4.giphy.com
 DOMAIN,media4.kissjav.com
-DOMAIN,media5.kissjav.com
 DOMAIN,media7.kissjav.com
 DOMAIN,media8.kissjav.com
 DOMAIN,media9.kissjav.com
@@ -2186,7 +2185,6 @@ DOMAIN-SUFFIX,assets.shortbread.aws.dev
 DOMAIN-SUFFIX,assets.tumblr.com
 DOMAIN-SUFFIX,assets.ubuntu.com
 DOMAIN-SUFFIX,assettype.com
-DOMAIN-SUFFIX,avdocker.com
 DOMAIN-SUFFIX,avdocker3.com
 DOMAIN-SUFFIX,avximg.com
 DOMAIN-SUFFIX,awsstatic.com
