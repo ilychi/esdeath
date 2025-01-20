@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/20 09:29:25
-// DOMAIN: 2073
+// Last updated: 2025/1/20 10:06:43
+// DOMAIN: 2074
 // DOMAIN-SUFFIX: 873
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 35
-// Total: 2992
+// Total: 2993
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1332,6 +1332,7 @@ DOMAIN,netlify.apollo.io
 DOMAIN,newassets.hcaptcha.com
 DOMAIN,newsletter.postmarkapp.com
 DOMAIN,next-images.opencollective.com
+DOMAIN,nextra.site
 DOMAIN,ni-assets.azureedge.net
 DOMAIN,nightly.link
 DOMAIN,no-cache.hubspot.com
