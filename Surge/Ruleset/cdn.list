@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/22 20:04:25
+// Last updated: 2025/1/22 20:19:26
 // DOMAIN: 2128
-// DOMAIN-SUFFIX: 913
+// DOMAIN-SUFFIX: 914
 // DOMAIN-KEYWORD: 8
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3096
+// Total: 3097
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2827,6 +2827,7 @@ DOMAIN-SUFFIX,registry.gitplac.si
 DOMAIN-SUFFIX,replicate.delivery
 DOMAIN-SUFFIX,repo.anaconda.com
 DOMAIN-SUFFIX,res.office365.com
+DOMAIN-SUFFIX,rescript-lang.org
 DOMAIN-SUFFIX,rocketcdn.me
 DOMAIN-SUFFIX,rollupjs.org
 DOMAIN-SUFFIX,roseimgs.com
