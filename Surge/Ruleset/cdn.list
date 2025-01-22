@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/22 08:37:55
-// DOMAIN: 2109
+// Last updated: 2025/1/22 09:30:22
+// DOMAIN: 2111
 // DOMAIN-SUFFIX: 913
 // DOMAIN-KEYWORD: 8
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3077
+// Total: 3079
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -534,6 +534,7 @@ DOMAIN,cdn.prod.ext.web.purview.azure.com
 DOMAIN,cdn.prod.www.spiegel.de
 DOMAIN,cdn.prowritingaid.com
 DOMAIN,cdn.quadpay.com
+DOMAIN,cdn.quickemailverification.com
 DOMAIN,cdn.rauno.me
 DOMAIN,cdn.readme.io
 DOMAIN,cdn.ready-market.com.tw
@@ -570,6 +571,7 @@ DOMAIN,cdn.sprig.com
 DOMAIN,cdn.st-note.com
 DOMAIN,cdn.starapps.studio
 DOMAIN,cdn.stash.com
+DOMAIN,cdn.staticdelivr.com
 DOMAIN,cdn.stellarhosted.com
 DOMAIN,cdn.substack.com
 DOMAIN,cdn.sunofbeaches.com
