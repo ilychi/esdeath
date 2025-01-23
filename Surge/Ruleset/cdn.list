@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/23 21:41:06
-// DOMAIN: 2142
+// Last updated: 2025/1/23 22:05:02
+// DOMAIN: 2143
 // DOMAIN-SUFFIX: 919
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3115
+// Total: 3116
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1558,6 +1558,7 @@ DOMAIN,resources.esportsinsider.com
 DOMAIN,resources.help.salesforce.com
 DOMAIN,rsi.grafana.com
 DOMAIN,rsms.me
+DOMAIN,rtcg-access.bytevcloud.com
 DOMAIN,rts-static-prod.freshworksapi.com
 DOMAIN,rules.ac
 DOMAIN,rules1.clearurls.xyz
