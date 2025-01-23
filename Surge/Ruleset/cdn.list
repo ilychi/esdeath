@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/23 14:04:14
-// DOMAIN: 2128
-// DOMAIN-SUFFIX: 914
-// DOMAIN-KEYWORD: 8
+// Last updated: 2025/1/23 14:18:09
+// DOMAIN: 2142
+// DOMAIN-SUFFIX: 919
+// DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3097
+// Total: 3115
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -604,6 +604,7 @@ DOMAIN,cdn.vidyard.com
 DOMAIN,cdn.viglink.com
 DOMAIN,cdn.vuukle.com
 DOMAIN,cdn.wccftech.com
+DOMAIN,cdn.webclicks24.com
 DOMAIN,cdn.weglot.com
 DOMAIN,cdn.wikiwiki.jp
 DOMAIN,cdn.windowsreport.com
@@ -613,6 +614,7 @@ DOMAIN,cdn.worldvectorlogo.com
 DOMAIN,cdn.writeas.net
 DOMAIN,cdn.xeiaso.net
 DOMAIN,cdn.xgroovy.com
+DOMAIN,cdn.xvidzz.com
 DOMAIN,cdn.yinghuazy.xyz
 DOMAIN,cdn.ywxi.net
 DOMAIN,cdn.zapier.com
@@ -873,6 +875,8 @@ DOMAIN,fastporndelivery.hqporner.com
 DOMAIN,favicon.yandex.net
 DOMAIN,favicons.nextdns.io
 DOMAIN,favicons.teams.cloudflare.com
+DOMAIN,fdn.gsmarena.com
+DOMAIN,fdn2.gsmarena.com
 DOMAIN,fesdk.nexon.com
 DOMAIN,fiddle.fastly.dev
 DOMAIN,fiddle.jshell.net
@@ -1056,6 +1060,7 @@ DOMAIN,images.prismic.io
 DOMAIN,images.ptt.cc
 DOMAIN,images.purevpn-tools.com
 DOMAIN,images.scalero.io
+DOMAIN,images.scrolller.com
 DOMAIN,images.spot.im
 DOMAIN,images.spr.so
 DOMAIN,images.store.crowdstrike.com
@@ -1255,6 +1260,7 @@ DOMAIN,loutre.blockchair.io
 DOMAIN,ltn.hitomi.la
 DOMAIN,lumiere-a.akamaihd.net
 DOMAIN,m-cdn.phonearena.com
+DOMAIN,m.porn3dx.com
 DOMAIN,m.wsj.net
 DOMAIN,m3.gab.com
 DOMAIN,m3u8.girigirilove.com
@@ -1765,6 +1771,7 @@ DOMAIN,static.bbci.co.uk
 DOMAIN,static.bit.cloud
 DOMAIN,static.bit.dev
 DOMAIN,static.bitfinex.com
+DOMAIN,static.bravoporn.com
 DOMAIN,static.buffer.com
 DOMAIN,static.bytepan.com
 DOMAIN,static.canva.com
@@ -1901,6 +1908,7 @@ DOMAIN,static.underhentai.net
 DOMAIN,static.v2ex.com
 DOMAIN,static.vinted.com
 DOMAIN,static.vocadb.net
+DOMAIN,static.webclicks24.com
 DOMAIN,static.whatsapp.net
 DOMAIN,static.workday.com
 DOMAIN,static.xgroovy.com
@@ -1911,17 +1919,22 @@ DOMAIN,static.zaobao.com.sg
 DOMAIN,static01.nyt.com
 DOMAIN,static02.nyt.com
 DOMAIN,static1.lottiefiles.com
+DOMAIN,static1.muchohentai.com
 DOMAIN,static1.smartbear.co
 DOMAIN,static1.squarespace.com
 DOMAIN,static10.lottiefiles.com
 DOMAIN,static2.avg.com
 DOMAIN,static2.lottiefiles.com
+DOMAIN,static2.muchohentai.com
 DOMAIN,static2.onlyfans.com
 DOMAIN,static2.sharepointonline.com
 DOMAIN,static3.lottiefiles.com
+DOMAIN,static3.muchohentai.com
 DOMAIN,static3.squarespace.com
 DOMAIN,static4.lottiefiles.com
+DOMAIN,static4.muchohentai.com
 DOMAIN,static5.lottiefiles.com
+DOMAIN,static5.muchohentai.com
 DOMAIN,static6.lottiefiles.com
 DOMAIN,static7.lottiefiles.com
 DOMAIN,static8.lottiefiles.com
@@ -2079,6 +2092,7 @@ DOMAIN,vscode-sync-insiders.trafficmanager.net
 DOMAIN,vscode-sync.trafficmanager.net
 DOMAIN,vuejs.org
 DOMAIN,vz-2222604c-50b.b-cdn.net
+DOMAIN,vz-c0fe498e-5ab.b-cdn.net
 DOMAIN,w.chatlio.com
 DOMAIN,w.soundcloud.com
 DOMAIN,w2.influxdata.com
@@ -2143,7 +2157,6 @@ DOMAIN-KEYWORD,-cdn.eporner.com
 DOMAIN-KEYWORD,-files.gitbook.io
 DOMAIN-KEYWORD,-res.cloudinary.com
 DOMAIN-KEYWORD,cdn.adultempire.com
-DOMAIN-KEYWORD,cdnstatic.
 DOMAIN-KEYWORD,dsn.algolia.net
 DOMAIN-KEYWORD,vod-adaptive.akamaized.net
 DOMAIN-KEYWORD,web-assets.zendesk
@@ -2158,6 +2171,7 @@ DOMAIN-SUFFIX,91pic.org
 DOMAIN-SUFFIX,98avcdn.xyz
 DOMAIN-SUFFIX,9cache.com
 DOMAIN-SUFFIX,a.storyblok.com
+DOMAIN-SUFFIX,a1tb.com
 DOMAIN-SUFFIX,aacdn.nagich.com
 DOMAIN-SUFFIX,aayinltcs.arduino.cc
 DOMAIN-SUFFIX,abc-cdn.net.au
@@ -2295,6 +2309,7 @@ DOMAIN-SUFFIX,cdnjhd.com
 DOMAIN-SUFFIX,cdnjs.network
 DOMAIN-SUFFIX,cdnmania.org
 DOMAIN-SUFFIX,cdnpk.net
+DOMAIN-SUFFIX,cdnpm.net
 DOMAIN-SUFFIX,cdnppb.net
 DOMAIN-SUFFIX,cdnpure.com
 DOMAIN-SUFFIX,cdnst.net
@@ -2445,6 +2460,7 @@ DOMAIN-SUFFIX,gateway.pinata.cloud
 DOMAIN-SUFFIX,gateway.serph.network
 DOMAIN-SUFFIX,gcr.io
 DOMAIN-SUFFIX,gcr.si
+DOMAIN-SUFFIX,gdvid.info
 DOMAIN-SUFFIX,gentcdn.com
 DOMAIN-SUFFIX,getcomposer.org
 DOMAIN-SUFFIX,ggpht.com
@@ -2676,6 +2692,7 @@ DOMAIN-SUFFIX,mirrors.utermux.dev
 DOMAIN-SUFFIX,misskeyusercontent.com
 DOMAIN-SUFFIX,misskeyusercontent.jp
 DOMAIN-SUFFIX,missuo.ru
+DOMAIN-SUFFIX,mjedge.net
 DOMAIN-SUFFIX,mktgcdn.com
 DOMAIN-SUFFIX,mlcdn.com
 DOMAIN-SUFFIX,mm.bing.net
@@ -2720,6 +2737,7 @@ DOMAIN-SUFFIX,notion-static.com
 DOMAIN-SUFFIX,notionusercontent.com
 DOMAIN-SUFFIX,now.sh
 DOMAIN-SUFFIX,npm.io
+DOMAIN-SUFFIX,npmcdn.com
 DOMAIN-SUFFIX,npmfs.com
 DOMAIN-SUFFIX,nxcli.io
 DOMAIN-SUFFIX,nxedge.io
