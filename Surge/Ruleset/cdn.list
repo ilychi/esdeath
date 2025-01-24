@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/24 17:17:51
-// DOMAIN: 2144
+// Last updated: 2025/1/24 17:41:09
+// DOMAIN: 2146
 // DOMAIN-SUFFIX: 920
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3118
+// Total: 3120
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -507,6 +507,7 @@ DOMAIN,cdn.now.gg
 DOMAIN,cdn.onesignal.com
 DOMAIN,cdn.onetime.dog
 DOMAIN,cdn.onlyhentaistuff.com
+DOMAIN,cdn.openai.com
 DOMAIN,cdn.osxdaily.com
 DOMAIN,cdn.paddle.com
 DOMAIN,cdn.pagefly.io
@@ -1368,6 +1369,7 @@ DOMAIN,my-json-server.typicode.com
 DOMAIN,mycommerce.akamaized.net
 DOMAIN,na-library.klarnaservices.com
 DOMAIN,namedotcom-cdn.name.tools
+DOMAIN,nav.yumenosora.co.jp
 DOMAIN,navismithapis-cdn.com
 DOMAIN,nbcnewsdigital-static.nbcuni.com
 DOMAIN,net-fe-static-assets.network-controller.svc.ui.com
