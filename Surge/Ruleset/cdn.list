@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/24 21:20:38
+// Last updated: 2025/1/24 21:40:49
 // DOMAIN: 2146
-// DOMAIN-SUFFIX: 920
+// DOMAIN-SUFFIX: 921
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3120
+// Total: 3121
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2326,6 +2326,7 @@ DOMAIN-SUFFIX,chasecdn.com
 DOMAIN-SUFFIX,chcdn.xyz
 DOMAIN-SUFFIX,chesscomfiles.com
 DOMAIN-SUFFIX,claudeusercontent.com
+DOMAIN-SUFFIX,cldup.com
 DOMAIN-SUFFIX,clientmetrics-pa.googleapis.com
 DOMAIN-SUFFIX,cloud.influxdata.com
 DOMAIN-SUFFIX,cloud1.influxdata.com
