@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/24 14:45:51
-// DOMAIN: 2143
+// Last updated: 2025/1/24 15:04:16
+// DOMAIN: 2144
 // DOMAIN-SUFFIX: 919
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3116
+// Total: 3117
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1803,6 +1803,7 @@ DOMAIN,static.ettoday.net
 DOMAIN,static.euronews.com
 DOMAIN,static.fasthosts.co.uk
 DOMAIN,static.fboom.me
+DOMAIN,static.fbot.me
 DOMAIN,static.fc2.com
 DOMAIN,static.fc2cn.com
 DOMAIN,static.ffx.io
