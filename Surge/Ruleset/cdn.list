@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/26 12:18:22
+// Last updated: 2025/1/26 12:41:45
 // DOMAIN: 2146
-// DOMAIN-SUFFIX: 921
+// DOMAIN-SUFFIX: 922
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3121
+// Total: 3122
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2504,6 +2504,7 @@ DOMAIN-SUFFIX,hgagecdn.com
 DOMAIN-SUFFIX,hgasm1.com
 DOMAIN-SUFFIX,hgasm2.com
 DOMAIN-SUFFIX,hgasm3.com
+DOMAIN-SUFFIX,hgimg00.com
 DOMAIN-SUFFIX,highwinds-cdn.com
 DOMAIN-SUFFIX,himg.nl
 DOMAIN-SUFFIX,hits.b3log.org
