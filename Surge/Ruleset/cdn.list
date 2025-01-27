@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/27 15:40:21
-// DOMAIN: 2147
+// Last updated: 2025/1/27 16:05:25
+// DOMAIN: 2148
 // DOMAIN-SUFFIX: 920
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3121
+// Total: 3122
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1895,6 +1895,7 @@ DOMAIN,static.snyk.io
 DOMAIN,static.solarwinds.com
 DOMAIN,static.spankbang.com
 DOMAIN,static.srcspot.com
+DOMAIN,static.staff-start.com
 DOMAIN,static.start.me
 DOMAIN,static.status.io
 DOMAIN,static.telegraph.co.uk
