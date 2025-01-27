@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/27 14:44:49
-// DOMAIN: 2145
+// Last updated: 2025/1/27 15:04:54
+// DOMAIN: 2146
 // DOMAIN-SUFFIX: 920
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3119
+// Total: 3120
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -553,6 +553,7 @@ DOMAIN,cdn.royaleapi.com
 DOMAIN,cdn.safecharge.com
 DOMAIN,cdn.sanity.io
 DOMAIN,cdn.sc.gl
+DOMAIN,cdn.schemaapp.com
 DOMAIN,cdn.sciencecast.org
 DOMAIN,cdn.search.brave.com
 DOMAIN,cdn.sedo.com
