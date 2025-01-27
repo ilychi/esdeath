@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/27 15:17:39
-// DOMAIN: 2146
+// Last updated: 2025/1/27 15:40:21
+// DOMAIN: 2147
 // DOMAIN-SUFFIX: 920
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3120
+// Total: 3121
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2101,6 +2101,7 @@ DOMAIN,vz-c0fe498e-5ab.b-cdn.net
 DOMAIN,w.chatlio.com
 DOMAIN,w.soundcloud.com
 DOMAIN,w2.influxdata.com
+DOMAIN,wa.arounddeal.com
 DOMAIN,wac-cdn-2.atlassian.com
 DOMAIN,wac-cdn.atlassian.com
 DOMAIN,waitlisted.co
