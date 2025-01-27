@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/27 14:17:58
-// DOMAIN: 2144
+// Last updated: 2025/1/27 14:44:49
+// DOMAIN: 2145
 // DOMAIN-SUFFIX: 920
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3118
+// Total: 3119
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -895,6 +895,7 @@ DOMAIN,files.slack.com
 DOMAIN,files.smashing.media
 DOMAIN,files.writefreely.org
 DOMAIN,files.yande.re
+DOMAIN,filestore.community.support.microsoft.com
 DOMAIN,filestore.fortinet.com
 DOMAIN,firebase-settings.crashlytics.com
 DOMAIN,firebaselogging-pa.googleapis.com
