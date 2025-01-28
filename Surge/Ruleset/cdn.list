@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/29 02:44:17
+// Last updated: 2025/1/29 03:06:36
 // DOMAIN: 2148
-// DOMAIN-SUFFIX: 920
+// DOMAIN-SUFFIX: 921
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3122
+// Total: 3123
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2257,6 +2257,7 @@ DOMAIN-SUFFIX,bstatic.com
 DOMAIN-SUFFIX,bugly.qcloud.com
 DOMAIN-SUFFIX,bundle.run
 DOMAIN-SUFFIX,bundle.thimatic-apps.com
+DOMAIN-SUFFIX,bunnycdn.com
 DOMAIN-SUFFIX,bytebucket.org
 DOMAIN-SUFFIX,bytedapm.com
 DOMAIN-SUFFIX,c-dn.net
