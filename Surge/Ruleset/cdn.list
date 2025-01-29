@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/29 22:44:20
-// DOMAIN: 2148
+// Last updated: 2025/1/29 23:05:40
+// DOMAIN: 2146
 // DOMAIN-SUFFIX: 921
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3123
+// Total: 3121
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1124,7 +1124,6 @@ DOMAIN,img.domaintools.com
 DOMAIN,img.foresightnews.pro
 DOMAIN,img.fortawesome.com
 DOMAIN,img.freepik.com
-DOMAIN,img.hcloud.lat
 DOMAIN,img.hellofresh.com
 DOMAIN,img.hentaihaven.xxx
 DOMAIN,img.icons8.com
@@ -2071,7 +2070,6 @@ DOMAIN,userimg.customeriomail.com
 DOMAIN,userpic.redgifs.com
 DOMAIN,useruploads.visualwebsiteoptimizer.com
 DOMAIN,utteranc.es
-DOMAIN,v.hillwaver.com
 DOMAIN,v.w-x.co
 DOMAIN,v2.listenloop.com
 DOMAIN,vanilla-extract.style
