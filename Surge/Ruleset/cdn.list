@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/31 00:06:11
-// DOMAIN: 2148
+// Last updated: 2025/1/31 00:19:56
+// DOMAIN: 2149
 // DOMAIN-SUFFIX: 921
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3123
+// Total: 3124
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -325,6 +325,7 @@ DOMAIN,cdn-edge.karte.io
 DOMAIN,cdn-eu.dynamicyield.com
 DOMAIN,cdn-fck.tnaflix.com
 DOMAIN,cdn-forum.networklessons.com
+DOMAIN,cdn-front.freepik.com
 DOMAIN,cdn-images-1.medium.com
 DOMAIN,cdn-images.mailchimp.com
 DOMAIN,cdn-live.foreignaffairs.com
