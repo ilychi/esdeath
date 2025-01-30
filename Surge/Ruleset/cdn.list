@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/30 19:20:11
-// DOMAIN: 2147
+// Last updated: 2025/1/30 19:41:31
+// DOMAIN: 2148
 // DOMAIN-SUFFIX: 921
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3122
+// Total: 3123
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -424,6 +424,7 @@ DOMAIN,cdn.equalweb.com
 DOMAIN,cdn.eu.contentful.com
 DOMAIN,cdn.european-alternatives.eu
 DOMAIN,cdn.faire.com
+DOMAIN,cdn.fastcomments.com
 DOMAIN,cdn.filen.io
 DOMAIN,cdn.firebase.com
 DOMAIN,cdn.fluidplayer.com
