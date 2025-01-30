@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/1/30 18:43:07
-// DOMAIN: 2146
+// Last updated: 2025/1/30 19:07:31
+// DOMAIN: 2147
 // DOMAIN-SUFFIX: 921
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3121
+// Total: 3122
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -398,6 +398,7 @@ DOMAIN,cdn.concert.io
 DOMAIN,cdn.configcat.com
 DOMAIN,cdn.consentmanager.net
 DOMAIN,cdn.contentful.com
+DOMAIN,cdn.conveythis.com
 DOMAIN,cdn.credible.com
 DOMAIN,cdn.css.net
 DOMAIN,cdn.cxense.com
