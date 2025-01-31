@@ -1,13 +1,13 @@
 // Domestic Rules (Sukka)
-// Last updated: 2025/1/31 23:10:01
+// Last updated: 2025/1/31 23:41:52
 // DOMAIN: 33
-// DOMAIN-SUFFIX: 900
+// DOMAIN-SUFFIX: 901
 // DOMAIN-KEYWORD: 9
 // IP-CIDR: 2
 // PROCESS-NAME: 36
 // USER-AGENT: 4
 // OTHER: 1
-// Total: 985
+// Total: 986
 // This file contains known domains and IPs that are avaliable in the Mainland China.
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/domestic.conf
@@ -915,6 +915,7 @@ DOMAIN-SUFFIX,xiaomixiaoai.com
 DOMAIN-SUFFIX,xiaomiyoupin.com
 DOMAIN-SUFFIX,xiaote.net
 DOMAIN-SUFFIX,ximalaya.com
+DOMAIN-SUFFIX,xincai.com
 DOMAIN-SUFFIX,xinhuanet.com
 DOMAIN-SUFFIX,xiniu.com
 DOMAIN-SUFFIX,xmcdn.com
