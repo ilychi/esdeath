@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/1 19:40:37
-// DOMAIN: 2157
-// DOMAIN-SUFFIX: 922
+// Last updated: 2025/2/1 20:06:03
+// DOMAIN: 2163
+// DOMAIN-SUFFIX: 923
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3133
+// Total: 3140
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -284,6 +284,7 @@ DOMAIN,brick.a.ssl.fastly.net
 DOMAIN,brick.freetls.fastly.net
 DOMAIN,bst.icons8.com
 DOMAIN,btn.hitomi.la
+DOMAIN,bundle.dyn-rev.app
 DOMAIN,bundle.trysavvy.com
 DOMAIN,bundlephobia.com
 DOMAIN,bundler.nice-team.net
@@ -354,6 +355,7 @@ DOMAIN,cdn.7tv.app
 DOMAIN,cdn.accounts.nintendo.com
 DOMAIN,cdn.adguard.com
 DOMAIN,cdn.adguard.info
+DOMAIN,cdn.aimerce.ai
 DOMAIN,cdn.amcharts.com
 DOMAIN,cdn.announcekit.app
 DOMAIN,cdn.answeroverflow.com
@@ -443,6 +445,7 @@ DOMAIN,cdn.geekzone.co.nz
 DOMAIN,cdn.getkoala.com
 DOMAIN,cdn.gettr.com
 DOMAIN,cdn.ghostery.com
+DOMAIN,cdn.giftcardpro.app
 DOMAIN,cdn.glitch.com
 DOMAIN,cdn.glitch.global
 DOMAIN,cdn.glitch.me
@@ -1477,6 +1480,7 @@ DOMAIN,platform-assets.typekit.net
 DOMAIN,platform.instagram.com
 DOMAIN,platform.twitter.com
 DOMAIN,platforms.makemytrip.com
+DOMAIN,play.gotolstoy.com
 DOMAIN,play.izanmei.net
 DOMAIN,play.publicradio.org
 DOMAIN,play.vidyard.com
@@ -2092,6 +2096,7 @@ DOMAIN,video-images.vice.com
 DOMAIN,video-meta.humix.com
 DOMAIN,video.bsky.app
 DOMAIN,video.cdnbye.com
+DOMAIN,video.dailymail.co.uk
 DOMAIN,video1.7mmtv.sx
 DOMAIN,video2.7mmtv.sx
 DOMAIN,videos.elephas.app
@@ -2136,6 +2141,7 @@ DOMAIN,website-cdn.ipinfo.io
 DOMAIN,webstatic.chargebee.com
 DOMAIN,widget.docsbot.ai
 DOMAIN,widget.freshworks.com
+DOMAIN,widget.gotolstoy.com
 DOMAIN,widget.intercom.io
 DOMAIN,widget.kapa.ai
 DOMAIN,widget.trustpilot.com
@@ -2959,6 +2965,7 @@ DOMAIN-SUFFIX,stripst.com
 DOMAIN-SUFFIX,strpst.com
 DOMAIN-SUFFIX,stylexjs.com
 DOMAIN-SUFFIX,substackcdn.com
+DOMAIN-SUFFIX,superfiliate-cdn.com
 DOMAIN-SUFFIX,surge.sh
 DOMAIN-SUFFIX,surrit.com
 DOMAIN-SUFFIX,susercontent.com
