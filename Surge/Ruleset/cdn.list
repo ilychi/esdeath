@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/1 15:06:04
-// DOMAIN: 2152
-// DOMAIN-SUFFIX: 921
+// Last updated: 2025/2/1 15:18:30
+// DOMAIN: 2157
+// DOMAIN-SUFFIX: 922
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3127
+// Total: 3133
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -48,6 +48,7 @@ DOMAIN,api.bintray.com
 DOMAIN,api.crashguard.me
 DOMAIN,api.dicebear.com
 DOMAIN,api.iconify.design
+DOMAIN,api.instantly.ai
 DOMAIN,api.mintlify.com
 DOMAIN,api.mixpanel.com
 DOMAIN,api.producthunt.com
@@ -805,6 +806,7 @@ DOMAIN,divhunt.b-cdn.net
 DOMAIN,dl.airdroid.com
 DOMAIN,dl.nwjs.io
 DOMAIN,dl2.nwjs.io
+DOMAIN,do.featurebase.app
 DOMAIN,docker.cloudsmith.io
 DOMAIN,docs.rs
 DOMAIN,doppler-config.cbsivideo.com
@@ -1273,6 +1275,7 @@ DOMAIN,m.porn3dx.com
 DOMAIN,m.wsj.net
 DOMAIN,m3.gab.com
 DOMAIN,m3u8.girigirilove.com
+DOMAIN,makerworld.bblmw.com
 DOMAIN,mangaz-books.j-comi.jp
 DOMAIN,mangaz-static.j-comi.jp
 DOMAIN,mantisloader.mantis-awx.com
@@ -1325,6 +1328,7 @@ DOMAIN,media.nationwide.com
 DOMAIN,media.npr.org
 DOMAIN,media.orz.uno
 DOMAIN,media.owcnow.com
+DOMAIN,media.printables.com
 DOMAIN,media.pullopen.xyz
 DOMAIN,media.ra.kroll.com
 DOMAIN,media.shopimind.com
@@ -1566,6 +1570,7 @@ DOMAIN,resources-cache.prod.sketch.com
 DOMAIN,resources-live.sketch.cloud
 DOMAIN,resources.esportsinsider.com
 DOMAIN,resources.help.salesforce.com
+DOMAIN,rest.happierleads.com
 DOMAIN,rsi.grafana.com
 DOMAIN,rsms.me
 DOMAIN,rtcg-access.bytevcloud.com
@@ -2975,6 +2980,7 @@ DOMAIN-SUFFIX,tile.openstreetmap.de
 DOMAIN-SUFFIX,tile.openstreetmap.org
 DOMAIN-SUFFIX,tile.osm.org
 DOMAIN-SUFFIX,timg135.top
+DOMAIN-SUFFIX,tindiemedia.com
 DOMAIN-SUFFIX,tiqcdn.com
 DOMAIN-SUFFIX,tkcdns.com
 DOMAIN-SUFFIX,tmsimg.com
