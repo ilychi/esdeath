@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/4 17:06:53
+// Last updated: 2025/2/4 17:20:17
 // DOMAIN: 2164
 // DOMAIN-SUFFIX: 923
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
-// OTHER: 42
-// Total: 3141
+// OTHER: 40
+// Total: 3139
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -3105,8 +3105,6 @@ DOMAIN-SUFFIX,zohostatic.com
 DOMAIN-SUFFIX,zohostatic.eu
 DOMAIN-SUFFIX,zohowebstatic.com
 DOMAIN-SUFFIX,zorocdn.xyz
-DOMAIN-WILDCARD,*.ffzy-online?.com
-DOMAIN-WILDCARD,*.ffzy-play?.com
 DOMAIN-WILDCARD,*.fsvod?.com
 DOMAIN-WILDCARD,*.kuaikan-cdn?.com
 DOMAIN-WILDCARD,*.lz-cdn?.com

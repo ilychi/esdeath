@@ -1,13 +1,13 @@
 // Domestic Rules (Sukka)
-// Last updated: 2025/2/4 17:06:53
+// Last updated: 2025/2/4 17:20:17
 // DOMAIN: 33
-// DOMAIN-SUFFIX: 901
+// DOMAIN-SUFFIX: 905
 // DOMAIN-KEYWORD: 9
 // IP-CIDR: 2
 // PROCESS-NAME: 36
 // USER-AGENT: 4
-// OTHER: 1
-// Total: 986
+// OTHER: 3
+// Total: 992
 // This file contains known domains and IPs that are avaliable in the Mainland China.
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/domestic.conf
@@ -80,6 +80,7 @@ DOMAIN-SUFFIX,166.net
 DOMAIN-SUFFIX,168.192.in-addr.arpa
 DOMAIN-SUFFIX,1688.com
 DOMAIN-SUFFIX,17.172.in-addr.arpa
+DOMAIN-SUFFIX,178.com
 DOMAIN-SUFFIX,18.172.in-addr.arpa
 DOMAIN-SUFFIX,188.com
 DOMAIN-SUFFIX,189.cn
@@ -364,6 +365,7 @@ DOMAIN-SUFFIX,docer.com
 DOMAIN-SUFFIX,docin.com
 DOMAIN-SUFFIX,docschina.org
 DOMAIN-SUFFIX,doi.org
+DOMAIN-SUFFIX,donews.com
 DOMAIN-SUFFIX,douban.com
 DOMAIN-SUFFIX,douban.fm
 DOMAIN-SUFFIX,doubanio.com
@@ -658,6 +660,8 @@ DOMAIN-SUFFIX,netease.com
 DOMAIN-SUFFIX,netease.im
 DOMAIN-SUFFIX,netstatic.net
 DOMAIN-SUFFIX,news.cn
+DOMAIN-SUFFIX,nga.cn
+DOMAIN-SUFFIX,ngabbs.com
 DOMAIN-SUFFIX,nicept.net
 DOMAIN-SUFFIX,nmc.cn
 DOMAIN-SUFFIX,npmmirror.com
@@ -956,6 +960,8 @@ DOMAIN-SUFFIX,zjcdn.com
 DOMAIN-SUFFIX,zui.com
 DOMAIN-SUFFIX,zuimeitianqi.com
 DOMAIN-SUFFIX,zuoyebang.com
+DOMAIN-WILDCARD,*.ffzy-online?.com
+DOMAIN-WILDCARD,*.ffzy-play?.com
 DOMAIN-WILDCARD,*.qhimgs?.com
 IP-CIDR,140.205.1.0/24,no-resolve
 IP-CIDR,162.14.0.0/18,no-resolve
