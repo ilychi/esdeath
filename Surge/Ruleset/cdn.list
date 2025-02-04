@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/4 16:19:50
-// DOMAIN: 2163
+// Last updated: 2025/2/4 16:43:40
+// DOMAIN: 2164
 // DOMAIN-SUFFIX: 923
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3140
+// Total: 3141
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -920,6 +920,7 @@ DOMAIN,fonts.codeberg.org
 DOMAIN,fonts.gishan.cc
 DOMAIN,fonts.googleapis.com
 DOMAIN,fonts.gstatic.com
+DOMAIN,fonts.mailerlite.com
 DOMAIN,fonts.sony.net
 DOMAIN,fonts.svc.ui.com
 DOMAIN,fonts.twitter.com
