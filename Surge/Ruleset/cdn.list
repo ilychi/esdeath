@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/5 21:42:28
-// DOMAIN: 2171
+// Last updated: 2025/2/5 22:05:26
+// DOMAIN: 2173
 // DOMAIN-SUFFIX: 926
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 38
-// Total: 3147
+// Total: 3149
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -719,6 +719,7 @@ DOMAIN,cf.javfree.me
 DOMAIN,cf.shopee.tw
 DOMAIN,cfvod.kaltura.com
 DOMAIN,chart.googleapis.com
+DOMAIN,chat-content.beanfun.com
 DOMAIN,checkout-sdk.bigcommerce.com
 DOMAIN,checkout.stripe.com
 DOMAIN,ci.testling.com
@@ -1332,6 +1333,7 @@ DOMAIN,media.mas.to
 DOMAIN,media.masto.nu
 DOMAIN,media.mstdn.io
 DOMAIN,media.nationwide.com
+DOMAIN,media.nownews.com
 DOMAIN,media.npr.org
 DOMAIN,media.orz.uno
 DOMAIN,media.owcnow.com
