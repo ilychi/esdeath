@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/5 14:18:39
-// DOMAIN: 2167
+// Last updated: 2025/2/5 14:46:52
+// DOMAIN: 2169
 // DOMAIN-SUFFIX: 926
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 38
-// Total: 3143
+// Total: 3145
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -748,6 +748,7 @@ DOMAIN,components.justanswer.com
 DOMAIN,config.extension.grammarly.com
 DOMAIN,connect-js.stripe.com
 DOMAIN,connect.facebook.net
+DOMAIN,connect.nosto.com
 DOMAIN,connectivitycheck.android.com
 DOMAIN,connectivitycheck.gstatic.com
 DOMAIN,consent-manager.ft.com
@@ -1414,6 +1415,7 @@ DOMAIN,ocsp.digicert.com
 DOMAIN,ocsp.godaddy.com
 DOMAIN,ocsp.sectigo.com
 DOMAIN,ocsp.usertrust.com
+DOMAIN,oct8neproxy.azurewebsites.net
 DOMAIN,ohttp-relay1.fastly-edge.com
 DOMAIN,ooo.0o0.ooo
 DOMAIN,open-vsx.org
