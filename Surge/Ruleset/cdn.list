@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/5 14:46:52
-// DOMAIN: 2169
+// Last updated: 2025/2/5 15:05:31
+// DOMAIN: 2171
 // DOMAIN-SUFFIX: 926
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 38
-// Total: 3145
+// Total: 3147
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1503,6 +1503,7 @@ DOMAIN,polyfill.bbhub.io
 DOMAIN,pomf2.lain.la
 DOMAIN,pool.jortage.com
 DOMAIN,pplx-next-static-public.perplexity.ai
+DOMAIN,pplx-res.cloudinary.com
 DOMAIN,practicaldev-herokuapp-com.freetls.fastly.net
 DOMAIN,prego-cache.prod.sketch.com
 DOMAIN,prettier.io
@@ -1542,6 +1543,7 @@ DOMAIN,quriobot.com
 DOMAIN,r.r10s.jp
 DOMAIN,r2.1hanime.com
 DOMAIN,r2.leadsy.ai
+DOMAIN,r2cdn.perplexity.ai
 DOMAIN,rapid-cdn.yottaa.com
 DOMAIN,raw.github.com
 DOMAIN,rawmarkdown.cloudflareaccess.org
