@@ -1,13 +1,13 @@
 // Domestic Rules (Sukka)
-// Last updated: 2025/2/7 01:17:37
+// Last updated: 2025/2/7 01:43:39
 // DOMAIN: 33
-// DOMAIN-SUFFIX: 905
+// DOMAIN-SUFFIX: 907
 // DOMAIN-KEYWORD: 9
 // IP-CIDR: 2
 // PROCESS-NAME: 36
 // USER-AGENT: 4
 // OTHER: 5
-// Total: 994
+// Total: 996
 // This file contains known domains and IPs that are avaliable in the Mainland China.
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/domestic.conf
@@ -58,6 +58,7 @@ DOMAIN-KEYWORD,westlawchina
 DOMAIN-SUFFIX,10.in-addr.arpa
 DOMAIN-SUFFIX,10010.com
 DOMAIN-SUFFIX,10086.cn
+DOMAIN-SUFFIX,111.com
 DOMAIN-SUFFIX,115.com
 DOMAIN-SUFFIX,115cdn.com
 DOMAIN-SUFFIX,115cdn.net
@@ -396,6 +397,7 @@ DOMAIN-SUFFIX,edge-byted.com
 DOMAIN-SUFFIX,edu.cn
 DOMAIN-SUFFIX,ele.me
 DOMAIN-SUFFIX,elemecdn.com
+DOMAIN-SUFFIX,email.cn
 DOMAIN-SUFFIX,empornium.me
 DOMAIN-SUFFIX,et8.org
 DOMAIN-SUFFIX,etao.com

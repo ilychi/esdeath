@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Domestic Domains
-# Last Updated: 2025-02-06T14:31:09.079Z
-# Size: 772
+# Last Updated: 2025-02-06T17:18:35.855Z
+# Size: 774
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -613,6 +613,7 @@ DOMAIN-SUFFIX,139.com
 DOMAIN-SUFFIX,127.com
 DOMAIN-SUFFIX,126.com
 DOMAIN-SUFFIX,115.com
+DOMAIN-SUFFIX,111.com
 DOMAIN-SUFFIX,yy.com
 DOMAIN-SUFFIX,so.com
 DOMAIN-SUFFIX,qq.com
@@ -721,6 +722,7 @@ DOMAIN-SUFFIX,infoq.cn
 DOMAIN-SUFFIX,honor.cn
 DOMAIN-SUFFIX,gtimg.cn
 DOMAIN-SUFFIX,flyme.cn
+DOMAIN-SUFFIX,email.cn
 DOMAIN-SUFFIX,cnnic.cn
 DOMAIN-SUFFIX,baidu.cn
 DOMAIN-SUFFIX,aqara.cn
