@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/6 22:20:00
-// DOMAIN: 2173
+// Last updated: 2025/2/6 22:44:14
+// DOMAIN: 2174
 // DOMAIN-SUFFIX: 926
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 38
-// Total: 3149
+// Total: 3150
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1644,6 +1644,7 @@ DOMAIN,s3.picacomic.com
 DOMAIN,s3.producthunt.com
 DOMAIN,s3.stackabuse.com
 DOMAIN,s3.toot.io
+DOMAIN,s3.tradingview.com
 DOMAIN,s3.us-west-000.backblazeb2.com
 DOMAIN,s3.us-west-001.backblazeb2.com
 DOMAIN,s3.us-west-002.backblazeb2.com
