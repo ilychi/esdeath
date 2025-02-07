@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/7 21:15:15
+// Last updated: 2025/2/7 21:42:48
 // DOMAIN: 2174
 // DOMAIN-SUFFIX: 926
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
-// OTHER: 38
-// Total: 3150
+// OTHER: 39
+// Total: 3151
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -3138,6 +3138,7 @@ DOMAIN-WILDCARD,img?.porngo.com
 DOMAIN-WILDCARD,img??.porngo.com
 DOMAIN-WILDCARD,media?.kissjav.com
 DOMAIN-WILDCARD,media??.kissjav.com
+DOMAIN-WILDCARD,object-storage-*.vexxhost.net
 DOMAIN-WILDCARD,ocsp.*.amazontrust.com
 DOMAIN-WILDCARD,proxy-*.dailymotion.com
 DOMAIN-WILDCARD,rr?---??.ouo.si
