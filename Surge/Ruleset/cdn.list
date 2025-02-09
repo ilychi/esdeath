@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/9 21:08:36
-// DOMAIN: 2175
+// Last updated: 2025/2/9 21:18:47
+// DOMAIN: 2176
 // DOMAIN-SUFFIX: 930
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 40
-// Total: 3157
+// Total: 3158
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -371,6 +371,7 @@ DOMAIN,cdn.autoketing.org
 DOMAIN,cdn.axieinfinity.com
 DOMAIN,cdn.babylonjs.com
 DOMAIN,cdn.bfe.dev
+DOMAIN,cdn.bfldr.com
 DOMAIN,cdn.bigcloud.click
 DOMAIN,cdn.birdie.so
 DOMAIN,cdn.botframework.com
