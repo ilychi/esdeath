@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/10 09:30:51
-// DOMAIN: 2176
-// DOMAIN-SUFFIX: 930
+// Last updated: 2025/2/10 10:08:59
+// DOMAIN: 2178
+// DOMAIN-SUFFIX: 931
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 40
-// Total: 3158
+// Total: 3161
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1212,6 +1212,7 @@ DOMAIN,ipfs.d.tube
 DOMAIN,irp-cdn.multiscreensite.com
 DOMAIN,j.udn.com.tw
 DOMAIN,jac.yahoosandbox.com
+DOMAIN,jaws.pbs.org
 DOMAIN,jfe-cdn.qualtrics.com
 DOMAIN,jira-frontend-bifrost.prod-east.frontend.public.atl-paas.net
 DOMAIN,js-1-cdn.airdroid.com
@@ -1325,6 +1326,7 @@ DOMAIN,media.graphassets.com
 DOMAIN,media.hachyderm.io
 DOMAIN,media.infosec.exchange
 DOMAIN,media.inhumanity.com
+DOMAIN,media.invisioncic.com
 DOMAIN,media.istockphoto.com
 DOMAIN,media.kit.com
 DOMAIN,media.lantern.io
@@ -2317,6 +2319,7 @@ DOMAIN-SUFFIX,cdn.medallia.com
 DOMAIN-SUFFIX,cdn.mozilla.net
 DOMAIN-SUFFIX,cdn.nimg.jp
 DOMAIN-SUFFIX,cdn.nintendo.net
+DOMAIN-SUFFIX,cdn.pbs.org
 DOMAIN-SUFFIX,cdn.printfriendly.com
 DOMAIN-SUFFIX,cdn.prismic.io
 DOMAIN-SUFFIX,cdn.prod.atlassian-dev.net
