@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/10 18:19:39
-// DOMAIN: 2175
-// DOMAIN-SUFFIX: 930
+// Last updated: 2025/2/10 18:45:15
+// DOMAIN: 2178
+// DOMAIN-SUFFIX: 931
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 40
-// Total: 3157
+// Total: 3161
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -408,6 +408,7 @@ DOMAIN,cdn.conveythis.com
 DOMAIN,cdn.credible.com
 DOMAIN,cdn.css.net
 DOMAIN,cdn.cxense.com
+DOMAIN,cdn.daily.dev
 DOMAIN,cdn.dap.dmm.co.jp
 DOMAIN,cdn.datacamp.com
 DOMAIN,cdn.datatables.net
@@ -940,6 +941,7 @@ DOMAIN,fs2.onlyhentaistuff.com
 DOMAIN,fscdn.eppo.cloud
 DOMAIN,g-static.ap4r.com
 DOMAIN,g1.nyt.com
+DOMAIN,gearbox.imgix.com
 DOMAIN,genesis-cdn.ff.com
 DOMAIN,geoip-js.com
 DOMAIN,gfx-data.news-engineering.aws.wapo.pub
@@ -1308,6 +1310,7 @@ DOMAIN,media.cmx.edu.kg
 DOMAIN,media.cnn.com
 DOMAIN,media.contentapi.ea.com
 DOMAIN,media.convertkit.com
+DOMAIN,media.daily.dev
 DOMAIN,media.datacenterdynamics.com
 DOMAIN,media.dev.to
 DOMAIN,media.discordapp.net
@@ -2205,6 +2208,7 @@ DOMAIN-SUFFIX,98avcdn.xyz
 DOMAIN-SUFFIX,9cache.com
 DOMAIN-SUFFIX,a.storyblok.com
 DOMAIN-SUFFIX,a1tb.com
+DOMAIN-SUFFIX,a7s.imgix.com
 DOMAIN-SUFFIX,aacdn.nagich.com
 DOMAIN-SUFFIX,aayinltcs.arduino.cc
 DOMAIN-SUFFIX,abc-cdn.net.au
