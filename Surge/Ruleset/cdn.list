@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/10 14:23:21
-// DOMAIN: 2178
-// DOMAIN-SUFFIX: 931
+// Last updated: 2025/2/10 14:45:29
+// DOMAIN: 2175
+// DOMAIN-SUFFIX: 930
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 40
-// Total: 3161
+// Total: 3157
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -567,7 +567,6 @@ DOMAIN,cdn.sciencecast.org
 DOMAIN,cdn.search.brave.com
 DOMAIN,cdn.sedo.com
 DOMAIN,cdn.segment.com
-DOMAIN,cdn.sellix.io
 DOMAIN,cdn.seondf.com
 DOMAIN,cdn.setapp.com
 DOMAIN,cdn.sheetjs.com
@@ -1011,7 +1010,6 @@ DOMAIN,icons.zeabur.com
 DOMAIN,iframe.nbcnews.com
 DOMAIN,imag.malavida.com
 DOMAIN,image-forwarder.notaku.so
-DOMAIN,image.4fuk.org
 DOMAIN,image.ap-mail.org
 DOMAIN,image.civitai.com
 DOMAIN,image.cnbcfm.com
@@ -2076,7 +2074,6 @@ DOMAIN,unlimited-cdn.waifu2x.net
 DOMAIN,unsubscribe-imgs.leavemealone.com
 DOMAIN,updates.signal.org
 DOMAIN,updates2.signal.org
-DOMAIN,upload.filebase.com
 DOMAIN,upload.wikimedia.org
 DOMAIN,uploads.codesandbox.io
 DOMAIN,uploads.guim.co.uk
@@ -2859,7 +2856,6 @@ DOMAIN-SUFFIX,pximg.net
 DOMAIN-SUFFIX,pxlecdn.com
 DOMAIN-SUFFIX,pypi.org
 DOMAIN-SUFFIX,pythonhosted.org
-DOMAIN-SUFFIX,pztv.ca
 DOMAIN-SUFFIX,qooqlevideo.com
 DOMAIN-SUFFIX,quay.io
 DOMAIN-SUFFIX,quip-cdn.com
