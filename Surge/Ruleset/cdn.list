@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/11 17:41:44
+// Last updated: 2025/2/11 18:05:35
 // DOMAIN: 2178
-// DOMAIN-SUFFIX: 931
+// DOMAIN-SUFFIX: 932
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 40
-// Total: 3161
+// Total: 3162
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2920,6 +2920,7 @@ DOMAIN-SUFFIX,shgcdn.com
 DOMAIN-SUFFIX,shields.io
 DOMAIN-SUFFIX,shopifycdn.com
 DOMAIN-SUFFIX,shortpixel.ai
+DOMAIN-SUFFIX,simgbb.com
 DOMAIN-SUFFIX,similarcdn.com
 DOMAIN-SUFFIX,simplecastcdn.com
 DOMAIN-SUFFIX,simpleflyingimages.com
