@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/12 08:39:53
-// DOMAIN: 2178
+// Last updated: 2025/2/12 09:32:14
+// DOMAIN: 2179
 // DOMAIN-SUFFIX: 932
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 40
-// Total: 3162
+// Total: 3163
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2050,6 +2050,7 @@ DOMAIN,time.cloudflare.com
 DOMAIN,time.windows.com
 DOMAIN,tn.txxx.tube
 DOMAIN,tn.vjav.com
+DOMAIN,todoist.b-cdn.net
 DOMAIN,ton.local.twitter.com
 DOMAIN,tools-static.wmflabs.org
 DOMAIN,topbar-static.piano.io
