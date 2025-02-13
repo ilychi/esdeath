@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/13 23:21:23
+// Last updated: 2025/2/13 23:42:51
 // DOMAIN: 2179
-// DOMAIN-SUFFIX: 932
+// DOMAIN-SUFFIX: 933
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 40
-// Total: 3163
+// Total: 3164
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2743,6 +2743,7 @@ DOMAIN-SUFFIX,mngbcn.com
 DOMAIN-SUFFIX,mobilius.top
 DOMAIN-SUFFIX,monitor.azure.com
 DOMAIN-SUFFIX,motherlessmedia.com
+DOMAIN-SUFFIX,msftauthimages.net
 DOMAIN-SUFFIX,msftconnecttest.com
 DOMAIN-SUFFIX,msftncsi.com
 DOMAIN-SUFFIX,msftstatic.com
