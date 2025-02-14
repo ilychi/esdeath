@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/14 20:52:34
-// DOMAIN: 2199
+// Last updated: 2025/2/14 21:11:27
+// DOMAIN: 2200
 // DOMAIN-SUFFIX: 939
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3192
+// Total: 3193
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -352,6 +352,7 @@ DOMAIN,cdn-share-sprites.flaticon.com
 DOMAIN,cdn-static-1.medium.com
 DOMAIN,cdn-static.talent.com
 DOMAIN,cdn-uicons.flaticon.com
+DOMAIN,cdn-web.fydeos.io
 DOMAIN,cdn-www.bluestacks.com
 DOMAIN,cdn-yotpo-images-production.yotpo.com
 DOMAIN,cdn.17app.co
