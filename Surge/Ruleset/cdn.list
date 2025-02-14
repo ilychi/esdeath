@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/14 16:44:03
-// DOMAIN: 2198
+// Last updated: 2025/2/14 17:06:21
+// DOMAIN: 2199
 // DOMAIN-SUFFIX: 939
 // DOMAIN-KEYWORD: 7
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3191
+// Total: 3192
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -391,6 +391,7 @@ DOMAIN,cdn.c1.amplience.net
 DOMAIN,cdn.calibermind.com
 DOMAIN,cdn.cameo.com
 DOMAIN,cdn.cbd.int
+DOMAIN,cdn.changelog.com
 DOMAIN,cdn.channel.io
 DOMAIN,cdn.chess24.com
 DOMAIN,cdn.circle.so
