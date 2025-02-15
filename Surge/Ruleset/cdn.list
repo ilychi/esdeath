@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/15 14:45:34
-// DOMAIN: 2201
+// Last updated: 2025/2/15 15:05:31
+// DOMAIN: 2203
 // DOMAIN-SUFFIX: 941
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 41
-// Total: 3198
+// Total: 3200
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -509,6 +509,7 @@ DOMAIN,cdn.matterhorn.app
 DOMAIN,cdn.mcauto-images-production.sendgrid.net
 DOMAIN,cdn.mcr.ea.com
 DOMAIN,cdn.media.amplience.net
+DOMAIN,cdn.mewe.com
 DOMAIN,cdn.micro.blog
 DOMAIN,cdn.minecraft-server-list.com
 DOMAIN,cdn.miohentai.com
@@ -1554,6 +1555,7 @@ DOMAIN,psp-logos.uptimerobot.com
 DOMAIN,public-assets.typeform.com
 DOMAIN,public-cdn.bblmw.com
 DOMAIN,public-files.gumroad.com
+DOMAIN,public-img.mewe.com
 DOMAIN,public-pages.cbinsights.com
 DOMAIN,public.flourish.studio
 DOMAIN,public.hare200.com
