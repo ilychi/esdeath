@@ -1,5 +1,5 @@
 // IPv4 Information in China.
-// Last updated: 2025/2/16 10:34:36
+// Last updated: 2025/2/16 11:05:10
 // IP-CIDR: 4644
 // Total: 4644
 // Made by DH-Teams, All rights reserved
@@ -1405,7 +1405,6 @@ IP-CIDR,103.143.16.0/22,no-resolve
 IP-CIDR,103.143.92.0/23,no-resolve
 IP-CIDR,103.143.230.0/23,no-resolve
 IP-CIDR,103.143.238.0/24,no-resolve
-IP-CIDR,103.144.28.0/24,no-resolve
 IP-CIDR,103.144.52.0/23,no-resolve
 IP-CIDR,103.144.66.0/23,no-resolve
 IP-CIDR,103.144.70.0/24,no-resolve
@@ -1908,6 +1907,7 @@ IP-CIDR,111.132.0.0/16,no-resolve
 IP-CIDR,111.142.0.0/15,no-resolve
 IP-CIDR,111.144.0.0/14,no-resolve
 IP-CIDR,111.148.0.0/16,no-resolve
+IP-CIDR,111.149.0.0/24,no-resolve
 IP-CIDR,111.160.0.0/13,no-resolve
 IP-CIDR,111.170.0.0/16,no-resolve
 IP-CIDR,111.172.0.0/14,no-resolve
@@ -3174,7 +3174,7 @@ IP-CIDR,156.237.104.0/23,no-resolve
 IP-CIDR,156.242.5.0/24,no-resolve
 IP-CIDR,156.242.6.0/24,no-resolve
 IP-CIDR,156.247.8.0/22,no-resolve
-IP-CIDR,156.247.12.0/23,no-resolve
+IP-CIDR,156.247.12.0/24,no-resolve
 IP-CIDR,156.247.14.0/24,no-resolve
 IP-CIDR,156.255.2.0/23,no-resolve
 IP-CIDR,157.0.0.0/16,no-resolve
