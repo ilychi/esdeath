@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/17 16:46:09
-// DOMAIN: 2204
-// DOMAIN-SUFFIX: 941
+// Last updated: 2025/2/17 17:06:50
+// DOMAIN: 2212
+// DOMAIN-SUFFIX: 943
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3202
+// Total: 3212
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -439,6 +439,7 @@ DOMAIN,cdn.engagement.ai
 DOMAIN,cdn.equalweb.com
 DOMAIN,cdn.eu.contentful.com
 DOMAIN,cdn.european-alternatives.eu
+DOMAIN,cdn.evbstatic.com
 DOMAIN,cdn.faire.com
 DOMAIN,cdn.fastcomments.com
 DOMAIN,cdn.filen.io
@@ -535,6 +536,7 @@ DOMAIN,cdn.pagefly.io
 DOMAIN,cdn.pagic.org
 DOMAIN,cdn.parsely.com
 DOMAIN,cdn.pathfactory.com
+DOMAIN,cdn.pendo.io
 DOMAIN,cdn.perfops.net
 DOMAIN,cdn.permutive.com
 DOMAIN,cdn.piano.io
@@ -720,6 +722,7 @@ DOMAIN,cdns.gigya.com
 DOMAIN,cdnstatic.porno-cum.com
 DOMAIN,cdnstatic.w1mp.com
 DOMAIN,cdnstatic.w4nkr.com
+DOMAIN,cdntranscend.eventbrite.com
 DOMAIN,cds.connatix.com
 DOMAIN,certificates.godaddy.com
 DOMAIN,certona.gap.com
@@ -737,6 +740,7 @@ DOMAIN,checkout-sdk.bigcommerce.com
 DOMAIN,checkout.stripe.com
 DOMAIN,ci.testling.com
 DOMAIN,claritystatic.azureedge.net
+DOMAIN,clickup.marketlinc.com
 DOMAIN,clips-media-assets2.twitch.tv
 DOMAIN,cloud.redhat.com
 DOMAIN,cloud.typenetwork.com
@@ -806,6 +810,7 @@ DOMAIN,cw-image-resizer.cwg.tw
 DOMAIN,d4.alternativeto.net
 DOMAIN,dam.freshworks.com
 DOMAIN,data.jsdelivr.com
+DOMAIN,data.web.clickup.com
 DOMAIN,david-dm.org
 DOMAIN,db.onlinewebfonts.com
 DOMAIN,ddcdn.comtucdncom.com
@@ -899,6 +904,7 @@ DOMAIN,f002.backblazeb2.com
 DOMAIN,f003.backblazeb2.com
 DOMAIN,f004.backblazeb2.com
 DOMAIN,fast.wistia.com
+DOMAIN,fast.wistia.net
 DOMAIN,fastly-cloud.typenetwork.com
 DOMAIN,fastporndelivery.hqporner.com
 DOMAIN,favicon.yandex.net
@@ -1280,6 +1286,7 @@ DOMAIN,ledger-wp-website-s3-prd.ledger.com
 DOMAIN,lib.arvancloud.ir
 DOMAIN,libraries.hund.io
 DOMAIN,libs.quillbot.com
+DOMAIN,lift-ai-js.marketlinc.com
 DOMAIN,link.storjshare.io
 DOMAIN,linkstorage.linkfire.com
 DOMAIN,linuxiac.b-cdn.net
@@ -1711,6 +1718,7 @@ DOMAIN,secure-uploads.ui.com
 DOMAIN,secure.beer7live.com
 DOMAIN,secure.fanboy.co.nz
 DOMAIN,secure.telegraph.co.uk
+DOMAIN,segapi.clerk.com
 DOMAIN,segment.digitalocean.com
 DOMAIN,sentry.ainopara.com
 DOMAIN,service-icons.zeabur.com
@@ -2854,6 +2862,7 @@ DOMAIN-SUFFIX,phprcdn.com
 DOMAIN-SUFFIX,picsum.photos
 DOMAIN-SUFFIX,pimg.tw
 DOMAIN-SUFFIX,pinimg.com
+DOMAIN-SUFFIX,pipedriveassets.com
 DOMAIN-SUFFIX,pixelcdn.net
 DOMAIN-SUFFIX,pixfs.net
 DOMAIN-SUFFIX,pixhost.to
@@ -3014,6 +3023,7 @@ DOMAIN-SUFFIX,storage.infomaniak.com
 DOMAIN-SUFFIX,storage.yandexcloud.net
 DOMAIN-SUFFIX,storjipfs-gateway.com
 DOMAIN-SUFFIX,storry.tv
+DOMAIN-SUFFIX,strapi.logto.io
 DOMAIN-SUFFIX,stream.publicradio.org
 DOMAIN-SUFFIX,streamhentai.org
 DOMAIN-SUFFIX,streamhk.com
