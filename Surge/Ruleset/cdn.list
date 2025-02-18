@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/18 23:19:28
-// DOMAIN: 2212
-// DOMAIN-SUFFIX: 943
+// Last updated: 2025/2/18 23:43:37
+// DOMAIN: 2218
+// DOMAIN-SUFFIX: 944
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3212
+// Total: 3219
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -476,6 +476,7 @@ DOMAIN,cdn.hypershort.com
 DOMAIN,cdn.icomoon.io
 DOMAIN,cdn.imageengine.io
 DOMAIN,cdn.img.ly
+DOMAIN,cdn.infoq.com
 DOMAIN,cdn.ionos.de
 DOMAIN,cdn.ip2location.io
 DOMAIN,cdn.ipregistry.co
@@ -1212,6 +1213,7 @@ DOMAIN,img4.airdroid.com
 DOMAIN,img6.airdroid.com
 DOMAIN,imgcdn.cna.com.tw
 DOMAIN,imgix.setapp.com
+DOMAIN,imgopt.infoq.com
 DOMAIN,imgproxy.fourthwall.com
 DOMAIN,imgrs.apkcombo.com
 DOMAIN,imgs.plurk.com
@@ -1531,6 +1533,7 @@ DOMAIN,playgroundcdn.typescriptlang.org
 DOMAIN,plugins-artifacts.gradle.org
 DOMAIN,plugins.dprint.dev
 DOMAIN,plus.unsplash.com
+DOMAIN,polyfill-fe.toss.im
 DOMAIN,polyfill.bbhub.io
 DOMAIN,pomf2.lain.la
 DOMAIN,pool.jortage.com
@@ -1843,6 +1846,7 @@ DOMAIN,static.cloud.coveo.com
 DOMAIN,static.cloudcachetci.com
 DOMAIN,static.cnbeta.com.tw
 DOMAIN,static.codepen.io
+DOMAIN,static.cohere.so
 DOMAIN,static.coinall.ltd
 DOMAIN,static.coingecko.com
 DOMAIN,static.community.workday.com
@@ -1965,6 +1969,7 @@ DOMAIN,static.tenki.jp
 DOMAIN,static.test-beta.com
 DOMAIN,static.theguardian.com
 DOMAIN,static.tokenview.io
+DOMAIN,static.toss.im
 DOMAIN,static.tp-link.com
 DOMAIN,static.tradingview.com
 DOMAIN,static.tronscan.org
@@ -2182,6 +2187,7 @@ DOMAIN,web-cdn.bitrise.io
 DOMAIN,web-static.archive.org
 DOMAIN,web-static.pages.iheart.com
 DOMAIN,web-toolbar.playstation.com
+DOMAIN,webappassets.smartsheet.com
 DOMAIN,webassets.linear.app
 DOMAIN,webcdn.17app.co
 DOMAIN,webfonts.zoho.com
@@ -2743,6 +2749,7 @@ DOMAIN-SUFFIX,line-cdn.net
 DOMAIN-SUFFIX,line-scdn.net
 DOMAIN-SUFFIX,local.webcontainer.io
 DOMAIN-SUFFIX,localizecdn.com
+DOMAIN-SUFFIX,lodash.com
 DOMAIN-SUFFIX,loggly.com
 DOMAIN-SUFFIX,logz.io
 DOMAIN-SUFFIX,loli.net
