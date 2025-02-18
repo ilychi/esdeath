@@ -1,13 +1,13 @@
 // Domestic Rules (Sukka)
-// Last updated: 2025/2/19 00:46:26
+// Last updated: 2025/2/19 01:06:28
 // DOMAIN: 33
-// DOMAIN-SUFFIX: 908
+// DOMAIN-SUFFIX: 910
 // DOMAIN-KEYWORD: 9
 // IP-CIDR: 2
 // PROCESS-NAME: 36
 // USER-AGENT: 4
 // OTHER: 5
-// Total: 997
+// Total: 999
 // This file contains known domains and IPs that are avaliable in the Mainland China.
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/domestic.conf
@@ -666,6 +666,7 @@ DOMAIN-SUFFIX,news.cn
 DOMAIN-SUFFIX,nga.cn
 DOMAIN-SUFFIX,ngabbs.com
 DOMAIN-SUFFIX,nicept.net
+DOMAIN-SUFFIX,nlark.com
 DOMAIN-SUFFIX,nmc.cn
 DOMAIN-SUFFIX,npmmirror.com
 DOMAIN-SUFFIX,npupt.com
@@ -949,6 +950,7 @@ DOMAIN-SUFFIX,yunos.com
 DOMAIN-SUFFIX,yunpan.cn
 DOMAIN-SUFFIX,yunpan.com
 DOMAIN-SUFFIX,yupoo.com
+DOMAIN-SUFFIX,yuque.com
 DOMAIN-SUFFIX,yximgs.com
 DOMAIN-SUFFIX,yy.com
 DOMAIN-SUFFIX,zdic.net

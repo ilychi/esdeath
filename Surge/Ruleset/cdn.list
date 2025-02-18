@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/19 00:46:26
-// DOMAIN: 2218
+// Last updated: 2025/2/19 01:06:28
+// DOMAIN: 2220
 // DOMAIN-SUFFIX: 944
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3219
+// Total: 3221
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1880,6 +1880,7 @@ DOMAIN,static.foxnews.com
 DOMAIN,static.freeimages.com
 DOMAIN,static.getbutton.io
 DOMAIN,static.gettyimages.com
+DOMAIN,static.gitbook.com
 DOMAIN,static.global.visioncritical.com
 DOMAIN,static.gnome.org
 DOMAIN,static.gopro.com
@@ -1940,6 +1941,7 @@ DOMAIN,static.oomol.com
 DOMAIN,static.opensea.io
 DOMAIN,static.oracle.com
 DOMAIN,static.osdn.net
+DOMAIN,static.parallels.com
 DOMAIN,static.peatio.com
 DOMAIN,static.pingcap.com
 DOMAIN,static.playstation.com
