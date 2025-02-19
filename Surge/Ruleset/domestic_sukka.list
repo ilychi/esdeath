@@ -1,13 +1,13 @@
 // Domestic Rules (Sukka)
-// Last updated: 2025/2/19 08:40:23
+// Last updated: 2025/2/19 09:30:52
 // DOMAIN: 33
-// DOMAIN-SUFFIX: 910
+// DOMAIN-SUFFIX: 912
 // DOMAIN-KEYWORD: 9
 // IP-CIDR: 2
 // PROCESS-NAME: 36
 // USER-AGENT: 4
 // OTHER: 5
-// Total: 999
+// Total: 1001
 // This file contains known domains and IPs that are avaliable in the Mainland China.
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/domestic.conf
@@ -568,9 +568,11 @@ DOMAIN-SUFFIX,kingsoft-office-service.com
 DOMAIN-SUFFIX,kkmh.com
 DOMAIN-SUFFIX,koubei.com
 DOMAIN-SUFFIX,ks-cdn.com
+DOMAIN-SUFFIX,ksapisrv.com
 DOMAIN-SUFFIX,ksmobile.com
 DOMAIN-SUFFIX,ksord.com
 DOMAIN-SUFFIX,ksosoft.com
+DOMAIN-SUFFIX,ksurl.cn
 DOMAIN-SUFFIX,ksyun.com
 DOMAIN-SUFFIX,ku6.com
 DOMAIN-SUFFIX,kuaishou.com
