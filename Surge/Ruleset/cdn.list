@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/20 23:19:06
-// DOMAIN: 2227
+// Last updated: 2025/2/20 23:43:55
+// DOMAIN: 2226
 // DOMAIN-SUFFIX: 942
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3226
+// Total: 3225
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1621,7 +1621,6 @@ DOMAIN,resource.fs.com
 DOMAIN,resource.video.nimg.jp
 DOMAIN,resources-cache.prod.sketch.com
 DOMAIN,resources-live.sketch.cloud
-DOMAIN,resources.esportsinsider.com
 DOMAIN,resources.help.salesforce.com
 DOMAIN,rest.happierleads.com
 DOMAIN,rsi.grafana.com
@@ -2462,6 +2461,7 @@ DOMAIN-SUFFIX,disconnect.me
 DOMAIN-SUFFIX,discourse-cdn.com
 DOMAIN-SUFFIX,disquscdn.com
 DOMAIN-SUFFIX,divio-media.net
+DOMAIN-SUFFIX,dlunar.net
 DOMAIN-SUFFIX,dmcdn.net
 DOMAIN-SUFFIX,docker.io
 DOMAIN-SUFFIX,dogehls.xyz
@@ -2704,7 +2704,6 @@ DOMAIN-SUFFIX,ipfs.soul-network.com
 DOMAIN-SUFFIX,ipfs.telos.miami
 DOMAIN-SUFFIX,ipfs.tribecap.co
 DOMAIN-SUFFIX,ipfs.trusti.id
-DOMAIN-SUFFIX,ipfs.tubby.cloud
 DOMAIN-SUFFIX,ipfs.uploads.nu
 DOMAIN-SUFFIX,ipfs.xoqq.ch
 DOMAIN-SUFFIX,ipfs.yt
