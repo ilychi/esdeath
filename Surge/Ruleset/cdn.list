@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/20 11:15:23
-// DOMAIN: 2221
+// Last updated: 2025/2/20 11:44:45
+// DOMAIN: 2224
 // DOMAIN-SUFFIX: 944
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3222
+// Total: 3225
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -83,13 +83,16 @@ DOMAIN,asset-cdn.uscardforum.com
 DOMAIN,asset.booth.pm
 DOMAIN,asset.chase.com
 DOMAIN,asset.mansionglobal.com
+DOMAIN,assets-app.circleci.com
 DOMAIN,assets-cdn.123rf.com
 DOMAIN,assets-cdn.abcnews.com
 DOMAIN,assets-cdn.abcotvs.net
 DOMAIN,assets-cdn.jable.tv
 DOMAIN,assets-cdn.watchdisneyfe.com
 DOMAIN,assets-cms.kraken.com
+DOMAIN,assets-docs.circleci.com
 DOMAIN,assets-fe.change.org
+DOMAIN,assets-growth-common.circleci.com
 DOMAIN,assets-next.matters.news
 DOMAIN,assets-next.mattersprotocol.io
 DOMAIN,assets-production.packagecloud.io
