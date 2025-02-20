@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/20 15:18:16
-// DOMAIN: 2224
+// Last updated: 2025/2/20 15:42:39
+// DOMAIN: 2225
 // DOMAIN-SUFFIX: 942
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3223
+// Total: 3224
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -441,6 +441,7 @@ DOMAIN,cdn.embed.ly
 DOMAIN,cdn.embedly.com
 DOMAIN,cdn.engagement.ai
 DOMAIN,cdn.equalweb.com
+DOMAIN,cdn.equinix.com
 DOMAIN,cdn.eu.contentful.com
 DOMAIN,cdn.european-alternatives.eu
 DOMAIN,cdn.evbstatic.com
