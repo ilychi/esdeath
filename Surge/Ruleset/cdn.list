@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/20 18:19:04
-// DOMAIN: 2225
+// Last updated: 2025/2/20 18:47:47
+// DOMAIN: 2227
 // DOMAIN-SUFFIX: 942
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3224
+// Total: 3226
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -532,6 +532,7 @@ DOMAIN,cdn.networklessons.com
 DOMAIN,cdn.neverbounce.com
 DOMAIN,cdn.nolt.io
 DOMAIN,cdn.now.gg
+DOMAIN,cdn.nperf.com
 DOMAIN,cdn.onesignal.com
 DOMAIN,cdn.onetime.dog
 DOMAIN,cdn.onlyhentaistuff.com
@@ -2224,6 +2225,7 @@ DOMAIN,wl-apps.yourwebsite.life
 DOMAIN,wp.salesforce.com
 DOMAIN,wpmedia.tealium.com
 DOMAIN,ws-assets.zoominfo.com
+DOMAIN,ws-cdn.nperf.com
 DOMAIN,ws2-cache.aptoide.com
 DOMAIN,ww2-secure.justanswer.com
 DOMAIN,ww2.justanswer.com
