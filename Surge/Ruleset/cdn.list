@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/2/21 20:06:08
+// Last updated: 2025/2/21 20:24:12
 // DOMAIN: 2226
-// DOMAIN-SUFFIX: 942
+// DOMAIN-SUFFIX: 943
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 42
-// Total: 3225
+// Total: 3226
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2852,6 +2852,7 @@ DOMAIN-SUFFIX,olemovienews.com
 DOMAIN-SUFFIX,omnisnippet1.com
 DOMAIN-SUFFIX,on-fleek.app
 DOMAIN-SUFFIX,onekey-asset.com
+DOMAIN-SUFFIX,onelink-edge.com
 DOMAIN-SUFFIX,onrender.com
 DOMAIN-SUFFIX,opentelemetry.io
 DOMAIN-SUFFIX,operacdn.com
