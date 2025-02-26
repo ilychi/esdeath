@@ -39,6 +39,8 @@
   header: "VideoGo"  # 视频号去广告
 - url: "https://raw.githubusercontent.com/ilychi/esdeath/main/Surge/Module/Spotify_remove_ads.sgmodule"
   header: "Spotify"  # Spotify去广告
+- url: "https://raw.githubusercontent.com/ilychi/esdeath/main/Surge/Module/SodaMusic_remove_ads.sgmodule"
+  header: "SodaMusic"  # 汽水音乐去广告
 
 # 电商购物类
 - url: "https://raw.githubusercontent.com/ilychi/esdeath/main/Surge/Module/JD_remove_ads.sgmodule"
