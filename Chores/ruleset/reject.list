@@ -346,6 +346,24 @@ DOMAIN,httpdns.yunxindns.com
 DOMAIN-SUFFIX,gdtimg.com
 DOMAIN-SUFFIX,pos.baidu.com
 
+# >> SodaMusic
+AND,((DOMAIN-KEYWORD,api100-core-quic-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-normal-quic-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-normal-quic-aweme-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-quic-core-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-quic-normal-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,frontier100-aweme),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,ma5-normal-),(DOMAIN-SUFFIX,zijieapi.com))
+AND,((DOMAIN-KEYWORD,polaris5-normal-),(DOMAIN-SUFFIX,zijieapi.com))
+AND,((DOMAIN-KEYWORD,webcast100-ws-c-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,tnc),(AND,((OR,((DOMAIN-KEYWORD,-bjlgy),(DOMAIN-KEYWORD,-alisc),(DOMAIN-KEYWORD,-aliec),(DOMAIN-KEYWORD,-alisg))),(OR,((DOMAIN-SUFFIX,snssdk.com),(DOMAIN-SUFFIX,isnssdk.com),(DOMAIN-SUFFIX,toutiaoapi.com),(DOMAIN-SUFFIX,bytedance.com),(DOMAIN-SUFFIX,zijieapi.com))))))
+DOMAIN,frontier-aweme-hl.snssdk.com
+DOMAIN,frontier-quic-test.bytedance.com
+AND,((IP-CIDR,110.249.199.75/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,111.225.147.191/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,111.63.61.101/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,220.243.141.0/32,no-resolve),(DEST-PORT,6443))
+
 # >> JD
 DOMAIN,dns.jd.com
 URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?"
