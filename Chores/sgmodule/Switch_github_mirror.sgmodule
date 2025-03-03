@@ -16,7 +16,7 @@ DOMAIN,hub.incept.pw,DIRECT,extended-matching
 DOMAIN,raw.kkgithub.com,DIRECT,extended-matching
 
 [Script]
-GitHub加速 = type=http-request, pattern=^https:\/\/raw\.githubusercontent\.com\/, script-path=https://github.com/hchichi/esdeath/raw/main/Chores/js/Switch_github_mirror.js
+GitHub加速 = type=http-request, pattern=^https:\/\/raw\.githubusercontent\.com\/, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/Switch_github_mirror.js
 
 [MITM]
 hostname = %APPEND% raw.githubusercontent.com
