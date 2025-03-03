@@ -270,12 +270,8 @@ DOMAIN,adx.tuia.cn
 DOMAIN-SUFFIX,66mobi.com
 
 # >> Weibo
+DOMAIN,huodong.weibo.cn
 DOMAIN-SUFFIX,biz.weibo.com
-DOMAIN,dns.weibo.cn
-IP-CIDR,39.97.130.51/32,no-resolve
-IP-CIDR,39.97.128.148/32,no-resolve
-URL-REGEX,"^http:\/\/api\.weibo\.cn\/2\/httpdns\/config"
-URL-REGEX,"^http:\/\/api\.weibo\.cn\/httpdns\/config"
 
 # >> RedPaper
 AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com))
@@ -322,12 +318,12 @@ DOMAIN,tangram.e.qq.com
 DOMAIN-SUFFIX,imtmp.net
 
 # >> NetEaseMusic
-DOMAIN,httpdns.music.163.com
-DOMAIN,httpdns.n.netease.com
 DOMAIN,iadmat.nosdn.127.net
 DOMAIN,iadmatapk.nosdn.127.net
 DOMAIN,iadmusicmat.music.126.net
-DOMAIN-SUFFIX,163jiasu.com
+DOMAIN,iadmusicmatvideo.music.126.net
+DOMAIN,ipv4.music.163.com
+DOMAIN,ipv6.music.163.com
 
 # >> Himalaya
 DOMAIN,adse.ximalaya.com
@@ -421,10 +417,12 @@ URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/
 DOMAIN,adui.tg.meitu.com
 
 # >> Keep
+DOMAIN,httpdns.n.netease.com
 DOMAIN,httpdns.calorietech.com
 DOMAIN,hc-ssp.sm.cn
 
 # >> MailMaster
+DOMAIN,httpdns.music.163.com
 DOMAIN,httpdns-sdk.n.netease.com
 DOMAIN,lofter.httpdns.c.163.com
 DOMAIN,music.httpdns.c.163.com
