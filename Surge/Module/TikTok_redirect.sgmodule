@@ -14,11 +14,13 @@
 AND,((GEOIP,CN),(DOMAIN,pitaya.bytedance.com,extended-matching)),DIRECT
 
 [URL Rewrite]
+# 去广告
 ^https:\/\/api-va\.tiktokv\.com\/api\/ad\/ - reject
+# 域名解析
 ^https:\/\/tnc\d+-platform-\w+\.tiktokv\.com\/get_domains\/ - reject
 
 [Script]
-TikTok解锁 = type=http-request, pattern=https?:\/\/.+.(tiktokv|tiktokcdn).com\/.+(region\d?=CN|&mcc_mnc=\d+), script-path=https://github.com/hchichi/esdeath/raw/main/Chores/js/TikTok_redirect.js
+TikTok解锁 = type=http-request, pattern=https?:\/\/.+.(tiktokv|tiktokcdn).com\/.+(region\d?=CN|&mcc_mnc=\d+), script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/TikTok_redirect.js
 
 [MITM]
 hostname = %APPEND% *.byteoversea.com, *.tik-tokapi.com, *.tiktokv.com, *.tiktokcdn.com
