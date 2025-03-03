@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y curl jq netcat
+          sudo apt-get install -y curl jq netcat-openbsd
 
       - name: Wait for Docker service to be ready
         run: |
@@ -95,10 +95,16 @@ jobs:
               # 转换为小写进行匹配
               combined_lower=$(echo "$plugin_url$plugin_name" | tr '[:upper:]' '[:lower:]')
               
-              if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad) ]]; then
+              # 广告拦截类
+              if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad|remove_watermark|ssl_unpinning|filter|clean|purify|privacy|隐私|blocker|去广告|adguard|拦截|intercept) ]]; then
                 category="🚫 AD Block"
-              elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus) ]]; then
+              # 签到类
+              elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus|signin|打卡|登录奖励|每日签到|daily.?reward) ]]; then
                 category="✅ Checkin"
+              # 功能增强类
+              elif [[ "$combined_lower" =~ (unlock|解锁|enhance|增强|功能|feature|redirect|转发|utility|mount|挂载|translation|repair|external_links|query|detection|auto_join) ]]; then
+                category="🔨 Tools"
+              # 默认为工具类
               else
                 category="🔨 Tools"
               fi

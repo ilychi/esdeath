@@ -8,42 +8,44 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // 修正仓库 URL
-const REPO_URL = "https://raw.githubusercontent.com/ilychi/esdeath/main/";
+const REPO_URL = 'https://raw.githubusercontent.com/ilychi/esdeath/main/';
 const ROOT_DIR = path.join(__dirname, '../../..');
-const OUTPUT_DIR = path.join(ROOT_DIR, "public");
+const OUTPUT_DIR = path.join(ROOT_DIR, 'public');
 
 // 允许的文件类型和目录
-const allowedExtensions = [".list", ".mmdb", ".sgmodule"];
-const allowedDirectories = ["Surge", "GeoIP", "Ruleset", "Module"];
+const allowedExtensions = ['.list', '.mmdb', '.sgmodule'];
+const allowedDirectories = ['Surge', 'GeoIP', 'Ruleset', 'Module'];
 
 const prioritySorter = (a: Dirent, b: Dirent) => {
-    if (a.isDirectory() && !b.isDirectory()) return -1;
-    if (!a.isDirectory() && b.isDirectory()) return 1;
-    return a.name.localeCompare(b.name);
+  if (a.isDirectory() && !b.isDirectory()) return -1;
+  if (!a.isDirectory() && b.isDirectory()) return 1;
+  return a.name.localeCompare(b.name);
 };
 
 // 生成目录树
 async function walk(dir: string, baseUrl: string) {
-    let tree = "";
-    const entries = await fs.readdir(dir, { withFileTypes: true });
-    entries.sort(prioritySorter);
+  let tree = '';
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  entries.sort(prioritySorter);
 
-    for (const entry of entries) {
-        const fullPath = path.join(dir, entry.name);
-        const relativePath = path.relative(ROOT_DIR, fullPath);
-        const url = `${baseUrl}${encodeURIComponent(relativePath)}`;
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    const relativePath = path.relative(ROOT_DIR, fullPath);
+    const url = `${baseUrl}${encodeURIComponent(relativePath)}`;
 
-        if (entry.name === 'src' || entry.name === 'node_modules' || entry.name.startsWith('.')) {
-            continue;
-        }
+    if (entry.name === 'src' || entry.name === 'node_modules' || entry.name.startsWith('.')) {
+      continue;
+    }
 
-        if (entry.isDirectory()) {
-            if (allowedDirectories.includes(entry.name) || 
-                path.dirname(relativePath).startsWith('Surge/Module') ||
-                path.dirname(relativePath).startsWith('Surge/Ruleset')) {
-                const subEntries = await walk(fullPath, baseUrl);
-                if (subEntries) {
-                    tree += `
+    if (entry.isDirectory()) {
+      if (
+        allowedDirectories.includes(entry.name) ||
+        path.dirname(relativePath).startsWith('Surge/Module') ||
+        path.dirname(relativePath).startsWith('Surge/Ruleset')
+      ) {
+        const subEntries = await walk(fullPath, baseUrl);
+        if (subEntries) {
+          tree += `
                         <li class="folder">
                             ${entry.name}
                             <ul>
@@ -51,34 +53,38 @@ async function walk(dir: string, baseUrl: string) {
                             </ul>
                         </li>
                     `;
-                }
-            }
-        } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
-            const buttons = entry.name.endsWith('.sgmodule') 
-                ? `<a style="border-bottom: none" href="surge:///install-module?url=${encodeURIComponent(url)}" target="_blank">
+        }
+      }
+    } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
+      const buttons = entry.name.endsWith('.sgmodule')
+        ? `<a style="border-bottom: none" href="surge:///install-module?url=${encodeURIComponent(
+            url
+          )}" target="_blank">
                        <img alt="导入 Surge(远程模块)" title="导入 Surge(远程模块)" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
                    </a>
-                   <a style="border-bottom: none" href="scriptable:///run/SurgeModuleTool?url=${encodeURIComponent(url)}" target="_blank">
+                   <a style="border-bottom: none" href="scriptable:///run/SurgeModuleTool?url=${encodeURIComponent(
+                     url
+                   )}" target="_blank">
                        <img alt="导入 Surge(本地模块)" title="导入 Surge(本地模块 需配合 Scriptable + Script Hub)" style="height: 22px" src="https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/refs/heads/main/assets/icon512x512.png"/>
                    </a>`
-                : `<a style="border-bottom: none" class="copy-button" data-url="${url}">
+        : `<a style="border-bottom: none" class="copy-button" data-url="${url}">
                        <img alt="复制规则链接" title="复制规则链接" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
                    </a>`;
 
-            tree += `
+      tree += `
                 <li>
                     <a class="file" href="${url}" target="_blank">${entry.name}
                         ${buttons}
                     </a>
                 </li>
             `;
-        }
     }
-    return tree;
+  }
+  return tree;
 }
 
 function generateHtml(tree: string) {
-    return `
+  return `
         <!DOCTYPE html>
         <html lang="zh-CN">
         <head>
@@ -150,8 +156,8 @@ function generateHtml(tree: string) {
         <main class="container">
             <h1>Surge Rules & Modules Repository</h1>
             <p>
-                Made by <a href="https://github.com/hchichi">IKE IKE</a> | 
-                <a href="https://github.com/hchichi/esdeath">Source @ GitHub</a> | 
+                Made by <a href="https://github.com/ilychi">IKE IKE</a> | 
+                <a href="https://github.com/ilychi/esdeath">Source @ GitHub</a> | 
                 Fork <a href="https://github.com/SukkaW/Surge">Sukka</a>
             </p>
             <p>
@@ -159,8 +165,8 @@ function generateHtml(tree: string) {
                 <br>
                 Thanks To All Surge Contributors
             </p>
-            <p>Last Updated: ${new Date().toLocaleString("zh-CN", { 
-                timeZone: "Asia/Shanghai" 
+            <p>Last Updated: ${new Date().toLocaleString('zh-CN', {
+              timeZone: 'Asia/Shanghai',
             })}</p>
             <br>
 
@@ -252,26 +258,25 @@ function generateHtml(tree: string) {
 }
 
 async function writeHtmlFile(html: string) {
-    const htmlFilePath = path.join(OUTPUT_DIR, "index.html");
-    await fs.writeFile(htmlFilePath, html, "utf8");
+  const htmlFilePath = path.join(OUTPUT_DIR, 'index.html');
+  await fs.writeFile(htmlFilePath, html, 'utf8');
 }
 
 // 构建
 async function build() {
-    await fs.mkdir(OUTPUT_DIR, { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'styles'), { recursive: true });
-    
-    // 复制 CSS 文件
-    await fs.copyFile(
-        path.join(__dirname, 'styles', 'main.css'),
-        path.join(OUTPUT_DIR, 'styles', 'main.css')
-    );
+  await fs.mkdir(OUTPUT_DIR, { recursive: true });
+  await fs.mkdir(path.join(OUTPUT_DIR, 'styles'), { recursive: true });
 
-    const tree = await walk(ROOT_DIR, REPO_URL);
-    const html = generateHtml(tree);
-    await writeHtmlFile(html);
+  // 复制 CSS 文件
+  await fs.copyFile(
+    path.join(__dirname, 'styles', 'main.css'),
+    path.join(OUTPUT_DIR, 'styles', 'main.css')
+  );
+
+  const tree = await walk(ROOT_DIR, REPO_URL);
+  const html = generateHtml(tree);
+  await writeHtmlFile(html);
 }
-build().catch((err) => {
-    console.error("Error during build:", err);
+build().catch(err => {
+  console.error('Error during build:', err);
 });
-
