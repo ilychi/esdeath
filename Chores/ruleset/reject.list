@@ -287,6 +287,17 @@ IP-CIDR,103.41.167.237/32,no-resolve
 IP-CIDR,118.89.204.198/32,no-resolve
 IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,no-resolve
 
+# >> Snowball
+URL-REGEX,"^http:\/\/119\.29\.29\.98\/d\?"
+
+# >> WeChatMP
+DOMAIN,wxsnsdy.wxs.qq.com
+DOMAIN,wxsmsdy.video.qq.com
+DOMAIN,wxsnsdythumb.wxs.qq.com
+DOMAIN,ads-shopping.shouqianba.com
+DOMAIN,ad.maoyan.com
+DOMAIN,e.jparking.cn
+
 # >> WeChatOA
 DOMAIN-SUFFIX,wxs.qq.com
 
@@ -372,6 +383,26 @@ DOMAIN,ynuf.aliapp.org
 
 # >> FleaMarket
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
+
+# >> Cainiao
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
+DOMAIN,amdc.m.youku.com
+DOMAIN,apiv4-iyes.youku.com
+DOMAIN,httpdns.alicdn.com
+DOMAIN,huichuan-mc.sm.cn
+DOMAIN,huichuan.sm.cn
+DOMAIN,iyes.youku.com
+DOMAIN,mc.atm.youku.com
+DOMAIN,vali-g1.cp31.ott.cibntv.net
+DOMAIN,vali-ugc.cp31.ott.cibntv.net
+DOMAIN,yk-ssp.ad.youku.com
+DOMAIN,ykad-data.youku.com
+
+# >> Amap
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
+DOMAIN,amap-aos-info-nogw.amap.com
+DOMAIN,free-aos-cdn-image.amap.com
+DOMAIN-SUFFIX,v.smtcdns.com
 
 # >> DiDi
 DOMAIN,hd.xiaojukeji.com
