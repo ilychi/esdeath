@@ -366,6 +366,11 @@ URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?"
 IP-CIDR,101.124.19.122/32,no-resolve
 IP-CIDR6,2402:db40:5100:1011::5/128,no-resolve
 
+# >> Taobao
+DOMAIN,adashx.m.taobao.com
+DOMAIN,h-adashx.ut.taobao.com
+DOMAIN,ut.taobao.com
+
 # >> SMZDM
 DOMAIN,acs4baichuan.m.taobao.com
 DOMAIN,adashxgc.ut.taobao.com
