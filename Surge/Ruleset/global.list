@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - General Global Services
-# Last Updated: 2025-02-18T16:43:02.731Z
-# Size: 754
+# Last Updated: 2025-03-02T07:55:36.280Z
+# Size: 758
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -265,6 +265,7 @@ DOMAIN-SUFFIX,usertesting.com
 DOMAIN-SUFFIX,uptimerobot.com
 DOMAIN-SUFFIX,updownradar.com
 DOMAIN-SUFFIX,tradingview.com
+DOMAIN-SUFFIX,theregister.com
 DOMAIN-SUFFIX,theguardian.com
 DOMAIN-SUFFIX,serverfault.com
 DOMAIN-SUFFIX,rule34video.com
@@ -404,6 +405,7 @@ DOMAIN-SUFFIX,debuggex.com
 DOMAIN-SUFFIX,dashlane.com
 DOMAIN-SUFFIX,coindesk.com
 DOMAIN-SUFFIX,coinbase.com
+DOMAIN-SUFFIX,circleci.com
 DOMAIN-SUFFIX,cbslocal.com
 DOMAIN-SUFFIX,capitalg.com
 DOMAIN-SUFFIX,broadcom.com
@@ -517,6 +519,7 @@ DOMAIN-SUFFIX,iheart.com
 DOMAIN-SUFFIX,ifixit.com
 DOMAIN-SUFFIX,idrive.com
 DOMAIN-SUFFIX,grindr.com
+DOMAIN-SUFFIX,glitch.com
 DOMAIN-SUFFIX,gitlab.com
 DOMAIN-SUFFIX,github.com
 DOMAIN-SUFFIX,getchu.com
@@ -703,6 +706,7 @@ DOMAIN-SUFFIX,hanime1.me
 DOMAIN-SUFFIX,binance.me
 DOMAIN-SUFFIX,proton.me
 DOMAIN-SUFFIX,pikpak.me
+DOMAIN-SUFFIX,1anime.me
 DOMAIN-SUFFIX,7mmtv.me
 DOMAIN-SUFFIX,line.me
 DOMAIN-SUFFIX,wa.me

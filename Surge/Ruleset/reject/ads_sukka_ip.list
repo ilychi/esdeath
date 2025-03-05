@@ -1,6 +1,6 @@
 #########################################
 # Sukka's Ruleset - Anti Bogus Domain
-# Last Updated: 2025-02-02T06:44:35.126Z
+# Last Updated: 2025-03-03T12:40:48.789Z
 # Size: 156
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
@@ -13,7 +13,6 @@
 #  - https://github.com/curbengh/botnet-filter
 #########################################
 DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
-IP-CIDR,5.253.59.162/32,no-resolve
 IP-CIDR,10.72.25.0/24,no-resolve
 IP-CIDR,23.202.231.167/32,no-resolve
 IP-CIDR,23.217.138.108/32,no-resolve
@@ -36,6 +35,7 @@ IP-CIDR,61.174.50.214/32,no-resolve
 IP-CIDR,61.183.1.186/32,no-resolve
 IP-CIDR,61.191.206.4/32,no-resolve
 IP-CIDR,79.137.13.24/32,no-resolve
+IP-CIDR,91.230.49.1/32,no-resolve
 IP-CIDR,101.226.10.8/32,no-resolve
 IP-CIDR,101.227.97.240/32,no-resolve
 IP-CIDR,101.227.200.11/32,no-resolve
@@ -74,7 +74,6 @@ IP-CIDR,125.211.213.130/31,no-resolve
 IP-CIDR,125.211.213.132/31,no-resolve
 IP-CIDR,125.211.213.134/32,no-resolve
 IP-CIDR,169.254.169.254/32,no-resolve
-IP-CIDR,172.232.58.59/32,no-resolve
 IP-CIDR,175.6.223.15/32,no-resolve
 IP-CIDR,180.153.103.224/32,no-resolve
 IP-CIDR,180.166.52.24/32,no-resolve
@@ -84,6 +83,7 @@ IP-CIDR,183.207.232.253/32,no-resolve
 IP-CIDR,183.221.242.172/32,no-resolve
 IP-CIDR,183.221.250.11/32,no-resolve
 IP-CIDR,183.224.40.24/32,no-resolve
+IP-CIDR,193.238.227.136/32,no-resolve
 IP-CIDR,198.105.254.11/32,no-resolve
 IP-CIDR,202.98.24.121/32,no-resolve
 IP-CIDR,202.98.24.122/31,no-resolve
