@@ -160,12 +160,11 @@ export const ruleGroups: RuleGroup[] = [
       },
       {
         path: 'Surge/Ruleset/streaming/video/embytest.list',
-        url: 'https://github.com/1120109856/lynn/raw/main/fxw',
+        url: 'https://github.com/ocd0711/Profiles/raw/master/Surge/Ruleset/emby.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/video/embytest2.list',
-        url: 'https://github.com/1120109856/lynn/raw/main/zl',
-        description: 'This file contains test rules for EmbyServer.',
+        path: 'Surge/Ruleset/streaming/video/embydirect.list',
+        url: 'https://github.com/zhaolook/zzz/raw/main/EmbyDirect.list',
       },
       {
         path: 'Surge/Ruleset/streaming/video/bilibiliintl.list',
@@ -517,11 +516,7 @@ export const specialRules: SpecialRuleConfig[] = [
   {
     name: 'AI',
     targetFile: 'Surge/Ruleset/aigc.list',
-    sourceFiles: [
-      'Surge/Ruleset/aigc_keli.list',
-      'Surge/Ruleset/aigc_connershua.list',
-      //'Surge/Ruleset/aigc_hiven.list'
-    ],
+    sourceFiles: ['Surge/Ruleset/aigc_keli.list', 'Surge/Ruleset/aigc_connershua.list'],
     extraRules: ['DOMAIN-SUFFIX,openrouter.ai'],
     cleanup: true,
     header: {
@@ -554,13 +549,15 @@ export const specialRules: SpecialRuleConfig[] = [
       'Surge/Ruleset/reject/malicious.list',
       'Surge/Ruleset/reject/tracking.list',
     ],
-    cleanup: true,
+    cleanup: false,
+    dedup: true,
     header: {
       enable: true, // 明确启用 header
       title: 'Advertising & malicious & Tracking',
       description: 'Made by RuleGo, All rights reserved',
     },
   },
+  /**
   {
     name: 'Reject (Sukka)',
     targetFile: 'Surge/Ruleset/reject_sukka.list',
@@ -576,11 +573,13 @@ export const specialRules: SpecialRuleConfig[] = [
       description: 'Made by Sukka, All rights reserved',
     },
   },
+  */
   {
     name: 'CDN',
     targetFile: 'Surge/Ruleset/cdn.list',
     sourceFiles: ['Surge/Ruleset/cdn_noip.list', 'Surge/Ruleset/cdn_ip.list'],
-    cleanup: true,
+    cleanup: false,
+    dedup: true,
     header: {
       enable: true, // 明确启用 header
       title: 'Common Static CDNs',
@@ -590,12 +589,35 @@ export const specialRules: SpecialRuleConfig[] = [
   {
     name: 'Emby',
     targetFile: 'Surge/Ruleset/streaming/video/embytest.list',
-    sourceFiles: ['Surge/Ruleset/streaming/video/embytest2.list'],
+    sourceFiles: [
+      'https://github.com/m4v8vsyj/me/raw/main/emby.list',
+      'https://github.com/kefengyoyo/own/raw/main/Emby-P.list',
+      'https://github.com/forevergooe/Rules/raw/master/Surge/Emby.list',
+      'https://github.com/yahngming/rules/raw/master/emby.list',
+      'https://github.com/Boyce3/Clash/raw/main/Rules/Emby.yaml',
+    ],
     cleanup: true,
+    keepInlineComments: true,
+    dedup: true,
+    applyNoResolve: true,
+    deleteSourceFiles: false,
     header: {
-      enable: true, // 明确启用 header
-      title: 'EMBY Streaming',
-      description: 'Made by CC, All rights reserved',
+      enable: true,
+      title: 'Emby 测试规则',
+      description: '这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。',
+    },
+  },
+  {
+    name: 'Emby Streaming Media (Direct)',
+    targetFile: 'Surge/Ruleset/streaming/video/embydirect.list',
+    sourceFiles: ['https://github.com/h05n/-/raw/main/直连emby'],
+    cleanup: true,
+    applyNoResolve: true,
+    header: {
+      enable: true,
+      title: 'Emby Streaming Media (Direct)',
+      description:
+        'Direct connection rules for Emby servers accessible from Mainland China. Includes server addresses that can attempt direct connection from mainland. Note: Still in testing phase.',
     },
   },
   {
@@ -620,9 +642,10 @@ export const specialRules: SpecialRuleConfig[] = [
       'Surge/Ruleset/domestic/domestic_sukka_ip.list',
       'Surge/Ruleset/domestic/domestic_sukka_direct.list',
     ],
-    cleanup: true, // 启用清理和排序
+    cleanup: false,
+    dedup: true,
     header: {
-      enable: true, // 启用头部信息
+      enable: true,
       title: 'Domestic Rules (Sukka)',
       description:
         'This file contains known domains and IPs that are avaliable in the Mainland China.',
@@ -632,9 +655,10 @@ export const specialRules: SpecialRuleConfig[] = [
     name: 'Direct (Sukka)',
     targetFile: 'Surge/Ruleset/direct/direct_sukka.list',
     sourceFiles: ['Surge/Ruleset/direct/mydirect_sukka.list'],
-    cleanup: true,
+    cleanup: false,
+    dedup: true,
     header: {
-      enable: true, // 明确启用 header
+      enable: true,
       title: 'Direct (Sukka)',
       description:
         'This file contains rules for direct access to domains and IPs in the Mainland China.',

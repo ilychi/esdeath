@@ -36,6 +36,23 @@ export class RuleConverter {
       }
     }
 
+    // 处理Clash规则格式: TYPE,VALUE
+    // 例如: - DOMAIN,example.com
+    if (line.startsWith('- ')) {
+      line = line.substring(2).trim();
+    }
+
+    // 处理Clash yaml中的纯规则格式，例如: - example.com
+    if (line.startsWith('-') && !line.substring(1).trim().includes(',')) {
+      const domainValue = line.substring(1).trim();
+      // 根据规则特征判断类型
+      if (domainValue.startsWith('*.') || domainValue.includes('*')) {
+        line = `DOMAIN-WILDCARD,${domainValue}`;
+      } else {
+        line = `DOMAIN,${domainValue}`;
+      }
+    }
+
     // 解析规则及参数
     let type = '';
     let value = '';
@@ -54,8 +71,13 @@ export class RuleConverter {
 
       // 定义有效的策略集合
       const validPolicies = new Set([
-        'REJECT', 'DIRECT', 'PROXY',
-        'REJECT-DROP', 'REJECT-TINYGIF', 'REJECT-DICT', 'REJECT-ARRAY',
+        'REJECT',
+        'DIRECT',
+        'PROXY',
+        'REJECT-DROP',
+        'REJECT-TINYGIF',
+        'REJECT-DICT',
+        'REJECT-ARRAY',
       ]);
 
       // 检查可能的策略或标志是否为有效策略
@@ -119,14 +141,37 @@ export class RuleConverter {
     }
 
     // 基础类型转换
-    type = type.replace(/^HOST-WILDCARD$/i, 'DOMAIN-WILDCARD')
-               .replace(/^HOST-SUFFIX$/i, 'DOMAIN-SUFFIX')
-               .replace(/^HOST-KEYWORD$/i, 'DOMAIN-KEYWORD')
-               .replace(/^HOST$/i, 'DOMAIN')
-               .replace(/^IP6-CIDR$/i, 'IP-CIDR6')
-               .replace(/^GEOIP$/i, 'GEOIP')
-               .replace(/^IP-ASN$/i, 'IP-ASN')
-               .replace(/^DEST-PORT$/i, 'DST-PORT');
+    type = type
+      .replace(/^HOST-WILDCARD$/i, 'DOMAIN-WILDCARD')
+      .replace(/^HOST-SUFFIX$/i, 'DOMAIN-SUFFIX')
+      .replace(/^HOST-KEYWORD$/i, 'DOMAIN-KEYWORD')
+      .replace(/^HOST$/i, 'DOMAIN')
+      .replace(/^IP6-CIDR$/i, 'IP-CIDR6')
+      .replace(/^GEOIP$/i, 'GEOIP')
+      .replace(/^IP-ASN$/i, 'IP-ASN')
+      .replace(/^DEST-PORT$/i, 'DST-PORT');
+
+    // Clash特有规则转换为Surge规则
+    if (type === 'MATCH') {
+      type = 'FINAL';
+    } else if (type === 'SRC-IP-CIDR') {
+      type = 'SRC-IP';
+    } else if (type === 'SRC-PORT') {
+      type = 'SRC-PORT';
+    } else if (type === 'PROCESS-NAME') {
+      type = 'PROCESS-NAME';
+    } else if (type === 'RULE-SET') {
+      // 对于RULE-SET需要特殊处理
+      type = 'RULE-SET';
+    }
+
+    // 检查是否为Surge不支持的规则类型
+    const surgeUnsupportedTypes = ['MATCH-PROVIDER', 'SCRIPT', 'CLASSIC', 'RULE-SET-PROVIDER'];
+
+    if (surgeUnsupportedTypes.includes(type)) {
+      console.warn(`跳过不支持的规则类型: ${type} - ${value}`);
+      return ''; // 返回空字符串，这个规则将被过滤掉
+    }
 
     // 处理策略转换
     if (policy) {
@@ -150,7 +195,10 @@ export class RuleConverter {
       }
     }
 
-    if (this.options.enableExtended && ['DOMAIN', 'DOMAIN-SUFFIX', 'DOMAIN-KEYWORD', 'DOMAIN-WILDCARD'].includes(type)) {
+    if (
+      this.options.enableExtended &&
+      ['DOMAIN', 'DOMAIN-SUFFIX', 'DOMAIN-KEYWORD', 'DOMAIN-WILDCARD'].includes(type)
+    ) {
       if (!flags.includes('extended-matching')) {
         flags.push('extended-matching');
       }
