@@ -360,12 +360,6 @@ AND,((IP-CIDR,111.225.147.191/32,no-resolve),(DEST-PORT,6443))
 AND,((IP-CIDR,111.63.61.101/32,no-resolve),(DEST-PORT,6443))
 AND,((IP-CIDR,220.243.141.0/32,no-resolve),(DEST-PORT,6443))
 
-# >> JD
-DOMAIN,dns.jd.com
-URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?"
-IP-CIDR,101.124.19.122/32,no-resolve
-IP-CIDR6,2402:db40:5100:1011::5/128,no-resolve
-
 # >> Taobao
 DOMAIN,adashx.m.taobao.com
 DOMAIN,h-adashx.ut.taobao.com
