@@ -683,9 +683,6 @@ Proto处理 = type=http-response, pattern=^https:\/\/spclient\.wg\.spotify\.com\
 # ----------- Umetrip ------------
 移除首页广告 = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/Umetrip_remove_ads.js
 
-# ------------- Keep -------------
-移除首页活动标签 = type=http-response, pattern=^https:\/\/api\.gotokeep\.com\/config\/v3\/basic, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/Keep_remove_ads.js, requires-body=true
-
 # -------- ColorfulClouds --------
 彩云天气去广告 = type=http-response, pattern=^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/ColorfulClouds_remove_ads.js, requires-body=true
 
