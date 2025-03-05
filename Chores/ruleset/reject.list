@@ -404,12 +404,6 @@ DOMAIN,amap-aos-info-nogw.amap.com
 DOMAIN,free-aos-cdn-image.amap.com
 DOMAIN-SUFFIX,v.smtcdns.com
 
-# >> DiDi
-DOMAIN,hd.xiaojukeji.com
-DOMAIN,gwp.xiaojukeji.com
-AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
-AND,((IP-ASN,63646,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
-
 # >> Umetrip
 URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native"
 
@@ -421,29 +415,7 @@ DOMAIN,httpdns.n.netease.com
 DOMAIN,httpdns.calorietech.com
 DOMAIN,hc-ssp.sm.cn
 
-# >> MailMaster
-DOMAIN,httpdns.music.163.com
-DOMAIN,httpdns-sdk.n.netease.com
-DOMAIN,lofter.httpdns.c.163.com
-DOMAIN,music.httpdns.c.163.com
-IP-CIDR,59.111.239.61/32,no-resolve
-IP-CIDR,59.111.239.62/32,no-resolve
-IP-CIDR,115.236.121.51/32,no-resolve
-IP-CIDR,115.236.121.195/32,no-resolve
-URL-REGEX,"^http:\/\/81\.69\.130\.131\/d"
-URL-REGEX,"^http:\/\/101\.35\.204\.35\/d"
-URL-REGEX,"^http:\/\/101\.35\.212\.35\/d"
-URL-REGEX,"^http:\/\/114\.110\.96\.6\/d"
-URL-REGEX,"^http:\/\/114\.110\.96\.26\/d"
-URL-REGEX,"^http:\/\/114\.110\.97\.30\/d"
-URL-REGEX,"^http:\/\/114\.110\.97\.97\/d"
-URL-REGEX,"^http:\/\/121\.5\.84\.85\/d"
-URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d"
-
 # >> ColorfulClouds
 DOMAIN,abyss.cyapi.cn
 DOMAIN,ad.cyapi.cn
 DOMAIN,gather.colorfulclouds.net
-
-# >> Aiinquiry
-URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/"
