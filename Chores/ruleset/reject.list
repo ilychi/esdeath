@@ -287,8 +287,13 @@ IP-CIDR,103.41.167.237/32,no-resolve
 IP-CIDR,118.89.204.198/32,no-resolve
 IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,no-resolve
 
-# >> Snowball
-URL-REGEX,"^http:\/\/119\.29\.29\.98\/d\?"
+# >> WeChatMP
+DOMAIN,wxsnsdy.wxs.qq.com
+DOMAIN,wxsmsdy.video.qq.com
+DOMAIN,wxsnsdythumb.wxs.qq.com
+DOMAIN,ads-shopping.shouqianba.com
+DOMAIN,ad.maoyan.com
+DOMAIN,e.jparking.cn
 
 # >> WeChatOA
 DOMAIN-SUFFIX,wxs.qq.com
@@ -324,10 +329,6 @@ DOMAIN,adbehavior.ximalaya.com
 DOMAIN,adbehavior.wsa.ximalaya.com
 DOMAIN,dns2.q2cdn.com
 URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
-
-# >> YouTube
-AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
-AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
 
 # >> VideoGo
 DOMAIN,httpdns.yunxindns.com
@@ -373,6 +374,9 @@ DOMAIN,msg.umengcloud.com
 DOMAIN,sec.umeng.com
 DOMAIN,ynuf.aliapp.org
 
+# >> FleaMarket
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
+
 # >> Cainiao
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
 DOMAIN,amdc.m.youku.com
@@ -393,12 +397,25 @@ DOMAIN,amap-aos-info-nogw.amap.com
 DOMAIN,free-aos-cdn-image.amap.com
 DOMAIN-SUFFIX,v.smtcdns.com
 
+# >> DiDi
+DOMAIN,hd.xiaojukeji.com
+DOMAIN,gwp.xiaojukeji.com
+AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
+AND,((IP-ASN,63646,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
+
 # >> Umetrip
 URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native"
 
+# >> MeiTu
+DOMAIN,adui.tg.meitu.com
+
+# >> Keep
+DOMAIN,httpdns.n.netease.com
+DOMAIN,httpdns.calorietech.com
+DOMAIN,hc-ssp.sm.cn
+
 # >> MailMaster
 DOMAIN,httpdns.music.163.com
-DOMAIN,httpdns.n.netease.com
 DOMAIN,httpdns-sdk.n.netease.com
 DOMAIN,lofter.httpdns.c.163.com
 DOMAIN,music.httpdns.c.163.com
@@ -420,3 +437,6 @@ URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d"
 DOMAIN,abyss.cyapi.cn
 DOMAIN,ad.cyapi.cn
 DOMAIN,gather.colorfulclouds.net
+
+# >> Aiinquiry
+URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/"
