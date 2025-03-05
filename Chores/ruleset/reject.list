@@ -290,14 +290,6 @@ IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,no-resolve
 # >> Snowball
 URL-REGEX,"^http:\/\/119\.29\.29\.98\/d\?"
 
-# >> WeChatMP
-DOMAIN,wxsnsdy.wxs.qq.com
-DOMAIN,wxsmsdy.video.qq.com
-DOMAIN,wxsnsdythumb.wxs.qq.com
-DOMAIN,ads-shopping.shouqianba.com
-DOMAIN,ad.maoyan.com
-DOMAIN,e.jparking.cn
-
 # >> WeChatOA
 DOMAIN-SUFFIX,wxs.qq.com
 
@@ -381,9 +373,6 @@ DOMAIN,msg.umengcloud.com
 DOMAIN,sec.umeng.com
 DOMAIN,ynuf.aliapp.org
 
-# >> FleaMarket
-AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
-
 # >> Cainiao
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
 DOMAIN,amdc.m.youku.com
@@ -407,13 +396,25 @@ DOMAIN-SUFFIX,v.smtcdns.com
 # >> Umetrip
 URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native"
 
-# >> MeiTu
-DOMAIN,adui.tg.meitu.com
-
-# >> Keep
+# >> MailMaster
+DOMAIN,httpdns.music.163.com
 DOMAIN,httpdns.n.netease.com
-DOMAIN,httpdns.calorietech.com
-DOMAIN,hc-ssp.sm.cn
+DOMAIN,httpdns-sdk.n.netease.com
+DOMAIN,lofter.httpdns.c.163.com
+DOMAIN,music.httpdns.c.163.com
+IP-CIDR,59.111.239.61/32,no-resolve
+IP-CIDR,59.111.239.62/32,no-resolve
+IP-CIDR,115.236.121.51/32,no-resolve
+IP-CIDR,115.236.121.195/32,no-resolve
+URL-REGEX,"^http:\/\/81\.69\.130\.131\/d"
+URL-REGEX,"^http:\/\/101\.35\.204\.35\/d"
+URL-REGEX,"^http:\/\/101\.35\.212\.35\/d"
+URL-REGEX,"^http:\/\/114\.110\.96\.6\/d"
+URL-REGEX,"^http:\/\/114\.110\.96\.26\/d"
+URL-REGEX,"^http:\/\/114\.110\.97\.30\/d"
+URL-REGEX,"^http:\/\/114\.110\.97\.97\/d"
+URL-REGEX,"^http:\/\/121\.5\.84\.85\/d"
+URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d"
 
 # >> ColorfulClouds
 DOMAIN,abyss.cyapi.cn
