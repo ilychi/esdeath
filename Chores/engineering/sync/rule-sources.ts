@@ -557,7 +557,6 @@ export const specialRules: SpecialRuleConfig[] = [
       description: 'Made by RuleGo, All rights reserved',
     },
   },
-  /**
   {
     name: 'Reject (Sukka)',
     targetFile: 'Surge/Ruleset/reject_sukka.list',
@@ -573,7 +572,6 @@ export const specialRules: SpecialRuleConfig[] = [
       description: 'Made by Sukka, All rights reserved',
     },
   },
-  */
   {
     name: 'CDN',
     targetFile: 'Surge/Ruleset/cdn.list',
