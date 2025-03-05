@@ -273,9 +273,6 @@ DOMAIN-SUFFIX,66mobi.com
 DOMAIN,huodong.weibo.cn
 DOMAIN-SUFFIX,biz.weibo.com
 
-# >> RedPaper
-AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com))
-
 # >> Zhihu
 DOMAIN,appcloud.zhihu.com
 DOMAIN,appcloud2.in.zhihu.com
@@ -295,33 +292,6 @@ DOMAIN,ads-shopping.shouqianba.com
 DOMAIN,ad.maoyan.com
 DOMAIN,e.jparking.cn
 
-# >> WeChatOA
-DOMAIN-SUFFIX,wxs.qq.com
-
-# >> QQMusic
-DOMAIN,adstats.tencentmusic.com
-DOMAIN,ad.tencentmusic.com
-DOMAIN,adcdn.tencentmusic.com
-DOMAIN,adcdn6.tencentmusic.com
-DOMAIN,adexpo.tencentmusic.com
-DOMAIN,adclick.tencentmusic.com
-DOMAIN,monitor.music.qq.com
-DOMAIN,stat.y.qq.com
-DOMAIN,tmeadquic.y.qq.com
-DOMAIN,oth.str.mdt.qq.com
-DOMAIN,h.trace.qq.com
-DOMAIN,p.l.qq.com
-DOMAIN,tangram.e.qq.com
-DOMAIN-SUFFIX,imtmp.net
-
-# >> NetEaseMusic
-DOMAIN,iadmat.nosdn.127.net
-DOMAIN,iadmatapk.nosdn.127.net
-DOMAIN,iadmusicmat.music.126.net
-DOMAIN,iadmusicmatvideo.music.126.net
-DOMAIN,ipv4.music.163.com
-DOMAIN,ipv6.music.163.com
-
 # >> Himalaya
 DOMAIN,adse.ximalaya.com
 DOMAIN,adse.wsa.ximalaya.com
@@ -330,10 +300,9 @@ DOMAIN,adbehavior.wsa.ximalaya.com
 DOMAIN,dns2.q2cdn.com
 URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
 
-# >> VideoGo
-DOMAIN,httpdns.yunxindns.com
-DOMAIN-SUFFIX,gdtimg.com
-DOMAIN-SUFFIX,pos.baidu.com
+# >> YouTube
+AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
+AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
 
 # >> SodaMusic
 AND,((DOMAIN-KEYWORD,api100-core-quic-),(DOMAIN-SUFFIX,amemv.com))
@@ -364,16 +333,6 @@ DOMAIN,adashx.m.taobao.com
 DOMAIN,h-adashx.ut.taobao.com
 DOMAIN,ut.taobao.com
 
-# >> SMZDM
-DOMAIN,acs4baichuan.m.taobao.com
-DOMAIN,adashxgc.ut.taobao.com
-DOMAIN,analytics-api.smzdm.com
-DOMAIN,baichuan-sdk.alicdn.com
-DOMAIN,dgstatic.jd.com
-DOMAIN,msg.umengcloud.com
-DOMAIN,sec.umeng.com
-DOMAIN,ynuf.aliapp.org
-
 # >> FleaMarket
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
 
@@ -391,12 +350,6 @@ DOMAIN,vali-ugc.cp31.ott.cibntv.net
 DOMAIN,yk-ssp.ad.youku.com
 DOMAIN,ykad-data.youku.com
 
-# >> Amap
-AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
-DOMAIN,amap-aos-info-nogw.amap.com
-DOMAIN,free-aos-cdn-image.amap.com
-DOMAIN-SUFFIX,v.smtcdns.com
-
 # >> DiDi
 DOMAIN,hd.xiaojukeji.com
 DOMAIN,gwp.xiaojukeji.com
@@ -413,25 +366,6 @@ DOMAIN,adui.tg.meitu.com
 DOMAIN,httpdns.n.netease.com
 DOMAIN,httpdns.calorietech.com
 DOMAIN,hc-ssp.sm.cn
-
-# >> MailMaster
-DOMAIN,httpdns.music.163.com
-DOMAIN,httpdns-sdk.n.netease.com
-DOMAIN,lofter.httpdns.c.163.com
-DOMAIN,music.httpdns.c.163.com
-IP-CIDR,59.111.239.61/32,no-resolve
-IP-CIDR,59.111.239.62/32,no-resolve
-IP-CIDR,115.236.121.51/32,no-resolve
-IP-CIDR,115.236.121.195/32,no-resolve
-URL-REGEX,"^http:\/\/81\.69\.130\.131\/d"
-URL-REGEX,"^http:\/\/101\.35\.204\.35\/d"
-URL-REGEX,"^http:\/\/101\.35\.212\.35\/d"
-URL-REGEX,"^http:\/\/114\.110\.96\.6\/d"
-URL-REGEX,"^http:\/\/114\.110\.96\.26\/d"
-URL-REGEX,"^http:\/\/114\.110\.97\.30\/d"
-URL-REGEX,"^http:\/\/114\.110\.97\.97\/d"
-URL-REGEX,"^http:\/\/121\.5\.84\.85\/d"
-URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d"
 
 # >> ColorfulClouds
 DOMAIN,abyss.cyapi.cn
