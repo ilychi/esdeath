@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/6 23:33:25
-// DOMAIN: 2261
+// Last updated: 2025/3/7 06:29:20
+// DOMAIN: 2262
 // DOMAIN-SUFFIX: 955
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3275
+// Total: 3276
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2113,6 +2113,7 @@ DOMAIN-SUFFIX,tkcdns.com
 DOMAIN-SUFFIX,tiqcdn.com
 DOMAIN,image.thefly.com
 DOMAIN-SUFFIX,tedcdn.com
+DOMAIN,www.tbstat.com
 DOMAIN,cdn-static.talent.com
 DOMAIN-SUFFIX,sxccdn.com
 DOMAIN,assets.swoogo.com
