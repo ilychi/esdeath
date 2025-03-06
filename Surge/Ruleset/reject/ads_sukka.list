@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-03-06T12:40:54.196Z
-# Size: 64068
+# Last Updated: 2025-03-06T14:03:14.839Z
+# Size: 64071
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -1295,6 +1295,7 @@ DOMAIN-SUFFIX,sporranawaked.shop
 DOMAIN-SUFFIX,splayermosque.shop
 DOMAIN-SUFFIX,sparredcubans.shop
 DOMAIN-SUFFIX,schorlyalroot.shop
+DOMAIN-SUFFIX,retrosowenian.shop
 DOMAIN-SUFFIX,retimedtactor.shop
 DOMAIN-SUFFIX,relockembarge.shop
 DOMAIN-SUFFIX,regainchiasmi.shop
@@ -31444,7 +31445,6 @@ DOMAIN-SUFFIX,adb-analytics.live-now.com
 DOMAIN-SUFFIX,adbd.liuxue86.com
 DOMAIN-SUFFIX,list-ads.com
 DOMAIN-SUFFIX,lirretsn.com
-DOMAIN-SUFFIX,linksprf.com
 DOMAIN-SUFFIX,linkmink.com
 DOMAIN-SUFFIX,st.linkfire.com
 DOMAIN-SUFFIX,analytics.pointdrive.linkedin.com
@@ -60545,6 +60545,7 @@ DOMAIN-SUFFIX,rxys.cn
 DOMAIN-SUFFIX,rojj.cn
 DOMAIN-SUFFIX,riym.cn
 DOMAIN,yun.rili.cn
+DOMAIN-SUFFIX,rgju.cn
 DOMAIN-SUFFIX,qnki.cn
 DOMAIN-SUFFIX,qnhi.cn
 DOMAIN-SUFFIX,news.qcyz.cn
@@ -63248,6 +63249,8 @@ DOMAIN-SUFFIX,target.bankwest.com.au
 DOMAIN-SUFFIX,qmgwny.autobarn.com.au
 DOMAIN-SUFFIX,guppy.ausowned.com.au
 DOMAIN-SUFFIX,mdxhon.allhomes.com.au
+DOMAIN-SUFFIX,wup-2ffe60ee.westpac.com.au
+DOMAIN-SUFFIX,log-2ffe60ee.westpac.com.au
 DOMAIN-SUFFIX,data.msgs.westpac.com.au
 DOMAIN-SUFFIX,data.msg.westpac.com.au
 DOMAIN-SUFFIX,sstats.tiffany.com.au
