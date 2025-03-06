@@ -1,8 +1,8 @@
 // Emby Streaming Media (Direct)
-// Last updated: 2025/3/6 10:54:24
+// Last updated: 2025/3/6 19:14:44
 // DOMAIN-SUFFIX: 154
-// IP-CIDR: 31
-// Total: 185
+// IP-CIDR: 32
+// Total: 186
 // Direct connection rules for Emby servers accessible from Mainland China. Includes server addresses that can attempt direct connection from mainland. Note: Still in testing phase.
 // Data sources:
 //  - https://github.com/h05n/-/raw/main/直连emby
@@ -162,6 +162,7 @@ DOMAIN-SUFFIX,yezi.my
 DOMAIN-SUFFIX,yhemby.top
 IP-CIDR,104.161.22.114/24,no-resolve
 IP-CIDR,104.21.16.1/32
+IP-CIDR,111.255.254.121/32
 IP-CIDR,129.150.48.48/24,no-resolve
 IP-CIDR,129.154.193.8/24,no-resolve
 IP-CIDR,129.154.57.174/24,no-resolve
