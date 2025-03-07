@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/7 22:28:40
-// DOMAIN: 2274
-// DOMAIN-SUFFIX: 956
+// Last updated: 2025/3/8 03:16:13
+// DOMAIN: 2275
+// DOMAIN-SUFFIX: 957
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3289
+// Total: 3291
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -30,6 +30,7 @@ DOMAIN,bcdn.starapps.studio
 DOMAIN,cdn.starapps.studio
 DOMAIN,public.flourish.studio
 DOMAIN,mstdn-s3.o3o.studio
+DOMAIN-SUFFIX,photocdn.stream
 DOMAIN,files.mastodon.social
 DOMAIN,assets.mozilla.social
 DOMAIN,media-cdn.comfy.social
@@ -420,6 +421,7 @@ DOMAIN,cache-05.filehippo.net
 DOMAIN,static.eroterest.net
 DOMAIN-SUFFIX,doppiocdn.net
 DOMAIN-SUFFIX,ctfassets.net
+DOMAIN,searchg2-assets.crownpeak.net
 DOMAIN,edge-consumer-static.azureedge.net
 DOMAIN,edge-mobile-static.azureedge.net
 DOMAIN,edgeassetservice.azureedge.net
