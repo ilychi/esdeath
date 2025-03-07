@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/7 07:51:39
-// DOMAIN: 119
+// Last updated: 2025/3/7 12:55:49
+// DOMAIN: 121
 // DOMAIN-SUFFIX: 387
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 11
 // OTHER: 1
-// Total: 521
+// Total: 523
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -23,6 +23,7 @@ DOMAIN,ad.auroramedia.vip
 DOMAIN,auto.polodns.xyz // Added for: auto.polodns.xyz:443
 DOMAIN,beebi.org
 DOMAIN,by.mooguu.org // 蘑菇备用
+DOMAIN,c.lilyemby.my
 DOMAIN,cc.coemn.com
 DOMAIN,cc.coemn.com // Cc
 DOMAIN,cc.embycc.link
@@ -30,7 +31,6 @@ DOMAIN,cdn.lyrebirdemby.com
 DOMAIN,cdn.lyrebirdemby.com // Lyrebird-琴鸟
 DOMAIN,cdnemby.lilyya.xyz // lilyemby
 DOMAIN,cdsalw2lw.catlinks.co.uk
-DOMAIN,cemby.lilyya.xyz
 DOMAIN,cf.carlos.trade
 DOMAIN,cf.imetyou.top
 DOMAIN,cf.sfcj.org
@@ -57,6 +57,7 @@ DOMAIN,emby.carlos.trade // Added for: emby.carlos.trade:8096
 DOMAIN,emby.cn2gias.uk // 守候 gugu
 DOMAIN,emby.jingzhe.pro
 DOMAIN,emby.lilyya.xyz // lilyemby
+DOMAIN,emby.nebula-media.org
 DOMAIN,emby.pilipiliultra.com
 DOMAIN,emby.tnx.one // Nanflix
 DOMAIN,emby3.mcjoker.xyz
@@ -75,6 +76,7 @@ DOMAIN,inside.lyrebirdemby.com
 DOMAIN,jc.1024.name
 DOMAIN,jg.sfcj.org
 DOMAIN,jg6.sfcj.org
+DOMAIN,jp.lilyemby.my
 DOMAIN,jsq.mooguu.top // 蘑菇-见手青
 DOMAIN,jsq.mooguu.xyz
 DOMAIN,ju.sfcj.org
@@ -117,10 +119,10 @@ DOMAIN,temby4837.285286.xyz // TEmby
 DOMAIN,temby856.285286.xyz // tembybeta
 DOMAIN,tiancheng.boaz.cf // plumber
 DOMAIN,tv.ash.yt // ash（卷毛鼠）
+DOMAIN,u.lilyemby.my
 DOMAIN,us.886318.xyz // apoppro
 DOMAIN,us.carlos.trade
 DOMAIN,us.nanflix.net
-DOMAIN,usemby.lilyya.xyz
 DOMAIN,v.20120714.xyz // Marmot_Emby
 DOMAIN,v6.sfcj.org
 DOMAIN,vi-hk.pppp.us.kg

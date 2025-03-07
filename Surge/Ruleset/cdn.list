@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/7 07:51:38
+// Last updated: 2025/3/7 12:55:47
 // DOMAIN: 2262
-// DOMAIN-SUFFIX: 955
+// DOMAIN-SUFFIX: 956
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3276
+// Total: 3277
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1777,6 +1777,7 @@ DOMAIN,assets.bravenet.com
 DOMAIN-SUFFIX,bp.blogspot.com
 DOMAIN-SUFFIX,blogblog.com
 DOMAIN,static.bitfinex.com
+DOMAIN-SUFFIX,bgstatic.com
 DOMAIN-SUFFIX,badoocdn.com
 DOMAIN,assets.awwwards.com
 DOMAIN,cdn.ashbyprd.com
