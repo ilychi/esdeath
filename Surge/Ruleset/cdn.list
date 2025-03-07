@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/7 12:55:47
-// DOMAIN: 2262
+// Last updated: 2025/3/7 14:56:42
+// DOMAIN: 2273
 // DOMAIN-SUFFIX: 956
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3277
+// Total: 3288
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2832,6 +2832,17 @@ DOMAIN,btn.hitomi.la
 DOMAIN,atn.hitomi.la
 DOMAIN,pomf2.lain.la
 DOMAIN-SUFFIX,ipfs.lain.la
+DOMAIN,static.pfrt.yna.co.kr
+DOMAIN,img9.yna.co.kr
+DOMAIN,img8.yna.co.kr
+DOMAIN,img7.yna.co.kr
+DOMAIN,img6.yna.co.kr
+DOMAIN,img5.yna.co.kr
+DOMAIN,img4.yna.co.kr
+DOMAIN,img3.yna.co.kr
+DOMAIN,img2.yna.co.kr
+DOMAIN,img1.yna.co.kr
+DOMAIN,img0.yna.co.kr
 DOMAIN,media.cmx.edu.kg
 DOMAIN-SUFFIX,misskeyusercontent.jp
 DOMAIN-SUFFIX,edge.storage-yahoo.jp
