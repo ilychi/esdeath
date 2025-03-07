@@ -1,13 +1,14 @@
 // Emby Streaming Media (Direct)
-// Last updated: 2025/3/7 14:56:44
-// DOMAIN-SUFFIX: 154
+// Last updated: 2025/3/7 19:51:32
+// DOMAIN-SUFFIX: 157
 // IP-CIDR: 32
-// Total: 186
+// Total: 189
 // Direct connection rules for Emby servers accessible from Mainland China. Includes server addresses that can attempt direct connection from mainland. Note: Still in testing phase.
 // Data sources:
 //  - https://github.com/h05n/-/raw/main/直连emby
 DOMAIN-SUFFIX,029902.xyz
 DOMAIN-SUFFIX,0v0.day
+DOMAIN-SUFFIX,10086.cn
 DOMAIN-SUFFIX,1024.name
 DOMAIN-SUFFIX,115cdn.net
 DOMAIN-SUFFIX,233988.xyz
@@ -33,6 +34,7 @@ DOMAIN-SUFFIX,apopcloud.com
 DOMAIN-SUFFIX,apopcloud.live
 DOMAIN-SUFFIX,auroramedia.vip
 DOMAIN-SUFFIX,bangumi.ca
+DOMAIN-SUFFIX,bcebos.com
 DOMAIN-SUFFIX,beebi.org
 DOMAIN-SUFFIX,big.kikiemby.top
 DOMAIN-SUFFIX,bili.rip
@@ -134,6 +136,7 @@ DOMAIN-SUFFIX,pro.gugumedia.link
 DOMAIN-SUFFIX,public.emby.ws
 DOMAIN-SUFFIX,push-kr.misakaf.org
 DOMAIN-SUFFIX,qzuie.top
+DOMAIN-SUFFIX,saturday.video
 DOMAIN-SUFFIX,sfcj.org
 DOMAIN-SUFFIX,sg.imetyou.top
 DOMAIN-SUFFIX,sharepoint.com

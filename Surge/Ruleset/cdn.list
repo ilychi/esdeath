@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/7 14:56:42
-// DOMAIN: 2273
+// Last updated: 2025/3/7 19:51:31
+// DOMAIN: 2274
 // DOMAIN-SUFFIX: 956
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3288
+// Total: 3289
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1462,6 +1462,7 @@ DOMAIN,filestore.community.support.microsoft.com
 DOMAIN,images.ecomm.microsoft.com
 DOMAIN,ajax.microsoft.com
 DOMAIN,uhf.microsoft.com
+DOMAIN,csp.microsoft.com
 DOMAIN,js.memberful.com
 DOMAIN,static.mediafire.com
 DOMAIN,cdn-images.mailchimp.com
