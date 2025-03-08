@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-03-08T12:30:26.683Z
-# Size: 64500
+# Last Updated: 2025-03-08T18:35:46.803Z
+# Size: 64520
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -643,6 +643,8 @@ DOMAIN-SUFFIX,hoplekhornnist.space
 DOMAIN-SUFFIX,vrqdzfzzlyalb.space
 DOMAIN-SUFFIX,vplxmpagryjvl.space
 DOMAIN-SUFFIX,olivedinflats.space
+DOMAIN-SUFFIX,myurphoftafzx.space
+DOMAIN-SUFFIX,lzljxgqazegmr.space
 DOMAIN-SUFFIX,cbjcfrakrdzzs.space
 DOMAIN-SUFFIX,amfzugolptnpo.space
 DOMAIN-SUFFIX,ueykjfltxqsb.space
@@ -685,6 +687,7 @@ DOMAIN-SUFFIX,yzxbdzrnsyscx.rocks
 DOMAIN-SUFFIX,pwtaaoncavyvy.rocks
 DOMAIN-SUFFIX,mvijuifysyjrz.rocks
 DOMAIN-SUFFIX,ljbiynvyhfteq.rocks
+DOMAIN-SUFFIX,lfdisicuttrod.rocks
 DOMAIN-SUFFIX,foybdfdodvgva.rocks
 DOMAIN-SUFFIX,fgjaelzvzxtdq.rocks
 DOMAIN-SUFFIX,elejwqalsqjbb.rocks
@@ -967,6 +970,7 @@ DOMAIN-SUFFIX,qjjqhcqxcyfex.tech
 DOMAIN-SUFFIX,marketing.precisiondoor.tech
 DOMAIN-SUFFIX,lnfncvjaweewi.tech
 DOMAIN-SUFFIX,llpzoaezdwwah.tech
+DOMAIN-SUFFIX,kxiaruornurfb.tech
 DOMAIN-SUFFIX,itvfpesimiyuy.tech
 DOMAIN-SUFFIX,dtrurjpkugcsv.tech
 DOMAIN-SUFFIX,cvfuyogxbcweq.tech
@@ -1402,6 +1406,7 @@ DOMAIN-SUFFIX,embrailamide.shop
 DOMAIN-SUFFIX,deturnfurdle.shop
 DOMAIN-SUFFIX,dearsdieback.shop
 DOMAIN-SUFFIX,curvedtobies.shop
+DOMAIN-SUFFIX,clumpykupper.shop
 DOMAIN-SUFFIX,a8.classicalelf.shop
 DOMAIN-SUFFIX,citharahemps.shop
 DOMAIN-SUFFIX,chloredenpia.shop
@@ -2153,6 +2158,7 @@ DOMAIN-SUFFIX,xtrgqmnflnfnj.buzz
 DOMAIN-SUFFIX,xbwkskazmgbyk.buzz
 DOMAIN-SUFFIX,vufqinbxihvvf.buzz
 DOMAIN-SUFFIX,skgpzivadwdte.buzz
+DOMAIN-SUFFIX,ntmreohudibfo.buzz
 DOMAIN-SUFFIX,jzqscvqlgasxh.buzz
 DOMAIN-SUFFIX,sjetnf-oizyo.buzz
 DOMAIN-SUFFIX,lust-goddess.buzz
@@ -3480,6 +3486,7 @@ DOMAIN-SUFFIX,wevrwqjqemoyk.top
 DOMAIN-SUFFIX,verchokberain.top
 DOMAIN-SUFFIX,vbmjlevwwvyzj.top
 DOMAIN-SUFFIX,unsavedbaruch.top
+DOMAIN-SUFFIX,uncolylirella.top
 DOMAIN-SUFFIX,uncalmgermane.top
 DOMAIN-SUFFIX,tunnelbuilder.top
 DOMAIN-SUFFIX,titanictooler.top
@@ -3517,7 +3524,9 @@ DOMAIN-SUFFIX,poiejdhmkjcnd.top
 DOMAIN-SUFFIX,pizzlessclimb.top
 DOMAIN-SUFFIX,phoceansteaks.top
 DOMAIN-SUFFIX,penjxqxbieezy.top
+DOMAIN-SUFFIX,peartengrousy.top
 DOMAIN-SUFFIX,patakaendymal.top
+DOMAIN-SUFFIX,pallorsdomini.top
 DOMAIN-SUFFIX,orisonaunties.top
 DOMAIN-SUFFIX,orientczarism.top
 DOMAIN-SUFFIX,oilwellsublot.top
@@ -3531,9 +3540,11 @@ DOMAIN-SUFFIX,loungysilvius.top
 DOMAIN-SUFFIX,ljybybyerzklr.top
 DOMAIN-SUFFIX,ljvmokwyroajm.top
 DOMAIN-SUFFIX,lingetunearth.top
+DOMAIN-SUFFIX,lihqutwoiumpd.top
 DOMAIN-SUFFIX,lehmerrociest.top
 DOMAIN-SUFFIX,jzvwawvwkwkwl.top
 DOMAIN-SUFFIX,jzqbyykjorakb.top
+DOMAIN-SUFFIX,jzleekzaovelw.top
 DOMAIN-SUFFIX,jyvkwqjremjbj.top
 DOMAIN-SUFFIX,jybaekaqbmmmb.top
 DOMAIN-SUFFIX,jrolyrlabybmz.top
@@ -3677,6 +3688,7 @@ DOMAIN-SUFFIX,sepalsdhobi.top
 DOMAIN-SUFFIX,screensnaps.top
 DOMAIN-SUFFIX,salonscrowd.top
 DOMAIN-SUFFIX,roudpiously.top
+DOMAIN-SUFFIX,riddedgarle.top
 DOMAIN-SUFFIX,plantalwauk.top
 DOMAIN-SUFFIX,peniblecoop.top
 DOMAIN-SUFFIX,oursexhance.top
@@ -3711,6 +3723,7 @@ DOMAIN-SUFFIX,refpaikgai.top
 DOMAIN-SUFFIX,pavedmawks.top
 DOMAIN-SUFFIX,oretracker.top
 DOMAIN-SUFFIX,olmnvbgufy.top
+DOMAIN-SUFFIX,obiexcised.top
 DOMAIN-SUFFIX,narrwhenas.top
 DOMAIN-SUFFIX,a.miyudaquan.top
 DOMAIN-SUFFIX,lizijing12.top
@@ -12241,6 +12254,7 @@ DOMAIN-SUFFIX,load.gtm.janluykenamsterdam.com
 DOMAIN-SUFFIX,catshark.janetalexandersson.com
 DOMAIN-SUFFIX,marketing.jacksonholechamber.com
 DOMAIN-SUFFIX,log.jackpotmasterslots.com
+DOMAIN-SUFFIX,irritatepillssurly.com
 DOMAIN-SUFFIX,ipadraffle-dfe0trk.com
 DOMAIN-SUFFIX,interposedflickhip.com
 DOMAIN-SUFFIX,marketing.interedgemarketing.com
@@ -16893,6 +16907,7 @@ DOMAIN-SUFFIX,marketing.dcihollowmetal.com
 DOMAIN-SUFFIX,dbbupggdbamnvo.com
 DOMAIN-SUFFIX,publicidad.daviviendaintl.com
 DOMAIN-SUFFIX,saa.daveandbusters.com
+DOMAIN-SUFFIX,dauntedsnubbed.com
 DOMAIN-SUFFIX,datingtopgirls.com
 DOMAIN-SUFFIX,vampirebat.datingmedellin.com
 DOMAIN-SUFFIX,datesassistant.com
@@ -27407,6 +27422,7 @@ DOMAIN-SUFFIX,redtrack.trykanibi.com
 DOMAIN-SUFFIX,trustaffs.com
 DOMAIN-SUFFIX,ewwstx.trussardi.com
 DOMAIN-SUFFIX,marketing.trubridge.com
+DOMAIN-SUFFIX,trorqaeao.com
 DOMAIN-SUFFIX,rdtk.troma-now.com
 DOMAIN-SUFFIX,rdtrk.trkrfcvns.com
 DOMAIN-SUFFIX,om.triphomes.com
@@ -31328,6 +31344,7 @@ DOMAIN-SUFFIX,sp.pal-item.com
 DOMAIN-SUFFIX,app.paciolan.com
 DOMAIN-SUFFIX,t.paciolan.com
 DOMAIN-SUFFIX,tracking.pacharge.com
+DOMAIN-SUFFIX,ozvtuton.com
 DOMAIN-SUFFIX,ozongees.com
 DOMAIN-SUFFIX,ozobsaib.com
 DOMAIN-SUFFIX,analytics.oyorooms.com
@@ -32015,6 +32032,7 @@ DOMAIN-SUFFIX,jemonews.com
 DOMAIN-SUFFIX,metrics.jeld-wen.com
 DOMAIN-SUFFIX,jeekomih.com
 DOMAIN-SUFFIX,jeehathu.com
+DOMAIN-SUFFIX,jeadjolc.com
 DOMAIN-SUFFIX,dxpxgy.jdsports.com
 DOMAIN-SUFFIX,ttmetrics.jcpenney.com
 DOMAIN-SUFFIX,kwvbhj.jcpenney.com
@@ -36808,6 +36826,7 @@ DOMAIN-SUFFIX,acton.trefis.com
 DOMAIN-SUFFIX,idit.trdid9.com
 DOMAIN-SUFFIX,trcktr.com
 DOMAIN-SUFFIX,tratbc.com
+DOMAIN-SUFFIX,trasre.com
 DOMAIN-SUFFIX,learn.trapac.com
 DOMAIN-SUFFIX,stape.tralgo.com
 DOMAIN-SUFFIX,ejkmld.tradus.com
@@ -60997,6 +61016,7 @@ DOMAIN-SUFFIX,ivvn.cn
 DOMAIN,dd.iask.cn
 DOMAIN-SUFFIX,hy90.cn
 DOMAIN-SUFFIX,efxh.cn
+DOMAIN-SUFFIX,dvuz.cn
 DOMAIN-SUFFIX,diav.cn
 DOMAIN-SUFFIX,bd.dhsz.cn
 DOMAIN-SUFFIX,dbba.cn
