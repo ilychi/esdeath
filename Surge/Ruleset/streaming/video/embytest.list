@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/8 18:16:09
+// Last updated: 2025/3/8 22:28:30
 // DOMAIN: 121
-// DOMAIN-SUFFIX: 387
+// DOMAIN-SUFFIX: 388
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 11
 // OTHER: 1
-// Total: 523
+// Total: 524
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -465,6 +465,7 @@ DOMAIN-SUFFIX,pub3.emby.wtf
 DOMAIN-SUFFIX,pub3back.emby.wtf
 DOMAIN-SUFFIX,push-kr.cfprefer3.xyz
 DOMAIN-SUFFIX,push-kr.misakaf.org
+DOMAIN-SUFFIX,qidian.ocdlive.com
 DOMAIN-SUFFIX,reddust.link
 DOMAIN-SUFFIX,ru.odysseyplus.site
 DOMAIN-SUFFIX,sana.emby.eu.org
