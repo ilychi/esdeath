@@ -1,7 +1,7 @@
 // IPv4+IPv6 Information in China.
-// Last updated: 2025/3/10 10:23:59
-// DOMAIN: 4639
-// Total: 4639
+// Last updated: 2025/3/10 12:58:44
+// DOMAIN: 4641
+// Total: 4641
 // Made by DH-Teams, All rights reserved
 // Data sources:
 //  - https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_IP_CN.txt
@@ -462,6 +462,7 @@ DOMAIN,45.80.188.0/24
 DOMAIN,45.80.190.0/24
 DOMAIN,45.81.34.0/24
 DOMAIN,45.85.76.0/22
+DOMAIN,45.91.83.0/24
 DOMAIN,45.92.158.0/23
 DOMAIN,45.113.20.0/22
 DOMAIN,45.113.24.0/22
@@ -854,6 +855,7 @@ DOMAIN,81.173.18.0/23
 DOMAIN,81.173.20.0/22
 DOMAIN,81.173.28.0/24
 DOMAIN,82.156.0.0/15
+DOMAIN,84.54.2.0/23
 DOMAIN,85.237.205.0/24
 DOMAIN,87.254.207.0/24
 DOMAIN,88.221.162.0/23
