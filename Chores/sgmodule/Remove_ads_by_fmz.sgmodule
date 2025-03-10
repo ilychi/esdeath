@@ -3259,7 +3259,7 @@ UnblockURLinWeChat-解除微信链接限制 = type=http-response, pattern=^https
 喜马拉雅去除我的页面Ad_Tag = type=http-response, pattern=^https?:\/\/.*\.xima.*\.com\/mobile-user\/v\d\/homePage, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xmly_json.js, requires-body=true, timeout=60
 
 # 响应体
-YouTube响应体 = type=http-response, pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch), script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/youtube.response.preview.js, requires-body=true, binary-body-mode=true, timeout=60
+YouTube响应体 = type=http-response, pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch), script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/youtube.response.js, requires-body=true, binary-body-mode=true, timeout=60
 
 # 播放详情页,首页信息流,顶部tab,我的页面,评论区
 优酷 = type=http-response, pattern=^https?:\/\/acs\.youku\.com\/gw\/mtop\.youku\.columbus\.(gateway\.new\.execute|home\.feed|home\.query|uc\.query|ycp\.query), script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/cnftp.js, requires-body=true, timeout=60
