@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/10 19:51:15
-// DOMAIN: 2273
+// Last updated: 2025/3/11 02:30:49
+// DOMAIN: 2276
 // DOMAIN-SUFFIX: 957
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3289
+// Total: 3292
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1866,12 +1866,14 @@ DOMAIN-SUFFIX,sqspcdn.com
 DOMAIN-SUFFIX,snzypic.com
 DOMAIN,sdk.snapkit.com
 DOMAIN,cdn.shopify.com
+DOMAIN,dassets.shimano.com
 DOMAIN,cdn.sheetjs.com
 DOMAIN,videos2-h.sendvid.com
 DOMAIN,thumbs2.sendvid.com
 DOMAIN,cdn.segment.com
 DOMAIN,ocsp.sectigo.com
 DOMAIN-SUFFIX,cdn.rollbar.com
+DOMAIN,tools.refokus.com
 DOMAIN,userpic.redgifs.com
 DOMAIN,js.recurly.com
 DOMAIN,cdn-rdstaticassets.readdle.com
@@ -2893,6 +2895,7 @@ DOMAIN-SUFFIX,combinatronics.io
 DOMAIN,edge.sitecorecloud.io
 DOMAIN-SUFFIX,opentelemetry.io
 DOMAIN-SUFFIX,local.webcontainer.io
+DOMAIN,telemetry.stepsecurity.io
 DOMAIN-SUFFIX,ipfs.scalaproject.io
 DOMAIN,edge.personalizer.io
 DOMAIN,assets-production.packagecloud.io

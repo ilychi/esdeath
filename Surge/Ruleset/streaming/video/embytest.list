@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/10 19:51:16
+// Last updated: 2025/3/11 02:30:50
 // DOMAIN: 121
-// DOMAIN-SUFFIX: 388
+// DOMAIN-SUFFIX: 390
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 11
 // OTHER: 1
-// Total: 524
+// Total: 526
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -440,6 +440,7 @@ DOMAIN-SUFFIX,nvidia.rip
 DOMAIN-SUFFIX,ohhhh.org
 DOMAIN-SUFFIX,otv.icu
 DOMAIN-SUFFIX,ouonet.org
+DOMAIN-SUFFIX,outong-valve.com
 DOMAIN-SUFFIX,oversea.alphatvapp.top
 DOMAIN-SUFFIX,pilipiliultra.com
 DOMAIN-SUFFIX,pilipiliultra.top
@@ -523,6 +524,7 @@ DOMAIN-SUFFIX,xmsl.org
 DOMAIN-SUFFIX,ycxdy.top
 DOMAIN-SUFFIX,yezi.my
 DOMAIN-SUFFIX,yhemby.top
+DOMAIN-SUFFIX,younoyes.com
 DOMAIN-SUFFIX,zi0.icu
 DOMAIN-SUFFIX,zox.show
 IP-CIDR,102.223.180.108/32,no-resolve // misakaf

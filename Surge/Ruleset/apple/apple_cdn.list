@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Apple CDN
-# Last Updated: 2025-02-06T14:31:09.307Z
-# Size: 172
+# Last Updated: 2025-03-10T15:20:46.270Z
+# Size: 164
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -13,8 +13,6 @@
 #########################################
 DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
 DOMAIN-SUFFIX,store.apple.com.edgekey.net
-DOMAIN-SUFFIX,www.apple.com.edgekey.net
-DOMAIN-SUFFIX,gsp4-cn.ls.apple.com.edgekey.net
 DOMAIN-SUFFIX,support-china.apple-support.akadns.net
 DOMAIN-SUFFIX,prod-support.apple-support.akadns.net
 DOMAIN-SUFFIX,images.apple.com.edgekey.net.globalredir.akadns.net
@@ -51,7 +49,6 @@ DOMAIN-SUFFIX,ocsp2-lb.apple.com.akadns.net
 DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net
 DOMAIN-SUFFIX,ocsp-lb.apple.com.akadns.net
 DOMAIN-SUFFIX,swdist.apple.com.akadns.net
-DOMAIN-SUFFIX,images.apple.com.akadns.net
 DOMAIN-SUFFIX,cds.apple.com.akadns.net
 DOMAIN-SUFFIX,cdn-cn4.apple-mapkit.com
 DOMAIN-SUFFIX,cdn-cn3.apple-mapkit.com
@@ -130,7 +127,6 @@ DOMAIN-SUFFIX,sylvan.apple.com
 DOMAIN-SUFFIX,swscan.apple.com
 DOMAIN-SUFFIX,swdist.apple.com
 DOMAIN-SUFFIX,itunes.apple.com
-DOMAIN-SUFFIX,images.apple.com
 DOMAIN-SUFFIX,iadsdk.apple.com
 DOMAIN-SUFFIX,gs-loc.apple.com
 DOMAIN-SUFFIX,dejavu.apple.com
@@ -139,9 +135,6 @@ DOMAIN-SUFFIX,cl2-cn.apple.com
 DOMAIN-SUFFIX,valid.apple.com
 DOMAIN-SUFFIX,swcdn.apple.com
 DOMAIN-SUFFIX,store.apple.com
-DOMAIN-SUFFIX,api-p-ap-e.smoot.apple.com
-DOMAIN-SUFFIX,api-p-ap-d.smoot.apple.com
-DOMAIN-SUFFIX,api-p-ap-c.smoot.apple.com
 DOMAIN-SUFFIX,guzzoni.smoot.apple.com
 DOMAIN-SUFFIX,oscdn.apple.com
 DOMAIN-SUFFIX,ocsp2.apple.com
@@ -181,6 +174,5 @@ DOMAIN-SUFFIX,gsp13-cn.ls.apple.com
 DOMAIN-SUFFIX,gsp12-cn.ls.apple.com
 DOMAIN-SUFFIX,gsp5-cn.ls.apple.com
 DOMAIN-SUFFIX,gsp4-cn.ls.apple.com
-DOMAIN-SUFFIX,gspe21.ls.apple.com
 DOMAIN-SUFFIX,static.gc.apple.com
 ################## EOF ##################
