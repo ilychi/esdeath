@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/9 08:20:27
-// DOMAIN: 2275
+// Last updated: 2025/3/10 10:13:56
+// DOMAIN: 2273
 // DOMAIN-SUFFIX: 957
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3291
+// Total: 3289
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -291,6 +291,7 @@ DOMAIN-SUFFIX,jw-cdn.org
 DOMAIN,plugins-artifacts.gradle.org
 DOMAIN,repo.gradle.org
 DOMAIN,proxy.golang.org
+DOMAIN,eslint.org
 DOMAIN,assets-fe.change.org
 DOMAIN,static.change.org
 DOMAIN,assets.change.org
@@ -2143,9 +2144,6 @@ DOMAIN,imgix.setapp.com
 DOMAIN,cdn.setapp.com
 DOMAIN,cdn.seondf.com
 DOMAIN,vice-prod.sdiapi.com
-DOMAIN,static-staging.scroll.com
-DOMAIN,static.scroll.com
-DOMAIN,assets.scroll.com
 DOMAIN,ec-prod.scene7.com
 DOMAIN,s7d1.scene7.com
 DOMAIN-SUFFIX,sc-cdn.com
