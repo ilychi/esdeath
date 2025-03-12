@@ -1,4 +1,19 @@
 // Domestic Rules (Sukka)
+// Last updated: 2025/3/12 15:56:15
+// DOMAIN: 33
+// DOMAIN-SUFFIX: 914
+// DOMAIN-KEYWORD: 9
+// IP-CIDR: 2
+// PROCESS-NAME: 36
+// USER-AGENT: 4
+// OTHER: 5
+// Total: 1003
+// This file contains known domains and IPs that are avaliable in the Mainland China.
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/domestic.conf
+//  - https://ruleset.skk.moe/List/ip/domestic.conf
+//  - https://ruleset.skk.moe/List/non_ip/direct.conf
+// Domestic Rules (Sukka)
 // Last updated: 2025/3/12 15:18:03
 // DOMAIN: 33
 // DOMAIN-SUFFIX: 913
@@ -1870,3 +1885,4 @@ USER-AGENT,%E6%89%8B%E6%9C%BA%E6%B7%98%E5%AE%9D*
 USER-AGENT,%E8%BF%85%E9%9B%B7
 USER-AGENT,TeslaMap
 DOMAIN-SUFFIX,klook.com
+DOMAIN-SUFFIX,yicai.com
