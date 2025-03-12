@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-03-12T07:02:06.143Z
-# Size: 65379
+# Last Updated: 2025-03-12T12:41:27.325Z
+# Size: 65381
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -20298,6 +20298,7 @@ DOMAIN-SUFFIX,gtm.reflowcenter.com
 DOMAIN-SUFFIX,stats.referralhero.com
 DOMAIN-SUFFIX,hasslefree.redwingshoes.com
 DOMAIN-SUFFIX,solutions.redwingshoes.com
+DOMAIN-SUFFIX,red-swimming.com
 DOMAIN-SUFFIX,srepdata.recordonline.com
 DOMAIN-SUFFIX,bxumze.recordonline.com
 DOMAIN-SUFFIX,gerbil.recipe-ipsum.com
@@ -61253,6 +61254,7 @@ DOMAIN-SUFFIX,ntfsformac.cn
 DOMAIN-SUFFIX,info.kollmorgen.cn
 DOMAIN-SUFFIX,wj.jiancai365.cn
 DOMAIN-SUFFIX,logservice1.dbankcloud.cn
+DOMAIN-SUFFIX,logservice.dbankcloud.cn
 DOMAIN,httpdns-browser.platform.dbankcloud.cn
 DOMAIN-SUFFIX,logservice-dre.platform.dbankcloud.cn
 DOMAIN-SUFFIX,dnkeeper.platform.dbankcloud.cn
