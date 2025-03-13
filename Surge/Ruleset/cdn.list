@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/13 09:42:58
-// DOMAIN: 2276
+// Last updated: 2025/3/13 10:25:49
+// DOMAIN: 2277
 // DOMAIN-SUFFIX: 957
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3292
+// Total: 3293
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2436,6 +2436,7 @@ DOMAIN,static.fc2cn.com
 DOMAIN-SUFFIX,fbsbx.com
 DOMAIN-SUFFIX,fbcdn.com
 DOMAIN,cdn.faire.com
+DOMAIN,dz2cdn1.dzone.com
 DOMAIN,static.deepl.com
 DOMAIN,cdn.db-ip.com
 DOMAIN,static.cloud.coveo.com
