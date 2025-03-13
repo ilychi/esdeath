@@ -32,6 +32,8 @@ async function walk(dir: string, baseUrl: string) {
     const fullPath = path.join(dir, entry.name);
     const relativePath = path.relative(ROOT_DIR, fullPath);
     const url = `${baseUrl}${encodeURIComponent(relativePath)}`;
+    // 创建自定义域名URL
+    const customDomainUrl = `https://ruleset.chichi.sh/${relativePath}`;
 
     if (entry.name === 'src' || entry.name === 'node_modules' || entry.name.startsWith('.')) {
       continue;
@@ -58,16 +60,16 @@ async function walk(dir: string, baseUrl: string) {
     } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
       const buttons = entry.name.endsWith('.sgmodule')
         ? `<a style="border-bottom: none" href="surge:///install-module?url=${encodeURIComponent(
-            url
+            customDomainUrl
           )}" target="_blank">
                        <img alt="导入 Surge(远程模块)" title="导入 Surge(远程模块)" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
                    </a>
                    <a style="border-bottom: none" href="scriptable:///run/SurgeModuleTool?url=${encodeURIComponent(
-                     url
+                     customDomainUrl
                    )}" target="_blank">
                        <img alt="导入 Surge(本地模块)" title="导入 Surge(本地模块 需配合 Scriptable + Script Hub)" style="height: 22px" src="https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/refs/heads/main/assets/icon512x512.png"/>
                    </a>`
-        : `<a style="border-bottom: none" class="copy-button" data-url="${url}">
+        : `<a style="border-bottom: none" class="copy-button" data-url="${customDomainUrl}">
                        <img alt="复制规则链接" title="复制规则链接" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
                    </a>`;
 
@@ -92,6 +94,28 @@ function generateHtml(tree: string) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Surge Rules & Modules Repository</title>
             <link rel="stylesheet" href="https://cdn.skk.moe/ruleset/css/21d8777a.css" />
+            <script>
+                // 定义仓库URL常量
+                const REPO_URL = "${REPO_URL}";
+                
+                // 检测URL路径并重定向到对应的原始文件
+                (function() {
+                    const path = window.location.pathname;
+                    // 跳过首页
+                    if (path === '/' || path === '/index.html') return;
+                    
+                    // 检查是否匹配规则文件模式
+                    const filePattern = /^\/(Surge|GeoIP)\/(Ruleset|Module)\/(.+)\.(list|mmdb|sgmodule)$/i;
+                    const match = path.match(filePattern);
+                    
+                    if (match) {
+                        // 构建重定向URL
+                        const redirectUrl = REPO_URL + path.substring(1);
+                        console.log('Redirecting to:', redirectUrl);
+                        window.location.href = redirectUrl;
+                    }
+                })();
+            </script>
             <style>
                 .folder {
                     cursor: pointer;
@@ -262,6 +286,49 @@ async function writeHtmlFile(html: string) {
   await fs.writeFile(htmlFilePath, html, 'utf8');
 }
 
+// 生成404页面用于处理所有路径
+async function write404HtmlFile() {
+  const html404 = `
+  <!DOCTYPE html>
+  <html lang="zh-CN">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Redirecting...</title>
+      <script>
+          // 定义仓库URL常量
+          const REPO_URL = "${REPO_URL}";
+          
+          // 处理404页面重定向
+          (function() {
+              const path = window.location.pathname;
+              
+              // 检查是否匹配规则文件模式
+              const filePattern = /^\/(Surge|GeoIP)\/(Ruleset|Module)\/(.+)\.(list|mmdb|sgmodule)$/i;
+              const match = path.match(filePattern);
+              
+              if (match) {
+                  // 构建重定向URL
+                  const redirectUrl = REPO_URL + path.substring(1);
+                  console.log('Redirecting to:', redirectUrl);
+                  window.location.href = redirectUrl;
+              } else {
+                  // 不匹配则返回首页
+                  window.location.href = '/';
+              }
+          })();
+      </script>
+  </head>
+  <body>
+      <p>Redirecting...</p>
+  </body>
+  </html>
+  `;
+
+  const html404FilePath = path.join(OUTPUT_DIR, '404.html');
+  await fs.writeFile(html404FilePath, html404, 'utf8');
+}
+
 // 构建
 async function build() {
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -276,6 +343,7 @@ async function build() {
   const tree = await walk(ROOT_DIR, REPO_URL);
   const html = generateHtml(tree);
   await writeHtmlFile(html);
+  await write404HtmlFile(); // 生成404页面
 }
 build().catch(err => {
   console.error('Error during build:', err);
