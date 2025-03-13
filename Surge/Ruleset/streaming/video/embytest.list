@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/13 08:17:02
-// DOMAIN: 121
+// Last updated: 2025/3/13 09:43:00
+// DOMAIN: 120
 // DOMAIN-SUFFIX: 390
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 11
 // OTHER: 1
-// Total: 526
+// Total: 525
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -78,7 +78,6 @@ DOMAIN,jg.sfcj.org
 DOMAIN,jg6.sfcj.org
 DOMAIN,jp.lilyemby.my
 DOMAIN,jsq.mooguu.top // 蘑菇-见手青
-DOMAIN,jsq.mooguu.xyz
 DOMAIN,ju.sfcj.org
 DOMAIN,jz.mcjoker.xyz // Added for: jz.mcjoker.xyz:443
 DOMAIN,line.xmsl.org // loser
