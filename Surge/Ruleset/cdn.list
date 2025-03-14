@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/14 14:15:42
-// DOMAIN: 2277
-// DOMAIN-SUFFIX: 957
+// Last updated: 2025/3/14 15:01:01
+// DOMAIN: 2284
+// DOMAIN-SUFFIX: 959
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3293
+// Total: 3302
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -61,6 +61,7 @@ DOMAIN,jssdk.opin.media
 DOMAIN-SUFFIX,icon.horse
 DOMAIN,assets.buttondown.email
 DOMAIN-SUFFIX,ipfs-gateway.cloud
+DOMAIN-SUFFIX,dreamscape.cloud
 DOMAIN,media.cleanshot.cloud
 DOMAIN-SUFFIX,mypinata.cloud
 DOMAIN,cdn.bullwhip.cloud
@@ -1348,6 +1349,7 @@ DOMAIN-SUFFIX,cdnclouder.com
 DOMAIN-SUFFIX,cdn-spurit.com
 DOMAIN,public-pages.cbinsights.com
 DOMAIN,rtcg-access.bytevcloud.com
+DOMAIN,static.buydomains.com
 DOMAIN,cdn.britannica.com
 DOMAIN,app.brightback.com
 DOMAIN-SUFFIX,boomio-cdn.com
@@ -1778,6 +1780,7 @@ DOMAIN,assets.byteplus.com
 DOMAIN-SUFFIX,bytedapm.com
 DOMAIN-SUFFIX,bunnycdn.com
 DOMAIN,assets.bravenet.com
+DOMAIN,static.registration.bluehost.com
 DOMAIN-SUFFIX,bp.blogspot.com
 DOMAIN-SUFFIX,blogblog.com
 DOMAIN,static.bitfinex.com
@@ -1909,6 +1912,8 @@ DOMAIN,media.nownews.com
 DOMAIN-SUFFIX,nordcdn.com
 DOMAIN-SUFFIX,ngfiles.com
 DOMAIN,assets.nflxext.com
+DOMAIN,stbff.newfold.com
+DOMAIN,mta.newfold.com
 DOMAIN-SUFFIX,ndtvimg.com
 DOMAIN,nodeassets.nbcnews.com
 DOMAIN,iframe.nbcnews.com
@@ -2146,7 +2151,9 @@ DOMAIN,imgix.setapp.com
 DOMAIN,cdn.setapp.com
 DOMAIN,cdn.seondf.com
 DOMAIN,vice-prod.sdiapi.com
+DOMAIN,newfold.scene7.com
 DOMAIN,ec-prod.scene7.com
+DOMAIN,stbff.scene7.com
 DOMAIN,s7d1.scene7.com
 DOMAIN-SUFFIX,sc-cdn.com
 DOMAIN,embed.runkit.com
@@ -2222,6 +2229,7 @@ DOMAIN,cdn2.macpaw.com
 DOMAIN-SUFFIX,loggly.com
 DOMAIN-SUFFIX,lodash.com
 DOMAIN,staging-pubfeed.linkby.com
+DOMAIN-SUFFIX,li-cdn.com
 DOMAIN,ledger-wp-website-s3-prd.ledger.com
 DOMAIN,assets-cms.kraken.com
 DOMAIN,assets.kraken.com
@@ -3238,6 +3246,7 @@ DOMAIN-SUFFIX,telemetry.services.yofi.ai
 DOMAIN,metrics.kapa.ai
 DOMAIN,widget.kapa.ai
 DOMAIN,assets.dify.ai
+DOMAIN,limitless.cmax.ai
 DOMAIN-SUFFIX,cdn.s7s.ai
 DOMAIN,bot.ivy.ai
 DOMAIN,rules.ac
