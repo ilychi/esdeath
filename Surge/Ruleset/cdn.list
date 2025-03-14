@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/14 15:01:01
-// DOMAIN: 2284
+// Last updated: 2025/3/14 15:28:46
+// DOMAIN: 2298
 // DOMAIN-SUFFIX: 959
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3302
+// Total: 3316
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -50,6 +50,7 @@ DOMAIN,namedotcom-cdn.name.tools
 DOMAIN,pics.javhd.today
 DOMAIN,vanilla-extract.style
 DOMAIN,eslint.style
+DOMAIN,cdn.one.store
 DOMAIN-SUFFIX,pstorage.space
 DOMAIN,cdn.hiive.space
 DOMAIN,cdn.deta.space
@@ -537,6 +538,7 @@ DOMAIN,fast.wistia.net
 DOMAIN,static.vocadb.net
 DOMAIN,images1.vinted.net
 DOMAIN,craftassets.unraid.net
+DOMAIN,components.trynow.net
 DOMAIN-SUFFIX,sftcdn.net
 DOMAIN-SUFFIX,rspcdn.net
 DOMAIN-SUFFIX,poecdn.net
@@ -876,6 +878,7 @@ DOMAIN,images.flightradar24.com
 DOMAIN-SUFFIX,envato-static.com
 DOMAIN-SUFFIX,dropboxstatic.com
 DOMAIN-SUFFIX,discourse-cdn.com
+DOMAIN,chat.digitalgenius.com
 DOMAIN,images8.design-editor.com
 DOMAIN,images7.design-editor.com
 DOMAIN,images.design-editor.com
@@ -999,6 +1002,7 @@ DOMAIN,img2.xiangbinjun.com
 DOMAIN-SUFFIX,webpkgcache.com
 DOMAIN,static.webclicks24.com
 DOMAIN,cdn.webclicks24.com
+DOMAIN,live.visually-io.com
 DOMAIN,app.viral-loops.com
 DOMAIN,static-cdn.usertesting.com
 DOMAIN-SUFFIX,js.usemessages.com
@@ -1355,6 +1359,8 @@ DOMAIN,app.brightback.com
 DOMAIN-SUFFIX,boomio-cdn.com
 DOMAIN,cdn-www.bluestacks.com
 DOMAIN-SUFFIX,bestjavcdn.com
+DOMAIN,widget.automizely.com
+DOMAIN,sdks.automizely.com
 DOMAIN,cdnb.artstation.com
 DOMAIN,cdna.artstation.com
 DOMAIN,cdn.artstation.com
@@ -1775,6 +1781,7 @@ DOMAIN-SUFFIX,chasecdn.com
 DOMAIN-SUFFIX,cdnfonts.com
 DOMAIN-SUFFIX,cartocdn.com
 DOMAIN,assets.capterra.com
+DOMAIN,cdn.camweara.com
 DOMAIN,assets.calendly.com
 DOMAIN,assets.byteplus.com
 DOMAIN-SUFFIX,bytedapm.com
@@ -1806,10 +1813,13 @@ DOMAIN,cdn2.airdroid.com
 DOMAIN,cdn1.airdroid.com
 DOMAIN,dl.airdroid.com
 DOMAIN,sentry.ainopara.com
+DOMAIN,static-us.afterpay.com
+DOMAIN,static.afterpay.com
 DOMAIN,assets.adobedtm.com
 DOMAIN,static.addtoany.com
 DOMAIN,image.p-c2-x.abema-tv.com
 DOMAIN-SUFFIX,zohocdn.com
+DOMAIN,cdn.zigpoll.com
 DOMAIN-SUFFIX,media.zestyio.com
 DOMAIN,web-assets.zendesk.com
 DOMAIN,img.youtube.com
@@ -1936,6 +1946,7 @@ DOMAIN,img.ltyears.com
 DOMAIN-SUFFIX,kym-cdn.com
 DOMAIN,static-forms.klaviyo.com
 DOMAIN,static.klaviyo.com
+DOMAIN,a.klaviyo.com
 DOMAIN,media10.kissjav.com
 DOMAIN,media9.kissjav.com
 DOMAIN,media8.kissjav.com
@@ -2262,6 +2273,7 @@ DOMAIN-SUFFIX,hgasm1.com
 DOMAIN,cdn5.hextom.com
 DOMAIN,cdn3.hextom.com
 DOMAIN,cdn2.hextom.com
+DOMAIN,cdn.hextom.com
 DOMAIN-SUFFIX,assets.heroku.com
 DOMAIN-SUFFIX,hembed.com
 DOMAIN,image.gyutto.com
@@ -2327,6 +2339,7 @@ DOMAIN-SUFFIX,glass.adidas.com
 DOMAIN-SUFFIX,9cache.com
 DOMAIN-SUFFIX,ytimg.com
 DOMAIN,cdn-yotpo-images-production.yotpo.com
+DOMAIN,cdn-widgetsrepository.yotpo.com
 DOMAIN,staticw2.yotpo.com
 DOMAIN,yep.video.yahoo.com
 DOMAIN-SUFFIX,xhcdn.com
@@ -2366,6 +2379,7 @@ DOMAIN,s.plurk.com
 DOMAIN,cdn1.plesk.com
 DOMAIN,cdn.plaid.com
 DOMAIN,i.pcmag.com
+DOMAIN,cdn.paidy.com
 DOMAIN,package-assets.oomol.com
 DOMAIN,registry.oomol.com
 DOMAIN,static.oomol.com
