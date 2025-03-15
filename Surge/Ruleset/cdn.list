@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/16 02:59:05
-// DOMAIN: 2298
+// Last updated: 2025/3/16 07:31:43
+// DOMAIN: 2301
 // DOMAIN-SUFFIX: 961
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3318
+// Total: 3321
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -202,6 +202,8 @@ DOMAIN,playgroundcdn.typescriptlang.org
 DOMAIN,www.typescriptlang.org
 DOMAIN-SUFFIX,rescript-lang.org
 DOMAIN-SUFFIX,tile.openstreetmap.org
+DOMAIN,assets.geeksforgeeks.org
+DOMAIN,media.geeksforgeeks.org
 DOMAIN-SUFFIX,featureassets.org
 DOMAIN,assets.documentcloud.org
 DOMAIN,s3.documentcloud.org
@@ -3065,6 +3067,7 @@ DOMAIN,experience-ap.piano.io
 DOMAIN,api-esp-ap.piano.io
 DOMAIN,code.piano.io
 DOMAIN,cdn.piano.io
+DOMAIN,data.pendo.io
 DOMAIN,cdn.pendo.io
 DOMAIN-SUFFIX,nxcli.io
 DOMAIN,media.mstdn.io
