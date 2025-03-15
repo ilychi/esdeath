@@ -12,6 +12,9 @@ const REPO_URL = 'https://raw.githubusercontent.com/ilychi/esdeath/main/';
 const ROOT_DIR = path.join(__dirname, '../../..');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'public');
 
+// 自定义域名，用于生成链接
+const CUSTOM_DOMAIN = 'https://ruleset.chichi.sh';
+
 // 允许的文件类型和目录
 const allowedExtensions = ['.list', '.mmdb', '.sgmodule'];
 const allowedDirectories = ['Surge', 'GeoIP', 'Ruleset', 'Module'];
@@ -65,7 +68,9 @@ async function walk(dir: string, baseUrl: string) {
     const fullPath = path.join(dir, entry.name);
     const relativePath = path.relative(ROOT_DIR, fullPath);
     // 使用相对路径而不是GitHub仓库URL
-    const url = `/${relativePath}`;
+    const relativeUrl = `/${relativePath}`;
+    // 创建完整的自定义域名URL用于复制
+    const fullUrl = `${CUSTOM_DOMAIN}${relativeUrl}`;
 
     if (entry.name === 'src' || entry.name === 'node_modules' || entry.name.startsWith('.')) {
       continue;
@@ -92,22 +97,22 @@ async function walk(dir: string, baseUrl: string) {
     } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
       const buttons = entry.name.endsWith('.sgmodule')
         ? `<a style="border-bottom: none" href="surge:///install-module?url=${encodeURIComponent(
-            url
+            fullUrl
           )}" target="_blank">
                        <img alt="导入 Surge(远程模块)" title="导入 Surge(远程模块)" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
                    </a>
                    <a style="border-bottom: none" href="scriptable:///run/SurgeModuleTool?url=${encodeURIComponent(
-                     url
+                     fullUrl
                    )}" target="_blank">
                        <img alt="导入 Surge(本地模块)" title="导入 Surge(本地模块 需配合 Scriptable + Script Hub)" style="height: 22px" src="https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/refs/heads/main/assets/icon512x512.png"/>
                    </a>`
-        : `<a style="border-bottom: none" class="copy-button" data-url="${url}">
+        : `<a style="border-bottom: none" class="copy-button" data-url="${fullUrl}">
                        <img alt="复制规则链接" title="复制规则链接" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
                    </a>`;
 
       tree += `
                 <li>
-                    <a class="file" href="${url}" target="_blank">${entry.name}
+                    <a class="file" href="${relativeUrl}" target="_blank">${entry.name}
                         ${buttons}
                     </a>
                 </li>
@@ -125,7 +130,8 @@ function generateHtml(tree: string) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Surge Rules & Modules Repository</title>
-            <link rel="stylesheet" href="https://cdn.skk.moe/ruleset/css/21d8777a.css" />
+            <link rel="stylesheet" href="styles/main.css" />
+            <link rel="icon" href="https://raw.githubusercontent.com/ilychi/esdeath/main/favicon.ico" type="image/x-icon">
             <style>
                 .folder {
                     cursor: pointer;
@@ -170,53 +176,116 @@ function generateHtml(tree: string) {
                     margin-top: 20px;
                     padding-left: 0;
                 }
+
+                .header-title {
+                    font-size: 2.2rem;
+                    font-weight: 700;
+                    margin-bottom: 10px;
+                    color: #333;
+                }
+                
+                .header-subtitle {
+                    font-size: 1rem;
+                    color: #666;
+                    margin-bottom: 20px;
+                }
+                
+                .header-info {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    margin-bottom: 15px;
+                    font-size: 0.9rem;
+                }
+                
+                .header-info a {
+                    color: #007bff;
+                    text-decoration: none;
+                }
+                
+                .header-info a:hover {
+                    text-decoration: underline;
+                }
+                
+                .last-updated {
+                    font-size: 0.85rem;
+                    color: #777;
+                    margin-bottom: 25px;
+                }
+                
+                .instruction-section {
+                    background-color: #f8f9fa;
+                    border-radius: 8px;
+                    padding: 15px;
+                    margin-bottom: 20px;
+                }
+                
+                .instruction-title {
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                }
+                
+                .instruction-item {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 8px;
+                }
+                
+                .instruction-item img {
+                    margin-right: 10px;
+                }
+                
                 @media (prefers-color-scheme: dark) {
-                    body {
-                        background-color: #1f1f1f;
+                    .header-title {
                         color: #e0e0e0;
                     }
-                    #search {
-                        background: #2a2a2a;
-                        color: #e0e0e0;
-                        border-color: #444;
+                    
+                    .header-subtitle, .last-updated {
+                        color: #bbb;
                     }
-                    .folder ul {
-                        border-left-color: #444;
+                    
+                    .instruction-section {
+                        background-color: #2a2a2a;
                     }
                 }
             </style>
         </head>
         <body>
         <main class="container">
-            <h1>Surge Rules & Modules Repository</h1>
-            <p>
-                Made by <a href="https://github.com/ilychi">IKE IKE</a> | 
-                <a href="https://github.com/ilychi/esdeath">Source @ GitHub</a> | 
-                Fork <a href="https://github.com/SukkaW/Surge">Sukka</a>
-            </p>
-            <p>
-                Thanks To <a href="https://github.com/luestr">iKeLee</a> For Her Great Work
-                <br>
-                Thanks To All Surge Contributors
-            </p>
-            <p>Last Updated: ${new Date().toLocaleString('zh-CN', {
-              timeZone: 'Asia/Shanghai',
-            })}</p>
-            <br>
+            <header>
+                <h1 class="header-title">Surge Rules & Modules</h1>
+                <p class="header-subtitle">高效管理网络规则和模块的集合</p>
+                
+                <div class="header-info">
+                    <span>Made by <a href="https://github.com/ilychi">IKE IKE</a></span> | 
+                    <span><a href="https://github.com/ilychi/esdeath">Source @ GitHub</a></span> | 
+                    <span>Fork from <a href="https://github.com/SukkaW/Surge">Sukka</a></span>
+                </div>
+                
+                <div class="header-info">
+                    <span>Thanks to <a href="https://github.com/luestr">iKeLee</a> for her great work</span>
+                    <span>Thanks to all Surge contributors</span>
+                </div>
+                
+                <p class="last-updated">Last Updated: ${new Date().toLocaleString('zh-CN', {
+                  timeZone: 'Asia/Shanghai',
+                })}</p>
+            </header>
 
             <div class="search-section">
                 <input type="text" id="search" placeholder="🔍 搜索文件和文件夹..."/>
-                <span>ℹ️ 操作说明</span>
-                <br>
-                <small>
-                    <img alt="复制链接" title="复制链接" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
-                    点击此图标可复制文件链接
-                </small>
-                <br>
-                <small>
-                    <img alt="安装模块" title="安装模块" style="height: 22px" src="https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/refs/heads/main/assets/icon512x512.png"/>
-                    点击此图标可一键安装 Surge 模块
-                </small>
+                
+                <div class="instruction-section">
+                    <div class="instruction-title">ℹ️ 操作说明</div>
+                    <div class="instruction-item">
+                        <img alt="复制链接" title="复制链接" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
+                        <span>点击此图标可复制文件链接（使用 ${CUSTOM_DOMAIN} 域名）</span>
+                    </div>
+                    <div class="instruction-item">
+                        <img alt="安装模块" title="安装模块" style="height: 22px" src="https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/refs/heads/main/assets/icon512x512.png"/>
+                        <span>点击此图标可一键安装 Surge 模块</span>
+                    </div>
+                </div>
             </div>
 
             <ul class="directory-list">
@@ -225,6 +294,11 @@ function generateHtml(tree: string) {
         </main>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
+                // 初始时将所有文件夹都设为折叠状态
+                document.querySelectorAll('.folder').forEach(folder => {
+                    folder.classList.add('collapsed');
+                });
+
                 // 搜索功能
                 const searchInput = document.getElementById('search');
                 searchInput.addEventListener('input', (event) => {

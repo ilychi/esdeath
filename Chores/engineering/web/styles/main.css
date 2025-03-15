@@ -33,6 +33,10 @@ body {
     .folder ul {
         border-left-color: #444;
     }
+
+    .file {
+        color: #e0e0e0 !important;
+    }
 }
 
 header {
@@ -82,12 +86,14 @@ header {
     transform: translateY(-2px);
 }
 
-/* 添加文件链接样式 */
+/* 文件链接样式 - 优化为更小、更黑的字体 */
 .file {
     text-decoration: none;
-    color: var(--text-primary);
+    color: #333;
     border-bottom: 1px solid transparent;
     transition: border-color 0.2s;
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 .file:hover {
@@ -104,6 +110,46 @@ header {
 .file a {
     border-bottom: none;
     text-decoration: none;
+}
+
+/* 文件夹样式 */
+.folder {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+/* 列表样式 */
+.directory-list {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.directory-list li {
+    margin-bottom: 6px;
+}
+
+/* 层级缩进 */
+.directory-list ul {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+/* 折叠指示器 */
+.folder::before {
+    content: "▼ ";
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 0.75em;
+}
+
+.folder.collapsed::before {
+    transform: rotate(-90deg);
+}
+
+/* 搜索高亮 */
+.highlight {
+    background-color: rgba(255, 255, 0, 0.3);
 }
 
 /* ... 其余样式保持不变 ... */
