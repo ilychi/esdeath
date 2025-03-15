@@ -22,6 +22,39 @@ const prioritySorter = (a: Dirent, b: Dirent) => {
   return a.name.localeCompare(b.name);
 };
 
+// 复制文件函数
+async function copyFile(source: string, destination: string) {
+  try {
+    await fs.mkdir(path.dirname(destination), { recursive: true });
+    await fs.copyFile(source, destination);
+    console.log(`Copied: ${source} -> ${destination}`);
+  } catch (error) {
+    console.error(`Error copying file: ${source}`, error);
+  }
+}
+
+// 复制目录函数
+async function copyDirectory(source: string, destination: string) {
+  try {
+    const entries = await fs.readdir(source, { withFileTypes: true });
+
+    await fs.mkdir(destination, { recursive: true });
+
+    for (const entry of entries) {
+      const srcPath = path.join(source, entry.name);
+      const destPath = path.join(destination, entry.name);
+
+      if (entry.isDirectory()) {
+        await copyDirectory(srcPath, destPath);
+      } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
+        await copyFile(srcPath, destPath);
+      }
+    }
+  } catch (error) {
+    console.error(`Error copying directory: ${source}`, error);
+  }
+}
+
 // 生成目录树
 async function walk(dir: string, baseUrl: string) {
   let tree = '';
@@ -31,9 +64,8 @@ async function walk(dir: string, baseUrl: string) {
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     const relativePath = path.relative(ROOT_DIR, fullPath);
-    const url = `${baseUrl}${encodeURIComponent(relativePath)}`;
-    // 创建自定义域名URL
-    const customDomainUrl = `https://ruleset.chichi.sh/${relativePath}`;
+    // 使用相对路径而不是GitHub仓库URL
+    const url = `/${relativePath}`;
 
     if (entry.name === 'src' || entry.name === 'node_modules' || entry.name.startsWith('.')) {
       continue;
@@ -60,16 +92,16 @@ async function walk(dir: string, baseUrl: string) {
     } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
       const buttons = entry.name.endsWith('.sgmodule')
         ? `<a style="border-bottom: none" href="surge:///install-module?url=${encodeURIComponent(
-            customDomainUrl
+            url
           )}" target="_blank">
                        <img alt="导入 Surge(远程模块)" title="导入 Surge(远程模块)" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
                    </a>
                    <a style="border-bottom: none" href="scriptable:///run/SurgeModuleTool?url=${encodeURIComponent(
-                     customDomainUrl
+                     url
                    )}" target="_blank">
                        <img alt="导入 Surge(本地模块)" title="导入 Surge(本地模块 需配合 Scriptable + Script Hub)" style="height: 22px" src="https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/refs/heads/main/assets/icon512x512.png"/>
                    </a>`
-        : `<a style="border-bottom: none" class="copy-button" data-url="${customDomainUrl}">
+        : `<a style="border-bottom: none" class="copy-button" data-url="${url}">
                        <img alt="复制规则链接" title="复制规则链接" style="height: 22px" src="https://raw.githubusercontent.com/xream/scripts/refs/heads/main/scriptable/surge/surge-transparent.png"/>
                    </a>`;
 
@@ -94,28 +126,6 @@ function generateHtml(tree: string) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Surge Rules & Modules Repository</title>
             <link rel="stylesheet" href="https://cdn.skk.moe/ruleset/css/21d8777a.css" />
-            <script>
-                // 定义仓库URL常量
-                const REPO_URL = "${REPO_URL}";
-                
-                // 检测URL路径并重定向到对应的原始文件
-                (function() {
-                    const path = window.location.pathname;
-                    // 跳过首页
-                    if (path === '/' || path === '/index.html') return;
-                    
-                    // 检查是否匹配规则文件模式
-                    const filePattern = /^\/(Surge|GeoIP)\/(Ruleset|Module)\/(.+)\.(list|mmdb|sgmodule)$/i;
-                    const match = path.match(filePattern);
-                    
-                    if (match) {
-                        // 构建重定向URL
-                        const redirectUrl = REPO_URL + path.substring(1);
-                        console.log('Redirecting to:', redirectUrl);
-                        window.location.href = redirectUrl;
-                    }
-                })();
-            </script>
             <style>
                 .folder {
                     cursor: pointer;
@@ -286,65 +296,43 @@ async function writeHtmlFile(html: string) {
   await fs.writeFile(htmlFilePath, html, 'utf8');
 }
 
-// 生成404页面用于处理所有路径
-async function write404HtmlFile() {
-  const html404 = `
-  <!DOCTYPE html>
-  <html lang="zh-CN">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Redirecting...</title>
-      <script>
-          // 定义仓库URL常量
-          const REPO_URL = "${REPO_URL}";
-          
-          // 处理404页面重定向
-          (function() {
-              const path = window.location.pathname;
-              
-              // 检查是否匹配规则文件模式
-              const filePattern = /^\/(Surge|GeoIP)\/(Ruleset|Module)\/(.+)\.(list|mmdb|sgmodule)$/i;
-              const match = path.match(filePattern);
-              
-              if (match) {
-                  // 构建重定向URL
-                  const redirectUrl = REPO_URL + path.substring(1);
-                  console.log('Redirecting to:', redirectUrl);
-                  window.location.href = redirectUrl;
-              } else {
-                  // 不匹配则返回首页
-                  window.location.href = '/';
-              }
-          })();
-      </script>
-  </head>
-  <body>
-      <p>Redirecting...</p>
-  </body>
-  </html>
-  `;
+// 主函数
+async function main() {
+  try {
+    // 清理 output 目录
+    await fs.rm(OUTPUT_DIR, { recursive: true, force: true });
+    await fs.mkdir(OUTPUT_DIR, { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'styles'), { recursive: true });
 
-  const html404FilePath = path.join(OUTPUT_DIR, '404.html');
-  await fs.writeFile(html404FilePath, html404, 'utf8');
+    // 复制CSS
+    const sourceDir = path.join(__dirname, 'styles');
+    const targetDir = path.join(OUTPUT_DIR, 'styles');
+    await copyDirectory(sourceDir, targetDir);
+
+    // 复制规则文件
+    for (const dir of allowedDirectories) {
+      const source = path.join(ROOT_DIR, dir);
+      const destination = path.join(OUTPUT_DIR, dir);
+
+      try {
+        await fs.access(source);
+        console.log(`Copying directory: ${dir}`);
+        await copyDirectory(source, destination);
+      } catch {
+        console.log(`Directory not found: ${dir}`);
+      }
+    }
+
+    // 生成索引页面
+    const tree = await walk(ROOT_DIR, '/');
+    const html = generateHtml(tree);
+    await fs.writeFile(path.join(OUTPUT_DIR, 'index.html'), html);
+
+    console.log('Build completed successfully!');
+  } catch (error) {
+    console.error('Build failed:', error);
+    process.exit(1);
+  }
 }
 
-// 构建
-async function build() {
-  await fs.mkdir(OUTPUT_DIR, { recursive: true });
-  await fs.mkdir(path.join(OUTPUT_DIR, 'styles'), { recursive: true });
-
-  // 复制 CSS 文件
-  await fs.copyFile(
-    path.join(__dirname, 'styles', 'main.css'),
-    path.join(OUTPUT_DIR, 'styles', 'main.css')
-  );
-
-  const tree = await walk(ROOT_DIR, REPO_URL);
-  const html = generateHtml(tree);
-  await writeHtmlFile(html);
-  await write404HtmlFile(); // 生成404页面
-}
-build().catch(err => {
-  console.error('Error during build:', err);
-});
+main();
