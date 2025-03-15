@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-03-15T09:07:26.848Z
-# Size: 66454
+# Last Updated: 2025-03-15T12:36:59.687Z
+# Size: 66455
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -30102,6 +30102,7 @@ DOMAIN-SUFFIX,metrics.giftcards.com
 DOMAIN-SUFFIX,amcgns.giesswein.com
 DOMAIN-SUFFIX,aa.giantbomb.com
 DOMAIN-SUFFIX,ghostnewz.com
+DOMAIN-SUFFIX,ghegaintp.com
 DOMAIN-SUFFIX,getxmlisi.com
 DOMAIN-SUFFIX,delivery.gettopple.com
 DOMAIN-SUFFIX,engine.gettopple.com

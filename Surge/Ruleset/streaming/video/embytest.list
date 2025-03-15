@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/15 18:30:29
+// Last updated: 2025/3/15 22:59:37
 // DOMAIN: 120
-// DOMAIN-SUFFIX: 390
+// DOMAIN-SUFFIX: 391
 // DOMAIN-KEYWORD: 3
-// IP-CIDR: 11
+// IP-CIDR: 12
 // OTHER: 1
-// Total: 525
+// Total: 527
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -336,6 +336,7 @@ DOMAIN-SUFFIX,embyen.222921.xyz
 DOMAIN-SUFFIX,embyhw2.liustar.click
 DOMAIN-SUFFIX,embyjp.222921.xyz
 DOMAIN-SUFFIX,embyjp.bili.rip
+DOMAIN-SUFFIX,embymv.link
 DOMAIN-SUFFIX,embymv.me
 DOMAIN-SUFFIX,embymv.tk
 DOMAIN-SUFFIX,embypaul.top
@@ -534,6 +535,7 @@ IP-CIDR,167.235.116.53/32,no-resolve // Lyrebird-琴鸟
 IP-CIDR,168.138.45.100/32,no-resolve
 IP-CIDR,188.172.228.65/32
 IP-CIDR,193.122.114.13/32
+IP-CIDR,193.123.232.141/32
 IP-CIDR,193.123.232.141/32,no-resolve // 193.123.232.141:10000 peach
 IP-CIDR,38.58.181.218/32
 IP-CIDR,74.50.80.23/32,no-resolve // TEmby
