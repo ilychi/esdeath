@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/15 12:54:59
+// Last updated: 2025/3/15 14:18:37
 // DOMAIN: 2298
-// DOMAIN-SUFFIX: 959
+// DOMAIN-SUFFIX: 961
 // DOMAIN-KEYWORD: 10
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3316
+// Total: 3318
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -158,6 +158,7 @@ DOMAIN-SUFFIX,porn-d.xyz
 DOMAIN-SUFFIX,imgpng.xyz
 DOMAIN-SUFFIX,gitcdn.xyz
 DOMAIN-SUFFIX,cdndoe.xyz
+DOMAIN-SUFFIX,666565.xyz
 DOMAIN-SUFFIX,picjs.xyz
 DOMAIN-SUFFIX,chcdn.xyz
 DOMAIN,cdn-longterm.mee6.xyz
@@ -1862,6 +1863,7 @@ DOMAIN,platform.twitter.com
 DOMAIN,ton.local.twitter.com
 DOMAIN,fonts.twitter.com
 DOMAIN-SUFFIX,ttcache.com
+DOMAIN-SUFFIX,tripcdn.com
 DOMAIN,static-community.tp-link.com
 DOMAIN,static.tp-link.com
 DOMAIN,cdn-fck.tnaflix.com
