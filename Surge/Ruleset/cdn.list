@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/17 15:17:54
-// DOMAIN: 2303
+// Last updated: 2025/3/17 15:56:28
+// DOMAIN: 2305
 // DOMAIN-SUFFIX: 964
 // DOMAIN-KEYWORD: 11
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3327
+// Total: 3329
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2004,6 +2004,8 @@ DOMAIN,encrypted-tbn0.gstatic.com
 DOMAIN-SUFFIX,metric.gstatic.com
 DOMAIN,fonts.gstatic.com
 DOMAIN,maps.gstatic.com
+DOMAIN,www.gstatic.com
+DOMAIN,ssl.gstatic.com
 DOMAIN,t3.gstatic.com
 DOMAIN,t2.gstatic.com
 DOMAIN,t1.gstatic.com
