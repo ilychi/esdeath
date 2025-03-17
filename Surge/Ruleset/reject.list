@@ -1,4 +1,18 @@
 // Advertising & malicious & Tracking
+// Last updated: 2025/3/17 19:34:19
+// DOMAIN: 292
+// DOMAIN-SUFFIX: 841
+// DOMAIN-KEYWORD: 5
+// IP-CIDR: 5
+// IP-CIDR6: 1
+// USER-AGENT: 1
+// Total: 1145
+// Made by RuleGo, All rights reserved
+// Data sources:
+//  - https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Advertising.list
+//  - https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Malicious.list
+//  - https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Tracking.list
+// Advertising & malicious & Tracking
 // Last updated: 2025/3/17 18:12:01
 // DOMAIN: 292
 // DOMAIN-SUFFIX: 841
