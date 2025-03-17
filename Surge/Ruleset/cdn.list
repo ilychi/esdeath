@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/17 15:56:28
-// DOMAIN: 2305
+// Last updated: 2025/3/17 18:34:37
+// DOMAIN: 2306
 // DOMAIN-SUFFIX: 964
 // DOMAIN-KEYWORD: 11
 // IP-CIDR: 3
 // URL-REGEX: 2
-// OTHER: 44
-// Total: 3329
+// OTHER: 45
+// Total: 3331
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -749,6 +749,7 @@ DOMAIN-SUFFIX,envatousercontent.com
 DOMAIN,conversiongorilla.com
 DOMAIN-SUFFIX,claudeusercontent.com
 DOMAIN-SUFFIX,chargebeestaticv2.com
+DOMAIN,b5x-sentry.1passwordservices.com
 DOMAIN,telemetry.1passwordservices.com
 DOMAIN-SUFFIX,superfiliate-cdn.com
 DOMAIN-SUFFIX,steamusercontent.com
@@ -3333,6 +3334,7 @@ DOMAIN-WILDCARD,s?.maxstream.org
 DOMAIN-WILDCARD,s??.maxstream.org
 DOMAIN-WILDCARD,media?.kissjav.com
 DOMAIN-WILDCARD,media??.kissjav.com
+DOMAIN-WILDCARD,chunk-*.mux.com
 DOMAIN-WILDCARD,*.img.*.sendibm?.com
 DOMAIN-WILDCARD,cdn?.18girlssex.com
 URL-REGEX,^http://www\.microsoft\.com/pki/

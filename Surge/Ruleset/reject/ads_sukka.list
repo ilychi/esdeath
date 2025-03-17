@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-03-17T07:06:24.404Z
-# Size: 69073
+# Last Updated: 2025-03-17T09:31:57.984Z
+# Size: 68930
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -15125,6 +15125,7 @@ DOMAIN-SUFFIX,track.portaldavidamais.com
 DOMAIN-SUFFIX,aiq-in.popularmechanics.com
 DOMAIN-SUFFIX,td.popularmechanics.com
 DOMAIN-SUFFIX,poorlytanrubbing.com
+DOMAIN-SUFFIX,political-effort.com
 DOMAIN-SUFFIX,hzdayy.poeleaboismaison.com
 DOMAIN-SUFFIX,ea.poeleaboismaison.com
 DOMAIN-SUFFIX,track.poderemagrecedor.com
@@ -21445,6 +21446,7 @@ DOMAIN-SUFFIX,turbanmadman.com
 DOMAIN-SUFFIX,load.sgtm.tuningkauppa.com
 DOMAIN-SUFFIX,zxwows.tucanourbano.com
 DOMAIN-SUFFIX,tubpwpxupjrw.com
+DOMAIN-SUFFIX,tubingacater.com
 DOMAIN-SUFFIX,tu2024020388.com
 DOMAIN-SUFFIX,tsuwyehyxvis.com
 DOMAIN-SUFFIX,dqtihi.tshirtstudio.com
@@ -30710,6 +30712,7 @@ DOMAIN-SUFFIX,dqsfil.pikolinos.com
 DOMAIN-SUFFIX,pierlinks.com
 DOMAIN-SUFFIX,picnewsss.com
 DOMAIN-SUFFIX,tbihvt.pickawood.com
+DOMAIN-SUFFIX,phuustikd.com
 DOMAIN-SUFFIX,info.phsmobile.com
 DOMAIN-SUFFIX,stat-ssl.photohito.com
 DOMAIN-SUFFIX,phoawhoax.com
@@ -32412,6 +32415,7 @@ DOMAIN-SUFFIX,app.results.chronicle.com
 DOMAIN-SUFFIX,c950.chronicle.com
 DOMAIN-SUFFIX,metrics.christies.com
 DOMAIN-SUFFIX,chourdain.com
+DOMAIN-SUFFIX,chorninsm.com
 DOMAIN-SUFFIX,chonaesor.com
 DOMAIN-SUFFIX,choconart.com
 DOMAIN-SUFFIX,abkobh.chobirich.com
@@ -40031,8 +40035,7 @@ DOMAIN-SUFFIX,ad.india.xiaomi.com
 DOMAIN,igame.xiaomi.com
 DOMAIN,heyue.xiaomi.com
 DOMAIN,test.xiaomi.com
-DOMAIN,stat.xiaomi.com
-DOMAIN,a.stat.xiaomi.com
+DOMAIN-SUFFIX,stat.xiaomi.com
 DOMAIN,qiye.xiaomi.com
 DOMAIN,pmall.migc.xiaomi.com
 DOMAIN,mis.migc.xiaomi.com
@@ -40047,18 +40050,7 @@ DOMAIN,api.hybrid.intl.xiaomi.com
 DOMAIN,ccc.sys.intl.xiaomi.com
 DOMAIN,cc.sys.intl.xiaomi.com
 DOMAIN-SUFFIX,ad.intl.xiaomi.com
-DOMAIN,game.xiaomi.com
-DOMAIN,ppurifier.game.xiaomi.com
-DOMAIN,mitunes.game.xiaomi.com
-DOMAIN,static.game.xiaomi.com
-DOMAIN,notice.game.xiaomi.com
-DOMAIN,login.game.xiaomi.com
-DOMAIN,iosdl.game.xiaomi.com
-DOMAIN,voip.game.xiaomi.com
-DOMAIN,data.game.xiaomi.com
-DOMAIN,wap.game.xiaomi.com
-DOMAIN,bbs.game.xiaomi.com
-DOMAIN,zx.game.xiaomi.com
+DOMAIN-SUFFIX,game.xiaomi.com
 DOMAIN,blog.xiaomi.com
 DOMAIN,tz.sec.xiaomi.com
 DOMAIN-SUFFIX,mistat.rus.xiaomi.com
@@ -44616,10 +44608,6 @@ DOMAIN-SUFFIX,swxlnz.araba.com
 DOMAIN-SUFFIX,webt.aqipa.com
 DOMAIN-SUFFIX,apxlv.com
 DOMAIN-SUFFIX,apvdr.com
-DOMAIN-SUFFIX,weather-analytics-events.apple.com
-DOMAIN-SUFFIX,stocks-analytics-events.apple.com
-DOMAIN-SUFFIX,notes-analytics-events.apple.com
-DOMAIN-SUFFIX,books-analytics-events.apple.com
 DOMAIN,events-analytics.apple.com
 DOMAIN-SUFFIX,supportmetrics.apple.com
 DOMAIN-SUFFIX,api-adservices.apple.com
@@ -45522,11 +45510,7 @@ DOMAIN-SUFFIX,trksvg.business.maldives.hsbc.com
 DOMAIN-SUFFIX,trkgbm.business.maldives.hsbc.com
 DOMAIN-SUFFIX,trkcmb.business.maldives.hsbc.com
 DOMAIN-SUFFIX,servicing.business.hsbc.com
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com
 DOMAIN-SUFFIX,insight.business.hsbc.com
-DOMAIN-SUFFIX,trksvg.business.hsbc.com
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com
 DOMAIN-SUFFIX,trkhinv.business.algeria.hsbc.com
 DOMAIN-SUFFIX,trksvg.business.algeria.hsbc.com
 DOMAIN-SUFFIX,trkgbm.business.algeria.hsbc.com
@@ -47225,7 +47209,6 @@ DOMAIN-SUFFIX,target.sunlife.com.vn
 DOMAIN-SUFFIX,logsbin.dantri.com.vn
 DOMAIN-SUFFIX,sa.adidas.com.vn
 DOMAIN-SUFFIX,ipcc.vnpt.com.vn
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.vn
 DOMAIN-SUFFIX,thongke.24h.com.vn
 DOMAIN-SUFFIX,engage.3m.com.vn
 DOMAIN-SUFFIX,analytics.vg
@@ -47334,10 +47317,6 @@ DOMAIN-SUFFIX,tealm-c.heydude.uk
 DOMAIN-SUFFIX,explore.bytelab.uk
 DOMAIN-SUFFIX,goatcounter.blu3id.uk
 DOMAIN-SUFFIX,canidae.fidum.uk
-DOMAIN-SUFFIX,trkhinv.business.hsbc.uk
-DOMAIN-SUFFIX,trksvg.business.hsbc.uk
-DOMAIN-SUFFIX,trkgbm.business.hsbc.uk
-DOMAIN-SUFFIX,trkcmb.business.hsbc.uk
 DOMAIN-SUFFIX,service.charitiesaidfoundation.org.uk
 DOMAIN-SUFFIX,tracking.financialfairness.org.uk
 DOMAIN-SUFFIX,track.financialfairness.org.uk
@@ -48318,10 +48297,6 @@ DOMAIN-SUFFIX,metrics.casio.com.tw
 DOMAIN-SUFFIX,mercury.books.com.tw
 DOMAIN-SUFFIX,ahhrtt.bnext.com.tw
 DOMAIN-SUFFIX,stats.tena.com.tw
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.tw
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.tw
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.tw
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.tw
 DOMAIN-SUFFIX,xwhymy.caco.com.tw
 DOMAIN-SUFFIX,guelvp.1111.com.tw
 DOMAIN-SUFFIX,email-em.jll.com.tw
@@ -48649,10 +48624,6 @@ DOMAIN-SUFFIX,stat.matichon.co.th
 DOMAIN-SUFFIX,lrdnuu.shopee.co.th
 DOMAIN-SUFFIX,dcs.esprit.co.th
 DOMAIN-SUFFIX,saa.dyson.co.th
-DOMAIN-SUFFIX,trkhinv.business.hsbc.co.th
-DOMAIN-SUFFIX,trksvg.business.hsbc.co.th
-DOMAIN-SUFFIX,trkgbm.business.hsbc.co.th
-DOMAIN-SUFFIX,trkcmb.business.hsbc.co.th
 DOMAIN-SUFFIX,omtr.uob.co.th
 DOMAIN-SUFFIX,email-cm.jll.co.th
 DOMAIN-SUFFIX,email-ap.jll.co.th
@@ -49050,10 +49021,6 @@ DOMAIN-SUFFIX,omtr.uobam.com.sg
 DOMAIN-SUFFIX,saa.dyson.com.sg
 DOMAIN-SUFFIX,tealm-c.crocs.com.sg
 DOMAIN-SUFFIX,vemxcy.crocs.com.sg
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.sg
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.sg
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.sg
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.sg
 DOMAIN-SUFFIX,hola.com.sg
 DOMAIN-SUFFIX,omtr.uob.com.sg
 DOMAIN-SUFFIX,streams.cablecar.sph.com.sg
@@ -49497,8 +49464,6 @@ DOMAIN-SUFFIX,log.ohou.se
 DOMAIN-SUFFIX,load.ss.offi.se
 DOMAIN-SUFFIX,load.ss.iwao.se
 DOMAIN-SUFFIX,collect.ilva.se
-DOMAIN-SUFFIX,trkhinv.business.hsbc.se
-DOMAIN-SUFFIX,trkgbm.business.hsbc.se
 DOMAIN-SUFFIX,securetags.esri.se
 DOMAIN-SUFFIX,www2.esri.se
 DOMAIN-SUFFIX,bhcfpo.elfa.se
@@ -50298,10 +50263,6 @@ DOMAIN-SUFFIX,cvi6.destinia.qa
 DOMAIN-SUFFIX,saa.dyson.qa
 DOMAIN-SUFFIX,data.loyality.email.ikea.qa
 DOMAIN-SUFFIX,data.cloud.email.ikea.qa
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.qa
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.qa
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.qa
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.qa
 DOMAIN-SUFFIX,engage.3m.com.qa
 DOMAIN-SUFFIX,link.plazahogar.com.py
 DOMAIN-SUFFIX,engage.3m.com.py
@@ -50967,10 +50928,6 @@ DOMAIN-SUFFIX,llog.pl
 DOMAIN-SUFFIX,tkvvyf.keen.pl
 DOMAIN-SUFFIX,jdie.pl
 DOMAIN-SUFFIX,necsii.ivet.pl
-DOMAIN-SUFFIX,trkhinv.business.hsbc.pl
-DOMAIN-SUFFIX,trksvg.business.hsbc.pl
-DOMAIN-SUFFIX,trkgbm.business.hsbc.pl
-DOMAIN-SUFFIX,trkcmb.business.hsbc.pl
 DOMAIN-SUFFIX,clnbze.gs24.pl
 DOMAIN-SUFFIX,clnbze.gp24.pl
 DOMAIN-SUFFIX,clnbze.gk24.pl
@@ -51049,10 +51006,6 @@ DOMAIN-SUFFIX,connect.carrier.com.ph
 DOMAIN-SUFFIX,metrics.globe.com.ph
 DOMAIN-SUFFIX,images.response.capex.com.ph
 DOMAIN-SUFFIX,yoifwi.levi.com.ph
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.ph
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.ph
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.ph
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.ph
 DOMAIN-SUFFIX,email-ap.jll.com.ph
 DOMAIN-SUFFIX,cookies.jll.com.ph
 DOMAIN-SUFFIX,sswmetrics.airniugini.com.pg
@@ -51208,10 +51161,6 @@ DOMAIN-SUFFIX,assets1.vero.co.nz
 DOMAIN-SUFFIX,assets2.vanz.vero.co.nz
 DOMAIN-SUFFIX,assets1.vanz.vero.co.nz
 DOMAIN-SUFFIX,info.m.seek.co.nz
-DOMAIN-SUFFIX,trkhinv.business.hsbc.co.nz
-DOMAIN-SUFFIX,trksvg.business.hsbc.co.nz
-DOMAIN-SUFFIX,trkgbm.business.hsbc.co.nz
-DOMAIN-SUFFIX,trkcmb.business.hsbc.co.nz
 DOMAIN-SUFFIX,tags.bupa.co.nz
 DOMAIN-SUFFIX,engage.3mnz.co.nz
 DOMAIN-SUFFIX,go.zic.co.nz
@@ -52308,10 +52257,6 @@ DOMAIN-SUFFIX,adb-secured.kijk.nl
 DOMAIN-SUFFIX,adb.kijk.nl
 DOMAIN-SUFFIX,mapp.jysk.nl
 DOMAIN-SUFFIX,service.just.nl
-DOMAIN-SUFFIX,trkhinv.business.hsbc.nl
-DOMAIN-SUFFIX,trksvg.business.hsbc.nl
-DOMAIN-SUFFIX,trkgbm.business.hsbc.nl
-DOMAIN-SUFFIX,trkcmb.business.hsbc.nl
 DOMAIN-SUFFIX,tdep.hema.nl
 DOMAIN-SUFFIX,load.data.gitp.nl
 DOMAIN-SUFFIX,images.service.freo.nl
@@ -52406,10 +52351,6 @@ DOMAIN-SUFFIX,sstats.celcom.com.my
 DOMAIN-SUFFIX,stats.celcom.com.my
 DOMAIN-SUFFIX,metrics.abbott.com.my
 DOMAIN-SUFFIX,tkvied.levi.com.my
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.my
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.my
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.my
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.my
 DOMAIN-SUFFIX,omtr.uob.com.my
 DOMAIN-SUFFIX,email-cm.jll.com.my
 DOMAIN-SUFFIX,email-ap.jll.com.my
@@ -52517,17 +52458,9 @@ DOMAIN-SUFFIX,stbg.standardbank.mu
 DOMAIN-SUFFIX,tk.airfrance.mu
 DOMAIN-SUFFIX,zvbqya.marideal.mu
 DOMAIN-SUFFIX,hzeetn.natalie.mu
-DOMAIN-SUFFIX,trkhinv.business.hsbc.co.mu
-DOMAIN-SUFFIX,trksvg.business.hsbc.co.mu
-DOMAIN-SUFFIX,trkgbm.business.hsbc.co.mu
-DOMAIN-SUFFIX,trkcmb.business.hsbc.co.mu
 DOMAIN-SUFFIX,load.sst.mynametags.mt
 DOMAIN-SUFFIX,gtm.lily.mt
 DOMAIN-SUFFIX,sst.club.mt
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.mt
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.mt
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.mt
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.mt
 DOMAIN-SUFFIX,data-16d7ec9a30.zeitungsgruppe.ms
 DOMAIN-SUFFIX,data-16d7ec9a30.reiseauktion.ms
 DOMAIN-SUFFIX,data-16d7ec9a30.immomarkt.ms
@@ -52538,10 +52471,6 @@ DOMAIN-SUFFIX,pages-stats.rbl.ms
 DOMAIN-SUFFIX,res.rbl.ms
 DOMAIN-SUFFIX,tk.airfrance.mq
 DOMAIN-SUFFIX,lgch.mp
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.mo
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.mo
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.mo
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.mo
 DOMAIN-SUFFIX,email-ap.jll.com.mo
 DOMAIN-SUFFIX,email-am.jll.com.mo
 DOMAIN-SUFFIX,track.nbastore.mn
@@ -52572,7 +52501,6 @@ DOMAIN-SUFFIX,stats.codinginfinity.me
 DOMAIN-SUFFIX,branddnewcode1.me
 DOMAIN-SUFFIX,ipgeaif.blairmacintyre.me
 DOMAIN-SUFFIX,stats.andrewlevinson.me
-DOMAIN-SUFFIX,keyvdowallet.me
 DOMAIN-SUFFIX,panther.codyhatfield.me
 DOMAIN-SUFFIX,reporting.autographapp.me
 DOMAIN-SUFFIX,stats.trainsley69.me
@@ -52857,10 +52785,6 @@ DOMAIN-SUFFIX,fnwcuo.bite.lt
 DOMAIN-SUFFIX,serveris.lnk.lt
 DOMAIN-SUFFIX,stbg.standardlesothobank.co.ls
 DOMAIN-SUFFIX,net.daraz.lk
-DOMAIN-SUFFIX,trkhinv.business.hsbc.lk
-DOMAIN-SUFFIX,trksvg.business.hsbc.lk
-DOMAIN-SUFFIX,trkgbm.business.hsbc.lk
-DOMAIN-SUFFIX,trkcmb.business.hsbc.lk
 DOMAIN-SUFFIX,email-em.jll.com.lk
 DOMAIN-SUFFIX,email-ap.jll.com.lk
 DOMAIN-SUFFIX,email-am.jll.com.lk
@@ -52908,10 +52832,6 @@ DOMAIN-SUFFIX,sepkyu.bathandbodyworks.com.kw
 DOMAIN-SUFFIX,ggduzx.potterybarn.com.kw
 DOMAIN-SUFFIX,securetags.openware.com.kw
 DOMAIN-SUFFIX,saa.dyson.com.kw
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.kw
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.kw
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.kw
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.kw
 DOMAIN-SUFFIX,ynrtlg.gap.com.kw
 DOMAIN-SUFFIX,engage.3m.com.kw
 DOMAIN-SUFFIX,somni.chemicals.thermofisher.kr
@@ -55486,10 +55406,6 @@ DOMAIN-SUFFIX,ckygge.mohd.it
 DOMAIN-SUFFIX,ktdcoy.lyst.it
 DOMAIN-SUFFIX,sgtm.isic.it
 DOMAIN-SUFFIX,stats.inps.it
-DOMAIN-SUFFIX,trkhinv.business.hsbc.it
-DOMAIN-SUFFIX,trksvg.business.hsbc.it
-DOMAIN-SUFFIX,trkgbm.business.hsbc.it
-DOMAIN-SUFFIX,trkcmb.business.hsbc.it
 DOMAIN-SUFFIX,mqbjze.hopt.it
 DOMAIN-SUFFIX,bznxqj.fiat.it
 DOMAIN-SUFFIX,kaefwe.faol.it
@@ -55617,6 +55533,7 @@ DOMAIN-SUFFIX,2e718yf5jypb.test.digitalsurge.io
 DOMAIN-SUFFIX,s.cybercompass.io
 DOMAIN-SUFFIX,briskpelican.io
 DOMAIN-SUFFIX,cdn.affiliatable.io
+DOMAIN,adn-collector.voodoo-tech.io
 DOMAIN-SUFFIX,vs-api.voodoo-tech.io
 DOMAIN-SUFFIX,marketing.strongpoint.io
 DOMAIN-SUFFIX,bobcat.snapshooter.io
@@ -56176,10 +56093,6 @@ DOMAIN-SUFFIX,metrics.abbott.co.in
 DOMAIN-SUFFIX,sanalytics.metro.co.in
 DOMAIN-SUFFIX,analytics.metro.co.in
 DOMAIN-SUFFIX,metrics.sony.co.in
-DOMAIN-SUFFIX,trkhinv.business.hsbc.co.in
-DOMAIN-SUFFIX,trksvg.business.hsbc.co.in
-DOMAIN-SUFFIX,trkgbm.business.hsbc.co.in
-DOMAIN-SUFFIX,trkcmb.business.hsbc.co.in
 DOMAIN-SUFFIX,email-ap.jll.co.in
 DOMAIN-SUFFIX,email-am.jll.co.in
 DOMAIN-SUFFIX,cookies.jll.co.in
@@ -56239,10 +56152,6 @@ DOMAIN-SUFFIX,saa.dyson.co.il
 DOMAIN-SUFFIX,stats.ynet.co.il
 DOMAIN-SUFFIX,stats.mako.co.il
 DOMAIN-SUFFIX,campaign.kpmg.co.il
-DOMAIN-SUFFIX,trkhinv.business.hsbc.co.il
-DOMAIN-SUFFIX,trksvg.business.hsbc.co.il
-DOMAIN-SUFFIX,trkgbm.business.hsbc.co.il
-DOMAIN-SUFFIX,trkcmb.business.hsbc.co.il
 DOMAIN-SUFFIX,sites.groo.co.il
 DOMAIN-SUFFIX,st1.bhol.co.il
 DOMAIN-SUFFIX,ext.bhol.co.il
@@ -56366,8 +56275,6 @@ DOMAIN-SUFFIX,sstats.seat.ie
 DOMAIN-SUFFIX,stats.seat.ie
 DOMAIN-SUFFIX,metrics.jobs.ie
 DOMAIN-SUFFIX,inmtuj.jobs.ie
-DOMAIN-SUFFIX,trksvg.business.hsbc.ie
-DOMAIN-SUFFIX,trkgbm.business.hsbc.ie
 DOMAIN-SUFFIX,sst.hali.ie
 DOMAIN-SUFFIX,joeezz.24mx.ie
 DOMAIN-SUFFIX,target.pwc.ie
@@ -56406,10 +56313,6 @@ DOMAIN-SUFFIX,vzeyba.shopee.co.id
 DOMAIN-SUFFIX,fudezz.kontan.co.id
 DOMAIN-SUFFIX,info.avnet.co.id
 DOMAIN-SUFFIX,bbybqq.levi.co.id
-DOMAIN-SUFFIX,trkhinv.business.hsbc.co.id
-DOMAIN-SUFFIX,trksvg.business.hsbc.co.id
-DOMAIN-SUFFIX,trkgbm.business.hsbc.co.id
-DOMAIN-SUFFIX,trkcmb.business.hsbc.co.id
 DOMAIN-SUFFIX,email-em.jll.co.id
 DOMAIN-SUFFIX,email-cm.jll.co.id
 DOMAIN-SUFFIX,email-ap.jll.co.id
@@ -56714,10 +56617,6 @@ DOMAIN-SUFFIX,tracking1.cigna.com.hk
 DOMAIN-SUFFIX,stats.tena.com.hk
 DOMAIN-SUFFIX,ivencq.nike.com.hk
 DOMAIN-SUFFIX,nqxnvy.levi.com.hk
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.hk
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.hk
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.hk
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.hk
 DOMAIN-SUFFIX,bluelp.2ask.blue.com.hk
 DOMAIN-SUFFIX,data.2ask.blue.com.hk
 DOMAIN-SUFFIX,email-em.jll.com.hk
@@ -58021,10 +57920,6 @@ DOMAIN-SUFFIX,tr.think.lvmh.fr
 DOMAIN-SUFFIX,tr.news.kpmg.fr
 DOMAIN-SUFFIX,tr.evenements.inpi.fr
 DOMAIN-SUFFIX,news.iftm.fr
-DOMAIN-SUFFIX,trkhinv.business.hsbc.fr
-DOMAIN-SUFFIX,trksvg.business.hsbc.fr
-DOMAIN-SUFFIX,trkgbm.business.hsbc.fr
-DOMAIN-SUFFIX,trkcmb.business.hsbc.fr
 DOMAIN-SUFFIX,a8ht.hipp.fr
 DOMAIN-SUFFIX,dxe2.heip.fr
 DOMAIN-SUFFIX,tr.infolettre.securite-routiere.gouv.fr
@@ -59056,8 +58951,6 @@ DOMAIN-SUFFIX,ilvqos.lyst.es
 DOMAIN-SUFFIX,iojyjc.kang.es
 DOMAIN-SUFFIX,kqwpqi.jeep.es
 DOMAIN-SUFFIX,site.comunicaciones.iesa.es
-DOMAIN-SUFFIX,trkhinv.business.hsbc.es
-DOMAIN-SUFFIX,trkgbm.business.hsbc.es
 DOMAIN-SUFFIX,metrics.fnac.es
 DOMAIN-SUFFIX,vdyaxh.fiat.es
 DOMAIN-SUFFIX,tfgkph.eshe.es
@@ -64460,7 +64353,6 @@ DOMAIN-SUFFIX,tafuow.lyke.cz
 DOMAIN-SUFFIX,partner.laab.cz
 DOMAIN-SUFFIX,stat.kkpp.cz
 DOMAIN-SUFFIX,spoluprace.hyla.cz
-DOMAIN-SUFFIX,trksvg.business.hsbc.cz
 DOMAIN-SUFFIX,partneri.givt.cz
 DOMAIN-SUFFIX,affiliate.fapi.cz
 DOMAIN-SUFFIX,hlhyzh.fann.cz
@@ -66183,10 +66075,6 @@ DOMAIN-SUFFIX,tk.jeux.loro.ch
 DOMAIN-SUFFIX,hzzyhl.jobs.ch
 DOMAIN-SUFFIX,a.jobs.ch
 DOMAIN-SUFFIX,fokbrd.impo.ch
-DOMAIN-SUFFIX,trkhinv.business.hsbc.ch
-DOMAIN-SUFFIX,trksvg.business.hsbc.ch
-DOMAIN-SUFFIX,trkgbm.business.hsbc.ch
-DOMAIN-SUFFIX,trkcmb.business.hsbc.ch
 DOMAIN-SUFFIX,cvclso.fust.ch
 DOMAIN-SUFFIX,securetags.esri.ch
 DOMAIN-SUFFIX,trck.my.elca.ch
@@ -67272,9 +67160,6 @@ DOMAIN-SUFFIX,vsjaoa.plie.com.br
 DOMAIN-SUFFIX,mcxihs.owme.com.br
 DOMAIN-SUFFIX,phgnxd.nike.com.br
 DOMAIN-SUFFIX,icfckg.myft.com.br
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.br
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.br
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.br
 DOMAIN-SUFFIX,usztct.gang.com.br
 DOMAIN-SUFFIX,ocwlhv.ecid.com.br
 DOMAIN-SUFFIX,mzhbrt.dako.com.br
@@ -67317,18 +67202,10 @@ DOMAIN-SUFFIX,gtm.lucasborgesarquitetura.arq.br
 DOMAIN-SUFFIX,securetags.igeo.com.bo
 DOMAIN-SUFFIX,tags.igeo.com.bo
 DOMAIN-SUFFIX,engage.3m.com.bo
-DOMAIN-SUFFIX,trkhinv.business.hsbc.bm
-DOMAIN-SUFFIX,trksvg.business.hsbc.bm
-DOMAIN-SUFFIX,trkgbm.business.hsbc.bm
-DOMAIN-SUFFIX,trkcmb.business.hsbc.bm
 DOMAIN-SUFFIX,tk.airfrance.bj
 DOMAIN-SUFFIX,events.newsroom.bi
 DOMAIN-SUFFIX,lpuqtu.propertyfinder.bh
 DOMAIN-SUFFIX,tags.propertyfinder.bh
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.bh
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.bh
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.bh
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.bh
 DOMAIN-SUFFIX,my.weplayvolleyball.bg
 DOMAIN-SUFFIX,my.weplaybasketball.bg
 DOMAIN-SUFFIX,omt.dm-drogeriemarkt.bg
@@ -67785,10 +67662,6 @@ DOMAIN-SUFFIX,data.okay.be
 DOMAIN-SUFFIX,prod-mhaa.mhtr.be
 DOMAIN-SUFFIX,bsna.inno.be
 DOMAIN-SUFFIX,communication.imec.be
-DOMAIN-SUFFIX,trkhinv.business.hsbc.be
-DOMAIN-SUFFIX,trksvg.business.hsbc.be
-DOMAIN-SUFFIX,trkgbm.business.hsbc.be
-DOMAIN-SUFFIX,trkcmb.business.hsbc.be
 DOMAIN-SUFFIX,waatch.hbvl.be
 DOMAIN-SUFFIX,cardinal.genx.be
 DOMAIN-SUFFIX,kcuzgn.fnac.be
@@ -67824,10 +67697,6 @@ DOMAIN-SUFFIX,scookies-adobe.cbc.be
 DOMAIN-SUFFIX,analytics.portal.gov.bd
 DOMAIN-SUFFIX,info.esribangladesh.com.bd
 DOMAIN-SUFFIX,net.daraz.com.bd
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.bd
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.bd
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.bd
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.bd
 DOMAIN-SUFFIX,omt.dm-drogeriemarkt.ba
 DOMAIN-SUFFIX,stats.faluninfo.ba
 DOMAIN-SUFFIX,kampanja.bhtelecom.ba
@@ -68404,10 +68273,6 @@ DOMAIN-SUFFIX,os.mbox.com.au
 DOMAIN-SUFFIX,kthjuw.lyst.com.au
 DOMAIN-SUFFIX,metrics.keno.com.au
 DOMAIN-SUFFIX,stt.keno.com.au
-DOMAIN-SUFFIX,trkhinv.business.hsbc.com.au
-DOMAIN-SUFFIX,trksvg.business.hsbc.com.au
-DOMAIN-SUFFIX,trkgbm.business.hsbc.com.au
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.au
 DOMAIN-SUFFIX,smtx.godo.com.au
 DOMAIN-SUFFIX,om.cnet.com.au
 DOMAIN-SUFFIX,acquisition.cbre.com.au
@@ -68939,7 +68804,6 @@ DOMAIN-SUFFIX,sadobe.sodimac.com.ar
 DOMAIN-SUFFIX,evzhzu.edreams.com.ar
 DOMAIN-SUFFIX,images.mkt.acindar.com.ar
 DOMAIN-SUFFIX,noticias.grandt.com.ar
-DOMAIN-SUFFIX,trkcmb.business.hsbc.com.ar
 DOMAIN-SUFFIX,stmetrics.bbva.com.ar
 DOMAIN-SUFFIX,target.pwc.com.ar
 DOMAIN-SUFFIX,email-em.jll.com.ar
@@ -68958,9 +68822,6 @@ DOMAIN-SUFFIX,sst.parallel.am
 DOMAIN-SUFFIX,track.fastbank.am
 DOMAIN-SUFFIX,track.fasttv.am
 DOMAIN-SUFFIX,track.vbet.am
-DOMAIN-SUFFIX,trkhinv.business.hsbc.am
-DOMAIN-SUFFIX,trksvg.business.hsbc.am
-DOMAIN-SUFFIX,trkcmb.business.hsbc.am
 DOMAIN-SUFFIX,tru.am
 DOMAIN-SUFFIX,msg.71.am
 DOMAIN-SUFFIX,ss-gtm.turismo-dentale.al
@@ -69077,10 +68938,6 @@ DOMAIN-SUFFIX,events.mbrl.ae
 DOMAIN-SUFFIX,data.loyality.email.ikea.ae
 DOMAIN-SUFFIX,landingpage.cloud.email.ikea.ae
 DOMAIN-SUFFIX,data.cloud.email.ikea.ae
-DOMAIN-SUFFIX,trkhinv.business.hsbc.ae
-DOMAIN-SUFFIX,trksvg.business.hsbc.ae
-DOMAIN-SUFFIX,trkgbm.business.hsbc.ae
-DOMAIN-SUFFIX,trkcmb.business.hsbc.ae
 DOMAIN-SUFFIX,marketing.dmcc.ae
 DOMAIN-SUFFIX,engage.3mae.ae
 DOMAIN-SUFFIX,lexvek.gap.ae
