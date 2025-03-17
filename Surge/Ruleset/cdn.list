@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/17 06:37:26
-// DOMAIN: 2301
+// Last updated: 2025/3/17 15:17:54
+// DOMAIN: 2303
 // DOMAIN-SUFFIX: 964
 // DOMAIN-KEYWORD: 11
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 44
-// Total: 3325
+// Total: 3327
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1855,6 +1855,8 @@ DOMAIN,play.vidyard.com
 DOMAIN,cdn.vidyard.com
 DOMAIN-SUFFIX,userapi.com
 DOMAIN,img.urlnode.com
+DOMAIN,static.uptimia.com
+DOMAIN,cdn.uptimia.com
 DOMAIN,static-overlay.ubisoft.com
 DOMAIN,ubistatic2-a.ubisoft.com
 DOMAIN,ubistatic-a.ubisoft.com
