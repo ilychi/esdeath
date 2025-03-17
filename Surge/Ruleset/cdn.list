@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/17 19:56:11
-// DOMAIN: 2306
-// DOMAIN-SUFFIX: 964
+// Last updated: 2025/3/18 03:59:55
+// DOMAIN: 2309
+// DOMAIN-SUFFIX: 968
 // DOMAIN-KEYWORD: 11
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 45
-// Total: 3331
+// Total: 3338
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -503,6 +503,7 @@ DOMAIN,rum-cdn.perfops.net
 DOMAIN,devnull.perfops.net
 DOMAIN,img.perfops.net
 DOMAIN,cdn.perfops.net
+DOMAIN-SUFFIX,nodecdn.net
 DOMAIN,static.nhentai.net
 DOMAIN,t.nhentai.net
 DOMAIN,i.nhentai.net
@@ -1198,6 +1199,7 @@ DOMAIN,ecommplugins-scripts.trustpilot.com
 DOMAIN,user-images.trustpilot.com
 DOMAIN,simplicity.trustpilot.com
 DOMAIN,widget.trustpilot.com
+DOMAIN,top1cdn.top1health.com
 DOMAIN-SUFFIX,teraboxcdn.com
 DOMAIN-SUFFIX,sthlstatic.com
 DOMAIN,tiles.stadiamaps.com
@@ -1433,6 +1435,7 @@ DOMAIN,static.skyassets.com
 DOMAIN,uploads.sitepoint.com
 DOMAIN,s3.sitepoint.com
 DOMAIN,media.shopimind.com
+DOMAIN-SUFFIX,sfbassets.com
 DOMAIN-SUFFIX,sendspace.com
 DOMAIN,forest-mt-s3.seekrtech.com
 DOMAIN,images.scrolller.com
@@ -1486,6 +1489,7 @@ DOMAIN,cdn-images.mailchimp.com
 DOMAIN,images.macrumors.com
 DOMAIN-SUFFIX,lr-ingest.com
 DOMAIN-SUFFIX,lowendbox.com
+DOMAIN,scdn.line-apps.com
 DOMAIN-SUFFIX,kinja-img.com
 DOMAIN,cdn.joinhoney.com
 DOMAIN-SUFFIX,jisuimage.com
@@ -1622,6 +1626,7 @@ DOMAIN,cdn4.sysgears.com
 DOMAIN,cdn3.sysgears.com
 DOMAIN,cdn2.sysgears.com
 DOMAIN,cdn1.sysgears.com
+DOMAIN-SUFFIX,sway-cdn.com
 DOMAIN,cdn.substack.com
 DOMAIN-SUFFIX,stylexjs.com
 DOMAIN-SUFFIX,stripcdn.com
@@ -2158,6 +2163,7 @@ DOMAIN-SUFFIX,strpst.com
 DOMAIN,connect-js.stripe.com
 DOMAIN,checkout.stripe.com
 DOMAIN,js.stripe.com
+DOMAIN,heatmap-external-a.strava.com
 DOMAIN,web-assets.strava.com
 DOMAIN-SUFFIX,ss-cdn.com
 DOMAIN-SUFFIX,sndcdn.com
@@ -2820,6 +2826,7 @@ DOMAIN,media.masto.nu
 DOMAIN,static.nrk.no
 DOMAIN,images.weserv.nl
 DOMAIN-SUFFIX,pixiv.nl
+DOMAIN-SUFFIX,wsrv.nl
 DOMAIN-SUFFIX,himg.nl
 DOMAIN,image.dooo.ng
 DOMAIN,cdn.plu.mx

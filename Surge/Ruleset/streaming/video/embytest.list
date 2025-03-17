@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/17 19:56:12
+// Last updated: 2025/3/18 03:59:56
 // DOMAIN: 120
-// DOMAIN-SUFFIX: 391
+// DOMAIN-SUFFIX: 392
 // DOMAIN-KEYWORD: 3
-// IP-CIDR: 12
+// IP-CIDR: 13
 // OTHER: 1
-// Total: 527
+// Total: 529
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -521,6 +521,7 @@ DOMAIN-SUFFIX,worldline.acecandy.cn
 DOMAIN-SUFFIX,www.blueseamusics.com
 DOMAIN-SUFFIX,xiaoyi.one
 DOMAIN-SUFFIX,xmsl.org
+DOMAIN-SUFFIX,xxxh.de
 DOMAIN-SUFFIX,ycxdy.top
 DOMAIN-SUFFIX,yezi.my
 DOMAIN-SUFFIX,yhemby.top
@@ -531,6 +532,7 @@ IP-CIDR,102.223.180.108/32,no-resolve // misakaf
 IP-CIDR,110.40.36.36/32
 IP-CIDR,141.147.166.107/32,no-resolve // Added for: 141.147.166.107:19798
 IP-CIDR,146.235.214.2/32,no-resolve // Added for: 146.235.214.2:12180
+IP-CIDR,157.180.0.157/32
 IP-CIDR,167.235.116.53/32,no-resolve // Lyrebird-琴鸟
 IP-CIDR,168.138.45.100/32,no-resolve
 IP-CIDR,188.172.228.65/32
