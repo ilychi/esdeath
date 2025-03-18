@@ -1,8 +1,8 @@
 // Emby Streaming Media (Direct)
-// Last updated: 2025/3/18 05:25:31
-// DOMAIN-SUFFIX: 161
+// Last updated: 2025/3/18 14:38:11
+// DOMAIN-SUFFIX: 162
 // IP-CIDR: 32
-// Total: 193
+// Total: 194
 // Direct connection rules for Emby servers accessible from Mainland China. Includes server addresses that can attempt direct connection from mainland. Note: Still in testing phase.
 // Data sources:
 //  - https://github.com/h05n/-/raw/main/直连emby
@@ -86,6 +86,7 @@ DOMAIN-SUFFIX,embylife.xyz
 DOMAIN-SUFFIX,embymv.link
 DOMAIN-SUFFIX,embymv.tk
 DOMAIN-SUFFIX,embyplus.org
+DOMAIN-SUFFIX,eu.org
 DOMAIN-SUFFIX,favoritewife.com
 DOMAIN-SUFFIX,fk.imetyou.top
 DOMAIN-SUFFIX,flare.catlinks.co.uk
