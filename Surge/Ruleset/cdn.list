@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/18 14:38:09
-// DOMAIN: 2309
+// Last updated: 2025/3/18 16:35:09
+// DOMAIN: 2312
 // DOMAIN-SUFFIX: 968
 // DOMAIN-KEYWORD: 11
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 45
-// Total: 3338
+// Total: 3341
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1890,6 +1890,7 @@ DOMAIN,assets.st-note.com
 DOMAIN,cdn.st-note.com
 DOMAIN,static.srcspot.com
 DOMAIN-SUFFIX,sqspcdn.com
+DOMAIN,cdn.sphlabs.com
 DOMAIN-SUFFIX,snzypic.com
 DOMAIN,sdk.snapkit.com
 DOMAIN,cdn.shopify.com
@@ -2795,8 +2796,10 @@ DOMAIN,flo.uri.sh
 DOMAIN-SUFFIX,ttl.sh
 DOMAIN-SUFFIX,now.sh
 DOMAIN-SUFFIX,esm.sh
+DOMAIN,cassette.sphdigital.com.sg
 DOMAIN,static.zaobao.com.sg
 DOMAIN,static.mysph.sph.com.sg
+DOMAIN,cdp.sph.com.sg
 DOMAIN-SUFFIX,ipfs.best-practice.se
 DOMAIN-SUFFIX,webp.se
 DOMAIN,curl.se

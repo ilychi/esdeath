@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/18 14:38:11
-// DOMAIN: 120
+// Last updated: 2025/3/18 16:35:10
+// DOMAIN: 121
 // DOMAIN-SUFFIX: 392
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 13
 // OTHER: 1
-// Total: 529
+// Total: 530
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -70,6 +70,7 @@ DOMAIN,flare.catlinks.co.uk
 DOMAIN,fun.poloemby.xyz // polo
 DOMAIN,gd.9521732.xyz
 DOMAIN,hd.xmsl.org // loser 反代 cf美国
+DOMAIN,hka-emby3.aliz.work
 DOMAIN,hxd.as174.com // hxd
 DOMAIN,if.20120714.xyz // Added for: if.20120714.xyz:443
 DOMAIN,inside.lyrebirdemby.com
