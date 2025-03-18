@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/18 22:38:32
-// DOMAIN: 2312
+// Last updated: 2025/3/19 00:36:09
+// DOMAIN: 2316
 // DOMAIN-SUFFIX: 968
 // DOMAIN-KEYWORD: 11
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 45
-// Total: 3341
+// Total: 3345
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -538,6 +538,7 @@ DOMAIN,favicon.yandex.net
 DOMAIN-SUFFIX,crash-reports.browser.yandex.net
 DOMAIN,resize.yandex.net
 DOMAIN,avatars.mds.yandex.net
+DOMAIN,s3-zen.mds.yandex.net
 DOMAIN,cdn.xeiaso.net
 DOMAIN,avts.wmlabs.net
 DOMAIN,fast.wistia.net
@@ -1223,6 +1224,7 @@ DOMAIN,resources.help.salesforce.com
 DOMAIN,wp.salesforce.com
 DOMAIN,cdn.safecharge.com
 DOMAIN-SUFFIX,ipfs.runfission.com
+DOMAIN,cdn.report-uri.com
 DOMAIN,cdn.promotekit.com
 DOMAIN,apps.profitihub.com
 DOMAIN,media.printables.com
@@ -2478,6 +2480,8 @@ DOMAIN-SUFFIX,fbsbx.com
 DOMAIN-SUFFIX,fbcdn.com
 DOMAIN,cdn.faire.com
 DOMAIN,dz2cdn1.dzone.com
+DOMAIN,images.drata.com
+DOMAIN,cdn.drata.com
 DOMAIN,static.deepl.com
 DOMAIN,cdn.db-ip.com
 DOMAIN,static.cloud.coveo.com
