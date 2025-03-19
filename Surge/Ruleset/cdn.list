@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/19 12:59:59
-// DOMAIN: 2316
-// DOMAIN-SUFFIX: 968
-// DOMAIN-KEYWORD: 11
+// Last updated: 2025/3/20 07:35:56
+// DOMAIN: 2317
+// DOMAIN-SUFFIX: 969
+// DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 45
-// Total: 3345
+// Total: 3348
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1549,6 +1549,7 @@ DOMAIN-SUFFIX,dummyjson.com
 DOMAIN-SUFFIX,doppiocdn.com
 DOMAIN,assets.dnsfilter.com
 DOMAIN-SUFFIX,disquscdn.com
+DOMAIN,us1-prod-images.disco-api.com
 DOMAIN-SUFFIX,data.debugbear.com
 DOMAIN,app.cookieyes.com
 DOMAIN,cookie-cdn.cookiepro.com
@@ -2169,6 +2170,7 @@ DOMAIN,js.stripe.com
 DOMAIN,heatmap-external-a.strava.com
 DOMAIN,web-assets.strava.com
 DOMAIN-SUFFIX,ss-cdn.com
+DOMAIN-SUFFIX,sndimg.com
 DOMAIN-SUFFIX,sndcdn.com
 DOMAIN,resources-cache.prod.sketch.com
 DOMAIN,prego-cache.prod.sketch.com
@@ -3306,6 +3308,7 @@ DOMAIN-KEYWORD,cdn.adultempire.com
 DOMAIN-KEYWORD,-assets.worldsex.com
 DOMAIN-KEYWORD,-thumbs.worldsex.com
 DOMAIN-KEYWORD,99avcdn
+DOMAIN-KEYWORD,-images.disco-api.com
 DOMAIN-WILDCARD,appcenter-filemanagement-*.cloudapp.net
 DOMAIN-WILDCARD,proxy-*.dailymotion.com
 DOMAIN-WILDCARD,static?.tgstat.ru
