@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/20 07:35:57
-// DOMAIN: 121
+// Last updated: 2025/3/21 03:56:45
+// DOMAIN: 120
 // DOMAIN-SUFFIX: 392
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 13
 // OTHER: 1
-// Total: 530
+// Total: 529
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -21,7 +21,6 @@ DOMAIN,7777777.buzz
 DOMAIN,9wfree.emby.eu.org
 DOMAIN,ad.auroramedia.vip
 DOMAIN,auto.polodns.xyz // Added for: auto.polodns.xyz:443
-DOMAIN,beebi.org
 DOMAIN,by.mooguu.org // 蘑菇备用
 DOMAIN,c.lilyemby.my
 DOMAIN,cc.coemn.com
