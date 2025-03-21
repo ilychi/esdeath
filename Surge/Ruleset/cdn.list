@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/21 04:58:45
-// DOMAIN: 2317
+// Last updated: 2025/3/22 05:18:52
+// DOMAIN: 2319
 // DOMAIN-SUFFIX: 969
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 45
-// Total: 3348
+// Total: 3350
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -469,6 +469,7 @@ DOMAIN-SUFFIX,px-cloud.net
 DOMAIN-SUFFIX,pixelcdn.net
 DOMAIN-SUFFIX,wikia.nocookie.net
 DOMAIN-SUFFIX,cdn.nintendo.net
+DOMAIN,s.midishow.net
 DOMAIN-SUFFIX,line-cdn.net
 DOMAIN-SUFFIX,kakaocdn.net
 DOMAIN-SUFFIX,jsdelivr.net
@@ -542,6 +543,7 @@ DOMAIN,s3-zen.mds.yandex.net
 DOMAIN,cdn.xeiaso.net
 DOMAIN,avts.wmlabs.net
 DOMAIN,fast.wistia.net
+DOMAIN,cdn.wikimg.net
 DOMAIN,static.vocadb.net
 DOMAIN,images1.vinted.net
 DOMAIN,craftassets.unraid.net

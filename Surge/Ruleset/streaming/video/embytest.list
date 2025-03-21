@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/21 04:58:47
+// Last updated: 2025/3/22 05:18:53
 // DOMAIN: 120
-// DOMAIN-SUFFIX: 392
+// DOMAIN-SUFFIX: 393
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 13
 // OTHER: 1
-// Total: 529
+// Total: 530
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -502,6 +502,7 @@ DOMAIN-SUFFIX,tanhuatv.site
 DOMAIN-SUFFIX,tanhuatv.site // tanhua
 DOMAIN-SUFFIX,temby.285286.xyz
 DOMAIN-SUFFIX,temby4837.285286.xyz.top
+DOMAIN-SUFFIX,term.wtf
 DOMAIN-SUFFIX,texon.fans
 DOMAIN-SUFFIX,tkremby.xyz
 DOMAIN-SUFFIX,tv.811861.xyz
