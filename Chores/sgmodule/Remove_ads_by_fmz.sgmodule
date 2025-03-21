@@ -9,7 +9,7 @@
 #!tg-group=https://t.me/lanjieguanggao
 #!tag=去广告, fmz200, 奶思
 #!system=ios
-#!date=2025-03-21 16:30:00
+#!date=2025-03-21 20:30:00
 #!support=支持约511款APP/小程序
 #!remark=下方的所有规则都标注了对应的hostname，可能存在错误或者遗漏，欢迎反馈。对于无法/可选MITM的hostname都特别做了“如开启可自行添加主机名”提示，如果提示后面没有标注主机名则包含所有主机名，否则只包含提示语后面的主机名。
 
@@ -861,7 +861,6 @@ http-response ^https?:\/\/misc-api-prd-mx\.wandafilm\.com\/commend\/common_banne
 http-response ^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad advertisement fmz200
 http-response-jq ^https:\/\/app-conf\.ds\.163\.com\/v\d\/app\/base\/conf\/static\/start-config\? 'delpaths([["result","updateConfig",2,"itemList",94,"itemList",2]])'
 http-response ^https?:\/\/lcen\.xiaote\.net\/api\/graphql screenSplashAd fmz200
-http-response ^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/note\/comment\/list red_id fmz200
 http-response ^https:\/\/api\.zhihu\.com\/search\/recommend_query\/v2\? "recommend_queries":\{.+\} "recommend_queries":{}
 http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getfeedflowinfo\? userRed fmz200
 http-response ^https?:\/\/app\.zhuanzhuan\.com\/zz\/v2\/zzinfoshow\/getchoicegoodsinfos infoData fmz200
@@ -3242,6 +3241,10 @@ UnblockURLinWeChat-解除微信链接限制 = type=http-response, pattern=^https
 小红书图片视频水印 = type=http-response, pattern=^https?:\/\/(edith|rec|www)\.xiaohongshu\.com\/api\/sns\/(v2\/note\/feed|v3\/note\/videofeed)\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
 
 小红书图片视频水印 = type=http-response, pattern=^https?:\/\/(edith|rec|www)\.xiaohongshu\.com\/api\/sns\/(v4\/note\/videofeed|v10\/note\/video\/save)\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
+
+小红书评论区水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/note\/comment\/list\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
+
+小红书评论区水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/interaction\/comment\/video\/download\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
 
 # 首页顶部去除直播
 喜马拉雅首页顶部去除直播 = type=http-response, pattern=^https?:\/\/.*\.xima.*\.com\/discovery-category\/customCategories, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xmly_json.js, requires-body=true, timeout=60
