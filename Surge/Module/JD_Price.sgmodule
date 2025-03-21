@@ -1,6 +1,6 @@
 #!name=京东比价
-#!desc=点击商品详情后以通知的形式推送比价内容
-#!author=githubdulong[https://github.com/githubdulong]
+#!desc=需在商品详情页面查看比价内容
+#!author=小白脸
 #!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/JD.png
 #!category=🔨 Tools
 
@@ -8,7 +8,7 @@
 #!tag=功能增强
 #!loon_version=3.2.4(787)
 #!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
-#!date=2024-12-29 00:51:00
+#!date=2025-03-21 22:33:17
 
 [Script]
 京东比价 = type=http-response, pattern=^https:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/JD_Price.js, requires-body=true
