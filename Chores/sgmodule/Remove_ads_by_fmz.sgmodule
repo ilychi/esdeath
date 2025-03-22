@@ -3243,9 +3243,9 @@ UnblockURLinWeChat-解除微信链接限制 = type=http-response, pattern=^https
 小红书图片视频水印 = type=http-response, pattern=^https?:\/\/(edith|rec|www)\.xiaohongshu\.com\/api\/sns\/(v4\/note\/videofeed|v10\/note\/video\/save)\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
 
 # 评论区图片，live图水印
-小红书评论区水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/note\/comment\/list\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
+小红书评论区去水印存储 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/note\/comment\/list\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
 
-小红书评论区水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/interaction\/comment\/video\/download\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
+小红书评论区去水印下载 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/interaction\/comment\/video\/download\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
 
 # 首页顶部去除直播
 喜马拉雅首页顶部去除直播 = type=http-response, pattern=^https?:\/\/.*\.xima.*\.com\/discovery-category\/customCategories, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xmly_json.js, requires-body=true, timeout=60
