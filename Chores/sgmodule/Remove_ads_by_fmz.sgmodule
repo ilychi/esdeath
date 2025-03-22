@@ -2441,7 +2441,7 @@ https://mgesq.api.mgtv.com/v2/user/center/icon data-type=text data="{}" status-c
 
 ^https?:\/\/www\.xiaohongshu\.com\/api\/sns\/(v\d\/ads\/resource|v\d\/hey\/\w+\/hey_gallery) data-type=text data="{}" status-code=200
 
-# 评论区图片水印 (实验功能可能无效)
+# 评论区图片水印
 ^https?:\/\/ci\.xiaohongshu\.com\/system_config\/watermark data-type=tiny-gif status-code=200
 
 # 播放页广告
@@ -3242,8 +3242,8 @@ UnblockURLinWeChat-解除微信链接限制 = type=http-response, pattern=^https
 
 小红书图片视频水印 = type=http-response, pattern=^https?:\/\/(edith|rec|www)\.xiaohongshu\.com\/api\/sns\/(v4\/note\/videofeed|v10\/note\/video\/save)\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
 
-# 评论区图片，live图水印
-小红书评论区去水印存储 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/note\/comment\/list\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
+# 评论区图片、live图水印，表情包下载
+小红书评论区去水印存储 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(v5\/note\/comment\/list|v3\/note\/comment\/sub_comments)\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
 
 小红书评论区去水印下载 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/interaction\/comment\/video\/download\?, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/xiaohongshu.js, requires-body=true, timeout=60
 
