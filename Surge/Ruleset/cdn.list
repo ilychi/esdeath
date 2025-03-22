@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/23 00:27:03
-// DOMAIN: 2319
-// DOMAIN-SUFFIX: 969
+// Last updated: 2025/3/23 01:58:44
+// DOMAIN: 2324
+// DOMAIN-SUFFIX: 972
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 45
-// Total: 3350
+// Total: 3358
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -57,6 +57,7 @@ DOMAIN,cdn.deta.space
 DOMAIN-SUFFIX,ipfs.kavin.rocks
 DOMAIN,files.mastodon.ktachibana.party
 DOMAIN-SUFFIX,ipfs.telos.miami
+DOMAIN,cms.therecord.media
 DOMAIN,files.smashing.media
 DOMAIN,jssdk.opin.media
 DOMAIN-SUFFIX,icon.horse
@@ -309,6 +310,7 @@ DOMAIN,registry.npmjs.org
 DOMAIN,repo1.maven.org
 DOMAIN-SUFFIX,lencr.org
 DOMAIN,repository.jboss.org
+DOMAIN-SUFFIX,cdn.icann.org
 DOMAIN,godoc.org
 DOMAIN,static.gnome.org
 DOMAIN-SUFFIX,eggjs.org
@@ -382,6 +384,7 @@ DOMAIN,images.wsjcommerce.net
 DOMAIN,static.underhentai.net
 DOMAIN-SUFFIX,tapecontent.net
 DOMAIN-SUFFIX,staticworld.net
+DOMAIN,sourcemaps.squarespace.net
 DOMAIN,static-resource.np.community.playstation.net
 DOMAIN-SUFFIX,f.hubspotfree.net
 DOMAIN-SUFFIX,hsappstatic.net
@@ -811,6 +814,7 @@ DOMAIN,media.telanganatoday.com
 DOMAIN,image.telanganatoday.com
 DOMAIN-SUFFIX,teamtailor-cdn.com
 DOMAIN,micro.rubiconproject.com
+DOMAIN,cms.recordedfuture.com
 DOMAIN-SUFFIX,quip-marketing.com
 DOMAIN,api.pwnedpasswords.com
 DOMAIN,web-assets.otogi-frontier.com
@@ -967,6 +971,7 @@ DOMAIN,cdn1.identitymind.com
 DOMAIN-SUFFIX,hubspotlinks.com
 DOMAIN,cdn.hongkongcard.com
 DOMAIN,rest.happierleads.com
+DOMAIN,cdn.googlesource.com
 DOMAIN-SUFFIX,githubassets.com
 DOMAIN,m3u8.girigirilove.com
 DOMAIN-SUFFIX,framerstatic.com
@@ -1043,6 +1048,7 @@ DOMAIN-SUFFIX,steamstatic.com
 DOMAIN-SUFFIX,staticimgly.com
 DOMAIN-SUFFIX,staticblitz.com
 DOMAIN,static.staff-start.com
+DOMAIN,akamai-assets.squarespace.com
 DOMAIN,static3.squarespace.com
 DOMAIN,static1.squarespace.com
 DOMAIN,s3media.squarespace.com
@@ -1319,6 +1325,7 @@ DOMAIN,cdn.fourthwall.com
 DOMAIN-SUFFIX,externulls.com
 DOMAIN,images.everyplate.com
 DOMAIN,cdntranscend.eventbrite.com
+DOMAIN-SUFFIX,etsystatic.com
 DOMAIN,web-assets.esetstatic.com
 DOMAIN,images.emojiterra.com
 DOMAIN,cdn2.editmysite.com
@@ -2392,6 +2399,7 @@ DOMAIN-SUFFIX,srcdn.com
 DOMAIN,cdn.sprig.com
 DOMAIN,files.slack.com
 DOMAIN-SUFFIX,sb-cd.com
+DOMAIN-SUFFIX,rlcdn.com
 DOMAIN,s2.qwant.com
 DOMAIN,s1.qwant.com
 DOMAIN,js.puter.com
