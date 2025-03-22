@@ -273,6 +273,9 @@ DOMAIN-SUFFIX,66mobi.com
 DOMAIN,huodong.weibo.cn
 DOMAIN-SUFFIX,biz.weibo.com
 
+# >> RedPaper
+AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com))
+
 # >> Zhihu
 DOMAIN,appcloud.zhihu.com
 DOMAIN,appcloud2.in.zhihu.com
