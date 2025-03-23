@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/23 22:28:30
-// DOMAIN: 2325
+// Last updated: 2025/3/23 23:32:45
+// DOMAIN: 2327
 // DOMAIN-SUFFIX: 973
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 45
-// Total: 3360
+// Total: 3362
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -57,6 +57,7 @@ DOMAIN,cdn.deta.space
 DOMAIN-SUFFIX,ipfs.kavin.rocks
 DOMAIN,files.mastodon.ktachibana.party
 DOMAIN-SUFFIX,ipfs.telos.miami
+DOMAIN,townsquare.media
 DOMAIN,cms.therecord.media
 DOMAIN,files.smashing.media
 DOMAIN,jssdk.opin.media
@@ -1464,6 +1465,7 @@ DOMAIN,jfe-cdn.qualtrics.com
 DOMAIN,js.qualified.com
 DOMAIN,vpncdn.protonweb.com
 DOMAIN,cdnstatic.porno-cum.com
+DOMAIN,static.polldaddy.com
 DOMAIN-SUFFIX,assets.pinterest.com
 DOMAIN,storage-b.picacomic.com
 DOMAIN,img.picacomic.com
