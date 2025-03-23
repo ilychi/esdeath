@@ -1,7 +1,3 @@
-<html>
-<head><title>504 Gateway Time-out</title></head>
-<body>
-<center><h1>504 Gateway Time-out</h1></center>
-<hr><center>cloudflare</center>
-</body>
-</html>
+let obj = JSON.parse($response.body);
+delete obj.data;
+$done({body: JSON.stringify(obj)});
