@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/23 13:20:29
-// DOMAIN: 2324
-// DOMAIN-SUFFIX: 972
+// Last updated: 2025/3/23 13:53:54
+// DOMAIN: 2325
+// DOMAIN-SUFFIX: 973
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 45
-// Total: 3358
+// Total: 3360
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -139,6 +139,7 @@ DOMAIN-SUFFIX,packd.liuxingbaoyu.xyz
 DOMAIN,storage.withfabric.xyz
 DOMAIN,int.qiniuyun15.xyz
 DOMAIN,cdn.yinghuazy.xyz
+DOMAIN-SUFFIX,skyearth8.xyz
 DOMAIN-SUFFIX,imgmrplay.xyz
 DOMAIN,rules2.clearurls.xyz
 DOMAIN,rules1.clearurls.xyz
@@ -2876,6 +2877,7 @@ DOMAIN,static-cache.fboom.me
 DOMAIN,static.fboom.me
 DOMAIN,emoji-css.afeld.me
 DOMAIN,pic.7mmtv.me
+DOMAIN,cdn.123av.me
 DOMAIN,rsms.me
 DOMAIN,static.fbot.me
 DOMAIN,media.e4le.me
