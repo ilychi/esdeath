@@ -333,6 +333,10 @@ DOMAIN,adbehavior.wsa.ximalaya.com
 DOMAIN,dns2.q2cdn.com
 URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
 
+# >> YouTube
+AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
+AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
+
 # >> VideoGo
 DOMAIN,httpdns.yunxindns.com
 DOMAIN-SUFFIX,gdtimg.com
