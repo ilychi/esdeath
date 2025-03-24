@@ -1,5 +1,5 @@
 // Emby 测试规则
-// Last updated: 2025/3/24 23:37:59
+// Last updated: 2025/3/25 00:24:13
 // DOMAIN: 120
 // DOMAIN-SUFFIX: 394
 // DOMAIN-KEYWORD: 3
@@ -418,7 +418,6 @@ DOMAIN-SUFFIX,misty.cx
 DOMAIN-SUFFIX,misty.ltd
 DOMAIN-SUFFIX,mius.uk
 DOMAIN-SUFFIX,mjjemby.org
-DOMAIN-SUFFIX,mm.yeahfast.com
 DOMAIN-SUFFIX,mobaiemby.site
 DOMAIN-SUFFIX,movie.xeton.dev
 DOMAIN-SUFFIX,mulgore.net
@@ -525,6 +524,7 @@ DOMAIN-SUFFIX,xiaoyi.one
 DOMAIN-SUFFIX,xmsl.org
 DOMAIN-SUFFIX,xxxh.de
 DOMAIN-SUFFIX,ycxdy.top
+DOMAIN-SUFFIX,yeahfast.com
 DOMAIN-SUFFIX,yezi.my
 DOMAIN-SUFFIX,yhemby.top
 DOMAIN-SUFFIX,younoyes.com

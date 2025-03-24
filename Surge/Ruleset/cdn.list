@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/24 23:37:58
-// DOMAIN: 2327
+// Last updated: 2025/3/25 00:24:12
+// DOMAIN: 2332
 // DOMAIN-SUFFIX: 973
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3363
+// Total: 3368
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1349,6 +1349,8 @@ DOMAIN,cdn.eu.contentful.com
 DOMAIN,frames-commandbar-prod.commandbar.com
 DOMAIN,cdn.commandbar.com
 DOMAIN,static-assets.codecademy.com
+DOMAIN,assets.cmcmarkets.com
+DOMAIN,cdn.cmcmarkets.com
 DOMAIN-SUFFIX,ipfs0.sjc.cloudsigma.com
 DOMAIN,cloudinary-res.cloudinary.com
 DOMAIN,fiverr-res.cloudinary.com
@@ -2590,6 +2592,9 @@ DOMAIN,info.knak.com
 DOMAIN,assets.kagi.com
 DOMAIN,cdn.hk01.com
 DOMAIN,assets.habr.com
+DOMAIN,cms-cdn.goat.com
+DOMAIN,assets.goat.com
+DOMAIN,image.goat.com
 DOMAIN-SUFFIX,fsdn.com
 DOMAIN,images.dmca.com
 DOMAIN,sf-coze-web-cdn.coze.com
