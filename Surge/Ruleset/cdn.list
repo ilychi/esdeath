@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/25 00:24:12
-// DOMAIN: 2332
+// Last updated: 2025/3/25 01:04:11
+// DOMAIN: 2333
 // DOMAIN-SUFFIX: 973
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3368
+// Total: 3369
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -3205,6 +3205,7 @@ DOMAIN,cdn.ionos.de
 DOMAIN-SUFFIX,ipfs.slang.cx
 DOMAIN-SUFFIX,cdn-lfs-us-1.huggingface.co
 DOMAIN-SUFFIX,cdn-uploads.huggingface.co
+DOMAIN,cdn-avatars.huggingface.co
 DOMAIN-SUFFIX,cdn-lfs.huggingface.co
 DOMAIN,waitlisted.co
 DOMAIN,widgets.listenlive.co
