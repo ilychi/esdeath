@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/24 07:21:17
+// Last updated: 2025/3/24 11:45:06
 // DOMAIN: 2327
 // DOMAIN-SUFFIX: 973
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
-// OTHER: 45
-// Total: 3362
+// OTHER: 46
+// Total: 3363
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -3366,6 +3366,7 @@ DOMAIN-WILDCARD,s??.maxstream.org
 DOMAIN-WILDCARD,media?.kissjav.com
 DOMAIN-WILDCARD,media??.kissjav.com
 DOMAIN-WILDCARD,chunk-*.mux.com
+DOMAIN-WILDCARD,*.skyearth?.xyz
 DOMAIN-WILDCARD,*.img.*.sendibm?.com
 DOMAIN-WILDCARD,cdn?.18girlssex.com
 URL-REGEX,^http://www\.microsoft\.com/pki/

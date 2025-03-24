@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/24 07:21:18
+// Last updated: 2025/3/24 11:45:07
 // DOMAIN: 120
-// DOMAIN-SUFFIX: 393
+// DOMAIN-SUFFIX: 394
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 13
 // OTHER: 1
-// Total: 530
+// Total: 531
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -239,6 +239,7 @@ DOMAIN-SUFFIX,coemn.com
 DOMAIN-SUFFIX,cristiamo.xyz
 DOMAIN-SUFFIX,crond.dev
 DOMAIN-SUFFIX,cuinf.sfcat.link
+DOMAIN-SUFFIX,cynn.top
 DOMAIN-SUFFIX,deja-vu.beauty
 DOMAIN-SUFFIX,dicarerhome.com
 DOMAIN-SUFFIX,direct.lyrebirdemby.com
