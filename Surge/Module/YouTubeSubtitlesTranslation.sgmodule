@@ -24,7 +24,7 @@ Proto·GetWatch响应 = type=http-response, pattern=^https?:\/\/youtubei\.google
 
 YouTube定时文本请求 = type=http-request, pattern=^https?:\/\/(www|m)\.youtube\.com\/api\/timedtext\?(.*), script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/YouTube_Subtitles_request.js, argument="[{Type},{AutoCC},{ShowOnly},{Position}]"
 
-YouTube合成定时文本响应 = type=http-response, pattern=^https?:\/\/(www|m)\.youtube\.com\/api\/timedtext\?(.*)subtype=(Official|External), script-path=https://kelee.one/Resource/Script/YouTube/YouTube_Subtitles_Translate/YouTube_Composite_Subtitles_response.js, requires-body=true
+YouTube合成定时文本响应 = type=http-response, pattern=^https?:\/\/(www|m)\.youtube\.com\/api\/timedtext\?(.*)subtype=(Official|External), script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/YouTube_Composite_Subtitles_response.js, requires-body=true
 
 YouTube翻译定时文本响应 = type=http-response, pattern=^https?:\/\/(www|m)\.youtube\.com\/api\/timedtext\?(.*)subtype=Translate, script-path=https://github.com/ilychi/esdeath/raw/main/Chores/js/YouTube_Subtitles_Translate_response.js, requires-body=true
 
