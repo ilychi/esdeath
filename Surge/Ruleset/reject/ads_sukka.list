@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-03-25T12:41:50.063Z
-# Size: 70193
+# Last Updated: 2025-03-25T14:16:10.646Z
+# Size: 70204
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -2293,6 +2293,7 @@ DOMAIN-SUFFIX,xtrgqmnflnfnj.buzz
 DOMAIN-SUFFIX,xbwkskazmgbyk.buzz
 DOMAIN-SUFFIX,tlswzfbujtgzi.buzz
 DOMAIN-SUFFIX,skgpzivadwdte.buzz
+DOMAIN-SUFFIX,nzyqdqbfixkmq.buzz
 DOMAIN-SUFFIX,ntmreohudibfo.buzz
 DOMAIN-SUFFIX,jzqscvqlgasxh.buzz
 DOMAIN-SUFFIX,lust-goddess.buzz
@@ -5744,6 +5745,7 @@ DOMAIN-SUFFIX,campaign.csrxp.org
 DOMAIN-SUFFIX,info.coyfc.org
 DOMAIN-SUFFIX,hakurei.cdnbo.org
 DOMAIN-SUFFIX,1991482557.rsc.cdn77.org
+DOMAIN-SUFFIX,1985536323.rsc.cdn77.org
 DOMAIN-SUFFIX,1675450967.rsc.cdn77.org
 DOMAIN-SUFFIX,1560807123.rsc.cdn77.org
 DOMAIN-SUFFIX,1558334541.rsc.cdn77.org
@@ -5751,6 +5753,7 @@ DOMAIN-SUFFIX,1548164934.rsc.cdn77.org
 DOMAIN-SUFFIX,1437953666.rsc.cdn77.org
 DOMAIN-SUFFIX,1361424968.rsc.cdn77.org
 DOMAIN-SUFFIX,1352924994.rsc.cdn77.org
+DOMAIN-SUFFIX,1305314473.rsc.cdn77.org
 DOMAIN-SUFFIX,1208344341.rsc.cdn77.org
 DOMAIN-SUFFIX,1187531871.rsc.cdn77.org
 DOMAIN-SUFFIX,1080872514.rsc.cdn77.org
@@ -6721,6 +6724,7 @@ DOMAIN-SUFFIX,rqyxdk.myanimelist.net
 DOMAIN-SUFFIX,mudrouraung.net
 DOMAIN-SUFFIX,moumaiphuch.net
 DOMAIN-SUFFIX,moowhaufipt.net
+DOMAIN-SUFFIX,moograwhire.net
 DOMAIN-SUFFIX,mongailrids.net
 DOMAIN-SUFFIX,rdt.mkaffiliate.net
 DOMAIN-SUFFIX,mihaivibsaz.net
@@ -19022,6 +19026,7 @@ DOMAIN-SUFFIX,zygomalingers.com
 DOMAIN-SUFFIX,sgtm.zugspitzezone.com
 DOMAIN-SUFFIX,zpgetworker11.com
 DOMAIN-SUFFIX,go.zippymagazine.com
+DOMAIN-SUFFIX,zipperszebecs.com
 DOMAIN-SUFFIX,analytics.ziftsolutions.com
 DOMAIN-SUFFIX,dynamic.ziftsolutions.com
 DOMAIN-SUFFIX,leadership.zengerfolkman.com
@@ -19116,6 +19121,7 @@ DOMAIN-SUFFIX,osimg.windsurfercrs.com
 DOMAIN-SUFFIX,windlebrogues.com
 DOMAIN-SUFFIX,trk.williamspumps.com
 DOMAIN-SUFFIX,marketing.wildhorsepass.com
+DOMAIN-SUFFIX,wigneebaimtoa.com
 DOMAIN-SUFFIX,widow5blackfr.com
 DOMAIN-SUFFIX,uqhpej.wiberrentacar.com
 DOMAIN-SUFFIX,whoppercreaky.com
@@ -24110,6 +24116,7 @@ DOMAIN-SUFFIX,click.vedicorgins.com
 DOMAIN-SUFFIX,info.vcsolutions.com
 DOMAIN-SUFFIX,vcommission.com
 DOMAIN-SUFFIX,marketing.vcasoftware.com
+DOMAIN-SUFFIX,vazticlkivi.com
 DOMAIN-SUFFIX,imxfck.varusteleka.com
 DOMAIN-SUFFIX,varshacundy.com
 DOMAIN-SUFFIX,info.vaporstream.com
@@ -25554,6 +25561,7 @@ DOMAIN-SUFFIX,a8.hokengarden.com
 DOMAIN-SUFFIX,hockeyhavoc.com
 DOMAIN-SUFFIX,hoalaicheey.com
 DOMAIN-SUFFIX,hoabauwezow.com
+DOMAIN-SUFFIX,hnpiwmegpdv.com
 DOMAIN-SUFFIX,hnmikeloarp.com
 DOMAIN-SUFFIX,eqkwat.histoiredor.com
 DOMAIN-SUFFIX,ea.histoiredor.com
@@ -27015,6 +27023,7 @@ DOMAIN-SUFFIX,log.trackingio.com
 DOMAIN-SUFFIX,data-ff5b197ecc.traceparts.com
 DOMAIN-SUFFIX,tr-bouncer.com
 DOMAIN-SUFFIX,info.tpctrainco.com
+DOMAIN-SUFFIX,tpbkmusefo.com
 DOMAIN-SUFFIX,totogetica.com
 DOMAIN-SUFFIX,totesnobis.com
 DOMAIN-SUFFIX,log.tossinvest.com
@@ -31829,6 +31838,7 @@ DOMAIN-SUFFIX,jessunews.com
 DOMAIN-SUFFIX,jergocast.com
 DOMAIN-SUFFIX,yvdbva.jemutshop.com
 DOMAIN-SUFFIX,trk.jemacoair.com
+DOMAIN-SUFFIX,jegyojben.com
 DOMAIN-SUFFIX,hornet.jeffgable.com
 DOMAIN-SUFFIX,jeeryzest.com
 DOMAIN-SUFFIX,metrics.jcwhitney.com
@@ -34756,6 +34766,7 @@ DOMAIN-SUFFIX,padslims.com
 DOMAIN-SUFFIX,app.paciolan.com
 DOMAIN-SUFFIX,t.paciolan.com
 DOMAIN-SUFFIX,tracking.pacharge.com
+DOMAIN-SUFFIX,p8wj9zko.com
 DOMAIN-SUFFIX,ozvtuton.com
 DOMAIN-SUFFIX,ozongees.com
 DOMAIN-SUFFIX,ozobsaib.com
