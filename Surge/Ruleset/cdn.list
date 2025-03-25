@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/26 01:25:23
-// DOMAIN: 2334
-// DOMAIN-SUFFIX: 973
+// Last updated: 2025/3/26 02:01:46
+// DOMAIN: 2331
+// DOMAIN-SUFFIX: 975
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3370
+// Total: 3369
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -138,7 +138,6 @@ DOMAIN,cdn.joincommunity.xyz
 DOMAIN-SUFFIX,mirror-media.xyz
 DOMAIN-SUFFIX,packd.liuxingbaoyu.xyz
 DOMAIN,storage.withfabric.xyz
-DOMAIN,int.qiniuyun15.xyz
 DOMAIN,cdn.yinghuazy.xyz
 DOMAIN-SUFFIX,skyearth8.xyz
 DOMAIN-SUFFIX,imgmrplay.xyz
@@ -348,6 +347,7 @@ DOMAIN-SUFFIX,usercontent.one
 DOMAIN,storageapi.fleek.one
 DOMAIN,static.xns.one
 DOMAIN-SUFFIX,ipfs.jbb.one
+DOMAIN-SUFFIX,gold-usergeneratedcontent.net
 DOMAIN-SUFFIX,hubspotusercontent-na1.net
 DOMAIN-SUFFIX,hubspotusercontent-eu1.net
 DOMAIN-SUFFIX,hubspotusercontent40.net
@@ -479,6 +479,7 @@ DOMAIN-SUFFIX,line-cdn.net
 DOMAIN-SUFFIX,kakaocdn.net
 DOMAIN-SUFFIX,jsdelivr.net
 DOMAIN,img.javstore.net
+DOMAIN,ik.imagekit.net
 DOMAIN-SUFFIX,forgecdn.net
 DOMAIN,connect.facebook.net
 DOMAIN,static.esimplus.net
@@ -517,7 +518,6 @@ DOMAIN,cdn.myfonts.net
 DOMAIN-SUFFIX,itsre-sumo.mozilla.net
 DOMAIN,interactive-examples.mdn.mozilla.net
 DOMAIN-SUFFIX,cdn.mozilla.net
-DOMAIN,opt.moovweb.net
 DOMAIN,minotar.net
 DOMAIN-SUFFIX,jscloud.net
 DOMAIN,pg2dhpc3p5ec22g3.jkforum.net
@@ -801,6 +801,7 @@ DOMAIN-SUFFIX,js.hubspotfeedback.com
 DOMAIN-SUFFIX,howtogeekimages.com
 DOMAIN,cache.hackedfreegames.com
 DOMAIN,images.financemagnates.com
+DOMAIN-SUFFIX,customerioforms.com
 DOMAIN,imgssl.constantcontact.com
 DOMAIN-SUFFIX,cloudflare-ipfs.com
 DOMAIN,shopify.cleverecommerce.com
@@ -892,6 +893,7 @@ DOMAIN,rts-static-prod.freshworksapi.com
 DOMAIN,cdn.freebiesupply.com
 DOMAIN,images.flightradar24.com
 DOMAIN-SUFFIX,envato-static.com
+DOMAIN,cdn.earthroulette.com
 DOMAIN-SUFFIX,dropboxstatic.com
 DOMAIN-SUFFIX,discourse-cdn.com
 DOMAIN,chat.digitalgenius.com
@@ -1273,7 +1275,6 @@ DOMAIN,content.jwplatform.com
 DOMAIN,ww2-secure.justanswer.com
 DOMAIN,components.justanswer.com
 DOMAIN,ww2.justanswer.com
-DOMAIN,static.javatpoint.com
 DOMAIN,media.inhumanity.com
 DOMAIN-SUFFIX,storage.infomaniak.com
 DOMAIN-SUFFIX,cloud2.influxdata.com
@@ -1997,6 +1998,7 @@ DOMAIN,pool.jortage.com
 DOMAIN,assets.ipstack.com
 DOMAIN,i.insider.com
 DOMAIN,static.iris.informa.com
+DOMAIN,go.imperva.com
 DOMAIN-SUFFIX,imgyzzy.com
 DOMAIN-SUFFIX,imgikzy.com
 DOMAIN,s.imgflip.com
@@ -2202,7 +2204,6 @@ DOMAIN,cdn.seondf.com
 DOMAIN,vice-prod.sdiapi.com
 DOMAIN,newfold.scene7.com
 DOMAIN,ec-prod.scene7.com
-DOMAIN,stbff.scene7.com
 DOMAIN,s7d1.scene7.com
 DOMAIN-SUFFIX,sc-cdn.com
 DOMAIN,embed.runkit.com
@@ -2901,9 +2902,6 @@ DOMAIN,cdn.plot.ly
 DOMAIN,cdn.img.ly
 DOMAIN,i.mt.lv
 DOMAIN,media.webtoo.ls
-DOMAIN,ltn.hitomi.la
-DOMAIN,btn.hitomi.la
-DOMAIN,atn.hitomi.la
 DOMAIN,pomf2.lain.la
 DOMAIN-SUFFIX,ipfs.lain.la
 DOMAIN,static.pfrt.yna.co.kr
@@ -2952,6 +2950,7 @@ DOMAIN,pics.dmm.co.jp
 DOMAIN,cdn.dap.dmm.co.jp
 DOMAIN,osint.digitalside.it
 DOMAIN-SUFFIX,place-hold.it
+DOMAIN,cdn.scaleflex.it
 DOMAIN-SUFFIX,unsplash.it
 DOMAIN,cdn.download.it
 DOMAIN-SUFFIX,redd.it
