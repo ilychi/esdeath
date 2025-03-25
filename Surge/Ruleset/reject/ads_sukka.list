@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-03-25T14:16:10.646Z
-# Size: 70204
+# Last Updated: 2025-03-25T15:43:44.739Z
+# Size: 70253
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -10,8 +10,9 @@
 #
 # Build from:
 #  - https://cdn.jsdelivr.net/gh/crazy-max/WindowsSpyBlocker@master/data/hosts/spy.txt
-#  - https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Xiaomi-Extension.txt
-#  - https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Huawei-AdBlock.txt
+#  - https://cdn.jsdelivr.net/gh/jerryn70/GoodbyeAds@master/Extension/GoodbyeAds-Xiaomi-Extension.txt
+#  - https://cdn.jsdelivr.net/gh/jerryn70/GoodbyeAds@master/Extension/GoodbyeAds-Huawei-AdBlock.txt
+#  - https://cdn.jsdelivr.net/gh/jerryn70/GoodbyeAds@master/Extension/GoodbyeAds-Samsung-AdBlock.txt
 #  - https://filters.adtidy.org/extension/ublock/filters/2_optimized.txt
 #  - https://easylist.to/easylist/easyprivacy.txt
 #  - https://filters.adtidy.org/extension/ublock/filters/11_optimized.txt
@@ -556,6 +557,7 @@ DOMAIN-SUFFIX,loxodo-analytics.ext.nile.works
 DOMAIN-SUFFIX,loxodo-ct.ext.nile.works
 DOMAIN-SUFFIX,stats.micv.works
 DOMAIN-SUFFIX,pixel.watch
+DOMAIN-SUFFIX,nimiq.watch
 DOMAIN-SUFFIX,interplanetary.video
 DOMAIN-SUFFIX,discover.streamly.video
 DOMAIN-SUFFIX,ad.moe.video
@@ -5970,6 +5972,9 @@ DOMAIN-SUFFIX,rt.fastinsuranceservices.net
 DOMAIN-SUFFIX,confiant-integrations.net
 DOMAIN-SUFFIX,yieldlove-ad-serving.net
 DOMAIN,samsungcloudsolution.net
+DOMAIN,lcprd2.samsungcloudsolution.net
+DOMAIN,lcprd1.samsungcloudsolution.net
+DOMAIN,fkp.samsungcloudsolution.net
 DOMAIN-SUFFIX,cdn.samsungcloudsolution.net
 DOMAIN-SUFFIX,data-b80f3dd5d8.rhein-neckar-zeitung.net
 DOMAIN-SUFFIX,info.premierstaffservices.net
@@ -6940,6 +6945,7 @@ DOMAIN-SUFFIX,servingcdn.net
 DOMAIN-SUFFIX,stats.searchftps.net
 DOMAIN-SUFFIX,savefromad.net
 DOMAIN-SUFFIX,khcdhu.saraschool.net
+DOMAIN,samsungotn.net
 DOMAIN-SUFFIX,rwww.samsungotn.net
 DOMAIN-SUFFIX,sackeelroy.net
 DOMAIN-SUFFIX,sacedoamte.net
@@ -7615,6 +7621,7 @@ DOMAIN-SUFFIX,d1pdf4c3hchi80.cloudfront.net
 DOMAIN-SUFFIX,d1p7gp5w97u7t7.cloudfront.net
 DOMAIN-SUFFIX,d1p7elpjrt6qav.cloudfront.net
 DOMAIN-SUFFIX,d1p3zboe6tz3yy.cloudfront.net
+DOMAIN,d1oxlq5h9kq8q5.cloudfront.net
 DOMAIN-SUFFIX,d1on4urq8lvsb1.cloudfront.net
 DOMAIN-SUFFIX,d1okyw2ay5msiy.cloudfront.net
 DOMAIN-SUFFIX,d1of5w8unlzqtg.cloudfront.net
@@ -8119,6 +8126,8 @@ DOMAIN-SUFFIX,events.shareably.net
 DOMAIN-SUFFIX,shaidraup.net
 DOMAIN-SUFFIX,scriptcdn.net
 DOMAIN-SUFFIX,sc-static.net
+DOMAIN,samsungrm.net
+DOMAIN,test.samsungrm.net
 DOMAIN-SUFFIX,saipeevit.net
 DOMAIN-SUFFIX,s0-greate.net
 DOMAIN-SUFFIX,static.rxnetwork.net
@@ -8284,6 +8293,7 @@ DOMAIN-SUFFIX,marketing.anchorage.net
 DOMAIN-SUFFIX,track.analitycs.net
 DOMAIN-SUFFIX,tags.aljazeera.net
 DOMAIN-SUFFIX,analytics2-3-meride-tv.akamaized.net
+DOMAIN,audio-ak-spotify-com.akamaized.net
 DOMAIN-SUFFIX,analytics2-meride-tv.akamaized.net
 DOMAIN-SUFFIX,freewheel-mtgx-tv.akamaized.net
 DOMAIN-SUFFIX,hydro-ma-proxy.akamaized.net
@@ -9268,6 +9278,7 @@ DOMAIN-SUFFIX,az43064.vo.msecnd.net
 DOMAIN-SUFFIX,images.engage.mettel.net
 DOMAIN-SUFFIX,xeoezl.major7.net
 DOMAIN-SUFFIX,luxins.net
+DOMAIN,samsung.apps.linkpc.net
 DOMAIN-SUFFIX,pathfinder.analytics.komoot.net
 DOMAIN-SUFFIX,utklhk.kojima.net
 DOMAIN-SUFFIX,l.kitemi.net
@@ -12380,10 +12391,13 @@ DOMAIN-SUFFIX,abtauthprd.samsungcloudsolution.com
 DOMAIN-SUFFIX,noticecdn.samsungcloudsolution.com
 DOMAIN-SUFFIX,amauthprd.samsungcloudsolution.com
 DOMAIN-SUFFIX,vdterms.samsungcloudsolution.com
+DOMAIN,oempprd.samsungcloudsolution.com
 DOMAIN-SUFFIX,musicid.samsungcloudsolution.com
 DOMAIN-SUFFIX,notice.samsungcloudsolution.com
 DOMAIN-SUFFIX,prov.samsungcloudsolution.com
+DOMAIN,acr0.samsungcloudsolution.com
 DOMAIN-SUFFIX,sas.samsungcloudsolution.com
+DOMAIN,fkp.samsungcloudsolution.com
 DOMAIN-SUFFIX,tracking.info.rochesterknighthawks.com
 DOMAIN-SUFFIX,go.rochesterknighthawks.com
 DOMAIN-SUFFIX,metrics.rituxanforgpampa-hcp.com
@@ -15680,6 +15694,7 @@ DOMAIN-SUFFIX,browserdownloadz.com
 DOMAIN-SUFFIX,dchioj.brookhollowcards.com
 DOMAIN-SUFFIX,resources.broadleafresults.com
 DOMAIN-SUFFIX,broadensilkslush.com
+DOMAIN-SUFFIX,brightinitiative.com
 DOMAIN-SUFFIX,edge.bridgetrusttitle.com
 DOMAIN-SUFFIX,news.bridgetowermedia.com
 DOMAIN-SUFFIX,hfd.bridgetowermedia.com
@@ -16206,7 +16221,9 @@ DOMAIN-SUFFIX,saptiledispatch.com
 DOMAIN-SUFFIX,marketing.sanitysolutions.com
 DOMAIN-SUFFIX,api-hub.samsungyosemite.com
 DOMAIN-SUFFIX,us-api.samsungyosemite.com
+DOMAIN,invitation.samsungiotcloud.com
 DOMAIN-SUFFIX,analytics-api.samsunghealthcn.com
+DOMAIN,otn.samsungcloudcdn.com
 DOMAIN-SUFFIX,salbraddrepilly.com
 DOMAIN-SUFFIX,ssitectlyst.saksfifthavenue.com
 DOMAIN-SUFFIX,sitectlyst.saksfifthavenue.com
@@ -27381,6 +27398,10 @@ DOMAIN-SUFFIX,lp.mkt-email.samsungsds.com
 DOMAIN-SUFFIX,contact.samsungsds.com
 DOMAIN,samsungqbe.com
 DOMAIN-SUFFIX,osb-apps-v2.samsungqbe.com
+DOMAIN,osb-ussvc.samsungqbe.com
+DOMAIN,osb-krsvc.samsungqbe.com
+DOMAIN,osb.samsungqbe.com
+DOMAIN,gpm.samsungqbe.com
 DOMAIN-SUFFIX,gld.samsungosp.com
 DOMAIN-SUFFIX,ctydel.samsungctc.com
 DOMAIN-SUFFIX,samsungads.com
@@ -29364,6 +29385,7 @@ DOMAIN-SUFFIX,jqynyo.brilliance.com
 DOMAIN-SUFFIX,content.brightmine.com
 DOMAIN-SUFFIX,elq.brightmine.com
 DOMAIN-SUFFIX,bia.brightinfo.com
+DOMAIN-SUFFIX,brightdata.com
 DOMAIN-SUFFIX,metrics.brightcove.com
 DOMAIN-SUFFIX,bright-sdk.com
 DOMAIN-SUFFIX,jmcnwr.bricoprive.com
@@ -30921,6 +30943,7 @@ DOMAIN-SUFFIX,gold.questrade.com
 DOMAIN-SUFFIX,querylead.com
 DOMAIN-SUFFIX,quensillo.com
 DOMAIN-SUFFIX,email.social.qualtrics.com
+DOMAIN,samsungeurope.eu.qualtrics.com
 DOMAIN-SUFFIX,raspnd.quadratec.com
 DOMAIN-SUFFIX,marketing.quadramed.com
 DOMAIN-SUFFIX,a.qsjiajiao.com
@@ -32944,6 +32967,7 @@ DOMAIN-SUFFIX,brocode3s.com
 DOMAIN-SUFFIX,brocode2s.com
 DOMAIN-SUFFIX,brocode1s.com
 DOMAIN-SUFFIX,track.briskfile.com
+DOMAIN-SUFFIX,brightvpn.com
 DOMAIN-SUFFIX,bridgeoos.com
 DOMAIN-SUFFIX,bremphumz.com
 DOMAIN-SUFFIX,bred4tula.com
@@ -35021,6 +35045,7 @@ DOMAIN-SUFFIX,nagrande.com
 DOMAIN-SUFFIX,naettarq.com
 DOMAIN-SUFFIX,nabalpal.com
 DOMAIN-SUFFIX,mzwdiyfp.com
+DOMAIN,dzc-metrics.mzstatic.com
 DOMAIN-SUFFIX,metrics.mzstatic.com
 DOMAIN-SUFFIX,mzol7lbm.com
 DOMAIN-SUFFIX,mzidpylu.com
@@ -37226,6 +37251,8 @@ DOMAIN-SUFFIX,gtmserver.xrent4u.com
 DOMAIN-SUFFIX,reg.xrdconf.com
 DOMAIN-SUFFIX,secureforms.xperthr.com
 DOMAIN-SUFFIX,forms.xperthr.com
+DOMAIN,lockersamsungs8.s.xoxknct.com
+DOMAIN,lockersamsungs8.r.xoxknct.com
 DOMAIN-SUFFIX,cmcyne.xoticpc.com
 DOMAIN-SUFFIX,metrics.xofluza.com
 DOMAIN-SUFFIX,xml-v4.xmlwolf.com
@@ -39521,6 +39548,7 @@ DOMAIN-SUFFIX,target.eastbay.com
 DOMAIN-SUFFIX,sanl.eastbay.com
 DOMAIN-SUFFIX,bee.tc.easebar.com
 DOMAIN-SUFFIX,earnify.com
+DOMAIN-SUFFIX,earnapp.com
 DOMAIN-SUFFIX,online.eaglepi.com
 DOMAIN-SUFFIX,yryxcn.e-ohaka.com
 DOMAIN-SUFFIX,adebis.e-ohaka.com
@@ -42891,6 +42919,7 @@ DOMAIN-SUFFIX,buylnk.com
 DOMAIN-SUFFIX,uqcvxi.burpee.com
 DOMAIN-SUFFIX,bupatp.com
 DOMAIN-SUFFIX,bulrev.com
+DOMAIN,samsungus.btttag.com
 DOMAIN-SUFFIX,btpnav.com
 DOMAIN-SUFFIX,news.btmbiz.com
 DOMAIN-SUFFIX,btdnav.com
@@ -44343,6 +44372,7 @@ DOMAIN-SUFFIX,act.lanap.com
 DOMAIN-SUFFIX,uofcdl.lagos.com
 DOMAIN-SUFFIX,ladsp.com
 DOMAIN-SUFFIX,go.l-com.com
+DOMAIN-SUFFIX,l-cdn.com
 DOMAIN-SUFFIX,technical.kyzen.com
 DOMAIN-SUFFIX,lofi.kylnk.com
 DOMAIN-SUFFIX,axp.kxnet.com
@@ -45217,9 +45247,12 @@ DOMAIN,events-analytics.apple.com
 DOMAIN-SUFFIX,supportmetrics.apple.com
 DOMAIN-SUFFIX,api-adservices.apple.com
 DOMAIN,securemetrics.apple.com
+DOMAIN-SUFFIX,iadworkbench.apple.com
+DOMAIN-SUFFIX,advertising.apple.com
 DOMAIN-SUFFIX,iadcontent.apple.com
 DOMAIN-SUFFIX,securemvt.apple.com
 DOMAIN-SUFFIX,metrics.apple.com
+DOMAIN,launch.apple.com
 DOMAIN-SUFFIX,iadmoo.apple.com
 DOMAIN-SUFFIX,iad.apple.com
 DOMAIN-SUFFIX,xp.apple.com
@@ -48996,6 +49029,7 @@ DOMAIN-SUFFIX,ihcrqa.sonnenklar.tv
 DOMAIN-SUFFIX,stats.learnlinux.tv
 DOMAIN-SUFFIX,a.jerkdevice.tv
 DOMAIN-SUFFIX,game.internetat.tv
+DOMAIN,sso.internetat.tv
 DOMAIN-SUFFIX,log.internetat.tv
 DOMAIN-SUFFIX,adrouter-charter-vod.cadenttech.tv
 DOMAIN-SUFFIX,cdn-media.brightline.tv
@@ -50512,6 +50546,7 @@ DOMAIN-SUFFIX,amc.yandex.ru
 DOMAIN-SUFFIX,mc.yandex.ru
 DOMAIN-SUFFIX,bs.yandex.ru
 DOMAIN-SUFFIX,count.yandeg.ru
+DOMAIN,samsung.yaload.ru
 DOMAIN-SUFFIX,edfyqv.x-moda.ru
 DOMAIN-SUFFIX,w4h5ae.ru
 DOMAIN-SUFFIX,1l-hit.vkplay.ru
@@ -51167,6 +51202,7 @@ DOMAIN-SUFFIX,stats.connect.pm
 DOMAIN-SUFFIX,stats.staging.hex.pm
 DOMAIN-SUFFIX,load.gtm.edu-consulting-szkolenia.pl
 DOMAIN-SUFFIX,gtm.certyfikaty-energetyczne.pl
+DOMAIN,samsung-klimatyzacja.pl
 DOMAIN-SUFFIX,pvrugd.nieruchomosci-online.pl
 DOMAIN-SUFFIX,statystyki.ekspertyzy-szkolenia.pl
 DOMAIN-SUFFIX,ss.wychowaninawinylach.pl
@@ -51644,6 +51680,8 @@ DOMAIN-SUFFIX,tracker.gpcdn.pl
 DOMAIN-SUFFIX,trc.gpcdn.pl
 DOMAIN-SUFFIX,clnbze.gol24.pl
 DOMAIN-SUFFIX,trk.flora.pl
+DOMAIN,samsung-akcja.e-kei.pl
+DOMAIN,akcjasamsung.e-kei.pl
 DOMAIN-SUFFIX,saa.dyson.pl
 DOMAIN-SUFFIX,jifbxa.dajar.pl
 DOMAIN-SUFFIX,mzldzb.crocs.pl
@@ -51704,6 +51742,7 @@ DOMAIN-SUFFIX,krzysc.akord.net.pl
 DOMAIN-SUFFIX,stat.lex.pl
 DOMAIN-SUFFIX,email-em.jll.pl
 DOMAIN-SUFFIX,cookies.jll.pl
+DOMAIN,akcja-samsung.h2g.pl
 DOMAIN-SUFFIX,ypzktj.fly.pl
 DOMAIN-SUFFIX,xhohnr.fdm.pl
 DOMAIN-SUFFIX,nczwsy.yourhomestory.com.pl
@@ -53990,6 +54029,7 @@ DOMAIN-SUFFIX,zdwwtt.82plus.co.kr
 DOMAIN-SUFFIX,weblog.zdnet.co.kr
 DOMAIN-SUFFIX,log.zdnet.co.kr
 DOMAIN-SUFFIX,tkzvse.whois.co.kr
+DOMAIN,ns11.whois.co.kr
 DOMAIN-SUFFIX,edavbu.vittz.co.kr
 DOMAIN-SUFFIX,cdn.smlog.co.kr
 DOMAIN-SUFFIX,ksrqsw.slim9.co.kr
@@ -54882,6 +54922,7 @@ DOMAIN-SUFFIX,a8-itp.qoo10.jp
 DOMAIN-SUFFIX,rgecga.piary.jp
 DOMAIN-SUFFIX,tracking.nokai.jp
 DOMAIN-SUFFIX,sekaopi.nocre.jp
+DOMAIN-SUFFIX,nimiq.jp
 DOMAIN-SUFFIX,ebis.n-pri.jp
 DOMAIN-SUFFIX,a8.n-pri.jp
 DOMAIN-SUFFIX,visitor-service.mtgec.jp
@@ -58389,6 +58430,7 @@ DOMAIN-SUFFIX,janzoz.1001pneus.fr
 DOMAIN-SUFFIX,hgf4.zanzicar.fr
 DOMAIN-SUFFIX,gtm.yessmile.fr
 DOMAIN-SUFFIX,hutkse.wecandoo.fr
+DOMAIN,samsung3.solution.weborama.fr
 DOMAIN-SUFFIX,sanalytics.warnertv.fr
 DOMAIN-SUFFIX,analytics.warnertv.fr
 DOMAIN-SUFFIX,tk.verisure.fr
@@ -59500,6 +59542,9 @@ DOMAIN-SUFFIX,evt-api.ntm.eu
 DOMAIN-SUFFIX,np6.eu
 DOMAIN-SUFFIX,marketing.hmg.eu
 DOMAIN-SUFFIX,vovdsb.fbs.eu
+DOMAIN,samsung-produkcja.24.eu
+DOMAIN,samsung-stop.24.eu
+DOMAIN,samsung.24.eu
 DOMAIN-SUFFIX,load.ssgtm.certificadonacimientoonline.es
 DOMAIN-SUFFIX,sm.farmacias-parafarmacias.es
 DOMAIN-SUFFIX,adbmetrics.xn--futuroenespaol-1nb.es
@@ -64083,6 +64128,7 @@ DOMAIN-SUFFIX,tracking.stihl.de
 DOMAIN-SUFFIX,data-e3d4300b49.sport.de
 DOMAIN-SUFFIX,data-3823552b7a.sport.de
 DOMAIN-SUFFIX,data-01a4b5d23e.sport.de
+DOMAIN,a460.cell.phone.ringtone.samsung.sms13.de
 DOMAIN-SUFFIX,stats.sim24.de
 DOMAIN-SUFFIX,tracking.seton.de
 DOMAIN-SUFFIX,load.d.sauer.de
@@ -65766,6 +65812,7 @@ DOMAIN-SUFFIX,cppjwb.dobrain.co
 DOMAIN-SUFFIX,fpa-events.decrypt.co
 DOMAIN-SUFFIX,fpa-cdn.decrypt.co
 DOMAIN-SUFFIX,stats.dashbit.co
+DOMAIN-SUFFIX,brdtest.co
 DOMAIN-SUFFIX,ss.bootnow.co
 DOMAIN-SUFFIX,tr.batiweb.co
 DOMAIN-SUFFIX,alitems.co
@@ -65877,6 +65924,7 @@ DOMAIN-SUFFIX,plauplauplau.app.budg.co
 DOMAIN-SUFFIX,adop.co
 DOMAIN-SUFFIX,trx-cdn.zip.co
 DOMAIN-SUFFIX,trx.zip.co
+DOMAIN,s.w-x.co
 DOMAIN-SUFFIX,deer.m1x.co
 DOMAIN-SUFFIX,grouse.i21.co
 DOMAIN-SUFFIX,reuniondepadres.unisabana.edu.co
@@ -67712,6 +67760,7 @@ DOMAIN-SUFFIX,provo.staples.ca
 DOMAIN-SUFFIX,edge.stacktv.ca
 DOMAIN-SUFFIX,marketing.sensoft.ca
 DOMAIN-SUFFIX,quebec.savills.ca
+DOMAIN,t.email1.samsung.ca
 DOMAIN-SUFFIX,marketing.orionti.ca
 DOMAIN-SUFFIX,redtrack.myrocky.ca
 DOMAIN-SUFFIX,insights.mckimcg.ca
@@ -67913,6 +67962,7 @@ DOMAIN-SUFFIX,mads.bz
 DOMAIN-SUFFIX,a8.fpo.bz
 DOMAIN-SUFFIX,native.cli.bz
 DOMAIN-SUFFIX,pudalz.gismeteo.by
+DOMAIN-SUFFIX,nimiq.by
 DOMAIN-SUFFIX,matomo.a1.by
 DOMAIN-SUFFIX,stbg.stanbicbank.co.bw
 DOMAIN-SUFFIX,data.relacionamento.uniderp.br
