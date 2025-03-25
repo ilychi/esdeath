@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/25 12:39:11
-// DOMAIN: 2333
+// Last updated: 2025/3/25 13:23:19
+// DOMAIN: 2334
 // DOMAIN-SUFFIX: 973
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3369
+// Total: 3370
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1302,6 +1302,7 @@ DOMAIN,hips.hearstapps.com
 DOMAIN,cdn.hackernoon.com
 DOMAIN,assets.grooveapps.com
 DOMAIN-SUFFIX,content-storage-upload.googleapis.com
+DOMAIN,firebaseinstallations.googleapis.com
 DOMAIN-SUFFIX,crashlyticsreports-pa.googleapis.com
 DOMAIN,optimizationguide-pa.googleapis.com
 DOMAIN,firebaselogging-pa.googleapis.com
