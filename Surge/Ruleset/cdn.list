@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/26 19:04:25
-// DOMAIN: 2334
+// Last updated: 2025/3/26 19:35:20
+// DOMAIN: 2337
 // DOMAIN-SUFFIX: 975
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3372
+// Total: 3375
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2593,6 +2593,9 @@ DOMAIN,cdn.loom.com
 DOMAIN,static.kobo.com
 DOMAIN,cdn.kobo.com
 DOMAIN,info.knak.com
+DOMAIN,images.kick.com
+DOMAIN,files.kick.com
+DOMAIN,clips.kick.com
 DOMAIN,assets.kagi.com
 DOMAIN,cdn.hk01.com
 DOMAIN,assets.habr.com
