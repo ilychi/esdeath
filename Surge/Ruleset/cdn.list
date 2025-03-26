@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/26 14:19:15
-// DOMAIN: 2331
+// Last updated: 2025/3/26 15:02:48
+// DOMAIN: 2334
 // DOMAIN-SUFFIX: 975
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3369
+// Total: 3372
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -479,7 +479,6 @@ DOMAIN-SUFFIX,line-cdn.net
 DOMAIN-SUFFIX,kakaocdn.net
 DOMAIN-SUFFIX,jsdelivr.net
 DOMAIN,img.javstore.net
-DOMAIN,ik.imagekit.net
 DOMAIN-SUFFIX,forgecdn.net
 DOMAIN,connect.facebook.net
 DOMAIN,static.esimplus.net
@@ -570,6 +569,7 @@ DOMAIN-SUFFIX,mjedge.net
 DOMAIN-SUFFIX,mercdn.net
 DOMAIN,images.mattel.net
 DOMAIN,fiddle.jshell.net
+DOMAIN,ik.imgkit.net
 DOMAIN-SUFFIX,imgair.net
 DOMAIN,images.idgesg.net
 DOMAIN,alt.idgesg.net
@@ -2019,6 +2019,7 @@ DOMAIN,cf.hamreus.com
 DOMAIN,i.hamreus.com
 DOMAIN,public-files.gumroad.com
 DOMAIN,assets.gumroad.com
+DOMAIN,gstatic.com
 DOMAIN,connectivitycheck.gstatic.com
 DOMAIN,encrypted-vtbn3.gstatic.com
 DOMAIN,encrypted-vtbn2.gstatic.com
@@ -2395,6 +2396,7 @@ DOMAIN,cdnstatic.w4nkr.com
 DOMAIN,assets.volvo.com
 DOMAIN,assets.vogue.com
 DOMAIN,player.vimeo.com
+DOMAIN,static.vanta.com
 DOMAIN-SUFFIX,uvcdn.com
 DOMAIN-SUFFIX,unpkg.com
 DOMAIN-SUFFIX,twimg.com
@@ -2799,6 +2801,7 @@ DOMAIN-SUFFIX,jpg5.su
 DOMAIN,0x0.st
 DOMAIN,udata.namespace.so
 DOMAIN,image-forwarder.notaku.so
+DOMAIN,bucket1.notaku.so
 DOMAIN,static.cohere.so
 DOMAIN,cdn.circle.so
 DOMAIN,cdn.birdie.so
