@@ -1,4 +1,19 @@
 // Domestic Rules (Sukka)
+// Last updated: 2025/3/26 22:33:21
+// DOMAIN: 33
+// DOMAIN-SUFFIX: 921
+// DOMAIN-KEYWORD: 9
+// IP-CIDR: 2
+// PROCESS-NAME: 36
+// USER-AGENT: 4
+// OTHER: 5
+// Total: 1010
+// This file contains known domains and IPs that are avaliable in the Mainland China.
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/domestic.conf
+//  - https://ruleset.skk.moe/List/ip/domestic.conf
+//  - https://ruleset.skk.moe/List/non_ip/direct.conf
+// Domestic Rules (Sukka)
 // Last updated: 2025/3/26 22:01:14
 // DOMAIN: 33
 // DOMAIN-SUFFIX: 921
