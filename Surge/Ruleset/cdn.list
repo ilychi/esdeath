@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/27 15:57:06
+// Last updated: 2025/3/28 03:31:48
 // DOMAIN: 2341
-// DOMAIN-SUFFIX: 976
+// DOMAIN-SUFFIX: 977
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3380
+// Total: 3381
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -2986,6 +2986,7 @@ DOMAIN-SUFFIX,ipfs.smartholdem.io
 DOMAIN-SUFFIX,readthedocs.io
 DOMAIN,static.mytonwallet.io
 DOMAIN,cdn.ip2location.io
+DOMAIN-SUFFIX,intercomcdn.io
 DOMAIN-SUFFIX,infura-ipfs.io
 DOMAIN,cdn.imageengine.io
 DOMAIN,badges.greenkeeper.io
