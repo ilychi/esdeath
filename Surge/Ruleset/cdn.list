@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/26 22:33:19
-// DOMAIN: 2337
-// DOMAIN-SUFFIX: 975
+// Last updated: 2025/3/27 15:57:06
+// DOMAIN: 2341
+// DOMAIN-SUFFIX: 976
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3375
+// Total: 3380
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -364,6 +364,7 @@ DOMAIN,assets.visioncritical.net
 DOMAIN,vscode-sync-insiders.trafficmanager.net
 DOMAIN,vscode-sync.trafficmanager.net
 DOMAIN-SUFFIX,msftauthimages.net
+DOMAIN,media.minecraftforum.net
 DOMAIN-SUFFIX,licensebuttons.net
 DOMAIN,headway-widget.net
 DOMAIN,cdn.consentmanager.net
@@ -882,6 +883,7 @@ DOMAIN,3dna.nationbuilder.com
 DOMAIN-SUFFIX,mvnrepository.com
 DOMAIN-SUFFIX,mcusercontent.com
 DOMAIN,asset.mansionglobal.com
+DOMAIN-SUFFIX,mangguo-youku.com
 DOMAIN-SUFFIX,highwinds-cdn.com
 DOMAIN,sig.grumpybumpers.com
 DOMAIN,app.groovefunnels.com
@@ -2455,6 +2457,7 @@ DOMAIN,cdn.ko-fi.com
 DOMAIN,js.klarn.com
 DOMAIN,static.jsbin.com
 DOMAIN,null.jsbin.com
+DOMAIN,cdn.javmg.com
 DOMAIN,creator-image.javhd.com
 DOMAIN,static.javhd.com
 DOMAIN,i.ioiox.com
@@ -3057,6 +3060,7 @@ DOMAIN-SUFFIX,ipfscdn.io
 DOMAIN,cdn.icomoon.io
 DOMAIN,assets.holopin.io
 DOMAIN-SUFFIX,files.gitbook.io
+DOMAIN,geojson.io
 DOMAIN-SUFFIX,ipfs.eternum.io
 DOMAIN,static.cracked.io
 DOMAIN,cdn.concert.io
@@ -3092,6 +3096,7 @@ DOMAIN,website-cdn.ipinfo.io
 DOMAIN-SUFFIX,cdn.ipinfo.io
 DOMAIN-SUFFIX,ipfs.infura.io
 DOMAIN,packages.httpie.io
+DOMAIN,gohugo.io
 DOMAIN-SUFFIX,gitlab.io
 DOMAIN-SUFFIX,github.io
 DOMAIN,cdn-web.fydeos.io
