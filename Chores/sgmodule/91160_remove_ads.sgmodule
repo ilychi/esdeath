@@ -8,7 +8,7 @@
 #!tag=去广告
 #!loon_version=3.2.4(787)
 #!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
-#!date=2025-03-27 22:58:02
+#!date=2025-03-27 23:04:43
 
 [Rule]
 DOMAIN,httpdns.music.163.com,REJECT,extended-matching,pre-matching
@@ -114,6 +114,8 @@ http-response-jq ^https:\/\/patientgate\.91160\.com\/cube\/v1\/unit_page\/page_d
 ^https:\/\/snsapi\.91160\.com\/hotword\/open\/v1\/getSearchExplore\? data-type=text data="{}" status-code=200
 
 ^https:\/\/snsapi\.91160\.com\/hotword\/open\/v1\/getHotWordPlate\? data-type=text data="{}" status-code=200
+
+^https:\/\/snsapi\.91160\.com\/engine\/backgroundWord\/queryForFrontend\? data-type=text data="{}" status-code=200
 
 [MITM]
 hostname = %APPEND% patientgate.91160.com, soapi.91160.com, snsapi.91160.com, msglb.91160.com, patientappapi.91160.com
