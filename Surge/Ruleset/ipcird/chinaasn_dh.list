@@ -1,7 +1,7 @@
 // ASN Information in China.
-// Last updated: 2025/3/29 03:33:57
-// IP-ASN: 5042
-// Total: 5042
+// Last updated: 2025/3/29 19:11:25
+// IP-ASN: 5041
+// Total: 5041
 // Made by DH-Teams, All rights reserved
 // Data sources:
 //  - https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_CN.list
@@ -5033,7 +5033,6 @@ IP-ASN,214702
 IP-ASN,214704
 IP-ASN,214740
 IP-ASN,214759
-IP-ASN,214773
 IP-ASN,214843
 IP-ASN,214871
 IP-ASN,214899
