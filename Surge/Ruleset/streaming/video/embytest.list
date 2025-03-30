@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/30 02:37:00
+// Last updated: 2025/3/30 23:58:26
 // DOMAIN: 121
-// DOMAIN-SUFFIX: 394
+// DOMAIN-SUFFIX: 396
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 13
 // OTHER: 1
-// Total: 532
+// Total: 534
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -378,6 +378,7 @@ DOMAIN-SUFFIX,infinityfly.top
 DOMAIN-SUFFIX,itsmyduty.top
 DOMAIN-SUFFIX,jable.tv
 DOMAIN-SUFFIX,jellyfin.xeton.dev
+DOMAIN-SUFFIX,jingzhe.pro
 DOMAIN-SUFFIX,jmsooo.com
 DOMAIN-SUFFIX,jmsuper.com
 DOMAIN-SUFFIX,jp.embymv.me
@@ -510,6 +511,7 @@ DOMAIN-SUFFIX,tv.811861.xyz
 DOMAIN-SUFFIX,tv.micu.hk
 DOMAIN-SUFFIX,tv.the98.ltd
 DOMAIN-SUFFIX,ucloudhost.top
+DOMAIN-SUFFIX,uhdnow.com
 DOMAIN-SUFFIX,up.xmsl.org
 DOMAIN-SUFFIX,us.odysseyplus.site
 DOMAIN-SUFFIX,uuuoo.cc

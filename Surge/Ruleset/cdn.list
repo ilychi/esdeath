@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/3/30 02:36:58
-// DOMAIN: 2341
+// Last updated: 2025/3/30 23:58:24
+// DOMAIN: 2345
 // DOMAIN-SUFFIX: 977
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3381
+// Total: 3385
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -203,6 +203,7 @@ DOMAIN,i.creativecommons.org
 DOMAIN,playgroundcdn.typescriptlang.org
 DOMAIN,www.typescriptlang.org
 DOMAIN-SUFFIX,rescript-lang.org
+DOMAIN,meta.prismlauncher.org
 DOMAIN-SUFFIX,tile.openstreetmap.org
 DOMAIN,assets.geeksforgeeks.org
 DOMAIN,media.geeksforgeeks.org
@@ -2075,6 +2076,7 @@ DOMAIN,cdn.embedly.com
 DOMAIN-SUFFIX,els-cdn.com
 DOMAIN-SUFFIX,ebayimg.com
 DOMAIN,static.doujins.com
+DOMAIN,cdn.docsbot.com
 DOMAIN,global.divhunt.com
 DOMAIN,s1.divhunt.com
 DOMAIN-SUFFIX,denopkg.com
@@ -2118,6 +2120,7 @@ DOMAIN,cdn6.aptoide.com
 DOMAIN,images.en.aptoide.com
 DOMAIN,img.apponic.com
 DOMAIN,cdn.apponic.com
+DOMAIN,fast.appcues.com
 DOMAIN,app-spm.com
 DOMAIN,static.apkpure.com
 DOMAIN,cdn.apkmonk.com
@@ -2836,6 +2839,7 @@ DOMAIN,static.zaobao.com.sg
 DOMAIN,static.mysph.sph.com.sg
 DOMAIN,cdp.sph.com.sg
 DOMAIN-SUFFIX,ipfs.best-practice.se
+DOMAIN,widget.datablocks.se
 DOMAIN-SUFFIX,webp.se
 DOMAIN,curl.se
 DOMAIN,avatars.dzeninfra.ru
