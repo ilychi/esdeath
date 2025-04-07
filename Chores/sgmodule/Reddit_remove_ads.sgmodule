@@ -1,18 +1,7 @@
-#!name=Reddit去广告
-#!desc=过滤应用内推广，阻止NSFW提示。
-#!author=xream[https://github.com/xream]
-#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Reddit.png
-#!category=🚫 AD Block
+Reddit_remove_ads%0A：Error: 请求超时(20 秒)
 
-#!openUrl=https://apps.apple.com/app/id1064216828
-#!tag=去广告
-#!loon_version=3.2.9(837)
-#!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
-#!date=2025-03-07 00:52:30
 
-[Body Rewrite]
-http-response-jq ^https?:\/\/gql(-fed)?\.reddit\.com ' walk(   if type == "object" then      (if .isNsfw == true then .isNsfw = false else . end)     | (if .isNsfwMediaBlocked == true then .isNsfwMediaBlocked = false else . end)     | (if .isNsfwContentShown == false then .isNsfwContentShown = true else . end)      | (if (.commentsPageAds | type == "array") then (.commentsPageAds = []) else . end)      | (if ( (.node | type == "object") and (.node.cells | type == "array") and (.node.cells | any(.__typename? == "AdMetadataCell" or .isAdPost? == true)) ) then empty else . end)     | (if (.node | type == "object") and (.node.adPayload | type == "object") then empty else . end)     | (if .__typename == "AdPost" then empty else . end)   else .  end)'
 
-[MITM]
-hostname = %APPEND% gql.reddit.com, gql-fed.reddit.com
 
+
+Script Hub 重写转换: ❌  可自行翻译错误信息或复制错误信息后点击通知进行反馈
