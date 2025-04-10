@@ -1,12 +1,12 @@
 // Common Static CDNs
-// Last updated: 2025/4/10 21:34:07
-// DOMAIN: 2395
+// Last updated: 2025/4/11 01:05:11
+// DOMAIN: 2396
 // DOMAIN-SUFFIX: 984
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 46
-// Total: 3442
+// Total: 3443
 // Made by Sukka, All rights reserved
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -304,6 +304,7 @@ DOMAIN,plugins-artifacts.gradle.org
 DOMAIN,repo.gradle.org
 DOMAIN,proxy.golang.org
 DOMAIN,eslint.org
+DOMAIN,storage.deepin.org
 DOMAIN,assets-fe.change.org
 DOMAIN,static.change.org
 DOMAIN,assets.change.org
