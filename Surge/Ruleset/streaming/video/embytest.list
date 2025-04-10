@@ -1,11 +1,11 @@
 // Emby 测试规则
-// Last updated: 2025/3/30 23:58:26
-// DOMAIN: 121
-// DOMAIN-SUFFIX: 396
+// Last updated: 2025/4/10 20:26:29
+// DOMAIN: 123
+// DOMAIN-SUFFIX: 398
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 13
 // OTHER: 1
-// Total: 534
+// Total: 538
 // 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -65,6 +65,7 @@ DOMAIN,embyfw.alphatvapp.top
 DOMAIN,embymv.tk
 DOMAIN,embyplus.org
 DOMAIN,flare.catlinks.co.uk
+DOMAIN,free.28.al
 DOMAIN,fun.poloemby.xyz // polo
 DOMAIN,gd.9521732.xyz
 DOMAIN,hd.xmsl.org // loser 反代 cf美国
@@ -80,6 +81,7 @@ DOMAIN,jsq.mooguu.top // 蘑菇-见手青
 DOMAIN,ju.sfcj.org
 DOMAIN,jz.mcjoker.xyz // Added for: jz.mcjoker.xyz:443
 DOMAIN,line.xmsl.org // loser
+DOMAIN,lite.saturday.video
 DOMAIN,main.gugumedia.site
 DOMAIN,media.nijigem.by
 DOMAIN,misty.cx // Added for: misty.cx:443
@@ -92,6 +94,7 @@ DOMAIN,pilipili.club // pilipili
 DOMAIN,pk.catchyoureye.top // pokeremby jms
 DOMAIN,play.charontv.com
 DOMAIN,play.charontv.com // Added for: play.charontv.com:443
+DOMAIN,plumber.nezhasu.com
 DOMAIN,pm.xmsl.org // loser
 DOMAIN,pornemby.maoxiong.cloud // 猫熊 pron
 DOMAIN,pub1.emby.wtf
@@ -130,7 +133,6 @@ DOMAIN,vi-sg.pppp.us.kg
 DOMAIN,vip3.jellyfin.asia // 阿拉丁-水母
 DOMAIN,ws1.jellyfin.asia // 水母
 DOMAIN,www.ikun.tv // Added for: www.ikun.tv:443
-DOMAIN,xjp1.nezhasu.com
 DOMAIN,yhemby.top // 飞跃银河
 DOMAIN,z.sfcj.org
 DOMAIN,z.sfcj.org // 非越
@@ -146,10 +148,12 @@ DOMAIN-SUFFIX,114514.quest
 DOMAIN-SUFFIX,123456.al
 DOMAIN-SUFFIX,123456.buzz
 DOMAIN-SUFFIX,167.235.116.53
+DOMAIN-SUFFIX,1l1.icu
 DOMAIN-SUFFIX,20120714.xyz
 DOMAIN-SUFFIX,202.61.255.248
 DOMAIN-SUFFIX,23.emby77.cf
 DOMAIN-SUFFIX,23s.casacam.net
+DOMAIN-SUFFIX,28.al
 DOMAIN-SUFFIX,285286.xyz
 DOMAIN-SUFFIX,404.sb
 DOMAIN-SUFFIX,4545.cf
@@ -161,6 +165,7 @@ DOMAIN-SUFFIX,9191001.xyz
 DOMAIN-SUFFIX,91ai.de
 DOMAIN-SUFFIX,94.16.122.183
 DOMAIN-SUFFIX,9521732.xyz
+DOMAIN-SUFFIX,9club.lol
 DOMAIN-SUFFIX,Bluesea.ddns.me
 DOMAIN-SUFFIX,aca.best
 DOMAIN-SUFFIX,aca.best // ACA
@@ -175,7 +180,6 @@ DOMAIN-SUFFIX,agasg1.jmsooo.com
 DOMAIN-SUFFIX,agon.cf
 DOMAIN-SUFFIX,aliz.work
 DOMAIN-SUFFIX,aliz.work // hkaemby
-DOMAIN-SUFFIX,alphatvapp.top
 DOMAIN-SUFFIX,am.sb
 DOMAIN-SUFFIX,api.nebula-emby.com
 DOMAIN-SUFFIX,as174.de
