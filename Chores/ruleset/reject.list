@@ -417,13 +417,9 @@ URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/
 # >> MeiTu
 DOMAIN,adui.tg.meitu.com
 
-# >> Keep
-DOMAIN,httpdns.n.netease.com
-DOMAIN,httpdns.calorietech.com
-DOMAIN,hc-ssp.sm.cn
-
 # >> MailMaster
 DOMAIN,httpdns.music.163.com
+DOMAIN,httpdns.n.netease.com
 DOMAIN,httpdns-sdk.n.netease.com
 DOMAIN,lofter.httpdns.c.163.com
 DOMAIN,music.httpdns.c.163.com
