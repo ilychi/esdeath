@@ -1,5 +1,5 @@
-// AIGC
-// Last updated: 2025/4/11 10:08:46
+// AIGC Services
+// Last updated: 2025/4/11 19:11:25
 // DOMAIN: 42
 // DOMAIN-SUFFIX: 46
 // DOMAIN-KEYWORD: 6
@@ -7,7 +7,7 @@
 // IP-CIDR6: 1
 // OTHER: 2
 // Total: 98
-// This file contains rules for AIGC services, including OpenAI, Google Gemini, Claude, Perplexity, etc.
+// Rules for AI services including OpenAI, Google Gemini, Claude, Perplexity and other generative AI platforms
 // Data sources:
 //  - https://kelee.one/Tool/Loon/Rule/AI.list
 //  - https://github.com/ConnersHua/RuleGo/raw/master/Surge/Ruleset/Extra/AI.list

@@ -1,13 +1,13 @@
-// Common Static CDNs
-// Last updated: 2025/4/11 10:32:24
-// DOMAIN: 2396
-// DOMAIN-SUFFIX: 984
+// Content Delivery Networks
+// Last updated: 2025/4/11 19:37:27
+// DOMAIN: 2395
+// DOMAIN-SUFFIX: 985
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
-// OTHER: 46
-// Total: 3443
-// Made by Sukka, All rights reserved
+// OTHER: 47
+// Total: 3444
+// Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
 //  - https://ruleset.skk.moe/List/ip/cdn.conf
@@ -529,7 +529,7 @@ DOMAIN,cdn.myfonts.net
 DOMAIN-SUFFIX,itsre-sumo.mozilla.net
 DOMAIN,interactive-examples.mdn.mozilla.net
 DOMAIN-SUFFIX,cdn.mozilla.net
-DOMAIN,minotar.net
+DOMAIN-SUFFIX,minotar.net
 DOMAIN-SUFFIX,jscloud.net
 DOMAIN,pg2dhpc3p5ec22g3.jkforum.net
 DOMAIN,play.izanmei.net
@@ -3449,6 +3449,7 @@ DOMAIN-WILDCARD,chunk-*.mux.com
 DOMAIN-WILDCARD,*.skyearth?.xyz
 DOMAIN-WILDCARD,*.img.*.sendibm?.com
 DOMAIN-WILDCARD,cdn?.18girlssex.com
+DOMAIN-WILDCARD,uploads-*.insided.com
 URL-REGEX,^http://www\.microsoft\.com/pki/
 URL-REGEX,^http://www\.microsoft\.com/pkiops/
 IP-CIDR,162.159.200.1/32

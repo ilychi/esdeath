@@ -1,0 +1,13 @@
+// REJECT-DROP Rules
+// Last updated: 2025/4/11 19:37:27
+// DOMAIN: 1
+// DOMAIN-SUFFIX: 4
+// Total: 5
+// Aggressive blocking ruleset using REJECT-DROP policy for complete connection termination of unwanted services
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/reject-drop.conf
+DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
+DOMAIN-SUFFIX,geo2.adobe.com
+DOMAIN-SUFFIX,in.applicationinsights.azure.com
+DOMAIN-SUFFIX,null
+DOMAIN-SUFFIX,undefined

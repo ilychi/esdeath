@@ -1,11 +1,11 @@
-// Apple
-// Last updated: 2025/4/11 10:08:46
+// Apple Services
+// Last updated: 2025/4/11 19:11:25
 // DOMAIN: 3
 // DOMAIN-SUFFIX: 192
 // IP-CIDR: 10
 // PROCESS-NAME: 10
 // Total: 215
-// This file contains rules for Apple services, including services operated in mainland China ( iCloud.com.cn, Apple Maps China, etc).
+// Rules for Apple services, including services operated in mainland China (iCloud.com.cn, Apple Maps China, etc).
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/apple_services.conf
 //  - https://ruleset.skk.moe/List/non_ip/apple_cn.conf

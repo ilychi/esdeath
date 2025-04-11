@@ -1,12 +1,12 @@
-// Emby 测试规则
-// Last updated: 2025/4/11 10:32:26
+// Emby Media Servers
+// Last updated: 2025/4/11 19:37:28
 // DOMAIN: 123
 // DOMAIN-SUFFIX: 398
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 13
 // OTHER: 1
 // Total: 538
-// 这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。
+// Comprehensive rules for various Emby media servers, combining multiple sources including Clash format rules
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
 //  - https://github.com/kefengyoyo/own/raw/main/Emby-P.list

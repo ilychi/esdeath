@@ -1,4 +1,5 @@
-// Last updated: 2025/4/11 10:32:26
+// Global Streaming Services
+// Last updated: 2025/4/11 19:37:28
 // DOMAIN: 51
 // DOMAIN-SUFFIX: 194
 // DOMAIN-KEYWORD: 15
@@ -7,6 +8,7 @@
 // PROCESS-NAME: 14
 // USER-AGENT: 49
 // Total: 342
+// Combined rules for various streaming media platforms including both domain and IP-based matches
 // Data sources:
 //  - https://ruleset.skk.moe/List/ip/stream.conf
 DOMAIN,44wilhpljf.execute-api.ap-southeast-1.amazonaws.com

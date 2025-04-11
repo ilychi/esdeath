@@ -1,0 +1,15 @@
+// REJECT-NO-DROP Rules
+// Last updated: 2025/4/11 19:37:27
+// DOMAIN: 1
+// DOMAIN-SUFFIX: 3
+// OTHER: 2
+// Total: 6
+// Advertising & tracking rules using REJECT-NO-DROP policy for services that require connection but content should be blocked
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/reject-no-drop.conf
+AND,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWORD,douyu))
+AND,((PROTOCOL,UDP),(DOMAIN-SUFFIX,googlevideo.com))
+DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
+DOMAIN-SUFFIX,mcdn.bilivideo.cn
+DOMAIN-SUFFIX,p2p.huya.com
+DOMAIN-SUFFIX,szbdyd.com
