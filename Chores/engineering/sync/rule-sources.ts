@@ -235,6 +235,14 @@ export const ruleGroups: RuleGroup[] = [
         path: 'Surge/Ruleset/reject/ads_limbopro.list',
         url: 'https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adblock4limbo_surge.list',
       },
+      {
+        path: 'Surge/Ruleset/reject/ads_sukka_reject_no_drop.list',
+        url: 'https://ruleset.skk.moe/List/non_ip/reject-no-drop.conf',
+      },
+      {
+        path: 'Surge/Ruleset/reject/ads_sukka_reject_drop.list',
+        url: 'https://ruleset.skk.moe/List/non_ip/reject-drop.conf',
+      },
     ],
   },
   {
@@ -520,9 +528,9 @@ export const specialRules: SpecialRuleConfig[] = [
     extraRules: ['DOMAIN-SUFFIX,openrouter.ai'],
     cleanup: true,
     header: {
-      title: 'AIGC',
+      title: 'AIGC Services',
       description:
-        'This file contains rules for AIGC services, including OpenAI, Google Gemini, Claude, Perplexity, etc.',
+        'Rules for AI services including OpenAI, Google Gemini, Claude, Perplexity and other generative AI platforms',
     },
   },
   {
@@ -536,9 +544,9 @@ export const specialRules: SpecialRuleConfig[] = [
     ],
     cleanup: true,
     header: {
-      title: 'Apple',
+      title: 'Apple Services',
       description:
-        'This file contains rules for Apple services, including services operated in mainland China ( iCloud.com.cn, Apple Maps China, etc).',
+        'Rules for Apple services, including services operated in mainland China (iCloud.com.cn, Apple Maps China, etc).',
     },
   },
   {
@@ -552,9 +560,9 @@ export const specialRules: SpecialRuleConfig[] = [
     cleanup: false,
     dedup: true,
     header: {
-      enable: true, // 明确启用 header
-      title: 'Advertising & malicious & Tracking',
-      description: 'Made by RuleGo, All rights reserved',
+      enable: true,
+      title: 'Advertising, Malicious Sites & Tracking Protection',
+      description: 'Combined rules for blocking ads, malicious sites and user tracking services',
     },
   },
   {
@@ -567,9 +575,34 @@ export const specialRules: SpecialRuleConfig[] = [
     ],
     cleanup: true,
     header: {
-      enable: true, // 明确启用 header
-      title: 'Advertising & Privacy Protection & Malware & Phishing ',
-      description: 'Made by Sukka, All rights reserved',
+      enable: true,
+      title: 'Privacy & Security Protection',
+      description:
+        'Comprehensive ruleset for blocking advertising, privacy-invasive services, malware, and phishing sites',
+    },
+  },
+  {
+    name: 'Reject-No-Drop (Sukka)',
+    targetFile: 'Surge/Ruleset/reject_nodrop_sukka.list',
+    sourceFiles: ['Surge/Ruleset/reject/ads_sukka_reject_no_drop.list'],
+    cleanup: true,
+    header: {
+      enable: true,
+      title: 'REJECT-NO-DROP Rules',
+      description:
+        'Advertising & tracking rules using REJECT-NO-DROP policy for services that require connection but content should be blocked',
+    },
+  },
+  {
+    name: 'Reject-Drop (Sukka)',
+    targetFile: 'Surge/Ruleset/reject_drop_sukka.list',
+    sourceFiles: ['Surge/Ruleset/reject/ads_sukka_reject_drop.list'],
+    cleanup: true,
+    header: {
+      enable: true,
+      title: 'REJECT-DROP Rules',
+      description:
+        'Aggressive blocking ruleset using REJECT-DROP policy for complete connection termination of unwanted services',
     },
   },
   {
@@ -579,9 +612,10 @@ export const specialRules: SpecialRuleConfig[] = [
     cleanup: false,
     dedup: true,
     header: {
-      enable: true, // 明确启用 header
-      title: 'Common Static CDNs',
-      description: 'Made by Sukka, All rights reserved',
+      enable: true,
+      title: 'Content Delivery Networks',
+      description:
+        'Rules for common static content CDNs to optimize content delivery and network performance',
     },
   },
   {
@@ -601,8 +635,9 @@ export const specialRules: SpecialRuleConfig[] = [
     deleteSourceFiles: false,
     header: {
       enable: true,
-      title: 'Emby 测试规则',
-      description: '这是一个测试规则，聚合了所有 Emby 规则，包括Clash格式。',
+      title: 'Emby Media Servers',
+      description:
+        'Comprehensive rules for various Emby media servers, combining multiple sources including Clash format rules',
     },
   },
   {
@@ -613,9 +648,9 @@ export const specialRules: SpecialRuleConfig[] = [
     applyNoResolve: true,
     header: {
       enable: true,
-      title: 'Emby Streaming Media (Direct)',
+      title: 'Direct Emby Connections',
       description:
-        'Direct connection rules for Emby servers accessible from Mainland China. Includes server addresses that can attempt direct connection from mainland. Note: Still in testing phase.',
+        'Rules for Emby servers that can be accessed directly from Mainland China without proxy. Includes optimized paths for better performance within China network.',
     },
   },
   {
@@ -624,13 +659,21 @@ export const specialRules: SpecialRuleConfig[] = [
     sourceFiles: ['Surge/Ruleset/streaming/music/neteasemusic_noip.list'],
     cleanup: true,
     header: {
-      title: '网易云音乐',
+      title: 'NetEase Cloud Music',
+      description:
+        'Rules for NetEase Cloud Music streaming service, optimized for China mainland access',
     },
   },
   {
     name: 'Streaming',
     targetFile: 'Surge/Ruleset/streaming/streaming.list',
     sourceFiles: ['Surge/Ruleset/streaming/streaming_ip.list'],
+    header: {
+      enable: true,
+      title: 'Global Streaming Services',
+      description:
+        'Combined rules for various streaming media platforms including both domain and IP-based matches',
+    },
   },
   {
     name: 'Domestic (Sukka)',
@@ -644,9 +687,9 @@ export const specialRules: SpecialRuleConfig[] = [
     dedup: true,
     header: {
       enable: true,
-      title: 'Domestic Rules (Sukka)',
+      title: 'China Mainland Direct Access',
       description:
-        'This file contains known domains and IPs that are avaliable in the Mainland China.',
+        'Comprehensive rules for domains and IPs that are accessible within Mainland China, optimized for direct connection',
     },
   },
   {
@@ -657,9 +700,9 @@ export const specialRules: SpecialRuleConfig[] = [
     dedup: true,
     header: {
       enable: true,
-      title: 'Direct (Sukka)',
+      title: 'Direct Connection Rules',
       description:
-        'This file contains rules for direct access to domains and IPs in the Mainland China.',
+        'Specific rules for services that should bypass proxy and connect directly for optimal performance',
     },
   },
 ];
