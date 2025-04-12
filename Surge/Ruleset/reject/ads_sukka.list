@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-04-12T07:55:10.866Z
-# Size: 78549
+# Last Updated: 2025-04-12T12:38:13.238Z
+# Size: 78559
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -1700,6 +1700,7 @@ DOMAIN-SUFFIX,riledbiders.shop
 DOMAIN-SUFFIX,praxeandean.shop
 DOMAIN-SUFFIX,persesdates.shop
 DOMAIN-SUFFIX,peglessbath.shop
+DOMAIN-SUFFIX,pangiumsulu.shop
 DOMAIN-SUFFIX,ss.nutrientify.shop
 DOMAIN-SUFFIX,mickblowess.shop
 DOMAIN-SUFFIX,megmhokluck.shop
@@ -3973,6 +3974,7 @@ DOMAIN-SUFFIX,wkmorvzawmryv.top
 DOMAIN-SUFFIX,wkamwqeoqozzm.top
 DOMAIN-SUFFIX,waaz.wjebboljobvaj.top
 DOMAIN-SUFFIX,wewlorozwolyz.top
+DOMAIN-SUFFIX,wevrwqjqemkyj.top
 DOMAIN-SUFFIX,welbljlvmmyzw.top
 DOMAIN-SUFFIX,vqrozzojjlwbz.top
 DOMAIN-SUFFIX,vqoqlebqqammj.top
@@ -5284,6 +5286,7 @@ DOMAIN-SUFFIX,eloqua-tracking.kaiserpermanente.org
 DOMAIN-SUFFIX,smetrics2.kaiserpermanente.org
 DOMAIN-SUFFIX,marketing.johnstoncountync.org
 DOMAIN-SUFFIX,ismypersonalreco.org
+DOMAIN-SUFFIX,ildrendreaminger.org
 DOMAIN-SUFFIX,edm.healthroundtable.org
 DOMAIN-SUFFIX,t.hartfordsymphony.org
 DOMAIN-SUFFIX,web.health.hannibalregional.org
@@ -5476,6 +5479,7 @@ DOMAIN-SUFFIX,mygoalsuccess.org
 DOMAIN-SUFFIX,trk.mydailyapples.org
 DOMAIN-SUFFIX,connect.montagehealth.org
 DOMAIN-SUFFIX,tracking.your.montagehealth.org
+DOMAIN-SUFFIX,mnverylittlec.org
 DOMAIN-SUFFIX,connect.medstarhealth.org
 DOMAIN-SUFFIX,healthier.luminishealth.org
 DOMAIN-SUFFIX,tracking.luminishealth.org
@@ -11516,6 +11520,7 @@ DOMAIN-SUFFIX,frgf99.fun
 DOMAIN-SUFFIX,dsda21.fun
 DOMAIN-SUFFIX,cdcs34.fun
 DOMAIN-SUFFIX,bgbg00.fun
+DOMAIN-SUFFIX,viurl.fun
 DOMAIN-SUFFIX,mytrack.ph143.fun
 DOMAIN-SUFFIX,hyhy2.fun
 DOMAIN-SUFFIX,data-c0c484e9be.funke.fun
@@ -19631,6 +19636,7 @@ DOMAIN-SUFFIX,halogennetwork.com
 DOMAIN-SUFFIX,somni.hallmarkecards.com
 DOMAIN-SUFFIX,omni.hallmarkecards.com
 DOMAIN-SUFFIX,haithalaneroid.com
+DOMAIN-SUFFIX,gvypnjoucrsfep.com
 DOMAIN-SUFFIX,ad-specs.guoshipartners.com
 DOMAIN-SUFFIX,tr.qualite.groupebarriere.com
 DOMAIN-SUFFIX,tr.news.groupe-armonia.com
@@ -24505,6 +24511,7 @@ DOMAIN-SUFFIX,connect.geniecompany.com
 DOMAIN-SUFFIX,genesismedia.com
 DOMAIN-SUFFIX,marketing.geigerwealth.com
 DOMAIN-SUFFIX,geegleshoaph.com
+DOMAIN-SUFFIX,gddshvkrawod.com
 DOMAIN-SUFFIX,news-info.gcgfinancial.com
 DOMAIN-SUFFIX,ts.gastronomixs.com
 DOMAIN-SUFFIX,marketing.gasandsupply.com
@@ -31916,6 +31923,7 @@ DOMAIN-SUFFIX,solutions.a-1freeman.com
 DOMAIN-SUFFIX,9xob25oszs.com
 DOMAIN-SUFFIX,9d87b35397.com
 DOMAIN-SUFFIX,9cd4abb9e0.com
+DOMAIN-SUFFIX,9c867e2056.com
 DOMAIN-SUFFIX,9adbbad978.com
 DOMAIN-SUFFIX,999xx999kk.com
 DOMAIN-SUFFIX,999xx333kk.com
@@ -33985,6 +33993,7 @@ DOMAIN-SUFFIX,mack7oyes.com
 DOMAIN-SUFFIX,elqtracking.macegroup.com
 DOMAIN-SUFFIX,m1ll1c4n0.com
 DOMAIN-SUFFIX,m0rsq075u.com
+DOMAIN-SUFFIX,lzoorgpta.com
 DOMAIN-SUFFIX,lzolanahk.com
 DOMAIN-SUFFIX,lysim-lre.com
 DOMAIN,engine.lvehaisen.com
@@ -39399,6 +39408,7 @@ DOMAIN-SUFFIX,drenqils.com
 DOMAIN-SUFFIX,dszdtt.drawelry.com
 DOMAIN-SUFFIX,drandoxo.com
 DOMAIN-SUFFIX,draktash.com
+DOMAIN-SUFFIX,dqbmatfh.com
 DOMAIN-SUFFIX,dpuppers.com
 DOMAIN-SUFFIX,sgtm.dpmanual.com
 DOMAIN-SUFFIX,custom.dowjones.com
