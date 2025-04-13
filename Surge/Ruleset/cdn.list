@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/13 21:14:00
-// DOMAIN: 2395
-// DOMAIN-SUFFIX: 985
+// Last updated: 2025/4/13 21:41:33
+// DOMAIN: 2396
+// DOMAIN-SUFFIX: 986
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 47
-// Total: 3444
+// Total: 3446
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -412,6 +412,7 @@ DOMAIN,consumersiteimages.trustpilot.net
 DOMAIN,cdn.trustpilot.net
 DOMAIN-SUFFIX,nelreports.net
 DOMAIN,cdn.macstories.net
+DOMAIN-SUFFIX,live-video.net
 DOMAIN-SUFFIX,hs-scripts.net
 DOMAIN-SUFFIX,faceit-cdn.net
 DOMAIN,hub-assets.displaycal.net
@@ -3161,6 +3162,7 @@ DOMAIN,static-mh.content.disney.io
 DOMAIN-SUFFIX,crates.io
 DOMAIN,cdn.branch.io
 DOMAIN,netlify.apollo.io
+DOMAIN,v2uploads.zopim.io
 DOMAIN,telemetry.split.io
 DOMAIN,streaming.split.io
 DOMAIN,events.split.io
