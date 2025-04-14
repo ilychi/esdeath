@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/14 18:37:03
-// DOMAIN: 2396
+// Last updated: 2025/4/14 19:04:40
+// DOMAIN: 2397
 // DOMAIN-SUFFIX: 986
 // DOMAIN-KEYWORD: 12
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 47
-// Total: 3446
+// Total: 3447
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1578,6 +1578,7 @@ DOMAIN,snippets.freshchat.com
 DOMAIN,assetscdn-wchat.eu.freshchat.com
 DOMAIN-SUFFIX,framercdn.com
 DOMAIN-SUFFIX,forbesimg.com
+DOMAIN,cdn.fontshare.com
 DOMAIN-SUFFIX,fncstatic.com
 DOMAIN-SUFFIX,fiverrcdn.com
 DOMAIN,static.filehorse.com
