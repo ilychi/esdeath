@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/15 17:39:24
-// DOMAIN: 2397
-// DOMAIN-SUFFIX: 986
-// DOMAIN-KEYWORD: 12
+// Last updated: 2025/4/15 18:31:15
+// DOMAIN: 2406
+// DOMAIN-SUFFIX: 987
+// DOMAIN-KEYWORD: 14
 // IP-CIDR: 3
 // URL-REGEX: 2
-// OTHER: 47
-// Total: 3447
+// OTHER: 48
+// Total: 3460
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -261,6 +261,7 @@ DOMAIN,cdn.fosstodon.org
 DOMAIN-SUFFIX,doppiocdn.org
 DOMAIN-SUFFIX,cdn.cookielaw.org
 DOMAIN,cdn.cocoapods.org
+DOMAIN,moderate.cleantalk.org
 DOMAIN,images.videolan.org
 DOMAIN,static.tronscan.org
 DOMAIN-SUFFIX,rollupjs.org
@@ -496,6 +497,7 @@ DOMAIN-SUFFIX,forgecdn.net
 DOMAIN,connect.facebook.net
 DOMAIN,static.esimplus.net
 DOMAIN,assets.bitstamp.net
+DOMAIN,damassets.autodesk.net
 DOMAIN,jira-frontend-bifrost.prod-east.frontend.public.atl-paas.net
 DOMAIN-SUFFIX,prod.public.atl-paas.net
 DOMAIN,steamusercontent-a.akamaihd.net
@@ -1005,6 +1007,7 @@ DOMAIN,st-eu.dynamicyield.com
 DOMAIN,cdn.dynamicyield.com
 DOMAIN,st.dynamicyield.com
 DOMAIN,cdn2.downdetector.com
+DOMAIN-SUFFIX,dockerstatic.com
 DOMAIN,segment.digitalocean.com
 DOMAIN,ui-cdn.digitalocean.com
 DOMAIN-SUFFIX,assets.digitalocean.com
@@ -1655,6 +1658,7 @@ DOMAIN,js.userflow.com
 DOMAIN,chatwidgetmetrics-proxy.usepylon.com
 DOMAIN,apichatwidget.usepylon.com
 DOMAIN,widget.usepylon.com
+DOMAIN,source.unsplash.com
 DOMAIN,images.unsplash.com
 DOMAIN,plus.unsplash.com
 DOMAIN,assets.unifi-ai.com
@@ -1746,6 +1750,7 @@ DOMAIN,thumbnailer.mixcloud.com
 DOMAIN,api.mintlify.com
 DOMAIN-SUFFIX,static-prod-web.miniclip.com
 DOMAIN,static.mendeley.com
+DOMAIN,i.mediatek.com
 DOMAIN-SUFFIX,cdn.survey.medallia.com
 DOMAIN-SUFFIX,cdn.medallia.com
 DOMAIN,c.marsflag.com
@@ -1860,6 +1865,8 @@ DOMAIN,static.bitfinex.com
 DOMAIN-SUFFIX,bgstatic.com
 DOMAIN-SUFFIX,badoocdn.com
 DOMAIN,assets.awwwards.com
+DOMAIN,cdn.accounts.autodesk.com
+DOMAIN,images.profile.autodesk.com
 DOMAIN,cdn.ashbyprd.com
 DOMAIN,imgrs.apkcombo.com
 DOMAIN,assets.apilayer.com
@@ -1994,6 +2001,7 @@ DOMAIN-SUFFIX,ngfiles.com
 DOMAIN,assets.nflxext.com
 DOMAIN,stbff.newfold.com
 DOMAIN,mta.newfold.com
+DOMAIN,featureflags.netlify.com
 DOMAIN-SUFFIX,ndtvimg.com
 DOMAIN,nodeassets.nbcnews.com
 DOMAIN,iframe.nbcnews.com
@@ -2378,7 +2386,9 @@ DOMAIN,assets.foxdcg.com
 DOMAIN,thumbor.forbes.com
 DOMAIN,imageio.forbes.com
 DOMAIN-SUFFIX,ipfs.fooock.com
+DOMAIN,widgets.flickr.com
 DOMAIN-SUFFIX,static.flickr.com
+DOMAIN,embedr.flickr.com
 DOMAIN,s1.feedly.com
 DOMAIN,assets.fastly.com
 DOMAIN-SUFFIX,ezocdn.com
@@ -3406,6 +3416,8 @@ DOMAIN-KEYWORD,-assets.worldsex.com
 DOMAIN-KEYWORD,-thumbs.worldsex.com
 DOMAIN-KEYWORD,99avcdn
 DOMAIN-KEYWORD,-images.disco-api.com
+DOMAIN-KEYWORD,vdownload.hanime1
+DOMAIN-KEYWORD,fonts.hanime1
 DOMAIN-WILDCARD,appcenter-filemanagement-*.cloudapp.net
 DOMAIN-WILDCARD,proxy-*.dailymotion.com
 DOMAIN-WILDCARD,static?.tgstat.ru
@@ -3453,6 +3465,7 @@ DOMAIN-WILDCARD,*.skyearth?.xyz
 DOMAIN-WILDCARD,*.img.*.sendibm?.com
 DOMAIN-WILDCARD,cdn?.18girlssex.com
 DOMAIN-WILDCARD,uploads-*.insided.com
+DOMAIN-WILDCARD,s*.hanime1
 URL-REGEX,^http://www\.microsoft\.com/pki/
 URL-REGEX,^http://www\.microsoft\.com/pkiops/
 IP-CIDR,162.159.200.1/32
