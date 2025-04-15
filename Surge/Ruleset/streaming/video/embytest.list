@@ -1,11 +1,11 @@
 // Emby Media Servers
-// Last updated: 2025/4/15 07:38:01
-// DOMAIN: 123
+// Last updated: 2025/4/15 08:24:18
+// DOMAIN: 125
 // DOMAIN-SUFFIX: 398
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 13
 // OTHER: 1
-// Total: 538
+// Total: 540
 // Comprehensive rules for various Emby media servers, combining multiple sources including Clash format rules
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -19,6 +19,7 @@ DOMAIN,581658.best
 DOMAIN,581658.best // Added for: 581658.best:443
 DOMAIN,7777777.buzz
 DOMAIN,9wfree.emby.eu.org
+DOMAIN,DOMAIN,emby.cn2gias.uk
 DOMAIN,ad.auroramedia.vip
 DOMAIN,auto.polodns.xyz // Added for: auto.polodns.xyz:443
 DOMAIN,by.mooguu.org // 蘑菇备用
@@ -58,6 +59,7 @@ DOMAIN,emby.jingzhe.pro
 DOMAIN,emby.lilyya.xyz // lilyemby
 DOMAIN,emby.pilipiliultra.com
 DOMAIN,emby.tnx.one // Nanflix
+DOMAIN,emby.ucloudhost.top
 DOMAIN,emby3.mcjoker.xyz
 DOMAIN,emby3.mcjoker.xyz // Added for: emby3.mcjoker.xyz:443
 DOMAIN,emby4.029902.xyz
