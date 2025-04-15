@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/15 20:38:20
-// DOMAIN: 2406
+// Last updated: 2025/4/15 21:12:49
+// DOMAIN: 2407
 // DOMAIN-SUFFIX: 987
 // DOMAIN-KEYWORD: 14
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 48
-// Total: 3460
+// Total: 3461
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -198,6 +198,7 @@ DOMAIN,pics.x-n-x-x.pro
 DOMAIN,play.xfvod.pro
 DOMAIN,assets.gcore.pro
 DOMAIN-SUFFIX,bmp.ovh
+DOMAIN,static.freedownloadmanager.org
 DOMAIN,rawmarkdown.cloudflareaccess.org
 DOMAIN-SUFFIX,someonewhocares.org
 DOMAIN,i.creativecommons.org
