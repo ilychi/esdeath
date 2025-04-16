@@ -1,4 +1,19 @@
 // China Mainland Direct Access
+// Last updated: 2025/4/16 15:25:12
+// DOMAIN: 33
+// DOMAIN-SUFFIX: 925
+// DOMAIN-KEYWORD: 9
+// IP-CIDR: 2
+// PROCESS-NAME: 36
+// USER-AGENT: 4
+// OTHER: 5
+// Total: 1014
+// Comprehensive rules for domains and IPs that are accessible within Mainland China, optimized for direct connection
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/domestic.conf
+//  - https://ruleset.skk.moe/List/ip/domestic.conf
+//  - https://ruleset.skk.moe/List/non_ip/direct.conf
+// China Mainland Direct Access
 // Last updated: 2025/4/16 14:41:11
 // DOMAIN: 33
 // DOMAIN-SUFFIX: 925

@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/16 14:41:09
+// Last updated: 2025/4/16 15:25:10
 // DOMAIN: 2407
-// DOMAIN-SUFFIX: 987
+// DOMAIN-SUFFIX: 989
 // DOMAIN-KEYWORD: 14
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 48
-// Total: 3461
+// Total: 3463
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -267,6 +267,7 @@ DOMAIN,images.videolan.org
 DOMAIN,static.tronscan.org
 DOMAIN-SUFFIX,rollupjs.org
 DOMAIN-SUFFIX,recharts.org
+DOMAIN-SUFFIX,parceljs.org
 DOMAIN,open-vsx.org
 DOMAIN,demotiles.maplibre.org
 DOMAIN-SUFFIX,lichess1.org
@@ -378,7 +379,7 @@ DOMAIN-SUFFIX,licensebuttons.net
 DOMAIN,headway-widget.net
 DOMAIN,cdn.consentmanager.net
 DOMAIN-SUFFIX,videodelivery.net
-DOMAIN,assets.mediadelivery.net
+DOMAIN-SUFFIX,mediadelivery.net
 DOMAIN-SUFFIX,imagedelivery.net
 DOMAIN-SUFFIX,gitlab-static.net
 DOMAIN,oct8neproxy.azurewebsites.net
@@ -628,6 +629,7 @@ DOMAIN,thumbnails.cbsig.net
 DOMAIN,fonts.bunny.net
 DOMAIN,img.biguz.net
 DOMAIN,panel-production-libs.b-cdn.net
+DOMAIN,bunnycdn-video-assets.b-cdn.net
 DOMAIN,vz-c0fe498e-5ab.b-cdn.net
 DOMAIN,vz-2222604c-50b.b-cdn.net
 DOMAIN,hentaiworldtv.b-cdn.net

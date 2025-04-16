@@ -1,11 +1,11 @@
 // Emby Media Servers
-// Last updated: 2025/4/16 14:41:11
-// DOMAIN: 125
+// Last updated: 2025/4/16 15:25:11
+// DOMAIN: 126
 // DOMAIN-SUFFIX: 398
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 13
-// OTHER: 1
-// Total: 540
+// OTHER: 2
+// Total: 542
 // Comprehensive rules for various Emby media servers, combining multiple sources including Clash format rules
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -13,6 +13,7 @@
 //  - https://github.com/forevergooe/Rules/raw/master/Surge/Emby.list
 //  - https://github.com/yahngming/rules/raw/master/emby.list
 //  - https://github.com/Boyce3/Clash/raw/main/Rules/Emby.yaml
+DMOAIN,cf.1024.one
 DOMAIN,1024.name
 DOMAIN,123456.buzz // DPX 海外
 DOMAIN,581658.best
@@ -75,7 +76,6 @@ DOMAIN,hka-emby3.aliz.work
 DOMAIN,hxd.as174.com // hxd
 DOMAIN,if.20120714.xyz // Added for: if.20120714.xyz:443
 DOMAIN,inside.lyrebirdemby.com
-DOMAIN,jc.1024.name
 DOMAIN,jg.sfcj.org
 DOMAIN,jg6.sfcj.org
 DOMAIN,jp.lilyemby.my
@@ -87,6 +87,7 @@ DOMAIN,lite.saturday.video
 DOMAIN,main.gugumedia.site
 DOMAIN,media.nijigem.by
 DOMAIN,misty.cx // Added for: misty.cx:443
+DOMAIN,mzlpin.1024.one
 DOMAIN,nanflix.net // Nanflix
 DOMAIN,new.xmsl.org // loser
 DOMAIN,node1.guguemby.site // 测试线路 gugu
@@ -111,6 +112,7 @@ DOMAIN,seoul.1024.name
 DOMAIN,shouer.910427.xyz
 DOMAIN,shuigawd921hfs-ef27893hrsf.catlinks.co.uk
 DOMAIN,sj.viclub.top
+DOMAIN,sjc.1024.name
 DOMAIN,ss.809688.xyz // ciji 德国
 DOMAIN,ss.ianong.cn // 蘑菇
 DOMAIN,stream2.jingzhe.pro
