@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-04-16T14:16:39.905Z
-# Size: 69601
+# Last Updated: 2025-04-16T16:25:23.355Z
+# Size: 69621
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -3420,6 +3420,7 @@ DOMAIN-SUFFIX,mistralwringle.top
 DOMAIN-SUFFIX,miningzhizhong.top
 DOMAIN-SUFFIX,laridaetrionfo.top
 DOMAIN-SUFFIX,fuddlerpanther.top
+DOMAIN-SUFFIX,frogeyeparaiba.top
 DOMAIN-SUFFIX,fittiercutlets.top
 DOMAIN-SUFFIX,falcatasestina.top
 DOMAIN-SUFFIX,excretegonging.top
@@ -3502,6 +3503,7 @@ DOMAIN-SUFFIX,qawzwkvqayrlr.top
 DOMAIN-SUFFIX,qaebaywwzvbbo.top
 DOMAIN-SUFFIX,premium4kflix.top
 DOMAIN-SUFFIX,poiejdhmkjcnd.top
+DOMAIN-SUFFIX,plmqlbihwqket.top
 DOMAIN-SUFFIX,pizzlessclimb.top
 DOMAIN-SUFFIX,phoceansteaks.top
 DOMAIN-SUFFIX,patakaendymal.top
@@ -3530,6 +3532,7 @@ DOMAIN-SUFFIX,jzqbyykjorqkq.top
 DOMAIN-SUFFIX,jzokkejvjrvwj.top
 DOMAIN-SUFFIX,jybaekaqbmwyj.top
 DOMAIN-SUFFIX,jwnmnnwjaezyw.top
+DOMAIN-SUFFIX,jovqyymemwzzj.top
 DOMAIN-SUFFIX,joqowqymkrowl.top
 DOMAIN-SUFFIX,jobmkewkzwrkb.top
 DOMAIN-SUFFIX,jkajyrkqaoyjl.top
@@ -3543,6 +3546,7 @@ DOMAIN-SUFFIX,fheiu43bcdhsj.top
 DOMAIN-SUFFIX,fenmanswagman.top
 DOMAIN-SUFFIX,faqirsgoliard.top
 DOMAIN-SUFFIX,fanxmfllqbyoy.top
+DOMAIN-SUFFIX,evictsunlyric.top
 DOMAIN-SUFFIX,enteraingrown.top
 DOMAIN-SUFFIX,demeoreisling.top
 DOMAIN-SUFFIX,delianoquassa.top
@@ -3950,6 +3954,7 @@ DOMAIN-SUFFIX,tweizai.top
 DOMAIN-SUFFIX,tweisii.top
 DOMAIN-SUFFIX,tvcnmti.top
 DOMAIN-SUFFIX,turesdi.top
+DOMAIN-SUFFIX,tucnmti.top
 DOMAIN-SUFFIX,ttimiyi.top
 DOMAIN-SUFFIX,ttgbnmk.top
 DOMAIN-SUFFIX,trohycv.top
@@ -4479,6 +4484,7 @@ DOMAIN-SUFFIX,lutachechu.pro
 DOMAIN-SUFFIX,lucky-work.pro
 DOMAIN-SUFFIX,hugregregy.pro
 DOMAIN-SUFFIX,gruphuriju.pro
+DOMAIN-SUFFIX,green-mark.pro
 DOMAIN-SUFFIX,googleplay.pro
 DOMAIN-SUFFIX,glopsujuba.pro
 DOMAIN-SUFFIX,dizzy-drag.pro
@@ -4800,6 +4806,7 @@ DOMAIN-SUFFIX,xiaoshuotxt668.org
 DOMAIN-SUFFIX,marketing.visitmilwaukee.org
 DOMAIN-SUFFIX,marketing.visitannapolis.org
 DOMAIN-SUFFIX,veideasandcome.org
+DOMAIN-SUFFIX,troadforristol.org
 DOMAIN-SUFFIX,tracking.email.trinity-health.org
 DOMAIN-SUFFIX,page.email.trinity-health.org
 DOMAIN-SUFFIX,theweeklydonut.org
@@ -5043,6 +5050,7 @@ DOMAIN-SUFFIX,ssc.evropaelire.org
 DOMAIN-SUFFIX,stats.elixir-lang.org
 DOMAIN-SUFFIX,ecretaboutt.org
 DOMAIN-SUFFIX,easy-dating.org
+DOMAIN-SUFFIX,dittlecompa.org
 DOMAIN-SUFFIX,go.dailyrelief.org
 DOMAIN-SUFFIX,traka8.crypto-mall.org
 DOMAIN-SUFFIX,21.cizhibaogao.org
@@ -5686,6 +5694,7 @@ DOMAIN-SUFFIX,tqlqfhmvainmn.one
 DOMAIN-SUFFIX,omoevcozeezhg.one
 DOMAIN-SUFFIX,masogjmltljhl.one
 DOMAIN-SUFFIX,lugwzalsqvacb.one
+DOMAIN-SUFFIX,lecubzcgozcgk.one
 DOMAIN-SUFFIX,jgubbpypmlxbk.one
 DOMAIN-SUFFIX,inxgfxylzkkgi.one
 DOMAIN-SUFFIX,gplywfirosiwd.one
@@ -7446,6 +7455,7 @@ DOMAIN-SUFFIX,dmkdtkad2jyb9.cloudfront.net
 DOMAIN-SUFFIX,dmg0877nfcvqj.cloudfront.net
 DOMAIN-SUFFIX,dmeq7blex6x1u.cloudfront.net
 DOMAIN-SUFFIX,dm7gsepi27zsx.cloudfront.net
+DOMAIN-SUFFIX,dm50eugvywuiu.cloudfront.net
 DOMAIN-SUFFIX,dm0ly9ibqkdxn.cloudfront.net
 DOMAIN-SUFFIX,dm0acvguygm9h.cloudfront.net
 DOMAIN-SUFFIX,dlxk2dj1h3e83.cloudfront.net
@@ -10871,6 +10881,7 @@ DOMAIN-SUFFIX,data.mktg.universalstudioshollywood.com
 DOMAIN-SUFFIX,osimg.universalorlandovacations.com
 DOMAIN-SUFFIX,oimg.universalorlandovacations.com
 DOMAIN-SUFFIX,sstats.truistleadershipinstitute.com
+DOMAIN-SUFFIX,transistorizedbirleanimal.com
 DOMAIN-SUFFIX,info.transcontinental-printing.com
 DOMAIN-SUFFIX,synthesissocietysplitting.com
 DOMAIN-SUFFIX,stressfulproperlyrestrain.com
@@ -12927,6 +12938,7 @@ DOMAIN-SUFFIX,secure.omegacrmconsulting.com
 DOMAIN-SUFFIX,go.official-pronerve6.com
 DOMAIN-SUFFIX,offerwall-adnative.com
 DOMAIN-SUFFIX,track.oequilibrionatural.com
+DOMAIN-SUFFIX,octobertheatrenosy.com
 DOMAIN-SUFFIX,oainternetservices.com
 DOMAIN-SUFFIX,ntativesathyasesum.com
 DOMAIN-SUFFIX,a8aspconv.ns-softbank-hikari.com
@@ -21323,6 +21335,7 @@ DOMAIN-SUFFIX,images.respond.overheaddoor.com
 DOMAIN-SUFFIX,outwingullom.com
 DOMAIN-SUFFIX,outchinchour.com
 DOMAIN-SUFFIX,oundandround.com
+DOMAIN-SUFFIX,otsscaowfabk.com
 DOMAIN-SUFFIX,so.otrestaurant.com
 DOMAIN-SUFFIX,o.otrestaurant.com
 DOMAIN-SUFFIX,otnolabttmup.com
@@ -21369,6 +21382,7 @@ DOMAIN-SUFFIX,qbpsde.octagon-shop.com
 DOMAIN-SUFFIX,ssuperstats.observepoint.com
 DOMAIN-SUFFIX,superstats.observepoint.com
 DOMAIN-SUFFIX,observativus.com
+DOMAIN,events.observablehq.com
 DOMAIN-SUFFIX,oatchoagnoud.com
 DOMAIN-SUFFIX,irgddc.oasishoteles.com
 DOMAIN-SUFFIX,oaksouhafaik.com
@@ -23223,6 +23237,7 @@ DOMAIN-SUFFIX,thisiswaldo.com
 DOMAIN-SUFFIX,get.thisisvegas.com
 DOMAIN-SUFFIX,marketing.thisisalpha.com
 DOMAIN-SUFFIX,tracker.thinkermail.com
+DOMAIN,visitors.thingiverse.com
 DOMAIN-SUFFIX,thiltoocmom.com
 DOMAIN-SUFFIX,email.thewithotel.com
 DOMAIN-SUFFIX,srepdata.thetowntalk.com
@@ -25538,6 +25553,7 @@ DOMAIN-SUFFIX,s.yorkregion.com
 DOMAIN-SUFFIX,oaprodlogging.yo-digital.com
 DOMAIN-SUFFIX,ymtracking.com
 DOMAIN-SUFFIX,ymrdsajjsq.com
+DOMAIN-SUFFIX,ykmjrnicvb.com
 DOMAIN-SUFFIX,yieldscale.com
 DOMAIN-SUFFIX,yieldbuild.com
 DOMAIN-SUFFIX,ans.yesnetwork.com
@@ -26760,6 +26776,7 @@ DOMAIN-SUFFIX,so.musicnotes.com
 DOMAIN-SUFFIX,o.musicnotes.com
 DOMAIN-SUFFIX,jlijkn.mudandsnow.com
 DOMAIN-SUFFIX,yst4.muchoviaje.com
+DOMAIN-SUFFIX,muaymqzrme.com
 DOMAIN-SUFFIX,mtzenhigqg.com
 DOMAIN-SUFFIX,track.mtraq145ps.com
 DOMAIN-SUFFIX,track.mtraq135si.com
@@ -28830,6 +28847,7 @@ DOMAIN-SUFFIX,xlrm-tech.com
 DOMAIN-SUFFIX,a.xixiyishu.com
 DOMAIN-SUFFIX,xisxrxtrk.com
 DOMAIN-SUFFIX,a2.xinhuanet.com
+DOMAIN-SUFFIX,ximhirsew.com
 DOMAIN-SUFFIX,xielloltv.com
 DOMAIN-SUFFIX,xiaopinwo.com
 DOMAIN-SUFFIX,cc.xiaodapei.com
@@ -32118,6 +32136,7 @@ DOMAIN-SUFFIX,zmytkaoh.com
 DOMAIN-SUFFIX,zmpeotrk.com
 DOMAIN-SUFFIX,zmjagawa.com
 DOMAIN-SUFFIX,zlacraft.com
+DOMAIN-SUFFIX,zklvzxmw.com
 DOMAIN-SUFFIX,s.zixuntop.com
 DOMAIN-SUFFIX,ziqniduy.com
 DOMAIN-SUFFIX,dash.zintrack.com
@@ -47720,7 +47739,7 @@ DOMAIN-SUFFIX,unsub.crm-edm.thsrc.com.tw
 DOMAIN-SUFFIX,data.crm-edm.thsrc.com.tw
 DOMAIN-SUFFIX,fufbgj.pazzo.com.tw
 DOMAIN-SUFFIX,onead.com.tw
-DOMAIN,elads.kocpc.com.tw
+DOMAIN-SUFFIX,elads.kocpc.com.tw
 DOMAIN-SUFFIX,starget.intel.com.tw
 DOMAIN-SUFFIX,elqtrk.intel.com.tw
 DOMAIN-SUFFIX,www91.intel.com.tw
@@ -65777,6 +65796,7 @@ DOMAIN-SUFFIX,uojx.cn
 DOMAIN-SUFFIX,ujmz.cn
 DOMAIN-SUFFIX,uivc.cn
 DOMAIN-SUFFIX,bdjs.uimg.cn
+DOMAIN-SUFFIX,ufgl.cn
 DOMAIN-SUFFIX,txvq.cn
 DOMAIN-SUFFIX,tuia.cn
 DOMAIN-SUFFIX,go.tuev.cn
