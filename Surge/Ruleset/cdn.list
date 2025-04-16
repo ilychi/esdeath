@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/16 22:32:19
-// DOMAIN: 2407
-// DOMAIN-SUFFIX: 989
+// Last updated: 2025/4/16 23:01:46
+// DOMAIN: 2405
+// DOMAIN-SUFFIX: 992
 // DOMAIN-KEYWORD: 14
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 48
-// Total: 3463
+// Total: 3464
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -166,7 +166,6 @@ DOMAIN-SUFFIX,picjs.xyz
 DOMAIN-SUFFIX,chcdn.xyz
 DOMAIN,cdn-longterm.mee6.xyz
 DOMAIN,vod.jfly.xyz
-DOMAIN,img.ra7.xyz
 DOMAIN,img.hentaihaven.xxx
 DOMAIN-SUFFIX,imhentai.xxx
 DOMAIN,i.xozilla.xxx
@@ -461,6 +460,7 @@ DOMAIN,decart-oasis.azureedge.net
 DOMAIN,typescript.azureedge.net
 DOMAIN,edgestatic.azureedge.net
 DOMAIN,ni-assets.azureedge.net
+DOMAIN-SUFFIX,static.amplience.net
 DOMAIN-SUFFIX,media.amplience.net
 DOMAIN,cdn.c1.amplience.net
 DOMAIN,statics-marketingsites-eas-ms-com.akamaized.net
@@ -748,6 +748,7 @@ DOMAIN-SUFFIX,hackerone-user-content.com
 DOMAIN-SUFFIX,app-analytics-services.com
 DOMAIN-SUFFIX,akamai-content-network.com
 DOMAIN-SUFFIX,ravencoinipfs-gateway.com
+DOMAIN-SUFFIX,observableusercontent.com
 DOMAIN,cdn.minecraft-server-list.com
 DOMAIN-SUFFIX,dynamic-static-assets.com
 DOMAIN-SUFFIX,1passwordusercontent.com
@@ -765,6 +766,7 @@ DOMAIN,media.datacenterdynamics.com
 DOMAIN-SUFFIX,yammerusercontent.com
 DOMAIN,demo.unified-streaming.com
 DOMAIN,media.theresanaiforthat.com
+DOMAIN-SUFFIX,svbtleusercontent.com
 DOMAIN-SUFFIX,storjipfs-gateway.com
 DOMAIN-SUFFIX,ssl-images-amazon.com
 DOMAIN-SUFFIX,scorecardresearch.com
@@ -974,6 +976,7 @@ DOMAIN-SUFFIX,onelink-edge.com
 DOMAIN-SUFFIX,onekey-asset.com
 DOMAIN-SUFFIX,omnisnippet1.com
 DOMAIN-SUFFIX,olemovienews.com
+DOMAIN,static.observablehq.com
 DOMAIN-SUFFIX,neweggimages.com
 DOMAIN-SUFFIX,meetupstatic.com
 DOMAIN-SUFFIX,media-amazon.com
@@ -1398,6 +1401,7 @@ DOMAIN,info.cloudflare.com
 DOMAIN,static.dash.cloudflare.com
 DOMAIN,ajax.cloudflare.com
 DOMAIN,cf-assets.www.cloudflare.com
+DOMAIN,pkg.cloudflare.com
 DOMAIN-SUFFIX,nel.cloudflare.com
 DOMAIN,cp4.cloudflare.com
 DOMAIN,cp3.cloudflare.com
@@ -1424,7 +1428,6 @@ DOMAIN,wa.arounddeal.com
 DOMAIN,files.armorgames.com
 DOMAIN,cache.armorgames.com
 DOMAIN,agi.armorgames.com
-DOMAIN,packages.argotunnel.com
 DOMAIN-SUFFIX,anpustream.com
 DOMAIN-SUFFIX,anpoimages.com
 DOMAIN-SUFFIX,algolianet.com
@@ -1637,8 +1640,8 @@ DOMAIN-SUFFIX,ipfs.anonymize.com
 DOMAIN,images.anandtech.com
 DOMAIN,ip-ranges.amazonaws.com
 DOMAIN-SUFFIX,assets.as2.amazonaws.com
-DOMAIN,static.agilebits.com
 DOMAIN-SUFFIX,abcnewsfe.com
+DOMAIN,app.1password.com
 DOMAIN,i.1password.com
 DOMAIN,c.1password.com
 DOMAIN,ws-assets.zoominfo.com
@@ -2627,7 +2630,6 @@ DOMAIN-SUFFIX,yimg.com
 DOMAIN,design-system.yext.com
 DOMAIN,imgs.xkcd.com
 DOMAIN,profile-images.xing.com
-DOMAIN,compass-ssl.xbox.com
 DOMAIN,assets-www.xbox.com
 DOMAIN,assets.play.xbox.com
 DOMAIN,livemap-tiles1.waze.com
@@ -3371,7 +3373,6 @@ DOMAIN,images.ptt.cc
 DOMAIN,static-cache.k2s.cc
 DOMAIN,static.k2s.cc
 DOMAIN-SUFFIX,1passwordusercontent.ca
-DOMAIN,ntp.api.bz
 DOMAIN-SUFFIX,abc-cdn.net.au
 DOMAIN,res.abc.net.au
 DOMAIN-SUFFIX,newscdn.com.au
