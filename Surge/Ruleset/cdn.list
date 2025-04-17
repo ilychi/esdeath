@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/17 22:05:49
-// DOMAIN: 2408
+// Last updated: 2025/4/17 22:43:21
+// DOMAIN: 2412
 // DOMAIN-SUFFIX: 992
 // DOMAIN-KEYWORD: 14
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 48
-// Total: 3467
+// Total: 3471
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1342,6 +1342,7 @@ DOMAIN-SUFFIX,content-storage-upload.googleapis.com
 DOMAIN,firebaseinstallations.googleapis.com
 DOMAIN-SUFFIX,crashlyticsreports-pa.googleapis.com
 DOMAIN,optimizationguide-pa.googleapis.com
+DOMAIN,firebaseremoteconfig.googleapis.com
 DOMAIN,firebaselogging-pa.googleapis.com
 DOMAIN-SUFFIX,clientmetrics-pa.googleapis.com
 DOMAIN-SUFFIX,firebasestorage.googleapis.com
@@ -2380,6 +2381,7 @@ DOMAIN,safebrowsing.google.com
 DOMAIN-SUFFIX,usercontent.google.com
 DOMAIN-SUFFIX,ogads-pa.clients6.google.com
 DOMAIN,maven.google.com
+DOMAIN,time.google.com
 DOMAIN,static.corp.google.com
 DOMAIN-SUFFIX,crashlytics2.l.google.com
 DOMAIN,s3.go2778.com
@@ -3081,6 +3083,8 @@ DOMAIN,boards.greenhouse.io
 DOMAIN-SUFFIX,cdn.greenhouse.io
 DOMAIN-SUFFIX,emotivecdn.io
 DOMAIN,docker.cloudsmith.io
+DOMAIN,analytics.canarymail.io
+DOMAIN,status.canarymail.io
 DOMAIN,cdn.brandfetch.io
 DOMAIN,loutre.blockchair.io
 DOMAIN,js-cdn.blockchair.io
