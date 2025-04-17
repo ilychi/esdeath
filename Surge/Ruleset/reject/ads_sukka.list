@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-04-17T07:33:17.228Z
-# Size: 67931
+# Last Updated: 2025-04-17T09:38:47.216Z
+# Size: 67933
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -3605,6 +3605,7 @@ DOMAIN-SUFFIX,oretracker.top
 DOMAIN-SUFFIX,olmnvbgufy.top
 DOMAIN-SUFFIX,narrwhenas.top
 DOMAIN-SUFFIX,a.miyudaquan.top
+DOMAIN-SUFFIX,lkmgjfkhfh.top
 DOMAIN-SUFFIX,lizijing12.top
 DOMAIN-SUFFIX,lastunsued.top
 DOMAIN-SUFFIX,kloshdales.top
@@ -4044,6 +4045,7 @@ DOMAIN-SUFFIX,iwilmio.top
 DOMAIN-SUFFIX,iwerioo.top
 DOMAIN-SUFFIX,iweizao.top
 DOMAIN-SUFFIX,iweisio.top
+DOMAIN-SUFFIX,iwcnmto.top
 DOMAIN-SUFFIX,iwatero.top
 DOMAIN-SUFFIX,iuresdo.top
 DOMAIN-SUFFIX,itimiyo.top
@@ -30161,6 +30163,7 @@ DOMAIN-SUFFIX,directrev.com
 DOMAIN-SUFFIX,target.dipdirect.com
 DOMAIN-SUFFIX,dilowhang.com
 DOMAIN-SUFFIX,eloqua.digitalpi.com
+DOMAIN-SUFFIX,dighavrap.com
 DOMAIN-SUFFIX,data-50d39a5d3f.diepresse.com
 DOMAIN-SUFFIX,xiqvza.dickblick.com
 DOMAIN-SUFFIX,hzpxre.diariogol.com
@@ -42711,7 +42714,6 @@ DOMAIN-SUFFIX,ui02.com
 DOMAIN-SUFFIX,ubuyanalytics.ubuy.com
 DOMAIN-SUFFIX,stt.tyro.com
 DOMAIN-SUFFIX,tynt.com
-DOMAIN-SUFFIX,vp2.txxx.com
 DOMAIN-SUFFIX,tr.txxx.com
 DOMAIN-SUFFIX,t.txst.com
 DOMAIN-SUFFIX,et.twyn.com
