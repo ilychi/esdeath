@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-04-17T09:38:47.216Z
-# Size: 67933
+# Last Updated: 2025-04-17T12:42:54.395Z
+# Size: 67943
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -432,6 +432,7 @@ DOMAIN-SUFFIX,wswoubndrdlkc.global
 DOMAIN-SUFFIX,vxpcarcapffdp.global
 DOMAIN-SUFFIX,vuzhzlzswecvc.global
 DOMAIN-SUFFIX,vdeiseyswdfco.global
+DOMAIN-SUFFIX,vbptgoyketwhv.global
 DOMAIN-SUFFIX,tfaxtyhedrwub.global
 DOMAIN-SUFFIX,qnsxtvhfnajnw.global
 DOMAIN-SUFFIX,pkehswqnitpvr.global
@@ -1689,6 +1690,7 @@ DOMAIN-SUFFIX,zgukxyhzquesk.love
 DOMAIN-SUFFIX,yvdxhbuupndqo.love
 DOMAIN-SUFFIX,ursvgeoaweeli.love
 DOMAIN-SUFFIX,oaocrxsgsemdg.love
+DOMAIN-SUFFIX,lwxegrybymzah.love
 DOMAIN-SUFFIX,lucnxzoylxmvu.love
 DOMAIN-SUFFIX,foccqbujbfcyj.love
 DOMAIN-SUFFIX,dkipfdjvrlird.love
@@ -2119,6 +2121,7 @@ DOMAIN-SUFFIX,googleapi.club
 DOMAIN-SUFFIX,cima-club.club
 DOMAIN-SUFFIX,aleapeact.club
 DOMAIN-SUFFIX,abtaurosa.club
+DOMAIN-SUFFIX,sungtoaz.club
 DOMAIN-SUFFIX,pushdrop.club
 DOMAIN-SUFFIX,loading.maxdealz.club
 DOMAIN-SUFFIX,jmpmedia.club
@@ -3332,6 +3335,7 @@ DOMAIN-SUFFIX,dudderyepicure.top
 DOMAIN-SUFFIX,diploeshobnobs.top
 DOMAIN-SUFFIX,denierswildest.top
 DOMAIN-SUFFIX,demosesoverate.top
+DOMAIN-SUFFIX,copycatsoirees.top
 DOMAIN-SUFFIX,commoveartists.top
 DOMAIN-SUFFIX,buzzersunpaled.top
 DOMAIN-SUFFIX,v1.bonnesaffaires.top
@@ -3351,6 +3355,7 @@ DOMAIN-SUFFIX,zoykzjajvjoyo.top
 DOMAIN-SUFFIX,zhangqifeng12.top
 DOMAIN-SUFFIX,ywusfyjhnpflr.top
 DOMAIN-SUFFIX,xqwrdegbmdfrv.top
+DOMAIN-SUFFIX,wywkwqzkavlvw.top
 DOMAIN-SUFFIX,wylmzwklklyaz.top
 DOMAIN-SUFFIX,wwwwzerblvvqv.top
 DOMAIN-SUFFIX,wwvqboerllqqz.top
@@ -4829,6 +4834,7 @@ DOMAIN-SUFFIX,nurewsawanin.org
 DOMAIN-SUFFIX,mukindwouldm.org
 DOMAIN-SUFFIX,connect.memorialcare.org
 DOMAIN-SUFFIX,web.health.memorialcare.org
+DOMAIN-SUFFIX,medlikeamate.org
 DOMAIN-SUFFIX,matterforiwa.org
 DOMAIN-SUFFIX,gtm.match-talent.org
 DOMAIN-SUFFIX,discover.maringeneral.org
@@ -4883,6 +4889,7 @@ DOMAIN-SUFFIX,metrics.worldvision.org
 DOMAIN-SUFFIX,silkworm.westwoodmbc.org
 DOMAIN-SUFFIX,info.westerville.org
 DOMAIN-SUFFIX,wasalwayssu.org
+DOMAIN-SUFFIX,voidthemhen.org
 DOMAIN-SUFFIX,marketing.visittucson.org
 DOMAIN-SUFFIX,marketing.valleyforge.org
 DOMAIN-SUFFIX,ok.usahelpline.org
@@ -27515,6 +27522,7 @@ DOMAIN-SUFFIX,adcannyxml.com
 DOMAIN-SUFFIX,rtb-useast.adcannyads.com
 DOMAIN-SUFFIX,contact.adaptavist.com
 DOMAIN-SUFFIX,adactioner.com
+DOMAIN-SUFFIX,ad2f8c6f8e.com
 DOMAIN-SUFFIX,cueohf.actifforum.com
 DOMAIN-SUFFIX,cueohf.actieforum.com
 DOMAIN-SUFFIX,actglimpse.com
@@ -30057,6 +30065,7 @@ DOMAIN-SUFFIX,einzeaxop.com
 DOMAIN-SUFFIX,eildralfl.com
 DOMAIN-SUFFIX,eulerian.eidershop.com
 DOMAIN-SUFFIX,7mx.eidershop.com
+DOMAIN-SUFFIX,ehkualecb.com
 DOMAIN-SUFFIX,ptvurg.egricayir.com
 DOMAIN-SUFFIX,analytics.egernsund.com
 DOMAIN-SUFFIX,efreecode.com
@@ -30721,6 +30730,7 @@ DOMAIN-SUFFIX,load.analytics.archisnek.com
 DOMAIN-SUFFIX,tr.email.archiexpo.com
 DOMAIN-SUFFIX,a8cllk.arahataen.com
 DOMAIN-SUFFIX,gkcqyo.aquazzura.com
+DOMAIN-SUFFIX,aqndcybah.com
 DOMAIN-SUFFIX,aptimorph.com
 DOMAIN-SUFFIX,srqinq.apricotte.com
 DOMAIN-SUFFIX,appodealx.com
@@ -32185,6 +32195,7 @@ DOMAIN-SUFFIX,tracking.pacharge.com
 DOMAIN-SUFFIX,p8wj9zko.com
 DOMAIN-SUFFIX,ozongees.com
 DOMAIN-SUFFIX,ozobsaib.com
+DOMAIN-SUFFIX,ozmbzowg.com
 DOMAIN-SUFFIX,analytics.oyorooms.com
 DOMAIN-SUFFIX,lxswqh.oyorooms.com
 DOMAIN-SUFFIX,oxwafbjf.com
@@ -32278,7 +32289,6 @@ DOMAIN-SUFFIX,omdittoa.com
 DOMAIN-SUFFIX,omclacrv.com
 DOMAIN-SUFFIX,d.ombriere.com
 DOMAIN-SUFFIX,omasatra.com
-DOMAIN-SUFFIX,omappapi.com
 DOMAIN-SUFFIX,event-router.olympics.com
 DOMAIN-SUFFIX,primate.oleggera.com
 DOMAIN-SUFFIX,olayomad.com
