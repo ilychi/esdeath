@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/18 16:00:53
-// DOMAIN: 2412
+// Last updated: 2025/4/18 16:37:07
+// DOMAIN: 2415
 // DOMAIN-SUFFIX: 993
 // DOMAIN-KEYWORD: 14
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 48
-// Total: 3472
+// Total: 3475
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1498,6 +1498,7 @@ DOMAIN-SUFFIX,sendspace.com
 DOMAIN,forest-mt-s3.seekrtech.com
 DOMAIN,images.scrolller.com
 DOMAIN,sigma9.scpwikicn.com
+DOMAIN,data.schemaapp.com
 DOMAIN,cdn.schemaapp.com
 DOMAIN,assets.scaleflex.com
 DOMAIN,media-cldnry.s-nbcnews.com
@@ -2444,6 +2445,7 @@ DOMAIN,static.ahrefs.com
 DOMAIN-SUFFIX,assets.adidas.com
 DOMAIN-SUFFIX,glass.adidas.com
 DOMAIN-SUFFIX,9cache.com
+DOMAIN,static.zuora.com
 DOMAIN-SUFFIX,ytimg.com
 DOMAIN,cdn-yotpo-images-production.yotpo.com
 DOMAIN,cdn-widgetsrepository.yotpo.com
@@ -3055,6 +3057,7 @@ DOMAIN,edge.personalizer.io
 DOMAIN,assets-production.packagecloud.io
 DOMAIN-SUFFIX,api.loganalytics.io
 DOMAIN,images.contentstack.io
+DOMAIN,canny-assets.io
 DOMAIN,cdn.thenewstack.io
 DOMAIN-SUFFIX,sourceforge.io
 DOMAIN-SUFFIX,ipfs.smartholdem.io
