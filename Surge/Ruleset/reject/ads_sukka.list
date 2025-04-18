@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-04-18T07:41:46.514Z
-# Size: 67753
+# Last Updated: 2025-04-18T12:41:07.547Z
+# Size: 67758
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -677,6 +677,7 @@ DOMAIN-SUFFIX,wwbdayuvbvrsr.rocks
 DOMAIN-SUFFIX,wspfskknmnzvq.rocks
 DOMAIN-SUFFIX,uwqsacaoeshlz.rocks
 DOMAIN-SUFFIX,texsxhprkkljb.rocks
+DOMAIN-SUFFIX,ntsnaeutglamx.rocks
 DOMAIN-SUFFIX,nrdpfnpqunyle.rocks
 DOMAIN-SUFFIX,mdrwjsijuqvtn.rocks
 DOMAIN-SUFFIX,kxdxsbyomyuim.rocks
@@ -973,6 +974,7 @@ DOMAIN-SUFFIX,ppaymnknqzvqw.tech
 DOMAIN-SUFFIX,obvdcylwtpaaa.tech
 DOMAIN-SUFFIX,nghlsfshnptix.tech
 DOMAIN-SUFFIX,lxiapwwqfcbms.tech
+DOMAIN-SUFFIX,gjjaefsketwgi.tech
 DOMAIN-SUFFIX,ehlrxixabvzbo.tech
 DOMAIN-SUFFIX,dxakvollzguju.tech
 DOMAIN-SUFFIX,dtrurjpkugcsv.tech
@@ -1429,6 +1431,7 @@ DOMAIN-SUFFIX,salliesjoll.shop
 DOMAIN-SUFFIX,ritsubrince.shop
 DOMAIN-SUFFIX,riledbiders.shop
 DOMAIN-SUFFIX,praxeandean.shop
+DOMAIN-SUFFIX,pouffstoast.shop
 DOMAIN-SUFFIX,persesdates.shop
 DOMAIN-SUFFIX,peglessbath.shop
 DOMAIN-SUFFIX,pangiumsulu.shop
@@ -3310,6 +3313,7 @@ DOMAIN-SUFFIX,zhangqifeng12.top
 DOMAIN-SUFFIX,ywusfyjhnpflr.top
 DOMAIN-SUFFIX,xqwrdegbmdfrv.top
 DOMAIN-SUFFIX,wywkwqzkavlvw.top
+DOMAIN-SUFFIX,wylmzwklkljwr.top
 DOMAIN-SUFFIX,wwwwzerblvvqv.top
 DOMAIN-SUFFIX,wwvqboerllqqz.top
 DOMAIN-SUFFIX,wwaeljamkvayk.top
@@ -25176,6 +25180,7 @@ DOMAIN-SUFFIX,qituduwios.com
 DOMAIN-SUFFIX,qirhpurtyo.com
 DOMAIN-SUFFIX,load.pickle.qinshealth.com
 DOMAIN-SUFFIX,qidnujocmf.com
+DOMAIN-SUFFIX,qibrhyfizc.com
 DOMAIN-SUFFIX,qibkkioqqw.com
 DOMAIN-SUFFIX,qfeadpmagq.com
 DOMAIN-SUFFIX,qelqlunebz.com
