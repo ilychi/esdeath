@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/19 01:44:08
-// DOMAIN: 2415
+// Last updated: 2025/4/19 02:23:23
+// DOMAIN: 2420
 // DOMAIN-SUFFIX: 993
 // DOMAIN-KEYWORD: 14
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 48
-// Total: 3475
+// Total: 3480
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -1364,6 +1364,8 @@ DOMAIN,images.freeimages.com
 DOMAIN,imgproxy.fourthwall.com
 DOMAIN,themes.fourthwall.com
 DOMAIN,cdn.fourthwall.com
+DOMAIN,frontend.floatplane.com
+DOMAIN,pbs.floatplane.com
 DOMAIN-SUFFIX,externulls.com
 DOMAIN,images.everyplate.com
 DOMAIN,cdntranscend.eventbrite.com
@@ -2529,6 +2531,7 @@ DOMAIN,cdn.javmg.com
 DOMAIN,creator-image.javhd.com
 DOMAIN,static.javhd.com
 DOMAIN,i.ioiox.com
+DOMAIN,pim-media.intel.com
 DOMAIN,imgopt.infoq.com
 DOMAIN,cdn.infoq.com
 DOMAIN-SUFFIX,stack.imgur.com
@@ -2859,6 +2862,8 @@ DOMAIN,assets.jable.tv
 DOMAIN,i.iwara.tv
 DOMAIN-SUFFIX,7mmtv.tv
 DOMAIN,cdn.18jav.tv
+DOMAIN,s-cdnstatic.svc.litv.tv
+DOMAIN,p-cdnstatic.svc.litv.tv
 DOMAIN,4gtvimg2.4gtv.tv
 DOMAIN,lain.bgm.tv
 DOMAIN,embed-v2.testimonial.to
