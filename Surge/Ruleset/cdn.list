@@ -1,12 +1,12 @@
 // Content Delivery Networks
-// Last updated: 2025/4/19 21:12:58
-// DOMAIN: 2420
-// DOMAIN-SUFFIX: 993
+// Last updated: 2025/4/19 21:34:21
+// DOMAIN: 2416
+// DOMAIN-SUFFIX: 991
 // DOMAIN-KEYWORD: 14
 // IP-CIDR: 3
 // URL-REGEX: 2
 // OTHER: 48
-// Total: 3480
+// Total: 3474
 // Rules for common static content CDNs to optimize content delivery and network performance
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/cdn.conf
@@ -715,7 +715,6 @@ DOMAIN,plugins.dprint.dev
 DOMAIN,fonts.upset.dev
 DOMAIN-SUFFIX,react.dev
 DOMAIN-SUFFIX,pages.dev
-DOMAIN,k-cdn.depot.dev
 DOMAIN,p.depot.dev
 DOMAIN,media.daily.dev
 DOMAIN,cdn.daily.dev
@@ -1784,7 +1783,6 @@ DOMAIN,img.kbhgames.com
 DOMAIN,cdn.jwplayer.com
 DOMAIN,data.jsdelivr.com
 DOMAIN,img.jsdelivr.com
-DOMAIN-SUFFIX,search.ipfsgate.com
 DOMAIN-SUFFIX,api.instabug.com
 DOMAIN,img.informer.com
 DOMAIN-SUFFIX,cdn.imghaste.com
@@ -1936,7 +1934,6 @@ DOMAIN,assets.vidyard.com
 DOMAIN,play.vidyard.com
 DOMAIN,cdn.vidyard.com
 DOMAIN-SUFFIX,userapi.com
-DOMAIN,img.urlnode.com
 DOMAIN,static.uptimia.com
 DOMAIN,cdn.uptimia.com
 DOMAIN,static-overlay.ubisoft.com
@@ -1948,7 +1945,6 @@ DOMAIN-SUFFIX,ubembed.com
 DOMAIN,use.typekit.com
 DOMAIN,analytics.twitter.com
 DOMAIN,platform.twitter.com
-DOMAIN,ton.local.twitter.com
 DOMAIN,fonts.twitter.com
 DOMAIN-SUFFIX,ttcache.com
 DOMAIN-SUFFIX,tripcdn.com
@@ -2317,7 +2313,6 @@ DOMAIN,s.namemc.com
 DOMAIN-SUFFIX,aacdn.nagich.com
 DOMAIN,int.mwbbiz.com
 DOMAIN,appassets.mvtdev.com
-DOMAIN,prod.msocdn.com
 DOMAIN,img.mresou.com
 DOMAIN,static-main.moovit.com
 DOMAIN,launchercontent.mojang.com
@@ -2342,7 +2337,6 @@ DOMAIN,cdn2.macpaw.com
 DOMAIN-SUFFIX,loggly.com
 DOMAIN-SUFFIX,lodash.com
 DOMAIN,staging-pubfeed.linkby.com
-DOMAIN-SUFFIX,li-cdn.com
 DOMAIN,ledger-wp-website-s3-prd.ledger.com
 DOMAIN,assets-cms.kraken.com
 DOMAIN,assets.kraken.com

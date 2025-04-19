@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-04-19T12:31:48.838Z
-# Size: 67541
+# Last Updated: 2025-04-19T13:02:03.749Z
+# Size: 67549
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -1387,6 +1387,7 @@ DOMAIN-SUFFIX,grinneddairt.shop
 DOMAIN-SUFFIX,givingpokunt.shop
 DOMAIN-SUFFIX,fulcraldongs.shop
 DOMAIN-SUFFIX,firmedderere.shop
+DOMAIN-SUFFIX,feturequalms.shop
 DOMAIN-SUFFIX,enointselety.shop
 DOMAIN-SUFFIX,earningaerie.shop
 DOMAIN-SUFFIX,duretbuffing.shop
@@ -4328,7 +4329,6 @@ DOMAIN-SUFFIX,molypsigry.pro
 DOMAIN-SUFFIX,lucky-work.pro
 DOMAIN-SUFFIX,gruphuriju.pro
 DOMAIN-SUFFIX,green-mark.pro
-DOMAIN-SUFFIX,googleplay.pro
 DOMAIN-SUFFIX,glopsujuba.pro
 DOMAIN-SUFFIX,dizzy-drag.pro
 DOMAIN-SUFFIX,track.clickblick.pro
@@ -16565,6 +16565,7 @@ DOMAIN-SUFFIX,track.ketogummiespro.com
 DOMAIN-SUFFIX,images.portal.keppelelectric.com
 DOMAIN-SUFFIX,marketing.kemperbenefits.com
 DOMAIN-SUFFIX,sanalytics.kbdesignlondon.com
+DOMAIN-SUFFIX,kanuassociates.com
 DOMAIN-SUFFIX,data.mktg.kansasspeedway.com
 DOMAIN-SUFFIX,kaiu-marketing.com
 DOMAIN-SUFFIX,ai.kaishabaikyaku.com
@@ -16607,6 +16608,7 @@ DOMAIN-SUFFIX,track.inspiredailyhq.com
 DOMAIN-SUFFIX,insightexpress.com
 DOMAIN-SUFFIX,servedby.insideradverts.com
 DOMAIN-SUFFIX,qri2r94eeajr.innovationcast.com
+DOMAIN-SUFFIX,innovatedating.com
 DOMAIN-SUFFIX,a8-printing.ink-revolution.com
 DOMAIN-SUFFIX,inherentdecide.com
 DOMAIN-SUFFIX,analytics.infosysequinox.com
@@ -17828,6 +17830,7 @@ DOMAIN-SUFFIX,pseexauboorsu.com
 DOMAIN-SUFFIX,uwezxr.provenwinners.com
 DOMAIN-SUFFIX,nsnomj.protur-hotels.com
 DOMAIN-SUFFIX,tracking.protracknzone.com
+DOMAIN-SUFFIX,prosystemorgo.com
 DOMAIN-SUFFIX,info.prontopilates.com
 DOMAIN-SUFFIX,track.promoworldhub.com
 DOMAIN-SUFFIX,jwtnmo.promovacances.com
@@ -22923,7 +22926,6 @@ DOMAIN-SUFFIX,tr.email.medicalexpo.com
 DOMAIN-SUFFIX,xml-v4.mediataggus.com
 DOMAIN-SUFFIX,xml.mediataggus.com
 DOMAIN-SUFFIX,cdn.creative.medialytics.com
-DOMAIN,c.medialytics.com
 DOMAIN-SUFFIX,sherlock.mediaddress.com
 DOMAIN-SUFFIX,lthbdc.mechakaitai.com
 DOMAIN-SUFFIX,nxamsj.mecatechnic.com
@@ -23674,6 +23676,7 @@ DOMAIN-SUFFIX,somni.cpoworkshop.com
 DOMAIN-SUFFIX,load.ssgtm.cphgrooming.com
 DOMAIN-SUFFIX,cozeswracks.com
 DOMAIN-SUFFIX,images.learn.coxbusiness.com
+DOMAIN-SUFFIX,covidvcfund.com
 DOMAIN-SUFFIX,covettunica.com
 DOMAIN-SUFFIX,trac.couponandgo.com
 DOMAIN-SUFFIX,marten.countertype.com
@@ -28622,6 +28625,7 @@ DOMAIN-SUFFIX,nhyvivzra.com
 DOMAIN-SUFFIX,tk.nhlottery.com
 DOMAIN-SUFFIX,go.ngtvalves.com
 DOMAIN-SUFFIX,site.newzstand.com
+DOMAIN-SUFFIX,newzgames.com
 DOMAIN-SUFFIX,stats2.newyorker.com
 DOMAIN-SUFFIX,sstats.newyorker.com
 DOMAIN-SUFFIX,ed1.newtekone.com
@@ -28826,8 +28830,6 @@ DOMAIN-SUFFIX,partner.mhsexshop.com
 DOMAIN-SUFFIX,marketing.mhe-demag.com
 DOMAIN-SUFFIX,counter.mgronline.com
 DOMAIN-SUFFIX,imp.mgronline.com
-DOMAIN,adstats.mgc-games.com
-DOMAIN,search.mgc-games.com
 DOMAIN-SUFFIX,chui.tristes.mfisswger.com
 DOMAIN-SUFFIX,mfcewkrob.com
 DOMAIN-SUFFIX,s.metroland.com
@@ -31231,6 +31233,7 @@ DOMAIN-SUFFIX,images.em.tdgarden.com
 DOMAIN-SUFFIX,uilogging.tcdevops.com
 DOMAIN-SUFFIX,ebis-tracking.tcb-mito.com
 DOMAIN-SUFFIX,analytics.tbsperks.com
+DOMAIN-SUFFIX,taxility.com
 DOMAIN-SUFFIX,somni.tatacard.com
 DOMAIN-SUFFIX,tartator.com
 DOMAIN-SUFFIX,tapsense.com
@@ -35667,6 +35670,7 @@ DOMAIN-SUFFIX,adcs.mackspw.com
 DOMAIN-SUFFIX,macdown.com
 DOMAIN-SUFFIX,chromatography.mac-mod.com
 DOMAIN-SUFFIX,app.go.maas360.com
+DOMAIN-SUFFIX,luxxeeu.com
 DOMAIN-SUFFIX,kyompa.luxdeco.com
 DOMAIN-SUFFIX,luunels.com
 DOMAIN-SUFFIX,luuming.com
@@ -36656,6 +36660,7 @@ DOMAIN-SUFFIX,metrics.citalia.com
 DOMAIN-SUFFIX,analytics.cincopa.com
 DOMAIN-SUFFIX,sbpb1.chuiyue.com
 DOMAIN-SUFFIX,bd3.chuiyue.com
+DOMAIN-SUFFIX,choyoga.com
 DOMAIN-SUFFIX,a8.choomia.com
 DOMAIN-SUFFIX,z371.chicoer.com
 DOMAIN-SUFFIX,dxrkvm.cheryls.com
@@ -47090,6 +47095,7 @@ DOMAIN-SUFFIX,spmyma.moscowfresh.ru
 DOMAIN-SUFFIX,myxuak.mir-kubikov.ru
 DOMAIN-SUFFIX,gmufag.marieclaire.ru
 DOMAIN-SUFFIX,banner.hpmdnetwork.ru
+DOMAIN-SUFFIX,hoster-test.ru
 DOMAIN-SUFFIX,ucswim.goldenpatch.ru
 DOMAIN-SUFFIX,uzjjhl.fitnesslook.ru
 DOMAIN-SUFFIX,mtbflj.elementaree.ru
@@ -47251,6 +47257,7 @@ DOMAIN-SUFFIX,stat.sputnik.ru
 DOMAIN-SUFFIX,widget.sparrow.ru
 DOMAIN-SUFFIX,tags.soloway.ru
 DOMAIN-SUFFIX,counter.smotrim.ru
+DOMAIN-SUFFIX,shengen.ru
 DOMAIN-SUFFIX,stats.rustore.ru
 DOMAIN-SUFFIX,rotaban.ru
 DOMAIN-SUFFIX,cnt.ramlife.ru
@@ -47458,6 +47465,7 @@ DOMAIN-SUFFIX,rs.mail.ru
 DOMAIN-SUFFIX,r0.mail.ru
 DOMAIN-SUFFIX,an.mail.ru
 DOMAIN-SUFFIX,oufuqh.kant.ru
+DOMAIN-SUFFIX,hut1.ru
 DOMAIN-SUFFIX,st.film.ru
 DOMAIN-SUFFIX,cqvqov.elex.ru
 DOMAIN-SUFFIX,top.elec.ru
