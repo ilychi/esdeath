@@ -66,6 +66,19 @@ export class RuleConverter {
       type = components[0].trim().toUpperCase();
       value = components[1].trim();
 
+      // 检查DOMAIN类型但实际是IP-CIDR的情况
+      if (type === 'DOMAIN' && /^(\d{1,3}\.){3}\d{1,3}(\/\d{1,2})?$/.test(value)) {
+        // 如果是IP CIDR格式，修正类型为IP-CIDR
+        type = 'IP-CIDR';
+        // 确保IP CIDR有掩码
+        if (!value.includes('/')) {
+          value += '/32';
+        }
+      } else if (type === 'DOMAIN' && value.includes(':') && value.includes('/')) {
+        // 如果是IPv6 CIDR格式，修正类型为IP-CIDR6
+        type = 'IP-CIDR6';
+      }
+
       // 可能的策略或标志
       let possiblePolicyOrFlag = components[2]?.trim();
 
@@ -107,26 +120,18 @@ export class RuleConverter {
         value = value.substring(1);
       }
       // 3. 全数字的 IP 地址，处理为 IP 类型
-      else if (/^(\d{1,3}\.){3}\d{1,3}$/.test(value)) {
-        // 纯 IPv4 地址
-        if (this.format === 'Surge' || this.format === 'Quantumult X') {
-          type = 'IP-CIDR';
-          value += '/32';
-        } else if (this.format === 'Clash') {
-          type = 'IP-CIDR';
-        } else {
-          type = 'IP-CIDR';
+      else if (/^(\d{1,3}\.){3}\d{1,3}(\/\d{1,2})?$/.test(value)) {
+        // IP CIDR格式
+        type = 'IP-CIDR';
+        // 确保IP CIDR有掩码
+        if (!value.includes('/')) {
           value += '/32';
         }
       } else if (value.includes(':')) {
-        // 纯 IPv6 地址
-        if (this.format === 'Surge' || this.format === 'Quantumult X') {
-          type = 'IP-CIDR6';
-          value += '/128';
-        } else if (this.format === 'Clash') {
-          type = 'IP-CIDR6';
-        } else {
-          type = 'IP-CIDR6';
+        // IPv6 地址或CIDR
+        type = 'IP-CIDR6';
+        // 确保IPv6 CIDR有掩码（如果没有）
+        if (!value.includes('/')) {
           value += '/128';
         }
       }

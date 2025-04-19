@@ -28,6 +28,14 @@ export const ruleGroups: RuleGroup[] = [
         path: 'GeoIP/IP2Location_Country.mmdb',
         url: 'https://github.com/xream/geoip/releases/latest/download/ip2location.country.mmdb',
       },
+      {
+        path: 'GeoIP/CNcidr_Country.mmdb',
+        url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Country.mmdb',
+      },
+      {
+        path: 'GeoIP/CNcidr_Country_All.mmdb',
+        url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Country_All.mmdb',
+      },
     ],
   },
   {
@@ -364,7 +372,7 @@ export const ruleGroups: RuleGroup[] = [
         url: 'https://ruleset.skk.moe/List/ip/china_ip.conf',
       },
       {
-        path: 'Surge/Ruleset/ipcird/chinaip.list',
+        path: 'Surge/Ruleset/ipcird/chinaip_dh_ns.list',
         url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_IP_CN.txt',
         title: 'IPv4+IPv6 Information in China.',
         description: 'Made by DH-Teams, All rights reserved',
@@ -611,6 +619,7 @@ export const specialRules: SpecialRuleConfig[] = [
     sourceFiles: ['Surge/Ruleset/cdn_noip.list', 'Surge/Ruleset/cdn_ip.list'],
     cleanup: false,
     dedup: true,
+    deleteSourceFiles: true,
     header: {
       enable: true,
       title: 'Content Delivery Networks',
@@ -623,10 +632,11 @@ export const specialRules: SpecialRuleConfig[] = [
     targetFile: 'Surge/Ruleset/streaming/video/embytest.list',
     sourceFiles: [
       'https://github.com/m4v8vsyj/me/raw/main/emby.list',
-      'https://github.com/kefengyoyo/own/raw/main/Emby-P.list',
+      'https://github.com/KuGouGo/Rules/raw/main/emby.list',
+      //'https://github.com/kefengyoyo/own/raw/main/Emby-P.list',
       'https://github.com/forevergooe/Rules/raw/master/Surge/Emby.list',
       'https://github.com/yahngming/rules/raw/master/emby.list',
-      'https://github.com/Boyce3/Clash/raw/main/Rules/Emby.yaml',
+      //'https://github.com/Boyce3/Clash/raw/main/Rules/Emby.yaml',
     ],
     cleanup: true,
     keepInlineComments: true,
