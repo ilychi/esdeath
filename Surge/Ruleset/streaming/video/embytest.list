@@ -1,167 +1,110 @@
 // Emby Media Servers
-// Last updated: 2025/4/19 23:20:38
-// DOMAIN: 126
-// DOMAIN-SUFFIX: 398
+// Last updated: 2025/4/19 23:53:03
+// DOMAIN: 58
+// DOMAIN-SUFFIX: 443
 // DOMAIN-KEYWORD: 3
-// IP-CIDR: 13
-// OTHER: 2
-// Total: 542
+// IP-CIDR: 17
+// IP-CIDR6: 10
+// OTHER: 1
+// Total: 532
 // Comprehensive rules for various Emby media servers, combining multiple sources including Clash format rules
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
-//  - https://github.com/kefengyoyo/own/raw/main/Emby-P.list
+//  - https://github.com/KuGouGo/Rules/raw/main/emby.list
 //  - https://github.com/forevergooe/Rules/raw/master/Surge/Emby.list
 //  - https://github.com/yahngming/rules/raw/master/emby.list
-//  - https://github.com/Boyce3/Clash/raw/main/Rules/Emby.yaml
-DMOAIN,cf.1024.one
-DOMAIN,1024.name
 DOMAIN,123456.buzz // DPX 海外
-DOMAIN,581658.best
-DOMAIN,581658.best // Added for: 581658.best:443
 DOMAIN,7777777.buzz
-DOMAIN,9wfree.emby.eu.org
-DOMAIN,DOMAIN,emby.cn2gias.uk
-DOMAIN,ad.auroramedia.vip
-DOMAIN,auto.polodns.xyz // Added for: auto.polodns.xyz:443
 DOMAIN,by.mooguu.org // 蘑菇备用
-DOMAIN,c.lilyemby.my
-DOMAIN,cc.coemn.com
 DOMAIN,cc.coemn.com // Cc
-DOMAIN,cc.embycc.link
-DOMAIN,cdn.lyrebirdemby.com
 DOMAIN,cdn.lyrebirdemby.com // Lyrebird-琴鸟
 DOMAIN,cdnemby.lilyya.xyz // lilyemby
 DOMAIN,cdsalw2lw.catlinks.co.uk
 DOMAIN,cf.carlos.trade
-DOMAIN,cf.imetyou.top
-DOMAIN,cf.sfcj.org
 DOMAIN,cf.sfcj.org // 非越
-DOMAIN,cfemby.lilyya.xyz
 DOMAIN,cfemby.lilyya.xyz // lilyemby
 DOMAIN,cm.jingzihan.net // apop 压测服
 DOMAIN,cn.apopcloud.live // apoppro
-DOMAIN,daigua.j8.work
 DOMAIN,direct.lyrebirdemby.com // Lyrebird-琴鸟
-DOMAIN,dl.carryz.net
 DOMAIN,dl.carryz.net // Cc 播放线路
-DOMAIN,eggtartemby.itsmyduty.top
 DOMAIN,ehsifohesiohgesfhrioe3.puddingcat.de
-DOMAIN,emby-direct.pilipiliultra.com
 DOMAIN,emby.1024.name // 西瓜
 DOMAIN,emby.aladingnet.com // 阿拉丁
 DOMAIN,emby.as174.com // hxd
-DOMAIN,emby.as174.de
 DOMAIN,emby.awatv.de // awa
-DOMAIN,emby.bangumi.ca
 DOMAIN,emby.boaz.cf // plumber
-DOMAIN,emby.carlos.trade // Added for: emby.carlos.trade:8096
 DOMAIN,emby.cn2gias.uk // 守候 gugu
-DOMAIN,emby.jingzhe.pro
 DOMAIN,emby.lilyya.xyz // lilyemby
-DOMAIN,emby.pilipiliultra.com
 DOMAIN,emby.tnx.one // Nanflix
-DOMAIN,emby.ucloudhost.top
-DOMAIN,emby3.mcjoker.xyz
-DOMAIN,emby3.mcjoker.xyz // Added for: emby3.mcjoker.xyz:443
-DOMAIN,emby4.029902.xyz
 DOMAIN,embyfw.alphatvapp.top
 DOMAIN,embymv.tk
-DOMAIN,embyplus.org
 DOMAIN,flare.catlinks.co.uk
-DOMAIN,free.28.al
 DOMAIN,fun.poloemby.xyz // polo
-DOMAIN,gd.9521732.xyz
 DOMAIN,hd.xmsl.org // loser 反代 cf美国
-DOMAIN,hka-emby3.aliz.work
 DOMAIN,hxd.as174.com // hxd
-DOMAIN,if.20120714.xyz // Added for: if.20120714.xyz:443
-DOMAIN,inside.lyrebirdemby.com
-DOMAIN,jg.sfcj.org
-DOMAIN,jg6.sfcj.org
-DOMAIN,jp.lilyemby.my
 DOMAIN,jsq.mooguu.top // 蘑菇-见手青
-DOMAIN,ju.sfcj.org
-DOMAIN,jz.mcjoker.xyz // Added for: jz.mcjoker.xyz:443
 DOMAIN,line.xmsl.org // loser
-DOMAIN,lite.saturday.video
 DOMAIN,main.gugumedia.site
-DOMAIN,media.nijigem.by
-DOMAIN,misty.cx // Added for: misty.cx:443
-DOMAIN,mzlpin.1024.one
 DOMAIN,nanflix.net // Nanflix
 DOMAIN,new.xmsl.org // loser
 DOMAIN,node1.guguemby.site // 测试线路 gugu
-DOMAIN,onatoshi.114514.quest
 DOMAIN,oversea.alphatvapp.top // alphatvapp
 DOMAIN,pilipili.club // pilipili
 DOMAIN,pk.catchyoureye.top // pokeremby jms
-DOMAIN,play.charontv.com
-DOMAIN,play.charontv.com // Added for: play.charontv.com:443
-DOMAIN,plumber.nezhasu.com
 DOMAIN,pm.xmsl.org // loser
 DOMAIN,pornemby.maoxiong.cloud // 猫熊 pron
-DOMAIN,pub1.emby.wtf
-DOMAIN,pub1.term.wtf
-DOMAIN,pub2.emby.wtf
-DOMAIN,pub2.term.wtf
-DOMAIN,pub3.emby.wtf
-DOMAIN,pub3.term.wtf
 DOMAIN,robo.656888.xyz // robo
 DOMAIN,robo.668918.xyz // robo
-DOMAIN,seoul.1024.name
-DOMAIN,shouer.910427.xyz
 DOMAIN,shuigawd921hfs-ef27893hrsf.catlinks.co.uk
-DOMAIN,sj.viclub.top
-DOMAIN,sjc.1024.name
 DOMAIN,ss.809688.xyz // ciji 德国
 DOMAIN,ss.ianong.cn // 蘑菇
-DOMAIN,stream2.jingzhe.pro
 DOMAIN,stream_pilipili.misakaf.org // PiliPili播放线路
-DOMAIN,streamer-cf.pilipiliultra.com
-DOMAIN,su.viclub.top
-DOMAIN,su.viclub.top // Added for: su.viclub.top:8090
 DOMAIN,temby.285286.xyz // TEmby
 DOMAIN,temby4837.285286.xyz // TEmby
 DOMAIN,temby856.285286.xyz // tembybeta
 DOMAIN,tiancheng.boaz.cf // plumber
 DOMAIN,tv.ash.yt // ash（卷毛鼠）
-DOMAIN,u.lilyemby.my
 DOMAIN,us.886318.xyz // apoppro
 DOMAIN,us.carlos.trade
-DOMAIN,us.nanflix.net
 DOMAIN,v.20120714.xyz // Marmot_Emby
-DOMAIN,v6.sfcj.org
-DOMAIN,vi-hk.pppp.us.kg
-DOMAIN,vi-jp.pppp.us.kg
-DOMAIN,vi-sg.pppp.us.kg
 DOMAIN,vip3.jellyfin.asia // 阿拉丁-水母
 DOMAIN,ws1.jellyfin.asia // 水母
-DOMAIN,www.ikun.tv // Added for: www.ikun.tv:443
 DOMAIN,yhemby.top // 飞跃银河
-DOMAIN,z.sfcj.org
 DOMAIN,z.sfcj.org // 非越
 DOMAIN-KEYWORD,emby.wtf
 DOMAIN-KEYWORD,jmsooo
 DOMAIN-KEYWORD,odysseyplus
+DOMAIN-SUFFIX,023168.xyz
 DOMAIN-SUFFIX,1.4545.cf
 DOMAIN-SUFFIX,1.loseremby.org
 DOMAIN-SUFFIX,102.223.180.108
 DOMAIN-SUFFIX,1024.name
 DOMAIN-SUFFIX,114.96.109.46
 DOMAIN-SUFFIX,114514.quest
+DOMAIN-SUFFIX,116.163.28.190:60748
+DOMAIN-SUFFIX,120.226.149.35
 DOMAIN-SUFFIX,123456.al
 DOMAIN-SUFFIX,123456.buzz
+DOMAIN-SUFFIX,127066.xyz
+DOMAIN-SUFFIX,127255.best
 DOMAIN-SUFFIX,167.235.116.53
+DOMAIN-SUFFIX,16bit.cfd
 DOMAIN-SUFFIX,1l1.icu
 DOMAIN-SUFFIX,20120714.xyz
 DOMAIN-SUFFIX,202.61.255.248
+DOMAIN-SUFFIX,204cloud.com
+DOMAIN-SUFFIX,223789.xyz
 DOMAIN-SUFFIX,23.emby77.cf
 DOMAIN-SUFFIX,23s.casacam.net
+DOMAIN-SUFFIX,252798.xyz
 DOMAIN-SUFFIX,28.al
 DOMAIN-SUFFIX,285286.xyz
+DOMAIN-SUFFIX,313445.xyz
 DOMAIN-SUFFIX,404.sb
 DOMAIN-SUFFIX,4545.cf
+DOMAIN-SUFFIX,5203166.xyz
 DOMAIN-SUFFIX,581658.best
+DOMAIN-SUFFIX,616626.xyz
 DOMAIN-SUFFIX,697758.best
 DOMAIN-SUFFIX,7777777.buzz
 DOMAIN-SUFFIX,789.123456.al
@@ -169,6 +112,7 @@ DOMAIN-SUFFIX,9191001.xyz
 DOMAIN-SUFFIX,91ai.de
 DOMAIN-SUFFIX,94.16.122.183
 DOMAIN-SUFFIX,9521732.xyz
+DOMAIN-SUFFIX,994959.xyz
 DOMAIN-SUFFIX,9club.lol
 DOMAIN-SUFFIX,Bluesea.ddns.me
 DOMAIN-SUFFIX,aca.best
@@ -184,6 +128,7 @@ DOMAIN-SUFFIX,agasg1.jmsooo.com
 DOMAIN-SUFFIX,agon.cf
 DOMAIN-SUFFIX,aliz.work
 DOMAIN-SUFFIX,aliz.work // hkaemby
+DOMAIN-SUFFIX,alphatvapp.top
 DOMAIN-SUFFIX,am.sb
 DOMAIN-SUFFIX,api.nebula-emby.com
 DOMAIN-SUFFIX,as174.de
@@ -199,8 +144,8 @@ DOMAIN-SUFFIX,bangumi.ca
 DOMAIN-SUFFIX,bddup.com
 DOMAIN-SUFFIX,bgka.me
 DOMAIN-SUFFIX,bili.bili.rip
+DOMAIN-SUFFIX,bili.de
 DOMAIN-SUFFIX,bili.rip
-DOMAIN-SUFFIX,biliblili.uk
 DOMAIN-SUFFIX,blueseacdn.com
 DOMAIN-SUFFIX,blueseamusics.com
 DOMAIN-SUFFIX,bsem.ddns.me
@@ -215,6 +160,7 @@ DOMAIN-SUFFIX,cc.coemn.com
 DOMAIN-SUFFIX,cc.semby.ink
 DOMAIN-SUFFIX,ccde.loseremby.org
 DOMAIN-SUFFIX,ccemby.tk
+DOMAIN-SUFFIX,cdn.bgp.yt
 DOMAIN-SUFFIX,cdn.bili.rip
 DOMAIN-SUFFIX,cdn.lyrebirdemby.com
 DOMAIN-SUFFIX,cdn.qzuie.top
@@ -239,32 +185,37 @@ DOMAIN-SUFFIX,cfemby.wiri.tk
 DOMAIN-SUFFIX,cflix.acemby.org
 DOMAIN-SUFFIX,cfmusic.imetyou.top
 DOMAIN-SUFFIX,charontv.com
+DOMAIN-SUFFIX,cherry-pornemby.top
 DOMAIN-SUFFIX,cherrytv.one
 DOMAIN-SUFFIX,chun.imetyou.top
 DOMAIN-SUFFIX,chunmusic.imetyou.top
 DOMAIN-SUFFIX,cinema.facmata.net
 DOMAIN-SUFFIX,cminf.sfcat.link
+DOMAIN-SUFFIX,cn2gias.uk
 DOMAIN-SUFFIX,coemn.com
 DOMAIN-SUFFIX,cristiamo.xyz
 DOMAIN-SUFFIX,crond.dev
 DOMAIN-SUFFIX,cuinf.sfcat.link
 DOMAIN-SUFFIX,cynn.top
 DOMAIN-SUFFIX,deja-vu.beauty
+DOMAIN-SUFFIX,dhyy.eu.org
 DOMAIN-SUFFIX,dicarerhome.com
 DOMAIN-SUFFIX,direct.lyrebirdemby.com
 DOMAIN-SUFFIX,direct.mjjemby.org
 DOMAIN-SUFFIX,direct.nebula-emby.com
 DOMAIN-SUFFIX,drei.bgka.me
+DOMAIN-SUFFIX,e.degyax.one
 DOMAIN-SUFFIX,e.niceduck.me
 DOMAIN-SUFFIX,ednovas.org
+DOMAIN-SUFFIX,em.ssky.me
 DOMAIN-SUFFIX,emby-cf.plusmedia.site
 DOMAIN-SUFFIX,emby-e-hk.pppp.us.kg
 DOMAIN-SUFFIX,emby-e-jp.pppp.us.kg
+DOMAIN-SUFFIX,emby-myg-de.vfing.de
 DOMAIN-SUFFIX,emby-pub1.blueseacdn.com
 DOMAIN-SUFFIX,emby-sg.plusmedia.site
 DOMAIN-SUFFIX,emby.222921.xyz
 DOMAIN-SUFFIX,emby.aca.best
-DOMAIN-SUFFIX,emby.agon.cf
 DOMAIN-SUFFIX,emby.aiyowei.ml
 DOMAIN-SUFFIX,emby.apopcloud.live
 DOMAIN-SUFFIX,emby.at
@@ -282,6 +233,7 @@ DOMAIN-SUFFIX,emby.date
 DOMAIN-SUFFIX,emby.dicarerhome.com
 DOMAIN-SUFFIX,emby.ednovas.org
 DOMAIN-SUFFIX,emby.eu.org
+DOMAIN-SUFFIX,emby.flowercloud
 DOMAIN-SUFFIX,emby.flowercloud.yt
 DOMAIN-SUFFIX,emby.freetz.top
 DOMAIN-SUFFIX,emby.imetyou.top
@@ -298,6 +250,7 @@ DOMAIN-SUFFIX,emby.milkcat.net
 DOMAIN-SUFFIX,emby.misakaf.org
 DOMAIN-SUFFIX,emby.misakaf.xyz
 DOMAIN-SUFFIX,emby.ml
+DOMAIN-SUFFIX,emby.moe
 DOMAIN-SUFFIX,emby.my
 DOMAIN-SUFFIX,emby.nebula-media.org
 DOMAIN-SUFFIX,emby.neko.edu.rs
@@ -355,6 +308,7 @@ DOMAIN-SUFFIX,embyplus.org
 DOMAIN-SUFFIX,embyserver.ga
 DOMAIN-SUFFIX,embytv.cf
 DOMAIN-SUFFIX,embyus.bili.rip
+DOMAIN-SUFFIX,facmata.net
 DOMAIN-SUFFIX,favoritewife.com
 DOMAIN-SUFFIX,film.goodisp.org
 DOMAIN-SUFFIX,film.hovervan.org
@@ -362,7 +316,6 @@ DOMAIN-SUFFIX,film.nmg.llc
 DOMAIN-SUFFIX,film.ohhhh.org
 DOMAIN-SUFFIX,film.reddust.link
 DOMAIN-SUFFIX,fk.imetyou.top
-DOMAIN-SUFFIX,flare.catlinks.co.uk
 DOMAIN-SUFFIX,foxcoo.top
 DOMAIN-SUFFIX,free.poloemby.xyz
 DOMAIN-SUFFIX,free.xmsl.org
@@ -373,6 +326,7 @@ DOMAIN-SUFFIX,gfwemby.org
 DOMAIN-SUFFIX,ggtt.cf
 DOMAIN-SUFFIX,goodisp.org
 DOMAIN-SUFFIX,gtlx.org
+DOMAIN-SUFFIX,guguemby.site
 DOMAIN-SUFFIX,gugumedia.link
 DOMAIN-SUFFIX,ha.jmsooo.com
 DOMAIN-SUFFIX,hanime1.me
@@ -380,7 +334,9 @@ DOMAIN-SUFFIX,hannn.me
 DOMAIN-SUFFIX,happyav.eu.org
 DOMAIN-SUFFIX,hinet.jmsooo.com
 DOMAIN-SUFFIX,hk.jmsooo.com
+DOMAIN-SUFFIX,hovervan.org
 DOMAIN-SUFFIX,i109.com
+DOMAIN-SUFFIX,ii00.cc
 DOMAIN-SUFFIX,imetyou.top
 DOMAIN-SUFFIX,infinityfly.top
 DOMAIN-SUFFIX,itsmyduty.top
@@ -398,6 +354,7 @@ DOMAIN-SUFFIX,jpp.809688.xyz
 DOMAIN-SUFFIX,jsq.mooguu.xyz
 DOMAIN-SUFFIX,ju.dog
 DOMAIN-SUFFIX,kessoku-bando.biliblili.uk
+DOMAIN-SUFFIX,kevinchen.vip
 DOMAIN-SUFFIX,kr.embymv.tk
 DOMAIN-SUFFIX,kr.freetz.top
 DOMAIN-SUFFIX,kr.imetyou.top
@@ -408,17 +365,21 @@ DOMAIN-SUFFIX,kyarucloud.moe
 DOMAIN-SUFFIX,line.emby.men
 DOMAIN-SUFFIX,line.xmsl.org
 DOMAIN-SUFFIX,lite.saturday.video
+DOMAIN-SUFFIX,liustar.click
 DOMAIN-SUFFIX,loseremby.org
 DOMAIN-SUFFIX,loseremby.org // loser
 DOMAIN-SUFFIX,lucasmedia.top
 DOMAIN-SUFFIX,lyrebirdemby.com
 DOMAIN-SUFFIX,lzlz.eu.org
 DOMAIN-SUFFIX,magpie.cyou
+DOMAIN-SUFFIX,magpiecdn.tech
 DOMAIN-SUFFIX,main.gugumedia.link
 DOMAIN-SUFFIX,manga.pilipiliultra.com
 DOMAIN-SUFFIX,maoxiong.cloud
 DOMAIN-SUFFIX,mcjoker.xyz
+DOMAIN-SUFFIX,medi4.org
 DOMAIN-SUFFIX,media.nijigem.by
+DOMAIN-SUFFIX,mefun.org
 DOMAIN-SUFFIX,mickeycloud.com
 DOMAIN-SUFFIX,micu.hk
 DOMAIN-SUFFIX,micu.hk // Added for: tv.micu.hk:443
@@ -437,21 +398,29 @@ DOMAIN-SUFFIX,nakoemby.com
 DOMAIN-SUFFIX,nakonako.net
 DOMAIN-SUFFIX,nanflix.net
 DOMAIN-SUFFIX,nc2.infinityfly.top
+DOMAIN-SUFFIX,nebula-emby.com
 DOMAIN-SUFFIX,nebula-media.org
 DOMAIN-SUFFIX,nebulae.top
 DOMAIN-SUFFIX,newpppp.com
 DOMAIN-SUFFIX,newwan.top
+DOMAIN-SUFFIX,nezhasu.com
+DOMAIN-SUFFIX,niceduck.lol
 DOMAIN-SUFFIX,nijigem.by
 DOMAIN-SUFFIX,nivod4.tv
 DOMAIN-SUFFIX,notnetflix.cos.cat
 DOMAIN-SUFFIX,ntrrr.am.sb
 DOMAIN-SUFFIX,ntt1.jmsooo.com
 DOMAIN-SUFFIX,nvidia.rip
+DOMAIN-SUFFIX,oceancloud.asia
+DOMAIN-SUFFIX,odysseyplus.site
 DOMAIN-SUFFIX,ohhhh.org
+DOMAIN-SUFFIX,onyra.cc
 DOMAIN-SUFFIX,otv.icu
 DOMAIN-SUFFIX,ouonet.org
 DOMAIN-SUFFIX,outong-valve.com
 DOMAIN-SUFFIX,oversea.alphatvapp.top
+DOMAIN-SUFFIX,pili.im
+DOMAIN-SUFFIX,pilipili.me
 DOMAIN-SUFFIX,pilipiliultra.com
 DOMAIN-SUFFIX,pilipiliultra.top
 DOMAIN-SUFFIX,play.acemby.org
@@ -477,12 +446,16 @@ DOMAIN-SUFFIX,pub3back.emby.wtf
 DOMAIN-SUFFIX,push-kr.cfprefer3.xyz
 DOMAIN-SUFFIX,push-kr.misakaf.org
 DOMAIN-SUFFIX,qidian.ocdlive.com
+DOMAIN-SUFFIX,raisemby.com
 DOMAIN-SUFFIX,reddust.link
+DOMAIN-SUFFIX,roboemby.de
 DOMAIN-SUFFIX,ru.odysseyplus.site
 DOMAIN-SUFFIX,sana.emby.eu.org
 DOMAIN-SUFFIX,saturday.video
 DOMAIN-SUFFIX,semby.ink
 DOMAIN-SUFFIX,servers.xeton.dev
+DOMAIN-SUFFIX,sexemby.com
+DOMAIN-SUFFIX,sfcat.link
 DOMAIN-SUFFIX,sfcj.org
 DOMAIN-SUFFIX,sg.809688.xyz
 DOMAIN-SUFFIX,sg.imetyou.top
@@ -508,6 +481,7 @@ DOMAIN-SUFFIX,stream2.misakaf.org
 DOMAIN-SUFFIX,stream3.misakaf.org
 DOMAIN-SUFFIX,stream4.misakaf.org
 DOMAIN-SUFFIX,studyfun.live
+DOMAIN-SUFFIX,synn.cc
 DOMAIN-SUFFIX,tanhuatv.site
 DOMAIN-SUFFIX,tanhuatv.site // tanhua
 DOMAIN-SUFFIX,temby.285286.xyz
@@ -518,6 +492,7 @@ DOMAIN-SUFFIX,tkremby.xyz
 DOMAIN-SUFFIX,tv.811861.xyz
 DOMAIN-SUFFIX,tv.micu.hk
 DOMAIN-SUFFIX,tv.the98.ltd
+DOMAIN-SUFFIX,tv.worldline.space
 DOMAIN-SUFFIX,ucloudhost.top
 DOMAIN-SUFFIX,uhdnow.com
 DOMAIN-SUFFIX,up.xmsl.org
@@ -527,6 +502,7 @@ DOMAIN-SUFFIX,v.20120714.xyz
 DOMAIN-SUFFIX,vfing.de
 DOMAIN-SUFFIX,web.nebula-emby.com
 DOMAIN-SUFFIX,web.nebula-media.org
+DOMAIN-SUFFIX,wenjian.de
 DOMAIN-SUFFIX,wiri.tk
 DOMAIN-SUFFIX,wmxz.567996.xyz
 DOMAIN-SUFFIX,worldline.acecandy.cn
@@ -545,13 +521,27 @@ IP-CIDR,102.223.180.108/32,no-resolve // misakaf
 IP-CIDR,110.40.36.36/32
 IP-CIDR,141.147.166.107/32,no-resolve // Added for: 141.147.166.107:19798
 IP-CIDR,146.235.214.2/32,no-resolve // Added for: 146.235.214.2:12180
-IP-CIDR,157.180.0.157/32
+IP-CIDR,152.53.67.239/32
 IP-CIDR,167.235.116.53/32,no-resolve // Lyrebird-琴鸟
+IP-CIDR,168.119.137.205/32
 IP-CIDR,168.138.45.100/32,no-resolve
-IP-CIDR,188.172.228.65/32
-IP-CIDR,193.122.114.13/32
-IP-CIDR,193.123.232.141/32
+IP-CIDR,188.172.228.49/32
 IP-CIDR,193.123.232.141/32,no-resolve // 193.123.232.141:10000 peach
-IP-CIDR,38.58.181.218/32
+IP-CIDR,195.128.100.146/32
+IP-CIDR,195.128.102.208/32
+IP-CIDR,195.201.86.86/32
+IP-CIDR,202.61.247.129/32
+IP-CIDR,202.61.255.248/32
+IP-CIDR,212.90.120.164/32
 IP-CIDR,74.50.80.23/32,no-resolve // TEmby
+IP-CIDR6,581658.best // Added for: 581658.best:443
+IP-CIDR6,auto.polodns.xyz // Added for: auto.polodns.xyz:443
+IP-CIDR6,emby.carlos.trade // Added for: emby.carlos.trade:8096
+IP-CIDR6,emby3.mcjoker.xyz // Added for: emby3.mcjoker.xyz:443
+IP-CIDR6,if.20120714.xyz // Added for: if.20120714.xyz:443
+IP-CIDR6,jz.mcjoker.xyz // Added for: jz.mcjoker.xyz:443
+IP-CIDR6,misty.cx // Added for: misty.cx:443
+IP-CIDR6,play.charontv.com // Added for: play.charontv.com:443
+IP-CIDR6,su.viclub.top // Added for: su.viclub.top:8090
+IP-CIDR6,www.ikun.tv // Added for: www.ikun.tv:443
 OR,((DOMAIN-SUFFIX,123456.buzz),(DOMAIN-SUFFIX,1110111.top)) // DPX 直连

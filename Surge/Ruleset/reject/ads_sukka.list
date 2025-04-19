@@ -1,12 +1,12 @@
 #########################################
 # Sukka's Ruleset - Reject Base
-# Last Updated: 2025-04-19T13:02:03.749Z
-# Size: 67549
+# Last Updated: 2025-04-19T15:10:22.923Z
+# Size: 67567
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
 #
-# The domainset supports AD blocking, tracking protection, privacy protection, anti-phishing, anti-mining
+# The domainset supports AD blocking, tracking protection, privacy protection, anti-mining
 #
 # Build from:
 #  - https://cdn.jsdelivr.net/gh/crazy-max/WindowsSpyBlocker@master/data/hosts/spy.txt
@@ -1025,6 +1025,7 @@ DOMAIN-SUFFIX,gtm.cylock.tech
 DOMAIN-SUFFIX,xszjh.tech
 DOMAIN-SUFFIX,track.robee.tech
 DOMAIN-SUFFIX,channelwatcher.panda.tech
+DOMAIN-SUFFIX,pushd.netky.tech
 DOMAIN-SUFFIX,load.ss.kitex.tech
 DOMAIN,ssp1.kfadx.tech
 DOMAIN-SUFFIX,wh.giftd.tech
@@ -3261,6 +3262,7 @@ DOMAIN-SUFFIX,shikarsfrecket.top
 DOMAIN-SUFFIX,sermonsbleeder.top
 DOMAIN-SUFFIX,ragboltblacker.top
 DOMAIN-SUFFIX,quackedchevage.top
+DOMAIN-SUFFIX,pruningcomping.top
 DOMAIN-SUFFIX,problemhickory.top
 DOMAIN-SUFFIX,pittitepicarii.top
 DOMAIN-SUFFIX,pisachafibular.top
@@ -3377,6 +3379,7 @@ DOMAIN-SUFFIX,kbqqavwjqemea.top
 DOMAIN-SUFFIX,kbkewkqrkqkzy.top
 DOMAIN-SUFFIX,jzqbyykjorqkq.top
 DOMAIN-SUFFIX,jzokkejvjrvwj.top
+DOMAIN-SUFFIX,jyqekzzlmymzy.top
 DOMAIN-SUFFIX,jyozavobzrlkz.top
 DOMAIN-SUFFIX,jybaekaqbmwmq.top
 DOMAIN-SUFFIX,jwnmnnwjaezyw.top
@@ -5889,6 +5892,7 @@ DOMAIN-SUFFIX,media.polariswealth.net
 DOMAIN-SUFFIX,phirussacmush.net
 DOMAIN-SUFFIX,phecoungaudsi.net
 DOMAIN-SUFFIX,paizowheefash.net
+DOMAIN-SUFFIX,ouphushoomauh.net
 DOMAIN-SUFFIX,ossmightyenar.net
 DOMAIN-SUFFIX,oatsegnickeez.net
 DOMAIN-SUFFIX,new-access802.net
@@ -6375,6 +6379,7 @@ DOMAIN-SUFFIX,event.webcollage.net
 DOMAIN-SUFFIX,a8.web-hikari.net
 DOMAIN-SUFFIX,wazoceckoo.net
 DOMAIN-SUFFIX,vugloubeky.net
+DOMAIN-SUFFIX,votookrogn.net
 DOMAIN-SUFFIX,vothongeey.net
 DOMAIN-SUFFIX,vooptikoph.net
 DOMAIN-SUFFIX,monitor.ns1-d.viacomtech.net
@@ -12746,6 +12751,7 @@ DOMAIN-SUFFIX,go.supporthubamerica.com
 DOMAIN-SUFFIX,news.supplychain-event.com
 DOMAIN-SUFFIX,superficialspring.com
 DOMAIN-SUFFIX,ccteax.sunglasswarehouse.com
+DOMAIN-SUFFIX,suitedeatercrutch.com
 DOMAIN-SUFFIX,trk.strongerfuturenow.com
 DOMAIN-SUFFIX,hi.streetworkoutlist.com
 DOMAIN-SUFFIX,partner.streetinteractive.com
@@ -15984,6 +15990,7 @@ DOMAIN-SUFFIX,test.thomsonreuters.com
 DOMAIN-SUFFIX,images.pr.thomsonreuters.com
 DOMAIN-SUFFIX,thirdautsolith.com
 DOMAIN-SUFFIX,innovation.thinkcommunica.com
+DOMAIN-SUFFIX,thinideemissie.com
 DOMAIN-SUFFIX,thickshortwage.com
 DOMAIN-SUFFIX,login.thetrafficboss.com
 DOMAIN-SUFFIX,srepdata.thetimesherald.com
@@ -16564,6 +16571,7 @@ DOMAIN-SUFFIX,rodent.kevindendievel.com
 DOMAIN-SUFFIX,track.ketogummiespro.com
 DOMAIN-SUFFIX,images.portal.keppelelectric.com
 DOMAIN-SUFFIX,marketing.kemperbenefits.com
+DOMAIN-SUFFIX,kcadxjoxkggcui.com
 DOMAIN-SUFFIX,sanalytics.kbdesignlondon.com
 DOMAIN-SUFFIX,kanuassociates.com
 DOMAIN-SUFFIX,data.mktg.kansasspeedway.com
@@ -16673,6 +16681,7 @@ DOMAIN-SUFFIX,go.healthgroupnow.com
 DOMAIN-SUFFIX,img.healthecareers.com
 DOMAIN-SUFFIX,marketing.healthcarousel.com
 DOMAIN-SUFFIX,mob2.healthapplines.com
+DOMAIN-SUFFIX,healfultwifold.com
 DOMAIN-SUFFIX,thegreatesthits.headphonecheck.com
 DOMAIN-SUFFIX,offers.hddistributors.com
 DOMAIN-SUFFIX,marketing.hardysolutions.com
@@ -20017,6 +20026,7 @@ DOMAIN-SUFFIX,campaigns.primaverabss.com
 DOMAIN-SUFFIX,ah.pricegrabber.com
 DOMAIN-SUFFIX,go.prettystraps.com
 DOMAIN-SUFFIX,pretrackings.com
+DOMAIN-SUFFIX,pretenddyker.com
 DOMAIN-SUFFIX,track.premioebonus.com
 DOMAIN-SUFFIX,marketing.premierpandp.com
 DOMAIN-SUFFIX,precisejoker.com
@@ -21693,6 +21703,7 @@ DOMAIN-SUFFIX,zestpocosin.com
 DOMAIN-SUFFIX,sadbmetrics.zendalibros.com
 DOMAIN-SUFFIX,ss.zavattishop.com
 DOMAIN-SUFFIX,zatloudredr.com
+DOMAIN-SUFFIX,zapotasmoot.com
 DOMAIN-SUFFIX,uat1-dc.zalesoutlet.com
 DOMAIN-SUFFIX,metrics.zalesoutlet.com
 DOMAIN-SUFFIX,dc.zalesoutlet.com
@@ -24231,6 +24242,7 @@ DOMAIN-SUFFIX,ponos.zeronaught.com
 DOMAIN-SUFFIX,zentrixads.com
 DOMAIN-SUFFIX,yyselrqpyu.com
 DOMAIN-SUFFIX,isebis.yutoriform.com
+DOMAIN-SUFFIX,yuntodifrz.com
 DOMAIN-SUFFIX,xrnyhc.yungsuilbo.com
 DOMAIN-SUFFIX,akkieh.yumeyakata.com
 DOMAIN-SUFFIX,ebis.yumeyakata.com
@@ -26329,6 +26341,7 @@ DOMAIN-SUFFIX,evasivejar.com
 DOMAIN-SUFFIX,marketing.eurofinsus.com
 DOMAIN-SUFFIX,tr.news.eurodatatv.com
 DOMAIN-SUFFIX,ja-jp-a8.etudehouse.com
+DOMAIN-SUFFIX,ethugloodu.com
 DOMAIN-SUFFIX,etargetnet.com
 DOMAIN-SUFFIX,tv-test.esvdigital.com
 DOMAIN-SUFFIX,t-test.esvdigital.com
@@ -26788,6 +26801,7 @@ DOMAIN-SUFFIX,ca-log.cafe24data.com
 DOMAIN-SUFFIX,ca-api.cafe24data.com
 DOMAIN-SUFFIX,uvwvjd.cablematic.com
 DOMAIN-SUFFIX,ca2686564a.com
+DOMAIN-SUFFIX,ca06ef821c.com
 DOMAIN-SUFFIX,a1db6a0384.c63b91ca50.com
 DOMAIN-SUFFIX,59d6c6aa6f.c4ef1d1343.com
 DOMAIN-SUFFIX,201c741203.c40e234db8.com
@@ -27263,6 +27277,7 @@ DOMAIN-SUFFIX,ad81b5514f.91b20f7c8f.com
 DOMAIN-SUFFIX,sgtm.8ttomarket.com
 DOMAIN-SUFFIX,8s32e590un.com
 DOMAIN-SUFFIX,8ecc2aee4f.com
+DOMAIN-SUFFIX,8ea1272194.com
 DOMAIN-SUFFIX,72d6526e68.8e323e599c.com
 DOMAIN-SUFFIX,8ab16250fe.com
 DOMAIN-SUFFIX,888xx222kk.com
@@ -29796,6 +29811,7 @@ DOMAIN-SUFFIX,eildralfl.com
 DOMAIN-SUFFIX,eulerian.eidershop.com
 DOMAIN-SUFFIX,7mx.eidershop.com
 DOMAIN-SUFFIX,ehkualecb.com
+DOMAIN-SUFFIX,egxtaxsqf.com
 DOMAIN-SUFFIX,ptvurg.egricayir.com
 DOMAIN-SUFFIX,analytics.egernsund.com
 DOMAIN-SUFFIX,efreecode.com
@@ -39111,6 +39127,7 @@ DOMAIN-SUFFIX,1.hao123.com
 DOMAIN-SUFFIX,lqiwjf.hannun.com
 DOMAIN-SUFFIX,marketing.halobi.com
 DOMAIN-SUFFIX,udzucw.haggar.com
+DOMAIN-SUFFIX,hacx60.com
 DOMAIN-SUFFIX,czektm.haband.com
 DOMAIN-SUFFIX,m.gxwztv.com
 DOMAIN-SUFFIX,gxjajt.com
@@ -53367,6 +53384,7 @@ DOMAIN-SUFFIX,cdn.affiliatable.io
 DOMAIN,adn-collector.voodoo-tech.io
 DOMAIN-SUFFIX,marketing.strongpoint.io
 DOMAIN-SUFFIX,bobcat.snapshooter.io
+DOMAIN-SUFFIX,receptivity.io
 DOMAIN-SUFFIX,track.pandabrands.io
 DOMAIN-SUFFIX,openinstall.io
 DOMAIN-SUFFIX,n-analytics.io
