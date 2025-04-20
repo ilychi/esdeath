@@ -1,4 +1,18 @@
 // Advertising, Malicious Sites & Tracking Protection
+// Last updated: 2025/4/20 18:37:49
+// DOMAIN: 291
+// DOMAIN-SUFFIX: 841
+// DOMAIN-KEYWORD: 5
+// IP-CIDR: 6
+// IP-CIDR6: 1
+// USER-AGENT: 1
+// Total: 1145
+// Combined rules for blocking ads, malicious sites and user tracking services
+// Data sources:
+//  - https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Advertising.list
+//  - https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Malicious.list
+//  - https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Tracking.list
+// Advertising, Malicious Sites & Tracking Protection
 // Last updated: 2025/4/20 17:34:33
 // DOMAIN: 291
 // DOMAIN-SUFFIX: 841
