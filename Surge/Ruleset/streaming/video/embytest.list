@@ -1,10 +1,9 @@
 // Emby Media Servers
-// Last updated: 2025/4/21 00:31:48
-// DOMAIN: 58
+// Last updated: 2025/4/21 01:18:05
+// DOMAIN: 68
 // DOMAIN-SUFFIX: 443
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 17
-// IP-CIDR6: 10
 // OTHER: 1
 // Total: 532
 // Comprehensive rules for various Emby media servers, combining multiple sources including Clash format rules
@@ -14,7 +13,9 @@
 //  - https://github.com/forevergooe/Rules/raw/master/Surge/Emby.list
 //  - https://github.com/yahngming/rules/raw/master/emby.list
 DOMAIN,123456.buzz // DPX 海外
+DOMAIN,581658.best // Added for: 581658.best:443
 DOMAIN,7777777.buzz
+DOMAIN,auto.polodns.xyz // Added for: auto.polodns.xyz:443
 DOMAIN,by.mooguu.org // 蘑菇备用
 DOMAIN,cc.coemn.com // Cc
 DOMAIN,cdn.lyrebirdemby.com // Lyrebird-琴鸟
@@ -33,24 +34,30 @@ DOMAIN,emby.aladingnet.com // 阿拉丁
 DOMAIN,emby.as174.com // hxd
 DOMAIN,emby.awatv.de // awa
 DOMAIN,emby.boaz.cf // plumber
+DOMAIN,emby.carlos.trade // Added for: emby.carlos.trade:8096
 DOMAIN,emby.cn2gias.uk // 守候 gugu
 DOMAIN,emby.lilyya.xyz // lilyemby
 DOMAIN,emby.tnx.one // Nanflix
+DOMAIN,emby3.mcjoker.xyz // Added for: emby3.mcjoker.xyz:443
 DOMAIN,embyfw.alphatvapp.top
 DOMAIN,embymv.tk
 DOMAIN,flare.catlinks.co.uk
 DOMAIN,fun.poloemby.xyz // polo
 DOMAIN,hd.xmsl.org // loser 反代 cf美国
 DOMAIN,hxd.as174.com // hxd
+DOMAIN,if.20120714.xyz // Added for: if.20120714.xyz:443
 DOMAIN,jsq.mooguu.top // 蘑菇-见手青
+DOMAIN,jz.mcjoker.xyz // Added for: jz.mcjoker.xyz:443
 DOMAIN,line.xmsl.org // loser
 DOMAIN,main.gugumedia.site
+DOMAIN,misty.cx // Added for: misty.cx:443
 DOMAIN,nanflix.net // Nanflix
 DOMAIN,new.xmsl.org // loser
 DOMAIN,node1.guguemby.site // 测试线路 gugu
 DOMAIN,oversea.alphatvapp.top // alphatvapp
 DOMAIN,pilipili.club // pilipili
 DOMAIN,pk.catchyoureye.top // pokeremby jms
+DOMAIN,play.charontv.com // Added for: play.charontv.com:443
 DOMAIN,pm.xmsl.org // loser
 DOMAIN,pornemby.maoxiong.cloud // 猫熊 pron
 DOMAIN,robo.656888.xyz // robo
@@ -59,6 +66,7 @@ DOMAIN,shuigawd921hfs-ef27893hrsf.catlinks.co.uk
 DOMAIN,ss.809688.xyz // ciji 德国
 DOMAIN,ss.ianong.cn // 蘑菇
 DOMAIN,stream_pilipili.misakaf.org // PiliPili播放线路
+DOMAIN,su.viclub.top // Added for: su.viclub.top:8090
 DOMAIN,temby.285286.xyz // TEmby
 DOMAIN,temby4837.285286.xyz // TEmby
 DOMAIN,temby856.285286.xyz // tembybeta
@@ -69,6 +77,7 @@ DOMAIN,us.carlos.trade
 DOMAIN,v.20120714.xyz // Marmot_Emby
 DOMAIN,vip3.jellyfin.asia // 阿拉丁-水母
 DOMAIN,ws1.jellyfin.asia // 水母
+DOMAIN,www.ikun.tv // Added for: www.ikun.tv:443
 DOMAIN,yhemby.top // 飞跃银河
 DOMAIN,z.sfcj.org // 非越
 DOMAIN-KEYWORD,emby.wtf
@@ -518,30 +527,20 @@ DOMAIN-SUFFIX,younoyes.com
 DOMAIN-SUFFIX,zi0.icu
 DOMAIN-SUFFIX,zox.show
 IP-CIDR,102.223.180.108/32,no-resolve // misakaf
-IP-CIDR,110.40.36.36/32
+IP-CIDR,110.40.36.36/32,no-resolve
 IP-CIDR,141.147.166.107/32,no-resolve // Added for: 141.147.166.107:19798
 IP-CIDR,146.235.214.2/32,no-resolve // Added for: 146.235.214.2:12180
-IP-CIDR,152.53.67.239/32
+IP-CIDR,152.53.67.239/32,no-resolve
 IP-CIDR,167.235.116.53/32,no-resolve // Lyrebird-琴鸟
-IP-CIDR,168.119.137.205/32
+IP-CIDR,168.119.137.205/32,no-resolve
 IP-CIDR,168.138.45.100/32,no-resolve
-IP-CIDR,188.172.228.49/32
+IP-CIDR,188.172.228.49/32,no-resolve
 IP-CIDR,193.123.232.141/32,no-resolve // 193.123.232.141:10000 peach
-IP-CIDR,195.128.100.146/32
-IP-CIDR,195.128.102.208/32
-IP-CIDR,195.201.86.86/32
-IP-CIDR,202.61.247.129/32
-IP-CIDR,202.61.255.248/32
-IP-CIDR,212.90.120.164/32
+IP-CIDR,195.128.100.146/32,no-resolve
+IP-CIDR,195.128.102.208/32,no-resolve
+IP-CIDR,195.201.86.86/32,no-resolve
+IP-CIDR,202.61.247.129/32,no-resolve
+IP-CIDR,202.61.255.248/32,no-resolve
+IP-CIDR,212.90.120.164/32,no-resolve
 IP-CIDR,74.50.80.23/32,no-resolve // TEmby
-IP-CIDR6,581658.best // Added for: 581658.best:443
-IP-CIDR6,auto.polodns.xyz // Added for: auto.polodns.xyz:443
-IP-CIDR6,emby.carlos.trade // Added for: emby.carlos.trade:8096
-IP-CIDR6,emby3.mcjoker.xyz // Added for: emby3.mcjoker.xyz:443
-IP-CIDR6,if.20120714.xyz // Added for: if.20120714.xyz:443
-IP-CIDR6,jz.mcjoker.xyz // Added for: jz.mcjoker.xyz:443
-IP-CIDR6,misty.cx // Added for: misty.cx:443
-IP-CIDR6,play.charontv.com // Added for: play.charontv.com:443
-IP-CIDR6,su.viclub.top // Added for: su.viclub.top:8090
-IP-CIDR6,www.ikun.tv // Added for: www.ikun.tv:443
 OR,((DOMAIN-SUFFIX,123456.buzz),(DOMAIN-SUFFIX,1110111.top)) // DPX 直连
