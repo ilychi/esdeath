@@ -85,12 +85,15 @@ async function buildFileTreeData(dir: string, relativePath = ''): Promise<FileTr
       }
 
       if (entry.isDirectory()) {
-        if (
-          allowedDirectories.includes(entry.name) ||
-          relativePath.startsWith('Surge/Module') ||
-          relativePath.startsWith('Surge/Ruleset') ||
-          relativePath.startsWith('GeoIP')
-        ) {
+        // 修复：确保所有目录都被正确处理为目录，移除对特定目录的限制
+        // 只排除不在allowedDirectories中且不是其子目录的文件夹
+        const isRootLevelDirectory = relativePath === '';
+        const isAllowedDirectory = isRootLevelDirectory
+          ? allowedDirectories.includes(entry.name)
+          : true;
+        const isAllowedSubdirectory = allowedDirectories.some(dir => relativePath.startsWith(dir));
+
+        if (isAllowedDirectory || isAllowedSubdirectory) {
           const children: FileTreeItem[] = await buildFileTreeData(fullPath, entryRelativePath);
           if (children.length > 0) {
             elements.push({
