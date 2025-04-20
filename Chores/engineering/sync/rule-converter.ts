@@ -20,6 +20,54 @@ export class RuleConverter {
     this.options = { ...this.options, ...options };
   }
 
+  // 判断是否为有效的IPv4地址（可能包含CIDR掩码）
+  private isValidIPv4(value: string): boolean {
+    // IPv4地址格式：x.x.x.x 或 x.x.x.x/yy
+    const ipv4Pattern = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})(\/\d{1,2})?$/;
+    if (!ipv4Pattern.test(value)) return false;
+
+    // 验证每个数字都在0-255范围内
+    const octets = value.split('/')[0].split('.').map(Number);
+    return octets.every(octet => octet >= 0 && octet <= 255);
+  }
+
+  // 判断是否为有效的IPv6地址（可能包含CIDR掩码）
+  private isValidIPv6(value: string): boolean {
+    // 分离IP和掩码
+    const [ipPart, maskPart] = value.split('/');
+
+    // 如果有掩码，检查掩码是否为有效数字
+    if (maskPart !== undefined) {
+      const mask = parseInt(maskPart, 10);
+      if (isNaN(mask) || mask < 0 || mask > 128) return false;
+    }
+
+    // IPv6地址验证
+    // 1. 检查是否包含至少一个冒号
+    if (!ipPart.includes(':')) return false;
+
+    // 2. 检查冒号数量和格式
+    const segments = ipPart.split(':');
+
+    // IPv6地址最多有8个段，双冒号可以代表一个或多个0段
+    if (segments.length > 8) return false;
+
+    // 检查是否有多个双冒号（::）
+    const doubleColonCount = (ipPart.match(/::/g) || []).length;
+    if (doubleColonCount > 1) return false;
+
+    // 检查每个段是否为有效的十六进制数（0-FFFF）
+    for (const segment of segments) {
+      // 空段是由于双冒号产生的，这是允许的
+      if (segment === '') continue;
+
+      // 每个段必须是1-4位的十六进制数
+      if (!/^[0-9A-Fa-f]{1,4}$/.test(segment)) return false;
+    }
+
+    return true;
+  }
+
   convert(rule: string, cleanup: boolean = false): string {
     let line = rule;
 
@@ -67,16 +115,20 @@ export class RuleConverter {
       value = components[1].trim();
 
       // 检查DOMAIN类型但实际是IP-CIDR的情况
-      if (type === 'DOMAIN' && /^(\d{1,3}\.){3}\d{1,3}(\/\d{1,2})?$/.test(value)) {
+      if (type === 'DOMAIN' && this.isValidIPv4(value)) {
         // 如果是IP CIDR格式，修正类型为IP-CIDR
         type = 'IP-CIDR';
         // 确保IP CIDR有掩码
         if (!value.includes('/')) {
           value += '/32';
         }
-      } else if (type === 'DOMAIN' && value.includes(':') && value.includes('/')) {
+      } else if (type === 'DOMAIN' && this.isValidIPv6(value)) {
         // 如果是IPv6 CIDR格式，修正类型为IP-CIDR6
         type = 'IP-CIDR6';
+        // 确保IPv6 CIDR有掩码
+        if (!value.includes('/')) {
+          value += '/128';
+        }
       }
 
       // 可能的策略或标志
@@ -119,27 +171,29 @@ export class RuleConverter {
         type = 'DOMAIN-SUFFIX';
         value = value.substring(1);
       }
-      // 3. 全数字的 IP 地址，处理为 IP 类型
-      else if (/^(\d{1,3}\.){3}\d{1,3}(\/\d{1,2})?$/.test(value)) {
-        // IP CIDR格式
+      // 3. 检查是否为有效的IPv4地址
+      else if (this.isValidIPv4(value)) {
+        // IPv4 CIDR格式
         type = 'IP-CIDR';
         // 确保IP CIDR有掩码
         if (!value.includes('/')) {
           value += '/32';
         }
-      } else if (value.includes(':')) {
-        // IPv6 地址或CIDR
+      }
+      // 4. 检查是否为有效的IPv6地址
+      else if (this.isValidIPv6(value)) {
+        // IPv6 CIDR格式
         type = 'IP-CIDR6';
-        // 确保IPv6 CIDR有掩码（如果没有）
+        // 确保IPv6 CIDR有掩码
         if (!value.includes('/')) {
           value += '/128';
         }
       }
-      // 4. 正则表达式，匹配以 '/' 开头和结尾的
+      // 5. 正则表达式，匹配以 '/' 开头和结尾的
       else if (/^\/.*\/$/.test(value)) {
         type = 'USER-AGENT'; // 或者其他合适的类型
       }
-      // 5. 默认处理为 DOMAIN
+      // 6. 默认处理为 DOMAIN
       else {
         type = 'DOMAIN';
       }
