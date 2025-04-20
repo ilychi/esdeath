@@ -362,14 +362,43 @@ export function generateNoResolveVersion(content: string): string {
   return content
     .split('\n')
     .map(line => {
-      // Skip comment lines
-      if (!line.trim() || line.startsWith('#') || line.startsWith(';')) {
+      // 跳过注释行和空行
+      if (!line.trim() || line.startsWith('#') || line.startsWith(';') || line.startsWith('//')) {
         return line;
       }
-      // Add no-resolve
-      if (line.includes(',PROXY') || line.includes(',DIRECT') || line.includes(',REJECT')) {
+
+      const parts = line.split(',');
+      const ruleType = parts[0]?.trim().toUpperCase();
+
+      // 已经有no-resolve参数的规则不再添加
+      if (line.includes(',no-resolve')) {
+        return line;
+      }
+
+      // 对所有IP-CIDR和IP-CIDR6规则添加no-resolve参数
+      if (
+        ruleType === 'IP-CIDR' ||
+        ruleType === 'IP-CIDR6' ||
+        ruleType === 'IP-ASN' ||
+        ruleType === 'GEOIP'
+      ) {
         return `${line},no-resolve`;
       }
+
+      // 对带有策略的规则也添加no-resolve参数
+      if (line.includes(',PROXY') || line.includes(',DIRECT') || line.includes(',REJECT')) {
+        // 检查规则是否需要添加no-resolve（针对IP类规则，其他类型不需要）
+        if (
+          ruleType === 'DOMAIN' ||
+          ruleType === 'DOMAIN-SUFFIX' ||
+          ruleType === 'DOMAIN-KEYWORD'
+        ) {
+          // 域名类规则不需要添加no-resolve
+          return line;
+        }
+        return `${line},no-resolve`;
+      }
+
       return line;
     })
     .join('\n');
