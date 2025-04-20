@@ -1,7 +1,7 @@
 // Content Delivery Networks
-// Last updated: 2025/4/21 07:29:40
-// DOMAIN: 2416
-// DOMAIN-SUFFIX: 991
+// Last updated: 2025/4/21 07:52:33
+// DOMAIN: 2415
+// DOMAIN-SUFFIX: 992
 // DOMAIN-KEYWORD: 14
 // IP-CIDR: 3
 // URL-REGEX: 2
@@ -1757,6 +1757,8 @@ DOMAIN,momentjs.com
 DOMAIN,launcher-files.modrinth.com
 DOMAIN,cdn-raw.modrinth.com
 DOMAIN,cdn.modrinth.com
+DOMAIN,attach2.mobile01.com
+DOMAIN,attach.mobile01.com
 DOMAIN,api-eu.mixpanel.com
 DOMAIN,api.mixpanel.com
 DOMAIN,thumbnailer.mixcloud.com
@@ -2261,9 +2263,7 @@ DOMAIN,imgix.setapp.com
 DOMAIN,cdn.setapp.com
 DOMAIN,cdn.seondf.com
 DOMAIN,vice-prod.sdiapi.com
-DOMAIN,newfold.scene7.com
-DOMAIN,ec-prod.scene7.com
-DOMAIN,s7d1.scene7.com
+DOMAIN-SUFFIX,scene7.com
 DOMAIN-SUFFIX,sc-cdn.com
 DOMAIN,embed.runkit.com
 DOMAIN-SUFFIX,cms.replit.com
