@@ -92,13 +92,13 @@ git add .
 git commit -m "清理规则文件"
 
 # 推送到远程仓库
-echo "=== 推送到diver分支 ==="
-git push origin diver
+echo "=== 推送到divergence分支 ==="
+git push origin divergence
 
 echo "=== 推送到main分支 ==="
 git checkout main
-git merge diver
+git merge divergence
 git push origin main
-git checkout diver
+git checkout divergence
 
 echo "=== 操作完成 ===" 
