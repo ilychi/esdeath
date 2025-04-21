@@ -1041,8 +1041,17 @@ function generateHtml(treeData: FileTreeItem[]) {
         }
       },
       mounted() {
-        // 默认展开第一级文件夹
+        // 默认展开第一级文件夹以及常用的二级文件夹
         this.expandedFolders = this.treeData.map(item => item.id);
+        
+        // 预先展开重要子目录
+        const commonSubdirs = [
+          'Surge/Ruleset/streaming',
+          'Surge/Ruleset/streaming/video',
+          'Surge/Ruleset/streaming/music'
+        ];
+        
+        this.expandedFolders = [...this.expandedFolders, ...commonSubdirs];
         this.filteredTreeData = this.treeData;
         
         // 初始化副标题动画效果
@@ -1071,10 +1080,42 @@ function generateHtml(treeData: FileTreeItem[]) {
         toggleFolder(id) {
           const index = this.expandedFolders.indexOf(id);
           if (index === -1) {
+            // 展开当前文件夹
             this.expandedFolders.push(id);
-                        } else {
+            
+            // 查找并自动展开一级子文件夹，提高用户体验
+            this.findAndExpandDirectChildren(id);
+          } else {
+            // 关闭当前文件夹
             this.expandedFolders.splice(index, 1);
           }
+        },
+        
+        // 查找并展开直接子文件夹
+        findAndExpandDirectChildren(parentId) {
+          // 在树中查找父文件夹
+          const findParent = (items) => {
+            for (const item of items) {
+              if (item.id === parentId && item.children) {
+                // 找到了父文件夹，展开其直接子文件夹
+                item.children.forEach(child => {
+                  if (child.children && !this.expandedFolders.includes(child.id)) {
+                    // 只展开子文件夹，不展开子文件
+                    this.expandedFolders.push(child.id);
+                  }
+                });
+                return true;
+              } else if (item.children) {
+                // 递归查找
+                if (findParent(item.children)) {
+                  return true;
+                }
+              }
+            }
+            return false;
+          };
+          
+          findParent(this.filteredTreeData);
         },
         isExpanded(id) {
           return this.expandedFolders.includes(id);
