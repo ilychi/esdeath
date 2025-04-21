@@ -559,7 +559,7 @@ if (binaryInfo != null && binaryInfo.length > 0) {
 
     if (/\s((request|response)-body-json-jq)\s/.test(_x)) {
       let [_, regex, type, value] = _x.match(/^(.*?)\s+?(?:(request|response)-body-json-jq)\s+?(.*?)\s*$/)
-      if (jqEnabled && isSurgeiOS) {
+      if (jqEnabled && (isSurgeiOS || isStashiOS)) {
         const jqPath = value.match(/jq-path="(.+?)"/)?.[1]
         if (jqPath) {
           if (/^https?:\/\//.test(jqPath)) {
@@ -610,7 +610,7 @@ if (binaryInfo != null && binaryInfo.length > 0) {
       const jsptn = regex
       let args = [[action, newSuffixArray]]
 
-      if (jqEnabled && isSurgeiOS) {
+      if (jqEnabled && (isSurgeiOS || isStashiOS)) {
         if (action === 'json-add') {
           newSuffixArray.forEach(item => {
             const paths = parseJsonPath(item[0])
@@ -1091,7 +1091,7 @@ if (binaryInfo != null && binaryInfo.length > 0) {
             value = value.toLowerCase()
             value = value.includes('mac') ? (value.includes('ios') ? ((delsystem = true), 'mac') : 'mac') : 'ios'
           } else if (isLooniOS && key == 'category') {
-            key = 'keyword'
+            key = 'tag'
           } else if (!isLooniOS && key == 'keyword') {
             key = 'category'
           }
@@ -1199,6 +1199,8 @@ if (binaryInfo != null && binaryInfo.length > 0) {
       rules.push(mark + noteK + ruletype + ',' + rulevalue + ',' + rulepolicy + rulenore + rulesni + rulepm)
     } else if (/^(?:and|or|not)$/i.test(ruletype) && !isStashiOS) {
       rules.push(ori)
+    } else if (/^(?:and|or|not)$/i.test(ruletype) && isStashiOS) {
+      rules.push(mark + noteK2 + '- ' + ori)
     } else if (/(?:^domain$|domain-suffix|domain-keyword|ip-|de?st-port)/i.test(ruletype) && isStashiOS) {
       rules.push(mark + noteK2 + '- ' + ruletype + ',' + rulevalue + ',' + rulepolicy + rulenore)
     } else if (/src-port/i.test(ruletype) && (isSurgeiOS || isLooniOS)) {
@@ -1772,7 +1774,9 @@ ${MITM}
       for (let i = 0; i < rwbodyBox.length; i++) {
         const { type, regex, value } = rwbodyBox[i]
         StashBodyRewrite.push(
-          `    - ${regex} ${type.replace(/^http-/, '').replace(/^(request|response)$/, '$1-replace-regex')} ${value
+          `    - >-\n      ${regex} ${type
+            .replace(/^http-/, '')
+            .replace(/^(request|response)$/, '$1-replace-regex')} ${value
             .replace(/^"(.+)"$/, '$1')
             .replace(/^'(.+)'$/, '$1')
             .split(' ')
