@@ -1,15 +1,16 @@
 /** @format */
 
-import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { promises as fs, Dirent } from 'node:fs';
+import { createReadStream, createWriteStream } from 'node:fs';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// 修正仓库 URL
-const REPO_URL = 'https://raw.githubusercontent.com/ilychi/esdeath/main/';
-const ROOT_DIR = path.join(__dirname, '../../..');
+// 正确获取项目根目录路径
+// 当从项目根目录运行时，不需要../../..
+// 当从web目录运行时，需要回到项目根目录
+// 使用绝对路径检测当前运行目录
+const currentDir = process.cwd();
+const isInWebDir = currentDir.includes('Chores/engineering/web');
+const ROOT_DIR = isInWebDir ? path.resolve(currentDir, '../../..') : currentDir;
 const OUTPUT_DIR = path.join(ROOT_DIR, 'public');
 
 // 自定义域名，用于生成链接
@@ -29,8 +30,25 @@ const prioritySorter = (a: Dirent, b: Dirent) => {
 async function copyFile(source: string, destination: string) {
   try {
     await fs.mkdir(path.dirname(destination), { recursive: true });
-    await fs.copyFile(source, destination);
-    console.log(`Copied: ${source} -> ${destination}`);
+
+    // 针对 mmdb 文件使用流式复制，避免内存问题
+    if (source.toLowerCase().endsWith('.mmdb')) {
+      const readStream = createReadStream(source);
+      const writeStream = createWriteStream(destination);
+
+      await new Promise((resolve, reject) => {
+        readStream.on('error', reject);
+        writeStream.on('error', reject);
+        writeStream.on('finish', resolve);
+        readStream.pipe(writeStream);
+      });
+
+      console.log(`Copied MMDB: ${source} -> ${destination}`);
+    } else {
+      // 其他文件正常复制
+      await fs.copyFile(source, destination);
+      console.log(`Copied: ${source} -> ${destination}`);
+    }
   } catch (error) {
     console.error(`Error copying file: ${source}`, error);
   }
@@ -176,12 +194,12 @@ function generateHtml(treeData: FileTreeItem[]) {
     /* Inspira UI Pattern Background CSS */
     @keyframes pattern-movement {
       0% { background-position: 0% 0%; }
-      100% { background-position: 0% 100%; }
+      100% { background-position: 100% 100%; }
     }
     
     @keyframes pattern-movement-reverse {
-      0% { background-position: 0% 100%; }
-      100% { background-position: 0% 0%; }
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% -100%; }
     }
     
     .pattern-bg {
@@ -193,28 +211,22 @@ function generateHtml(treeData: FileTreeItem[]) {
     }
     
     .pattern-bg-grid {
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(to right, rgba(17, 24, 39, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(17, 24, 39, 0.05) 1px, transparent 1px);
-      background-size: 24px 24px;
-      animation: pattern-movement 50s linear infinite;
+      display: none;
     }
     
     .pattern-bg-dots {
       width: 100%;
       height: 100%;
-      background-image: radial-gradient(rgba(17, 24, 39, 0.08) 1px, transparent 1px);
-      background-size: 18px 18px;
-      animation: pattern-movement-reverse 40s linear infinite;
+      background-image: radial-gradient(rgba(17, 24, 39, 0.2) 1.5px, transparent 1.5px);
+      background-size: 22px 22px;
+      animation: pattern-movement 120s linear infinite;
     }
     
     .pattern-mask {
       position: absolute;
       inset: 0;
       z-index: -5;
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.95) 70%);
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.97) 70%);
     }
     
     /* Inspira UI File Tree CSS */
@@ -843,144 +855,17 @@ function generateHtml(treeData: FileTreeItem[]) {
     <!-- Inspira UI File Tree -->
     <div class="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
       <div class="file-tree">
-        <template v-for="item in filteredTreeData" :key="item.id">
-          <!-- 文件夹 -->
-          <div v-if="item.children" class="tree-item">
-            <div class="tree-folder-header" @click="toggleFolder(item.id)">
-              <div class="folder-toggle" :class="{ 'folder-toggle-open': isExpanded(item.id) }">
-                <iconify-icon icon="tabler:chevron-right" width="14"></iconify-icon>
-              </div>
-              <div class="folder-icon">
-                <iconify-icon :icon="isExpanded(item.id) ? 'tabler:folder-open' : 'tabler:folder'" width="18"></iconify-icon>
-              </div>
-              <div class="folder-name">{{ item.name }}</div>
-            </div>
-            <div class="tree-folder-content" v-show="isExpanded(item.id)" :key="'content-'+item.id">
-              <template v-for="child in item.children" :key="child.id">
-                <!-- 嵌套文件夹 -->
-                <div v-if="child.children" class="tree-item">
-                  <div class="tree-folder-header" @click="toggleFolder(child.id)">
-                    <div class="folder-toggle" :class="{ 'folder-toggle-open': isExpanded(child.id) }">
-                      <iconify-icon icon="tabler:chevron-right" width="14"></iconify-icon>
-                    </div>
-                    <div class="folder-icon">
-                      <iconify-icon :icon="isExpanded(child.id) ? 'tabler:folder-open' : 'tabler:folder'" width="18"></iconify-icon>
-                    </div>
-                    <div class="folder-name">{{ child.name }}</div>
-                  </div>
-                  <div class="tree-folder-content" v-show="isExpanded(child.id)" :key="'content-'+child.id">
-                    <template v-for="subChild in child.children" :key="subChild.id">
-                      <!-- 文件 -->
-                      <div v-if="!subChild.children" class="tree-file" @click="previewFile(subChild)">
-                        <div class="file-icon">
-                          <iconify-icon :icon="getFileIcon(subChild)" width="16"></iconify-icon>
-                        </div>
-                        <div class="file-name">
-                          {{ subChild.name }}
-                        </div>
-                        <div class="tree-file-actions">
-                          <span v-if="subChild.fileType" class="file-type-tag" :class="'file-type-'+subChild.fileType">
-                            {{ subChild.fileType }}
-                          </span>
-                          <div v-if="subChild.fileType === 'sgmodule'" 
-                               class="tree-file-action tooltip" 
-                               @click.stop="installModule(subChild.url)">
-                            <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                            <div class="tooltip-content">导入到 Surge</div>
-                          </div>
-                          <div class="tree-file-action tooltip" @click.stop="copyToClipboard(subChild.url)">
-                            <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                            <div class="tooltip-content">复制链接</div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- 第三级文件夹 -->
-                      <div v-else class="tree-item">
-                        <div class="tree-folder-header" @click="toggleFolder(subChild.id)">
-                          <div class="folder-toggle" :class="{ 'folder-toggle-open': isExpanded(subChild.id) }">
-                            <iconify-icon icon="tabler:chevron-right" width="14"></iconify-icon>
-                          </div>
-                          <div class="folder-icon">
-                            <iconify-icon :icon="isExpanded(subChild.id) ? 'tabler:folder-open' : 'tabler:folder'" width="18"></iconify-icon>
-                          </div>
-                          <div class="folder-name">{{ subChild.name }}</div>
-                        </div>
-                        <div class="tree-folder-content" v-show="isExpanded(subChild.id)" :key="'content-'+subChild.id">
-                          <div v-for="fileItem in subChild.children" :key="fileItem.id" 
-                               class="tree-file" @click="previewFile(fileItem)">
-                            <div class="file-icon">
-                              <iconify-icon :icon="getFileIcon(fileItem)" width="16"></iconify-icon>
-                            </div>
-                            <div class="file-name">{{ fileItem.name }}</div>
-                            <div class="tree-file-actions">
-                              <span v-if="fileItem.fileType" class="file-type-tag" :class="'file-type-'+fileItem.fileType">
-                                {{ fileItem.fileType }}
-                              </span>
-                              <div v-if="fileItem.fileType === 'sgmodule'" 
-                                   class="tree-file-action tooltip" 
-                                   @click.stop="installModule(fileItem.url)">
-                                <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                                <div class="tooltip-content">导入到 Surge</div>
-                              </div>
-                              <div class="tree-file-action tooltip" @click.stop="copyToClipboard(fileItem.url)">
-                                <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                                <div class="tooltip-content">复制链接</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </template>
-                  </div>
-                </div>
-                <!-- 文件 -->
-                <div v-else class="tree-file" @click="previewFile(child)">
-                  <div class="file-icon">
-                    <iconify-icon :icon="getFileIcon(child)" width="16"></iconify-icon>
-                  </div>
-                  <div class="file-name">{{ child.name }}</div>
-                  <div class="tree-file-actions">
-                    <span v-if="child.fileType" class="file-type-tag" :class="'file-type-'+child.fileType">
-                      {{ child.fileType }}
-                    </span>
-                    <div v-if="child.fileType === 'sgmodule'" 
-                         class="tree-file-action tooltip" 
-                         @click.stop="installModule(child.url)">
-                      <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                      <div class="tooltip-content">导入到 Surge</div>
-                    </div>
-                    <div class="tree-file-action tooltip" @click.stop="copyToClipboard(child.url)">
-                      <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                      <div class="tooltip-content">复制链接</div>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </div>
-          </div>
-          <!-- 文件 -->
-          <div v-else class="tree-file" @click="previewFile(item)">
-            <div class="file-icon">
-              <iconify-icon :icon="getFileIcon(item)" width="16"></iconify-icon>
-            </div>
-            <div class="file-name">{{ item.name }}</div>
-            <div class="tree-file-actions">
-              <span v-if="item.fileType" class="file-type-tag" :class="'file-type-'+item.fileType">
-                {{ item.fileType }}
-              </span>
-              <div v-if="item.fileType === 'sgmodule'" 
-                   class="tree-file-action tooltip" 
-                   @click.stop="installModule(item.url)">
-                <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                <div class="tooltip-content">导入到 Surge</div>
-              </div>
-              <div class="tree-file-action tooltip" @click.stop="copyToClipboard(item.url)">
-                <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                <div class="tooltip-content">复制链接</div>
-              </div>
-            </div>
-          </div>
-        </template>
+        <!-- 使用递归组件来支持无限级目录 -->
+        <file-tree-item
+          v-for="item in filteredTreeData" 
+          :key="item.id" 
+          :item="item"
+          :expanded-folders="expandedFolders"
+          @toggle-folder="toggleFolder"
+          @preview-file="previewFile"
+          @copy="copyToClipboard"
+          @install="installModule"
+        ></file-tree-item>
       </div>
     </div>
 
@@ -1022,7 +907,91 @@ function generateHtml(treeData: FileTreeItem[]) {
             </div>
 
         <script>
+    // 定义文件树节点组件 - 支持无限递归
+    const FileTreeItem = {
+      name: 'FileTreeItem',
+      props: {
+        item: Object,
+        expandedFolders: Array
+      },
+      methods: {
+        isExpanded(id) {
+          return this.expandedFolders.includes(id);
+        },
+        toggleFolder(id) {
+          this.$emit('toggle-folder', id);
+        },
+        previewFile(file) {
+          this.$emit('preview-file', file);
+        },
+        copyToClipboard(url) {
+          this.$emit('copy', url);
+        },
+        installModule(url) {
+          this.$emit('install', url);
+        },
+        getFileIcon(item) {
+          if (item.fileType === 'list') return 'tabler:list';
+          if (item.fileType === 'sgmodule') return 'tabler:plug';
+          if (item.fileType === 'mmdb') return 'tabler:database';
+          return 'tabler:file';
+        }
+      },
+      template: \`
+        <!-- 文件夹 -->
+        <div v-if="item.children" class="tree-item">
+          <div class="tree-folder-header" @click="toggleFolder(item.id)">
+            <div class="folder-toggle" :class="{ 'folder-toggle-open': isExpanded(item.id) }">
+              <iconify-icon icon="tabler:chevron-right" width="14"></iconify-icon>
+            </div>
+            <div class="folder-icon">
+              <iconify-icon :icon="isExpanded(item.id) ? 'tabler:folder-open' : 'tabler:folder'" width="18"></iconify-icon>
+            </div>
+            <div class="folder-name">{{ item.name }}</div>
+          </div>
+          <div class="tree-folder-content" v-show="isExpanded(item.id)" :key="'content-'+item.id">
+            <!-- 递归渲染子项 -->
+            <file-tree-item
+              v-for="child in item.children"
+              :key="child.id"
+              :item="child"
+              :expanded-folders="expandedFolders"
+              @toggle-folder="toggleFolder"
+              @preview-file="previewFile"
+              @copy="copyToClipboard"
+              @install="installModule"
+            ></file-tree-item>
+          </div>
+        </div>
+        <!-- 文件 -->
+        <div v-else class="tree-file" @click="previewFile(item)">
+          <div class="file-icon">
+            <iconify-icon :icon="getFileIcon(item)" width="16"></iconify-icon>
+          </div>
+          <div class="file-name">{{ item.name }}</div>
+          <div class="tree-file-actions">
+            <span v-if="item.fileType" class="file-type-tag" :class="'file-type-'+item.fileType">
+              {{ item.fileType }}
+            </span>
+            <div v-if="item.fileType === 'sgmodule'" 
+                class="tree-file-action tooltip" 
+                @click.stop="installModule(item.url)">
+              <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
+              <div class="tooltip-content">导入到 Surge</div>
+            </div>
+            <div class="tree-file-action tooltip" @click.stop="copyToClipboard(item.url)">
+              <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
+              <div class="tooltip-content">复制链接</div>
+            </div>
+          </div>
+        </div>
+      \`
+    };
+
     const app = Vue.createApp({
+      components: {
+        FileTreeItem
+      },
       data() {
         return {
           treeData: ${treeDataJson},
@@ -1041,17 +1010,8 @@ function generateHtml(treeData: FileTreeItem[]) {
         }
       },
       mounted() {
-        // 默认展开第一级文件夹以及常用的二级文件夹
+        // 默认展开第一级文件夹
         this.expandedFolders = this.treeData.map(item => item.id);
-        
-        // 预先展开重要子目录
-        const commonSubdirs = [
-          'Surge/Ruleset/streaming',
-          'Surge/Ruleset/streaming/video',
-          'Surge/Ruleset/streaming/music'
-        ];
-        
-        this.expandedFolders = [...this.expandedFolders, ...commonSubdirs];
         this.filteredTreeData = this.treeData;
         
         // 初始化副标题动画效果
@@ -1080,47 +1040,16 @@ function generateHtml(treeData: FileTreeItem[]) {
         toggleFolder(id) {
           const index = this.expandedFolders.indexOf(id);
           if (index === -1) {
-            // 展开当前文件夹
             this.expandedFolders.push(id);
-            
-            // 查找并自动展开一级子文件夹，提高用户体验
-            this.findAndExpandDirectChildren(id);
           } else {
-            // 关闭当前文件夹
             this.expandedFolders.splice(index, 1);
           }
-        },
-        
-        // 查找并展开直接子文件夹
-        findAndExpandDirectChildren(parentId) {
-          // 在树中查找父文件夹
-          const findParent = (items) => {
-            for (const item of items) {
-              if (item.id === parentId && item.children) {
-                // 找到了父文件夹，展开其直接子文件夹
-                item.children.forEach(child => {
-                  if (child.children && !this.expandedFolders.includes(child.id)) {
-                    // 只展开子文件夹，不展开子文件
-                    this.expandedFolders.push(child.id);
-                  }
-                });
-                return true;
-              } else if (item.children) {
-                // 递归查找
-                if (findParent(item.children)) {
-                  return true;
-                }
-              }
-            }
-            return false;
-          };
-          
-          findParent(this.filteredTreeData);
         },
         isExpanded(id) {
           return this.expandedFolders.includes(id);
         },
         getFileIcon(item) {
+          if (!item) return 'tabler:file';
           if (item.fileType === 'list') return 'tabler:list';
           if (item.fileType === 'sgmodule') return 'tabler:plug';
           if (item.fileType === 'mmdb') return 'tabler:database';
@@ -1193,16 +1122,18 @@ function generateHtml(treeData: FileTreeItem[]) {
           if (!file || !file.url) return;
           
           this.previewingFile = file;
-          this.previewContent = '';
-          this.previewLoading = true;
           this.showPreview = true;
           
-          // 禁止预览mmdb文件，直接提供下载链接
+          // 禁止预览mmdb文件，直接提供下载链接，不发送任何请求
           if (file.fileType === 'mmdb') {
             this.previewLoading = false;
             this.previewContent = '⚠️ MMDB文件为二进制格式，无法在浏览器中预览，请直接下载使用。';
             return;
           }
+          
+          // 对于非mmdb文件，正常请求内容
+          this.previewContent = '';
+          this.previewLoading = true;
           
           // 请求文件内容
           fetch(file.url)

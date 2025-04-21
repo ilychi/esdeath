@@ -19,3 +19,8 @@ Chores/engineering/sync/test-output/
 
 # 旧版本的UI工程
 web-ui/
+
+# 脚本自动更新的文件
+GeoIP/
+Surge/Ruleset/
+Modules/
