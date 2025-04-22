@@ -13,28 +13,32 @@ export const ruleGroups: RuleGroup[] = [
     name: 'GeoIP',
     files: [
       {
-        path: 'GeoIP/CN_Country.mmdb',
-        url: 'https://raw.githubusercontent.com/Masaiki/GeoIP2-CN/release/Country.mmdb',
+        path: 'GeoIP/Hackl0us/CN.mmdb',
+        url: 'https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb',
       },
       {
-        path: 'GeoIP/Global_Country.mmdb',
+        path: 'GeoIP/Masaiki/CN.mmdb',
+        url: 'https://github.com/Masaiki/GeoIP2-CN/raw/release/Country.mmdb',
+      },
+      {
+        path: 'GeoIP/soffchen/CN.mmdb',
+        url: 'https://raw.githubusercontent.com/soffchen/GeoIP2-CN/release/Country.mmdb',
+      },
+      {
+        path: 'GeoIP/Loyalsoldier/global.mmdb',
         url: 'https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb',
       },
       {
-        path: 'GeoIP/IPInfo_Country.mmdb',
+        path: 'GeoIP/xream/ipinfo.mmdb',
         url: 'https://github.com/xream/geoip/releases/latest/download/ipinfo.country.mmdb',
       },
       {
-        path: 'GeoIP/IP2Location_Country.mmdb',
+        path: 'GeoIP/xream/ip2.mmdb',
         url: 'https://github.com/xream/geoip/releases/latest/download/ip2location.country.mmdb',
       },
       {
-        path: 'GeoIP/CNcidr_Country.mmdb',
+        path: 'GeoIP/DH-Teams/CNv4.mmdb',
         url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Country.mmdb',
-      },
-      {
-        path: 'GeoIP/CNcidr_Country_All.mmdb',
-        url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Country_All.mmdb',
       },
     ],
   },
@@ -46,32 +50,8 @@ export const ruleGroups: RuleGroup[] = [
         url: 'https://kelee.one/Tool/Loon/Rule/ApplePushNotificationService.list',
       },
       {
-        path: 'Surge/Ruleset/apple/apple.conf',
-        url: 'https://ruleset.skk.moe/List/non_ip/apple_services.conf',
-      },
-      {
-        path: 'Surge/Ruleset/apple/apple_cn.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/apple_cn.conf',
-      },
-      {
-        path: 'Surge/Ruleset/apple/apple_cdn.list',
-        url: 'https://ruleset.skk.moe/List/domainset/apple_cdn.conf',
-      },
-      {
-        path: 'Surge/Ruleset/apple/apple_ip.conf',
-        url: 'https://ruleset.skk.moe/List/ip/apple_services.conf',
-      },
-      {
         path: 'Surge/Ruleset/apple/apple_all.list',
         url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/Apple/Apple_All.list',
-      },
-      {
-        path: 'Surge/Ruleset/apple/appstore.list',
-        url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/source/rule/AppStore/AppStore.list',
-      },
-      {
-        path: 'Surge/Ruleset/apple/appleid.list',
-        url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AppleID/AppleID.list',
       },
       {
         path: 'Surge/Ruleset/apple/applemusic.list',
@@ -96,111 +76,68 @@ export const ruleGroups: RuleGroup[] = [
     ],
   },
   {
-    name: 'AI',
-    files: [
-      {
-        path: 'Surge/Ruleset/aigc.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/ai.conf',
-      },
-      {
-        path: 'Surge/Ruleset/aigc_keli.list',
-        url: 'https://kelee.one/Tool/Loon/Rule/AI.list',
-      },
-      {
-        path: 'Surge/Ruleset/aigc_connershua.list',
-        url: 'https://github.com/ConnersHua/RuleGo/raw/master/Surge/Ruleset/Extra/AI.list',
-      },
-      /**
-      {
-        path: 'Surge/Ruleset/aigc_hiven.list',
-        url: 'https://raw.githubusercontent.com/hiven425/hiven/master/config/AI.list',
-      },
-      */
-    ],
-  },
-  {
     name: 'Streaming',
     files: [
       {
-        path: 'Surge/Ruleset/streaming/video/netflix.list',
+        path: 'Surge/Ruleset/stream/video/netflix.list',
         url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/video/disney.list',
+        path: 'Surge/Ruleset/stream/video/disney.list',
         url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/music/spotify.list',
+        path: 'Surge/Ruleset/stream/music/spotify.list',
         url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/video/primevideo.list',
+        path: 'Surge/Ruleset/stream/video/primevideo.list',
         url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrimeVideo/PrimeVideo.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/video/bahamut.list',
+        path: 'Surge/Ruleset/stream/video/bahamut.list',
         url: 'https://github.com/ACL4SSR/ACL4SSR/raw/master/Clash/Ruleset/Bahamut.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/proxymedia.list',
+        path: 'Surge/Ruleset/stream/proxymedia.list',
         url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/video/youtube.list',
+        path: 'Surge/Ruleset/stream/video/youtube.list',
         url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/globalmedia.list',
+        path: 'Surge/Ruleset/stream/globalmedia.list',
         url: 'https://raw.githubusercontent.com/LM-Firefly/Rules/master/GlobalMedia.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/music/neteasemusic.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/neteasemusic.conf',
-      },
-      {
-        path: 'Surge/Ruleset/streaming/music/neteasemusic_noip.list',
-        url: 'https://ruleset.skk.moe/List/ip/neteasemusic.conf',
-      },
-      {
-        path: 'Surge/Ruleset/streaming/video/emby.list',
+        path: 'Surge/Ruleset/stream/video/emby.list',
         url: 'https://raw.githubusercontent.com/Repcz/Tool/X/Surge/Rules/Emby.list',
         description: 'This file contains rules for EmbyServer.',
       },
       {
-        path: 'Surge/Ruleset/streaming/video/embytest.list',
+        path: 'Surge/Ruleset/stream/video/embytest.list',
         url: 'https://github.com/ocd0711/Profiles/raw/master/Surge/Ruleset/emby.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/video/embydirect.list',
-        url: 'https://github.com/zhaolook/zzz/raw/main/EmbyDirect.list',
+        path: 'Surge/Ruleset/stream/video/biliintl.list',
+        url: 'https://ruleset.skk.moe/List/non_ip/stream_biliintl.conf',
       },
       {
-        path: 'Surge/Ruleset/streaming/video/bilibiliintl.list',
-        url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/BiliBiliIntl/BiliBiliIntl.list',
-      },
-      {
-        path: 'Surge/Ruleset/streaming/video/bilibili.list',
+        path: 'Surge/Ruleset/stream/video/bilibili.list',
         url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/video/tiktok.list',
+        path: 'Surge/Ruleset/stream/video/tiktok.list',
         url: 'https://kelee.one/Tool/Loon/Rule/TikTok.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/cn.list',
+        path: 'Surge/Ruleset/stream/cn.list',
         url: 'https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/CN.list',
       },
       {
-        path: 'Surge/Ruleset/streaming/!cn.list',
+        path: 'Surge/Ruleset/stream/!cn.list',
         url: 'https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Streaming/!CN.list',
-      },
-      {
-        path: 'Surge/Ruleset/streaming/streaming.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/stream.conf',
-      },
-      {
-        path: 'Surge/Ruleset/streaming/streaming_ip.list',
-        url: 'https://ruleset.skk.moe/List/ip/stream.conf',
       },
     ],
   },
@@ -208,47 +145,15 @@ export const ruleGroups: RuleGroup[] = [
     name: 'Reject',
     files: [
       {
-        path: 'Surge/Ruleset/reject/advertising.list',
-        url: 'https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Advertising.list',
-      },
-      {
-        path: 'Surge/Ruleset/reject/malicious.list',
-        url: 'https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Malicious.list',
-      },
-      {
-        path: 'Surge/Ruleset/reject/tracking.list',
-        url: 'https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Tracking.list',
-      },
-      {
-        path: 'Surge/Ruleset/reject/ads_fmz200.list',
+        path: 'Surge/Ruleset/reject/fmz200_adblock.list',
         url: 'https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/filter/fenliu.list',
       },
       {
-        path: 'Surge/Ruleset/reject/ads_sukka.list',
-        url: 'https://ruleset.skk.moe/List/domainset/reject.conf',
-      },
-      {
-        path: 'Surge/Ruleset/reject/ads_sukka_noip.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/reject.conf',
-      },
-      {
-        path: 'Surge/Ruleset/reject/ads_sukka_extra.list',
-        url: 'https://ruleset.skk.moe/List/domainset/reject_extra.conf',
-      },
-      {
-        path: 'Surge/Ruleset/reject/ads_sukka_ip.list',
-        url: 'https://ruleset.skk.moe/List/ip/reject.conf',
-      },
-      {
-        path: 'Surge/Ruleset/reject/ads_limbopro.list',
-        url: 'https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adblock4limbo_surge.list',
-      },
-      {
-        path: 'Surge/Ruleset/reject/ads_sukka_reject_no_drop.list',
+        path: 'Surge/Ruleset/reject/reject-no-drop.list',
         url: 'https://ruleset.skk.moe/List/non_ip/reject-no-drop.conf',
       },
       {
-        path: 'Surge/Ruleset/reject/ads_sukka_reject_drop.list',
+        path: 'Surge/Ruleset/reject/reject-drop.list',
         url: 'https://ruleset.skk.moe/List/non_ip/reject-drop.conf',
       },
     ],
@@ -257,16 +162,8 @@ export const ruleGroups: RuleGroup[] = [
     name: 'Direct',
     files: [
       {
-        path: 'Surge/Ruleset/direct/direct_fmz200.list',
+        path: 'Surge/Ruleset/direct/fmz200_direct.list',
         url: 'https://github.com/fmz200/wool_scripts/raw/main/QuantumultX/filter/fenliuxiuzheng.list',
-      },
-      {
-        path: 'Surge/Ruleset/direct/direct_sukka.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/direct.conf',
-      },
-      {
-        path: 'Surge/Ruleset/direct/mydirect_sukka.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/my_direct.conf',
       },
     ],
   },
@@ -305,36 +202,26 @@ export const ruleGroups: RuleGroup[] = [
   {
     name: 'Domestic',
     files: [
-      {
+      /**{
         path: 'Surge/Ruleset/domestic/wechat.list',
         url: 'https://raw.githubusercontent.com/NobyDa/Script/master/Surge/WeChat.list',
       },
+      */
       {
-        path: 'Surge/Ruleset/domestic/chinedomain.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/domestic.conf',
+        path: 'Surge/Ruleset/domestic/wechat.list',
+        url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/WeChat/WeChat.list',
       },
+
       {
-        path: 'Surge/Ruleset/domestic/domestic_sukka_noip.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/domestic.conf',
-      },
-      {
-        path: 'Surge/Ruleset/domestic/domestic_sukka_ip.list',
-        url: 'https://ruleset.skk.moe/List/ip/domestic.conf',
-      },
-      {
-        path: 'Surge/Ruleset/domestic/domestic_sukka_direct.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/direct.conf',
-      },
-      {
-        path: 'Surge/Ruleset/domestic/china.list',
+        path: 'Surge/Ruleset/domestic/bm7_cn.list',
         url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/China/China.list',
       },
       {
-        path: 'Surge/Ruleset/domestic/chinamax.list',
+        path: 'Surge/Ruleset/domestic/bm7_cnmax.list',
         url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/ChinaMax/ChinaMax.list',
       },
       {
-        path: 'Surge/Ruleset/domestic/domestic.list',
+        path: 'Surge/Ruleset/domestic/lmfirefly_domestic.list',
         url: 'https://raw.githubusercontent.com/LM-Firefly/Rules/master/Domestic.list',
       },
     ],
@@ -343,24 +230,12 @@ export const ruleGroups: RuleGroup[] = [
     name: 'CDN',
     files: [
       {
-        path: 'Surge/Ruleset/cdn/download_global.list',
+        path: 'Surge/Ruleset/cdn/keli_download_global.list',
         url: 'https://kelee.one/Tool/Loon/Rule/InternationalDownloadCDN.list',
       },
       {
-        path: 'Surge/Ruleset/cdn/download_cn.list',
+        path: 'Surge/Ruleset/cdn/keli_download_cn.list',
         url: 'https://kelee.one/Tool/Loon/Rule/ChinaDownloadCDN.list',
-      },
-      {
-        path: 'Surge/Ruleset/cdn.list',
-        url: 'https://ruleset.skk.moe/List/domainset/cdn.conf',
-      },
-      {
-        path: 'Surge/Ruleset/cdn_noip.list',
-        url: 'https://ruleset.skk.moe/List/non_ip/cdn.conf',
-      },
-      {
-        path: 'Surge/Ruleset/cdn_ip.list',
-        url: 'https://ruleset.skk.moe/List/ip/cdn.conf',
       },
     ],
   },
@@ -368,11 +243,11 @@ export const ruleGroups: RuleGroup[] = [
     name: 'IPCIDR',
     files: [
       {
-        path: 'Surge/Ruleset/ipcird/chinaip_sukka.list',
+        path: 'Surge/Ruleset/ipcidr/sukka_chinaip.list',
         url: 'https://ruleset.skk.moe/List/ip/china_ip.conf',
       },
       {
-        path: 'Surge/Ruleset/ipcird/chinaip_dh_ns.list',
+        path: 'Surge/Ruleset/ipcidr/DH_chinaip.list',
         url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_IP_CN.txt',
         title: 'IPv4+IPv6 Information in China.',
         description: 'Made by DH-Teams, All rights reserved',
@@ -382,7 +257,7 @@ export const ruleGroups: RuleGroup[] = [
       },
 
       {
-        path: 'Surge/Ruleset/ipcird/chinaipv4_dh.list',
+        path: 'Surge/Ruleset/ipcidr/DH_chinaipv4.list',
         url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_IP_CN_V4_Surge.list',
         title: 'IPv4 Information in China.',
         description: 'Made by DH-Teams, All rights reserved',
@@ -391,17 +266,17 @@ export const ruleGroups: RuleGroup[] = [
         },
       },
       {
-        path: 'Surge/Ruleset/ipcird/chinaasn_fries.list',
+        path: 'Surge/Ruleset/asn/VirgilClyne/ASN.CN.list',
         url: 'https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/main/ruleset/ASN.China.list',
         cleanup: false,
       },
       {
-        path: 'Surge/Ruleset/chinaasn_missuo.list',
+        path: 'Surge/Ruleset/asn/missuo/ASN.CN.list',
         url: 'https://raw.githubusercontent.com/missuo/ASN-China/main/ASN.China.list',
         cleanup: false,
       },
       {
-        path: 'Surge/Ruleset/ipcird/chinaasn_dh.list',
+        path: 'Surge/Ruleset/asn/DH-Teams/ASN.CN.list',
         url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_CN.list',
         title: 'ASN Information in China.',
         description: 'Made by DH-Teams, All rights reserved',
@@ -444,24 +319,6 @@ export const ruleGroups: RuleGroup[] = [
   {
     name: 'Extra',
     files: [
-      /**
-      {
-        path: 'Surge/Ruleset/extra/direct.list',
-        url: 'https://raw.githubusercontent.com/Repcz/Tool/X/Surge/Rules/Direct.list',
-      },
-      {
-        path: 'Surge/Ruleset/extra/reject.list',
-        url: 'https://raw.githubusercontent.com/Repcz/Tool/X/Surge/Rules/Reject.list',
-      },
-      {
-        path: 'Surge/Ruleset/extra/proxy.list',
-        url: 'https://raw.githubusercontent.com/Repcz/Tool/X/Surge/Rules/Proxy.list',
-      },
-      {
-        path: 'Surge/Ruleset/extra/prevent_dns_leaks.list',
-        url: 'https://raw.githubusercontent.com/Repcz/Tool/X/Surge/Rules/Prevent_DNS_Leaks.list',
-      }
-          */
       {
         path: 'Surge/Ruleset/extra/speedtest.list',
         url: 'https://kelee.one/Tool/Loon/Rule/OoklaSpeedtest.list',
@@ -469,37 +326,37 @@ export const ruleGroups: RuleGroup[] = [
     ],
   },
   {
-    name: 'GFW',
+    name: 'Proxy',
     files: [
+      {
+        path: 'Surge/Ruleset/proxy/my_proxy.list',
+        url: 'https://ruleset.skk.moe/List/non_ip/my_proxy.conf',
+      },
+      {
+        path: 'Surge/Ruleset/proxy/my_git.list',
+        url: 'https://ruleset.skk.moe/List/non_ip/my_git.conf',
+      },
       {
         path: 'Surge/Ruleset/global.list',
         url: 'https://ruleset.skk.moe/List/non_ip/global.conf',
       },
+      /**
       {
-        path: 'Surge/Ruleset/blocked.list',
+        path: 'Surge/Ruleset/gfw.list',
         url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list',
-      },
-      /** 
-      {
-        path: 'Surge/Ruleset/ProxyLite_ACL4SSR.list',
-        url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyLite.list',
       },
       */
       {
-        path: 'Surge/Ruleset/proxylite.list',
+        path: 'Surge/Ruleset/proxy/proxylite.list',
         url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/ProxyLite/ProxyLite.list',
       },
       {
-        path: 'Surge/Ruleset/proxy_lm.list',
+        path: 'Surge/Ruleset/proxy/lmf_proxy.list',
         url: 'https://raw.githubusercontent.com/LM-Firefly/Rules/master/PROXY.list',
       },
       {
-        path: 'Surge/Ruleset/proxy.list',
+        path: 'Surge/Ruleset/proxy/proxy.list',
         url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Proxy/Proxy.list',
-      },
-      {
-        path: 'Surge/Ruleset/proxy_tartarus.list',
-        url: 'https://github.com/Tartarus2014/For-own-use/raw/master/Ruleset/Proxy.list',
       },
     ],
   },
@@ -519,10 +376,6 @@ export const ruleGroups: RuleGroup[] = [
         path: 'Surge/Ruleset/microsoft/github.list',
         url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Github.list',
       },
-      {
-        path: 'Surge/Ruleset/microsoft/microsoft.list',
-        url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Microsoft.list',
-      },
     ],
   },
 ];
@@ -532,9 +385,14 @@ export const specialRules: SpecialRuleConfig[] = [
   {
     name: 'AI',
     targetFile: 'Surge/Ruleset/aigc.list',
-    sourceFiles: ['Surge/Ruleset/aigc_keli.list', 'Surge/Ruleset/aigc_connershua.list'],
+    sourceFiles: [
+      'https://ruleset.skk.moe/List/non_ip/ai.conf',
+      'https://kelee.one/Tool/Loon/Rule/AI.list',
+      'https://github.com/ConnersHua/RuleGo/raw/master/Surge/Ruleset/Extra/AI.list',
+    ],
     extraRules: ['DOMAIN-SUFFIX,openrouter.ai'],
     cleanup: true,
+    deleteSourceFiles: true,
     header: {
       title: 'AIGC Services',
       description:
@@ -545,10 +403,11 @@ export const specialRules: SpecialRuleConfig[] = [
     name: 'Apple',
     targetFile: 'Surge/Ruleset/apple/apple.list',
     sourceFiles: [
-      'Surge/Ruleset/apple/apple.conf',
-      'Surge/Ruleset/apple/apple_cn.list',
-      'Surge/Ruleset/apple/apple_ip.conf',
-      'Surge/Ruleset/apple/apple_cdn.list',
+      'https://ruleset.skk.moe/List/non_ip/apple_services.conf',
+      'https://ruleset.skk.moe/List/non_ip/apple_cn.conf',
+      'https://ruleset.skk.moe/List/domainset/apple_cdn.conf',
+      'https://ruleset.skk.moe/List/ip/apple_services.conf',
+      'https://ruleset.skk.moe/List/domainset/icloud_private_relay.conf',
     ],
     cleanup: true,
     header: {
@@ -558,12 +417,28 @@ export const specialRules: SpecialRuleConfig[] = [
     },
   },
   {
-    name: 'Reject',
-    targetFile: 'Surge/Ruleset/reject.list',
+    name: 'Microsoft',
+    targetFile: 'Surge/Ruleset/microsoft/microsoft.list',
     sourceFiles: [
-      'Surge/Ruleset/reject/advertising.list',
-      'Surge/Ruleset/reject/malicious.list',
-      'Surge/Ruleset/reject/tracking.list',
+      'https://ruleset.skk.moe/List/non_ip/microsoft.conf',
+      'https://ruleset.skk.moe/List/non_ip/microsoft_cdn.conf',
+    ],
+    cleanup: true,
+    header: {
+      title: 'Microsoft Services',
+      description:
+        'Rules for Microsoft services, including services operated in mainland China (Microsoft 365, Microsoft Teams, etc).',
+    },
+  },
+  {
+    name: 'Reject',
+    targetFile: 'Surge/Ruleset/reject/block.list',
+    sourceFiles: [
+      'https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Advertising.list',
+      'https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Malicious.list',
+      'https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/Reject/Tracking.list',
+      'https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge.txt',
+      'https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules.list',
     ],
     cleanup: false,
     dedup: true,
@@ -575,13 +450,16 @@ export const specialRules: SpecialRuleConfig[] = [
   },
   {
     name: 'Reject (Sukka)',
-    targetFile: 'Surge/Ruleset/reject_sukka.list',
+    targetFile: 'Surge/Ruleset/reject.list',
     sourceFiles: [
-      'Surge/Ruleset/reject/ads_sukka.list',
-      'Surge/Ruleset/reject/ads_sukka_noip.list',
-      'Surge/Ruleset/reject/ads_sukka_extra.list',
+      'https://ruleset.skk.moe/List/domainset/reject.conf',
+      'https://ruleset.skk.moe/List/non_ip/reject.conf',
+      'https://ruleset.skk.moe/List/domainset/reject_extra.conf',
+      'https://ruleset.skk.moe/List/ip/reject.conf',
+      'https://ruleset.skk.moe/List/non_ip/my_reject.conf',
     ],
     cleanup: true,
+    deleteSourceFiles: true,
     header: {
       enable: true,
       title: 'Privacy & Security Protection',
@@ -590,33 +468,12 @@ export const specialRules: SpecialRuleConfig[] = [
     },
   },
   {
-    name: 'Reject-No-Drop (Sukka)',
-    targetFile: 'Surge/Ruleset/reject_nodrop_sukka.list',
-    sourceFiles: ['Surge/Ruleset/reject/ads_sukka_reject_no_drop.list'],
-    cleanup: true,
-    header: {
-      enable: true,
-      title: 'REJECT-NO-DROP Rules',
-      description:
-        'Advertising & tracking rules using REJECT-NO-DROP policy for services that require connection but content should be blocked',
-    },
-  },
-  {
-    name: 'Reject-Drop (Sukka)',
-    targetFile: 'Surge/Ruleset/reject_drop_sukka.list',
-    sourceFiles: ['Surge/Ruleset/reject/ads_sukka_reject_drop.list'],
-    cleanup: true,
-    header: {
-      enable: true,
-      title: 'REJECT-DROP Rules',
-      description:
-        'Aggressive blocking ruleset using REJECT-DROP policy for complete connection termination of unwanted services',
-    },
-  },
-  {
     name: 'CDN',
     targetFile: 'Surge/Ruleset/cdn.list',
-    sourceFiles: ['Surge/Ruleset/cdn_noip.list', 'Surge/Ruleset/cdn_ip.list'],
+    sourceFiles: [
+      'https://ruleset.skk.moe/List/non_ip/cdn.conf',
+      'https://ruleset.skk.moe/List/ip/cdn.conf',
+    ],
     cleanup: false,
     dedup: true,
     deleteSourceFiles: true,
@@ -629,7 +486,7 @@ export const specialRules: SpecialRuleConfig[] = [
   },
   {
     name: 'Emby',
-    targetFile: 'Surge/Ruleset/streaming/video/embytest.list',
+    targetFile: 'Surge/Ruleset/stream/video/embytest.list',
     sourceFiles: [
       'https://github.com/m4v8vsyj/me/raw/main/emby.list',
       'https://github.com/KuGouGo/Rules/raw/main/emby.list',
@@ -652,7 +509,7 @@ export const specialRules: SpecialRuleConfig[] = [
   },
   {
     name: 'Emby Streaming Media (Direct)',
-    targetFile: 'Surge/Ruleset/streaming/video/embydirect.list',
+    targetFile: 'Surge/Ruleset/stream/video/embydirect.list',
     sourceFiles: ['https://github.com/h05n/-/raw/main/直连emby'],
     cleanup: true,
     applyNoResolve: true,
@@ -665,9 +522,13 @@ export const specialRules: SpecialRuleConfig[] = [
   },
   {
     name: 'NeteaseMusic',
-    targetFile: 'Surge/Ruleset/streaming/music/neteasemusic.list',
-    sourceFiles: ['Surge/Ruleset/streaming/music/neteasemusic_noip.list'],
+    targetFile: 'Surge/Ruleset/stream/music/neteasemusic.list',
+    sourceFiles: [
+      'https://ruleset.skk.moe/List/non_ip/neteasemusic.conf',
+      'https://ruleset.skk.moe/List/ip/neteasemusic.conf',
+    ],
     cleanup: true,
+    deleteSourceFiles: true,
     header: {
       title: 'NetEase Cloud Music',
       description:
@@ -676,8 +537,11 @@ export const specialRules: SpecialRuleConfig[] = [
   },
   {
     name: 'Streaming',
-    targetFile: 'Surge/Ruleset/streaming/streaming.list',
-    sourceFiles: ['Surge/Ruleset/streaming/streaming_ip.list'],
+    targetFile: 'Surge/Ruleset/stream/stream.list',
+    sourceFiles: [
+      'https://ruleset.skk.moe/List/non_ip/stream.conf',
+      'https://ruleset.skk.moe/List/ip/stream.conf',
+    ],
     header: {
       enable: true,
       title: 'Global Streaming Services',
@@ -687,39 +551,32 @@ export const specialRules: SpecialRuleConfig[] = [
   },
   {
     name: 'Domestic (Sukka)',
-    targetFile: 'Surge/Ruleset/domestic_sukka.list',
+    targetFile: 'Surge/Ruleset/domestic.list',
     sourceFiles: [
-      'Surge/Ruleset/domestic/domestic_sukka_noip.list',
-      'Surge/Ruleset/domestic/domestic_sukka_ip.list',
-      'Surge/Ruleset/domestic/domestic_sukka_direct.list',
+      'https://ruleset.skk.moe/List/non_ip/domestic.conf',
+      'https://ruleset.skk.moe/List/non_ip/domestic.conf',
+      'https://ruleset.skk.moe/List/ip/domestic.conf',
+      'https://ruleset.skk.moe/List/non_ip/direct.conf',
     ],
     cleanup: false,
     dedup: true,
-    header: {
-      enable: true,
-      title: 'China Mainland Direct Access',
-      description:
-        'Comprehensive rules for domains and IPs that are accessible within Mainland China, optimized for direct connection',
-    },
   },
   {
     name: 'Direct (Sukka)',
-    targetFile: 'Surge/Ruleset/direct/direct_sukka.list',
-    sourceFiles: ['Surge/Ruleset/direct/mydirect_sukka.list'],
+    targetFile: 'Surge/Ruleset/direct.list',
+    sourceFiles: [
+      'https://ruleset.skk.moe/List/non_ip/my_direct.conf',
+      'https://ruleset.skk.moe/List/non_ip/direct.conf',
+    ],
     cleanup: false,
     dedup: true,
-    header: {
-      enable: true,
-      title: 'Direct Connection Rules',
-      description:
-        'Specific rules for services that should bypass proxy and connect directly for optimal performance',
-    },
   },
 ];
 
 export const config = {
   repoPath: REPO_PATH,
   defaultFormat: 'Surge',
+  deleteSourceFiles: true,
   cleanup: false,
   stats: true,
   converter: {
