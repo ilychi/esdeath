@@ -764,6 +764,15 @@ function generateHtml(treeData: FileTreeItem[]) {
       color: #64748b;
       margin-bottom: 1.5rem;
     }
+
+    /* 目录嵌套深度指示器 */
+    .nesting-level-indicator {
+      display: inline-block;
+      width: 2px;
+      height: 100%;
+      background-color: rgba(17, 24, 39, 0.1);
+      margin-right: 8px;
+    }
             </style>
         </head>
 <body class="bg-white text-gray-900 min-h-screen">
@@ -840,144 +849,19 @@ function generateHtml(treeData: FileTreeItem[]) {
     <!-- Inspira UI File Tree -->
     <div class="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
       <div class="file-tree">
-        <template v-for="item in filteredTreeData" :key="item.id">
-          <!-- 文件夹 -->
-          <div v-if="item.children" class="tree-item">
-            <div class="tree-folder-header" @click="toggleFolder(item.id)">
-              <div class="folder-toggle" :class="{ 'folder-toggle-open': isExpanded(item.id) }">
-                <iconify-icon icon="tabler:chevron-right" width="14"></iconify-icon>
-              </div>
-              <div class="folder-icon">
-                <iconify-icon :icon="isExpanded(item.id) ? 'tabler:folder-open' : 'tabler:folder'" width="18"></iconify-icon>
-              </div>
-              <div class="folder-name">{{ item.name }}</div>
-            </div>
-            <div class="tree-folder-content" v-show="isExpanded(item.id)" :key="'content-'+item.id">
-              <template v-for="child in item.children" :key="child.id">
-                <!-- 嵌套文件夹 -->
-                <div v-if="child.children" class="tree-item">
-                  <div class="tree-folder-header" @click="toggleFolder(child.id)">
-                    <div class="folder-toggle" :class="{ 'folder-toggle-open': isExpanded(child.id) }">
-                      <iconify-icon icon="tabler:chevron-right" width="14"></iconify-icon>
-                    </div>
-                    <div class="folder-icon">
-                      <iconify-icon :icon="isExpanded(child.id) ? 'tabler:folder-open' : 'tabler:folder'" width="18"></iconify-icon>
-                    </div>
-                    <div class="folder-name">{{ child.name }}</div>
-                  </div>
-                  <div class="tree-folder-content" v-show="isExpanded(child.id)" :key="'content-'+child.id">
-                    <template v-for="subChild in child.children" :key="subChild.id">
-                      <!-- 文件 -->
-                      <div v-if="!subChild.children" class="tree-file" @click="previewFile(subChild)">
-                        <div class="file-icon">
-                          <iconify-icon :icon="getFileIcon(subChild)" width="16"></iconify-icon>
-                        </div>
-                        <div class="file-name">
-                          {{ subChild.name }}
-                        </div>
-                        <div class="tree-file-actions">
-                          <span v-if="subChild.fileType" class="file-type-tag" :class="'file-type-'+subChild.fileType">
-                            {{ subChild.fileType }}
-                          </span>
-                          <div v-if="subChild.fileType === 'sgmodule'" 
-                               class="tree-file-action tooltip" 
-                               @click.stop="installModule(subChild.url)">
-                            <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                            <div class="tooltip-content">导入到 Surge</div>
-                          </div>
-                          <div class="tree-file-action tooltip" @click.stop="copyToClipboard(subChild.url)">
-                            <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                            <div class="tooltip-content">复制链接</div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- 第三级文件夹 -->
-                      <div v-else class="tree-item">
-                        <div class="tree-folder-header" @click="toggleFolder(subChild.id)">
-                          <div class="folder-toggle" :class="{ 'folder-toggle-open': isExpanded(subChild.id) }">
-                            <iconify-icon icon="tabler:chevron-right" width="14"></iconify-icon>
-                          </div>
-                          <div class="folder-icon">
-                            <iconify-icon :icon="isExpanded(subChild.id) ? 'tabler:folder-open' : 'tabler:folder'" width="18"></iconify-icon>
-                          </div>
-                          <div class="folder-name">{{ subChild.name }}</div>
-                        </div>
-                        <div class="tree-folder-content" v-show="isExpanded(subChild.id)" :key="'content-'+subChild.id">
-                          <div v-for="fileItem in subChild.children" :key="fileItem.id" 
-                               class="tree-file" @click="previewFile(fileItem)">
-                            <div class="file-icon">
-                              <iconify-icon :icon="getFileIcon(fileItem)" width="16"></iconify-icon>
-                            </div>
-                            <div class="file-name">{{ fileItem.name }}</div>
-                            <div class="tree-file-actions">
-                              <span v-if="fileItem.fileType" class="file-type-tag" :class="'file-type-'+fileItem.fileType">
-                                {{ fileItem.fileType }}
-                              </span>
-                              <div v-if="fileItem.fileType === 'sgmodule'" 
-                                   class="tree-file-action tooltip" 
-                                   @click.stop="installModule(fileItem.url)">
-                                <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                                <div class="tooltip-content">导入到 Surge</div>
-                              </div>
-                              <div class="tree-file-action tooltip" @click.stop="copyToClipboard(fileItem.url)">
-                                <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                                <div class="tooltip-content">复制链接</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </template>
-                  </div>
-                </div>
-                <!-- 文件 -->
-                <div v-else class="tree-file" @click="previewFile(child)">
-                  <div class="file-icon">
-                    <iconify-icon :icon="getFileIcon(child)" width="16"></iconify-icon>
-                  </div>
-                  <div class="file-name">{{ child.name }}</div>
-                  <div class="tree-file-actions">
-                    <span v-if="child.fileType" class="file-type-tag" :class="'file-type-'+child.fileType">
-                      {{ child.fileType }}
-                    </span>
-                    <div v-if="child.fileType === 'sgmodule'" 
-                         class="tree-file-action tooltip" 
-                         @click.stop="installModule(child.url)">
-                      <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                      <div class="tooltip-content">导入到 Surge</div>
-                    </div>
-                    <div class="tree-file-action tooltip" @click.stop="copyToClipboard(child.url)">
-                      <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                      <div class="tooltip-content">复制链接</div>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </div>
-          </div>
-          <!-- 文件 -->
-          <div v-else class="tree-file" @click="previewFile(item)">
-            <div class="file-icon">
-              <iconify-icon :icon="getFileIcon(item)" width="16"></iconify-icon>
-            </div>
-            <div class="file-name">{{ item.name }}</div>
-            <div class="tree-file-actions">
-              <span v-if="item.fileType" class="file-type-tag" :class="'file-type-'+item.fileType">
-                {{ item.fileType }}
-              </span>
-              <div v-if="item.fileType === 'sgmodule'" 
-                   class="tree-file-action tooltip" 
-                   @click.stop="installModule(item.url)">
-                <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                <div class="tooltip-content">导入到 Surge</div>
-              </div>
-              <div class="tree-file-action tooltip" @click.stop="copyToClipboard(item.url)">
-                <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                <div class="tooltip-content">复制链接</div>
-              </div>
-            </div>
-          </div>
-        </template>
+        <!-- 使用递归组件来渲染文件树 -->
+        <file-tree-item
+          v-for="item in filteredTreeData"
+          :key="item.id"
+          :item="item"
+          :level="0"
+          :is-expanded="isExpanded"
+          :toggle-folder="toggleFolder"
+          :preview-file="previewFile"
+          :get-file-icon="getFileIcon"
+          :copy-to-clipboard="copyToClipboard"
+          :install-module="installModule"
+        ></file-tree-item>
       </div>
     </div>
 
@@ -1019,7 +903,78 @@ function generateHtml(treeData: FileTreeItem[]) {
             </div>
 
         <script>
+    // 递归文件树项组件
+    const FileTreeItem = {
+      name: 'FileTreeItem',
+      props: {
+        item: Object,
+        level: Number,
+        isExpanded: Function,
+        toggleFolder: Function,
+        previewFile: Function,
+        getFileIcon: Function,
+        copyToClipboard: Function,
+        installModule: Function
+      },
+      template: \`
+        <div>
+          <!-- 文件夹 -->
+          <div v-if="item.children" class="tree-item">
+            <div class="tree-folder-header" @click="toggleFolder(item.id)">
+              <div class="folder-toggle" :class="{ 'folder-toggle-open': isExpanded(item.id) }">
+                <iconify-icon icon="tabler:chevron-right" width="14"></iconify-icon>
+              </div>
+              <div class="folder-icon">
+                <iconify-icon :icon="isExpanded(item.id) ? 'tabler:folder-open' : 'tabler:folder'" width="18"></iconify-icon>
+              </div>
+              <div class="folder-name">{{ item.name }}</div>
+            </div>
+            <div class="tree-folder-content" v-show="isExpanded(item.id)" :key="'content-'+item.id">
+              <file-tree-item
+                v-for="child in item.children"
+                :key="child.id"
+                :item="child"
+                :level="level + 1"
+                :is-expanded="isExpanded"
+                :toggle-folder="toggleFolder"
+                :preview-file="previewFile"
+                :get-file-icon="getFileIcon"
+                :copy-to-clipboard="copyToClipboard"
+                :install-module="installModule"
+              ></file-tree-item>
+            </div>
+          </div>
+          
+          <!-- 文件 -->
+          <div v-else class="tree-file" @click="previewFile(item)">
+            <div class="file-icon">
+              <iconify-icon :icon="getFileIcon(item)" width="16"></iconify-icon>
+            </div>
+            <div class="file-name">{{ item.name }}</div>
+            <div class="tree-file-actions">
+              <span v-if="item.fileType" class="file-type-tag" :class="'file-type-'+item.fileType">
+                {{ item.fileType }}
+              </span>
+              <div v-if="item.fileType === 'sgmodule'" 
+                   class="tree-file-action tooltip" 
+                   @click.stop="installModule(item.url)">
+                <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
+                <div class="tooltip-content">导入到 Surge</div>
+              </div>
+              <div class="tree-file-action tooltip" @click.stop="copyToClipboard(item.url)">
+                <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
+                <div class="tooltip-content">复制链接</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      \`
+    };
+
     const app = Vue.createApp({
+      components: {
+        FileTreeItem
+      },
       data() {
         return {
           treeData: ${treeDataJson},

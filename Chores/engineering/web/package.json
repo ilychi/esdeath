@@ -1,0 +1,14 @@
+{
+  "name": "surge-web",
+  "version": "1.0.0",
+  "description": "Surge rules web interface",
+  "main": "build.js",
+  "type": "module",
+  "scripts": {
+    "build": "node --loader ts-node/esm build.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+} 

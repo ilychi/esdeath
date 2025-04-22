@@ -19,3 +19,6 @@ Chores/engineering/sync/test-output/
 
 # 旧版本的UI工程
 web-ui/
+
+# Surge规则集
+Surge/Ruleset/
