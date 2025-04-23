@@ -17,7 +17,7 @@ const CUSTOM_DOMAIN = 'https://ruleset.chichi.sh';
 
 // 允许的文件类型和目录
 const allowedExtensions = ['.list', '.mmdb', '.sgmodule'];
-const allowedDirectories = ['Surge', 'GeoIP', 'Ruleset', 'Module'];
+const allowedDirectories = ['Surge', 'BiliUniverse', 'DualSubs', 'iRingo'];
 
 const prioritySorter = (a: Dirent, b: Dirent) => {
   if (a.isDirectory() && !b.isDirectory()) return -1;
@@ -85,8 +85,35 @@ async function buildFileTreeData(dir: string, relativePath = ''): Promise<FileTr
       }
 
       if (entry.isDirectory()) {
-        // 修复：确保所有目录都被正确处理为目录，移除对特定目录的限制
-        // 只排除不在allowedDirectories中且不是其子目录的文件夹
+        // 处理Surge目录为根目录的情况
+        if (relativePath === 'Surge') {
+          // 对于Surge内部的Module和Ruleset目录，使用简化的路径
+          if (entry.name === 'Module') {
+            const children: FileTreeItem[] = await buildFileTreeData(fullPath, 'Modules');
+            if (children.length > 0) {
+              elements.push({
+                id: 'Modules',
+                name: 'Modules',
+                isSelectable: true,
+                children: children,
+              });
+            }
+            continue;
+          } else if (entry.name === 'Ruleset') {
+            const children: FileTreeItem[] = await buildFileTreeData(fullPath, 'Rulesets');
+            if (children.length > 0) {
+              elements.push({
+                id: 'Rulesets',
+                name: 'Rulesets',
+                isSelectable: true,
+                children: children,
+              });
+            }
+            continue;
+          }
+        }
+
+        // 处理其他目录
         const isRootLevelDirectory = relativePath === '';
         const isAllowedDirectory = isRootLevelDirectory
           ? allowedDirectories.includes(entry.name)
@@ -105,8 +132,19 @@ async function buildFileTreeData(dir: string, relativePath = ''): Promise<FileTr
           }
         }
       } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
-        // 生成完整的自定义域名URL
-        const url = `${CUSTOM_DOMAIN}/${entryRelativePath}`;
+        // 根据上下文生成正确的URL路径
+        let urlPath = entryRelativePath;
+
+        // 处理Surge/Module目录，映射到Modules/
+        if (relativePath.startsWith('Surge/Module')) {
+          urlPath = entryRelativePath.replace('Surge/Module', 'Modules');
+        }
+        // 处理Surge/Ruleset目录，映射到Rulesets/
+        else if (relativePath.startsWith('Surge/Ruleset')) {
+          urlPath = entryRelativePath.replace('Surge/Ruleset', 'Rulesets');
+        }
+
+        const url = `${CUSTOM_DOMAIN}/${urlPath}`;
         const fileType = path.extname(entry.name).substring(1);
 
         elements.push({
@@ -1108,6 +1146,13 @@ function generateHtml(treeData: FileTreeItem[]) {
           this.previewLoading = true;
           this.showPreview = true;
           
+          // 禁止预览mmdb文件，直接提供下载链接
+          if (file.fileType === 'mmdb') {
+            this.previewLoading = false;
+            this.previewContent = '⚠️ MMDB文件为二进制格式，无法在浏览器中预览，请直接下载使用。';
+            return;
+          }
+          
           // 请求文件内容
           fetch(file.url)
             .then(response => {
@@ -1147,6 +1192,13 @@ async function main() {
     await fs.mkdir(OUTPUT_DIR, { recursive: true });
     await fs.mkdir(path.join(OUTPUT_DIR, 'styles'), { recursive: true });
 
+    // 创建新的根目录结构
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Modules'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Rulesets'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'BiliUniverse'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'DualSubs'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'iRingo'), { recursive: true });
+
     // 复制CSS
     const sourceDir = path.join(__dirname, 'styles');
     const targetDir = path.join(OUTPUT_DIR, 'styles');
@@ -1155,20 +1207,83 @@ async function main() {
     // 复制规则文件
     for (const dir of allowedDirectories) {
       const source = path.join(ROOT_DIR, dir);
-      const destination = path.join(OUTPUT_DIR, dir);
 
-      try {
-        await fs.access(source);
-        console.log(`Copying directory: ${dir}`);
-        await copyDirectory(source, destination);
-      } catch {
-        console.log(`Directory not found: ${dir}`);
+      if (dir === 'Surge') {
+        // 特殊处理Surge目录，将Module和Ruleset复制到根目录下的Modules和Rulesets
+        const moduleSource = path.join(source, 'Module');
+        const moduleDestination = path.join(OUTPUT_DIR, 'Modules');
+        const rulesetSource = path.join(source, 'Ruleset');
+        const rulesetDestination = path.join(OUTPUT_DIR, 'Rulesets');
+
+        try {
+          await fs.access(moduleSource);
+          console.log(`Copying directory: Surge/Module to Modules`);
+          await copyDirectory(moduleSource, moduleDestination);
+        } catch {
+          console.log(`Directory not found: Surge/Module`);
+        }
+
+        try {
+          await fs.access(rulesetSource);
+          console.log(`Copying directory: Surge/Ruleset to Rulesets`);
+          await copyDirectory(rulesetSource, rulesetDestination);
+        } catch {
+          console.log(`Directory not found: Surge/Ruleset`);
+        }
+      } else {
+        // 直接复制其他目录
+        const destination = path.join(OUTPUT_DIR, dir);
+        try {
+          await fs.access(source);
+          console.log(`Copying directory: ${dir}`);
+          await copyDirectory(source, destination);
+        } catch {
+          console.log(`Directory not found: ${dir}`);
+        }
       }
     }
 
     // 构建File Tree数据
     const treeData = [];
+
+    // 添加Modules目录
+    const modulesPath = path.join(ROOT_DIR, 'Surge', 'Module');
+    try {
+      await fs.access(modulesPath);
+      const modulesData = await buildFileTreeData(modulesPath, 'Modules');
+      if (modulesData.length > 0) {
+        treeData.push({
+          id: 'Modules',
+          name: 'Modules',
+          isSelectable: true,
+          children: modulesData,
+        });
+      }
+    } catch {
+      console.log(`Directory not found: Surge/Module`);
+    }
+
+    // 添加Rulesets目录
+    const rulesetsPath = path.join(ROOT_DIR, 'Surge', 'Ruleset');
+    try {
+      await fs.access(rulesetsPath);
+      const rulesetsData = await buildFileTreeData(rulesetsPath, 'Rulesets');
+      if (rulesetsData.length > 0) {
+        treeData.push({
+          id: 'Rulesets',
+          name: 'Rulesets',
+          isSelectable: true,
+          children: rulesetsData,
+        });
+      }
+    } catch {
+      console.log(`Directory not found: Surge/Ruleset`);
+    }
+
+    // 添加其他目录
     for (const dir of allowedDirectories) {
+      if (dir === 'Surge') continue; // 跳过Surge目录，因为已经处理了其子目录
+
       const dirPath = path.join(ROOT_DIR, dir);
       try {
         await fs.access(dirPath);
