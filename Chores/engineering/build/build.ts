@@ -18,7 +18,7 @@ const CUSTOM_DOMAIN = 'https://ruleset.chichi.sh';
 
 // 允许的文件类型和目录
 const allowedExtensions = ['.list', '.mmdb', '.sgmodule'];
-const allowedDirectories = ['External'];
+const allowedDirectories = ['Dial'];
 
 const prioritySorter = (a: Dirent, b: Dirent) => {
   if (a.isDirectory() && !b.isDirectory()) return -1;
@@ -1176,17 +1176,16 @@ async function main() {
     // 创建新的根目录结构
     await fs.mkdir(path.join(OUTPUT_DIR, 'Modules'), { recursive: true });
     await fs.mkdir(path.join(OUTPUT_DIR, 'Rulesets'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'External'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'External/Sukka'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'External/Sukka/Modules'), { recursive: true });
-    await fs.mkdir(
-      path.join(OUTPUT_DIR, 'External/Sukka/Modules/Rules', 'sukka_local_dns_mapping'),
-      { recursive: true }
-    );
-    await fs.mkdir(path.join(OUTPUT_DIR, 'External/Sukka/Mock'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'External/BiliUniverse'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'External/DualSubs'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'External/iRingo'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/Sukka'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/Sukka/Modules'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/Sukka/Modules/Rules', 'sukka_local_dns_mapping'), {
+      recursive: true,
+    });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/Sukka/Mock'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/BiliUniverse'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/DualSubs'), { recursive: true });
+    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/iRingo'), { recursive: true });
 
     // 复制CSS
     const sourceDir = path.join(__dirname, 'styles');
@@ -1217,25 +1216,25 @@ async function main() {
     }
 
     // 复制Sukka的模块文件
-    const sukkaModuleSource = path.join(ROOT_DIR, 'External', 'Sukka', 'Modules');
-    const sukkaModuleDestination = path.join(OUTPUT_DIR, 'External', 'Sukka', 'Modules');
+    const sukkaModuleSource = path.join(ROOT_DIR, 'Dial', 'Sukka', 'Modules');
+    const sukkaModuleDestination = path.join(OUTPUT_DIR, 'Dial', 'Sukka', 'Modules');
     try {
       await fs.access(sukkaModuleSource);
-      console.log(`Copying directory: External/Sukka/Modules to External/Sukka/Modules`);
+      console.log(`Copying directory: Dial/Sukka/Modules to Dial/Sukka/Modules`);
       await copyDirectory(sukkaModuleSource, sukkaModuleDestination);
     } catch {
-      console.log(`Directory not found: External/Sukka/Modules`);
+      console.log(`Directory not found: Dial/Sukka/Modules`);
     }
 
     // 复制Sukka的Mock文件
-    const sukkaMockSource = path.join(ROOT_DIR, 'External', 'Sukka', 'Mock');
-    const sukkaMockDestination = path.join(OUTPUT_DIR, 'External', 'Sukka', 'Mock');
+    const sukkaMockSource = path.join(ROOT_DIR, 'Dial', 'Sukka', 'Mock');
+    const sukkaMockDestination = path.join(OUTPUT_DIR, 'Dial', 'Sukka', 'Mock');
     try {
       await fs.access(sukkaMockSource);
-      console.log(`Copying directory: External/Sukka/Mock to External/Sukka/Mock`);
+      console.log(`Copying directory: Dial/Sukka/Mock to Dial/Sukka/Mock`);
       await copyDirectory(sukkaMockSource, sukkaMockDestination);
     } catch {
-      console.log(`Directory not found: External/Sukka/Mock`);
+      console.log(`Directory not found: Dial/Sukka/Mock`);
     }
 
     // 复制其他目录

@@ -81,8 +81,8 @@ async function downloadFile(url: string, outputPath: string, tempPath: string): 
 async function mirrorSukkaModules() {
   console.log('开始同步 Sukka 模块...');
 
-  // 修改目录结构为 /External/Sukka/Modules
-  const modulesDir = path.join(REPO_PATH, 'External', 'Sukka', 'Modules');
+  // 修改目录结构为 /Dial/Sukka/Modules
+  const modulesDir = path.join(REPO_PATH, 'Dial', 'Sukka', 'Modules');
   await ensureDir(modulesDir);
 
   const modules: Record<string, string> = {
@@ -124,7 +124,7 @@ async function mirrorSukkaModules() {
 
   const dnsRulesDir = path.join(
     REPO_PATH,
-    'External',
+    'Dial',
     'Sukka',
     'Modules',
     'Rules',
@@ -166,7 +166,7 @@ async function mirrorSukkaModules() {
   // 下载Mock文件
   console.log('开始同步 Sukka Mock 文件...');
 
-  const mockDir = path.join(REPO_PATH, 'External', 'Sukka', 'Mock');
+  const mockDir = path.join(REPO_PATH, 'Dial', 'Sukka', 'Mock');
   await ensureDir(mockDir);
 
   const mockFiles: Record<string, string> = {
@@ -229,7 +229,7 @@ async function mirrorSukkaModules() {
           // 替换DNS规则URL - 指向新的目录结构
           content = content.replace(
             /https:\/\/ruleset\.skk\.moe\/Modules\/Rules\/sukka_local_dns_mapping\//g,
-            'https://ruleset.chichi.sh/External/Sukka/Modules/Rules/sukka_local_dns_mapping/'
+            'https://ruleset.chichi.sh/Dial/Sukka/Modules/Rules/sukka_local_dns_mapping/'
           );
 
           await fs.writeFile(filePath, content, 'utf8');
@@ -243,14 +243,14 @@ async function mirrorSukkaModules() {
         // 替换Mock URL
         content = content.replace(
           /https:\/\/ruleset\.skk\.moe\/Mock\//g,
-          'https://ruleset.chichi.sh/External/Sukka/Mock/'
+          'https://ruleset.chichi.sh/Dial/Sukka/Mock/'
         );
 
         // 替换模块URL
         if (content.includes('ruleset.skk.moe')) {
           content = content.replace(
             /https:\/\/ruleset\.skk\.moe\/Modules\//g,
-            'https://ruleset.chichi.sh/External/Sukka/Modules/'
+            'https://ruleset.chichi.sh/Dial/Sukka/Modules/'
           );
 
           await fs.writeFile(filePath, content, 'utf8');
@@ -275,7 +275,7 @@ async function mirrorSukkaModules() {
 async function mirrorBiliUniverseModules() {
   console.log('开始同步 BiliUniverse 模块...');
 
-  const outputDir = path.join(REPO_PATH, 'External', 'BiliUniverse');
+  const outputDir = path.join(REPO_PATH, 'Dial', 'BiliUniverse');
   await ensureDir(outputDir);
 
   const repositories = [
@@ -378,7 +378,7 @@ async function mirrorBiliUniverseModules() {
 async function mirrorDualSubsModules() {
   console.log('开始同步 DualSubs 模块...');
 
-  const outputDir = path.join(REPO_PATH, 'External', 'DualSubs');
+  const outputDir = path.join(REPO_PATH, 'Dial', 'DualSubs');
   await ensureDir(outputDir);
 
   const repositories = [
@@ -438,7 +438,7 @@ async function mirrorDualSubsModules() {
 async function mirrorIRingoModules() {
   console.log('开始同步 iRingo 模块...');
 
-  const outputDir = path.join(REPO_PATH, 'External', 'iRingo');
+  const outputDir = path.join(REPO_PATH, 'Dial', 'iRingo');
   await ensureDir(outputDir);
 
   const repositories = ['VirgilClyne/iRingo'];
@@ -563,7 +563,7 @@ export async function mirrorAll() {
       execSync('git config --global user.email "mirror-sync[bot]@users.noreply.github.com"');
 
       // 添加所有变更 - 更新路径
-      execSync('git add ./External/');
+      execSync('git add ./Dial/');
 
       // 准备提交信息
       let commitMessage = '';
