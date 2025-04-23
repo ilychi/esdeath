@@ -1,44 +1,77 @@
 name: Build & Deploy
-
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/build.yml"
-      - "Chores/engineering/build/**"
-      - "Chores/sgmodule/**"
-      - "Chores/ruleset/**"
-      - "Dial/**"
-
+  repository_dispatch:
+    types: [trigger-deploy]
   workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+  push:
+    branches: [ main ]
+    paths:
+      - 'Surge/**'
+      - 'GeoIP/**'
+      - 'Chores/**'
+      - 'package.json'
+      - 'tsconfig.json'
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.0
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create temporary build directory
+        id: build_dir
+        run: |
+          BUILD_DIR=$(mktemp -d)
+          echo "临时构建目录: $BUILD_DIR"
+          echo "dir=$BUILD_DIR" >> $GITHUB_OUTPUT
+
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Build
+        run: npm run build
+        env:
+          TZ: 'Asia/Shanghai'
+          OUTPUT_DIR: ${{ steps.build_dir.outputs.dir }}
+
+      - name: Pre-deploy check
+        run: |
+          if [ ! -d ${{ steps.build_dir.outputs.dir }} ]; then
+            echo "构建目录不存在"
+            exit 1
+          fi
+          if [ ! "$(ls -A ${{ steps.build_dir.outputs.dir }})" ]; then
+            echo "构建目录为空"
+            exit 1
+          fi
+          if [ ! -f .BUILD_FINISHED ]; then
+            echo "构建完成标记不存在"
+            exit 1
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4.0.0
-        with:
-          node-version: "lts/*"
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ${{ steps.build_dir.outputs.dir }}
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

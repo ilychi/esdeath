@@ -29,21 +29,25 @@ jobs:
         run: |
           mkdir -p Chores/sgmodule
           mkdir -p Chores/ruleset
-          mkdir -p Surge/Module
+          mkdir -p Surge/Modules
           mkdir -p Surge/Ruleset
 
-      - name: Copy all sgmodules to Surge/Module
+      - name: Copy all sgmodules to Surge/Modules
         run: |
           # 复制所有sgmodule文件
-          cp Chores/sgmodule/*.sgmodule Surge/Module/
+          cp Chores/sgmodule/*.sgmodule Surge/Modules/
           # 确保文件权限正确
-          chmod 644 Surge/Module/*.sgmodule
+          chmod 644 Surge/Modules/*.sgmodule
+          
+          # 复制完成后清空源目录中的普通模块文件(保留合并后的All-in-One-2.x.sgmodule)
+          find Chores/sgmodule -type f -name "*.sgmodule" ! -name "All-in-One-2.x.sgmodule" -exec rm {} \;
+          echo "已清空 Chores/sgmodule 目录中的普通模块文件"
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add Chores/sgmodule/All-in-One-2.x.sgmodule Chores/ruleset/reject.list Surge/Module/*.sgmodule
+          git add Chores/sgmodule/All-in-One-2.x.sgmodule Chores/ruleset/reject.list Surge/Modules/*.sgmodule
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
