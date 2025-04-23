@@ -1,5 +1,5 @@
 # >> Weibo
-DOMAIN,wbapp.uve.weibo.com,DIRECT
+DOMAIN-SUFFIX,uve.weibo.com
 
 # >> 12306
-DOMAIN,ad.12306.cn,DIRECT
+DOMAIN,ad.12306.cn

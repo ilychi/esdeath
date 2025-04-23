@@ -8,14 +8,14 @@ import path from 'node:path';
 async function main() {
   try {
     console.log('Starting rule processing...');
-    
+
     // 初始化目录结构
     initializeDirectoryStructure(config.repoPath, ruleGroups, specialRules);
-    
+
     const options = {
       enableNoResolve: false,
       enablePreMatching: false,
-      enableExtended: false
+      enableExtended: false,
     };
 
     const converter = new RuleConverter('Surge');
@@ -27,7 +27,7 @@ async function main() {
     // 处理常规规则组
     for (const group of ruleGroups) {
       console.log(`Processing ${group.name} rules...`);
-      
+
       for (const rule of group.files) {
         try {
           const filePath = path.join(config.repoPath, rule.path);
@@ -54,4 +54,4 @@ async function main() {
 main().catch(error => {
   console.error('Unhandled error in main:', error);
   process.exit(1);
-}); 
+});
