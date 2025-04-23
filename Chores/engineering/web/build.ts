@@ -17,7 +17,7 @@ const CUSTOM_DOMAIN = 'https://ruleset.chichi.sh';
 
 // 允许的文件类型和目录
 const allowedExtensions = ['.list', '.mmdb', '.sgmodule'];
-const allowedDirectories = ['Surge', 'BiliUniverse', 'DualSubs', 'iRingo'];
+const allowedDirectories = ['Chores', 'BiliUniverse', 'DualSubs', 'iRingo'];
 
 const prioritySorter = (a: Dirent, b: Dirent) => {
   if (a.isDirectory() && !b.isDirectory()) return -1;
@@ -85,40 +85,22 @@ async function buildFileTreeData(dir: string, relativePath = ''): Promise<FileTr
       }
 
       if (entry.isDirectory()) {
-        // 处理Surge目录为根目录的情况
-        if (relativePath === 'Surge') {
-          // 对于Surge内部的Module和Ruleset目录，使用简化的路径
-          if (entry.name === 'Module') {
-            const children: FileTreeItem[] = await buildFileTreeData(fullPath, 'Modules');
-            if (children.length > 0) {
-              elements.push({
-                id: 'Modules',
-                name: 'Modules',
-                isSelectable: true,
-                children: children,
-              });
-            }
-            continue;
-          } else if (entry.name === 'Ruleset') {
-            const children: FileTreeItem[] = await buildFileTreeData(fullPath, 'Rulesets');
-            if (children.length > 0) {
-              elements.push({
-                id: 'Rulesets',
-                name: 'Rulesets',
-                isSelectable: true,
-                children: children,
-              });
-            }
-            continue;
-          }
-        }
-
-        // 处理其他目录
+        // 处理目录
         const isRootLevelDirectory = relativePath === '';
         const isAllowedDirectory = isRootLevelDirectory
           ? allowedDirectories.includes(entry.name)
           : true;
-        const isAllowedSubdirectory = allowedDirectories.some(dir => relativePath.startsWith(dir));
+        const isAllowedSubdirectory = allowedDirectories.some(dir => {
+          // 检查当前路径是否在允许的目录下
+          return (
+            relativePath === dir ||
+            relativePath.startsWith(dir + '/') ||
+            relativePath === 'Modules' ||
+            relativePath === 'Rulesets' ||
+            relativePath.startsWith('Modules/') ||
+            relativePath.startsWith('Rulesets/')
+          );
+        });
 
         if (isAllowedDirectory || isAllowedSubdirectory) {
           const children: FileTreeItem[] = await buildFileTreeData(fullPath, entryRelativePath);
@@ -135,13 +117,11 @@ async function buildFileTreeData(dir: string, relativePath = ''): Promise<FileTr
         // 根据上下文生成正确的URL路径
         let urlPath = entryRelativePath;
 
-        // 处理Surge/Module目录，映射到Modules/
-        if (relativePath.startsWith('Surge/Module')) {
-          urlPath = entryRelativePath.replace('Surge/Module', 'Modules');
-        }
-        // 处理Surge/Ruleset目录，映射到Rulesets/
-        else if (relativePath.startsWith('Surge/Ruleset')) {
-          urlPath = entryRelativePath.replace('Surge/Ruleset', 'Rulesets');
+        // 处理路径映射
+        if (dir.includes('Chores/sgmodule')) {
+          urlPath = entryRelativePath.replace('Chores/sgmodule', 'Modules');
+        } else if (dir.includes('Chores/ruleset')) {
+          urlPath = entryRelativePath.replace('Chores/ruleset', 'Rulesets');
         }
 
         const url = `${CUSTOM_DOMAIN}/${urlPath}`;
@@ -1205,52 +1185,50 @@ async function main() {
     await copyDirectory(sourceDir, targetDir);
 
     // 复制规则文件
+    // 特殊处理Chores目录：将sgmodule复制到Modules，ruleset复制到Rulesets
+    const sgmoduleSource = path.join(ROOT_DIR, 'Chores', 'sgmodule');
+    const sgmoduleDestination = path.join(OUTPUT_DIR, 'Modules');
+    try {
+      await fs.access(sgmoduleSource);
+      console.log(`Copying directory: Chores/sgmodule to Modules`);
+      await copyDirectory(sgmoduleSource, sgmoduleDestination);
+    } catch {
+      console.log(`Directory not found: Chores/sgmodule`);
+    }
+
+    const rulesetSource = path.join(ROOT_DIR, 'Chores', 'ruleset');
+    const rulesetDestination = path.join(OUTPUT_DIR, 'Rulesets');
+    try {
+      await fs.access(rulesetSource);
+      console.log(`Copying directory: Chores/ruleset to Rulesets`);
+      await copyDirectory(rulesetSource, rulesetDestination);
+    } catch {
+      console.log(`Directory not found: Chores/ruleset`);
+    }
+
+    // 复制其他目录
     for (const dir of allowedDirectories) {
+      if (dir === 'Chores') continue; // 已经特殊处理过Chores目录
+
       const source = path.join(ROOT_DIR, dir);
-
-      if (dir === 'Surge') {
-        // 特殊处理Surge目录，将Module和Ruleset复制到根目录下的Modules和Rulesets
-        const moduleSource = path.join(source, 'Module');
-        const moduleDestination = path.join(OUTPUT_DIR, 'Modules');
-        const rulesetSource = path.join(source, 'Ruleset');
-        const rulesetDestination = path.join(OUTPUT_DIR, 'Rulesets');
-
-        try {
-          await fs.access(moduleSource);
-          console.log(`Copying directory: Surge/Module to Modules`);
-          await copyDirectory(moduleSource, moduleDestination);
-        } catch {
-          console.log(`Directory not found: Surge/Module`);
-        }
-
-        try {
-          await fs.access(rulesetSource);
-          console.log(`Copying directory: Surge/Ruleset to Rulesets`);
-          await copyDirectory(rulesetSource, rulesetDestination);
-        } catch {
-          console.log(`Directory not found: Surge/Ruleset`);
-        }
-      } else {
-        // 直接复制其他目录
-        const destination = path.join(OUTPUT_DIR, dir);
-        try {
-          await fs.access(source);
-          console.log(`Copying directory: ${dir}`);
-          await copyDirectory(source, destination);
-        } catch {
-          console.log(`Directory not found: ${dir}`);
-        }
+      const destination = path.join(OUTPUT_DIR, dir);
+      try {
+        await fs.access(source);
+        console.log(`Copying directory: ${dir}`);
+        await copyDirectory(source, destination);
+      } catch {
+        console.log(`Directory not found: ${dir}`);
       }
     }
 
     // 构建File Tree数据
     const treeData = [];
 
-    // 添加Modules目录
-    const modulesPath = path.join(ROOT_DIR, 'Surge', 'Module');
+    // 添加Modules目录(Chores/sgmodule)
+    const modulesSource = path.join(ROOT_DIR, 'Chores', 'sgmodule');
     try {
-      await fs.access(modulesPath);
-      const modulesData = await buildFileTreeData(modulesPath, 'Modules');
+      await fs.access(modulesSource);
+      const modulesData = await buildFileTreeData(modulesSource, 'Modules');
       if (modulesData.length > 0) {
         treeData.push({
           id: 'Modules',
@@ -1260,14 +1238,14 @@ async function main() {
         });
       }
     } catch {
-      console.log(`Directory not found: Surge/Module`);
+      console.log(`Directory not found: Chores/sgmodule`);
     }
 
-    // 添加Rulesets目录
-    const rulesetsPath = path.join(ROOT_DIR, 'Surge', 'Ruleset');
+    // 添加Rulesets目录(Chores/ruleset)
+    const rulesetsSource = path.join(ROOT_DIR, 'Chores', 'ruleset');
     try {
-      await fs.access(rulesetsPath);
-      const rulesetsData = await buildFileTreeData(rulesetsPath, 'Rulesets');
+      await fs.access(rulesetsSource);
+      const rulesetsData = await buildFileTreeData(rulesetsSource, 'Rulesets');
       if (rulesetsData.length > 0) {
         treeData.push({
           id: 'Rulesets',
@@ -1277,12 +1255,12 @@ async function main() {
         });
       }
     } catch {
-      console.log(`Directory not found: Surge/Ruleset`);
+      console.log(`Directory not found: Chores/ruleset`);
     }
 
     // 添加其他目录
     for (const dir of allowedDirectories) {
-      if (dir === 'Surge') continue; // 跳过Surge目录，因为已经处理了其子目录
+      if (dir === 'Chores') continue; // 已经处理过Chores目录
 
       const dirPath = path.join(ROOT_DIR, dir);
       try {
