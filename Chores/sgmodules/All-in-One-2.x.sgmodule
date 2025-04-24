@@ -1,0 +1,49 @@
+#!name=AD ByeBye+ 2.x
+#!desc=Most Optimized Ad-free Experience presented with automated updates. | 提供最优化无广告体验，自动同步更新。\nRepo: https://tuu.cat/repo・Update: 4/24/2025・Support: @bunizao・ Channel: @hututu00\nModified by @chichi for personal use.
+#!include=, Eleme, Meituan
+#!url=https://chichi.sh/ADBlock
+#!category=🚭 AD Block
+#!author=@ilychi & Everyone in the community
+#!source=Rules@ilychi | Xiaohongshu@ddgksf2013 | Amap@kokoryh | Cainiao@Keywos | Weibo@RuCu6 | Zhihu@RuCu6 | MiniProgram@bunizao | Chores@bunizao | Tools@ScriptHub
+#------------------------------------------------------
+
+[Rule]
+
+RULE-SET,https://raw.githubusercontent.com/ilychi/esdeath/main/Chores/ruleset/direct.list,DIRECT,extended-matching
+RULE-SET,https://raw.githubusercontent.com/ilychi/esdeath/main/Chores/ruleset/reject.list,REJECT,extended-matching
+
+[URL Rewrite]
+
+
+
+# ----------- Eleme -----------
+^https:\/\/elemecdn.com\/.+\/sitemap - reject
+^https:\/\/fuss10.elemecdn.com\/.+\/w\/640\/h\/\d{3,4} - reject
+^https:\/\/fuss10.elemecdn.com\/.+\/w\/750\/h\/\d{3,4} - reject
+^https:\/\/fuss10.elemecdn.com\/.+\.mp4 - reject
+^https:\/\/www1.elecfans.com\/www\/delivery - reject
+
+########################################################################################
+
+[Map Local]
+
+
+
+# ----------- Meituan -----------
+^http:\/\/wmapi\.meituan\.com\/api\/v7\/(loadInfo|openscreen|startpicture)\? data-type=text data="{}" status-code=200
+^https:\/\/flowplus\.meituan\.net\/v1\/mss_\w+\/linglong\/\d+\.jpg data-type=text data="{}" status-code=200
+^https:\/\/img\.meituan\.net\/bizad\/bizad_brandCpt_\d+\.jpg data-type=text data="{}" status-code=200
+^https:\/\/s3plus\.meituan\.net\/v1\/mss_\w+\/(brandcpt-vedio|waimai-alita)\/\w+\.zip$ data-type=text data="{}" status-code=200
+
+########################################################################################
+
+[Script]
+
+
+
+########################################################################################
+
+[MITM]
+hostname = %APPEND% elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, 
+h2 = true
+tcp-connection = true
