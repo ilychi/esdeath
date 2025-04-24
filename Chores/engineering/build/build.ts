@@ -2,7 +2,9 @@
 
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { promises as fs, Dirent } from 'node:fs';
+import { promises as fs, Dirent, createReadStream, createWriteStream } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { pipeline } from 'node:stream/promises';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,15 +12,30 @@ const __dirname = path.dirname(__filename);
 // 修正仓库 URL
 const REPO_URL = 'https://raw.githubusercontent.com/ilychi/esdeath/main/';
 const ROOT_DIR = path.join(__dirname, '../../..');
-// 使用环境变量指定输出目录
-const OUTPUT_DIR = process.env.OUTPUT_DIR || path.join(ROOT_DIR, 'public');
+// 使用环境变量指定输出目录，支持RAM磁盘
+const isCI = process.env.CI === 'true';
+const OUTPUT_DIR = isCI
+  ? process.env.RAM_DIR || '/dev/shm/esdeath'
+  : process.env.OUTPUT_DIR || path.join(ROOT_DIR, 'public');
 
 // 自定义域名，用于生成链接
 const CUSTOM_DOMAIN = 'https://ruleset.chichi.sh';
 
 // 允许的文件类型和目录
 const allowedExtensions = ['.list', '.mmdb', '.sgmodule'];
-const allowedDirectories = ['Dial'];
+// 动态允许目录列表，自动填充
+let allowedDirectories = ['Dial'];
+
+// 配置化的路径映射
+const PATH_MAPPINGS = [
+  { source: 'Chores/sgmodule', target: 'Modules' },
+  { source: 'Surge/Modules/Rules', target: 'Rulesets' },
+  { source: 'Dial/Sukka/Modules', target: 'Dial/Sukka/Modules' },
+  { source: 'Dial/Sukka/Mock', target: 'Dial/Sukka/Mock' },
+  { source: 'Dial/BiliUniverse', target: 'Dial/BiliUniverse' },
+  { source: 'Dial/DualSubs', target: 'Dial/DualSubs' },
+  { source: 'Dial/iRingo', target: 'Dial/iRingo' },
+];
 
 const prioritySorter = (a: Dirent, b: Dirent) => {
   if (a.isDirectory() && !b.isDirectory()) return -1;
@@ -26,16 +43,86 @@ const prioritySorter = (a: Dirent, b: Dirent) => {
   return a.name.localeCompare(b.name);
 };
 
-// 复制文件函数
-async function copyFile(source: string, destination: string) {
+// 计算文件哈希
+async function calculateFileHash(filePath: string): Promise<string> {
   try {
-    await fs.mkdir(path.dirname(destination), { recursive: true });
-    await fs.copyFile(source, destination);
-    console.log(`Copied: ${source} -> ${destination}`);
+    const hash = createHash('sha256');
+    await pipeline(createReadStream(filePath), hash);
+    return hash.digest('hex');
   } catch (error) {
-    console.error(`Error copying file: ${source}`, error);
+    console.error(`Error calculating hash for ${filePath}:`, error);
+    return '';
   }
 }
+
+// 文件内容比较
+async function areFilesIdentical(sourceFile: string, destFile: string): Promise<boolean> {
+  try {
+    // 检查目标文件是否存在
+    try {
+      await fs.access(destFile);
+    } catch {
+      return false; // 目标文件不存在，需要复制
+    }
+
+    // 获取文件大小
+    const [sourceStats, destStats] = await Promise.all([fs.stat(sourceFile), fs.stat(destFile)]);
+
+    // 如果文件大小不同，直接返回false
+    if (sourceStats.size !== destStats.size) {
+      return false;
+    }
+
+    // 计算并比较两个文件的哈希值
+    const [sourceHash, destHash] = await Promise.all([
+      calculateFileHash(sourceFile),
+      calculateFileHash(destFile),
+    ]);
+
+    return sourceHash === destHash;
+  } catch (error) {
+    console.error(`Error comparing files ${sourceFile} and ${destFile}:`, error);
+    return false; // 出现错误时，为安全起见，返回false以触发复制
+  }
+}
+
+// 增量复制文件函数
+async function copyFile(source: string, destination: string) {
+  try {
+    // 确保目标目录存在
+    await fs.mkdir(path.dirname(destination), { recursive: true });
+
+    // 比较文件内容，仅在不同时复制
+    const areIdentical = await areFilesIdentical(source, destination);
+
+    if (!areIdentical) {
+      await fs.copyFile(source, destination);
+      console.log(`Copied: ${source} -> ${destination}`);
+      return true; // 文件已复制
+    } else {
+      console.log(`Skipped (identical): ${source}`);
+      return false; // 文件未复制（相同内容）
+    }
+  } catch (error) {
+    console.error(`Error copying file: ${source}`, error);
+    return false;
+  }
+}
+
+// 构建过程状态跟踪
+interface BuildStats {
+  totalFiles: number;
+  copiedFiles: number;
+  skippedFiles: number;
+  startTime: number;
+}
+
+const buildStats: BuildStats = {
+  totalFiles: 0,
+  copiedFiles: 0,
+  skippedFiles: 0,
+  startTime: Date.now(),
+};
 
 // 复制目录函数
 async function copyDirectory(source: string, destination: string) {
@@ -51,7 +138,13 @@ async function copyDirectory(source: string, destination: string) {
       if (entry.isDirectory()) {
         await copyDirectory(srcPath, destPath);
       } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
-        await copyFile(srcPath, destPath);
+        buildStats.totalFiles++;
+        const copied = await copyFile(srcPath, destPath);
+        if (copied) {
+          buildStats.copiedFiles++;
+        } else {
+          buildStats.skippedFiles++;
+        }
       }
     }
   } catch (error) {
@@ -67,22 +160,44 @@ interface FileTreeItem {
   children?: FileTreeItem[];
   url?: string;
   fileType?: string;
+  priority?: number;
 }
 
-// 转换目录结构为File Tree组件所需的格式
-async function buildFileTreeData(dir: string, relativePath = ''): Promise<FileTreeItem[]> {
+// 文件类型优先级映射
+const FILE_TYPE_PRIORITY = {
+  sgmodule: 10,
+  list: 20,
+  mmdb: 30,
+};
+
+// 文件树缓存
+const fileTreeCache = new Map<string, FileTreeItem[]>();
+
+// 转换目录结构为File Tree组件所需的格式，优化性能
+async function buildFileTreeData(
+  dir: string,
+  relativePath = '',
+  depth = 0
+): Promise<FileTreeItem[]> {
+  // 使用缓存避免重复处理相同的目录
+  const cacheKey = `${dir}:${relativePath}`;
+  if (fileTreeCache.has(cacheKey)) {
+    return fileTreeCache.get(cacheKey)!;
+  }
+
   try {
     const entries = await fs.readdir(dir, { withFileTypes: true });
+    // 首先对所有条目进行预先排序
     entries.sort(prioritySorter);
 
-    const elements: FileTreeItem[] = [];
-
-    for (const entry of entries) {
+    // 批量处理所有条目
+    const promises: Promise<FileTreeItem | null>[] = entries.map(async entry => {
       const fullPath = path.join(dir, entry.name);
       const entryRelativePath = path.join(relativePath, entry.name);
 
+      // 跳过不需要的条目
       if (entry.name === 'src' || entry.name === 'node_modules' || entry.name.startsWith('.')) {
-        continue;
+        return null;
       }
 
       if (entry.isDirectory()) {
@@ -104,14 +219,39 @@ async function buildFileTreeData(dir: string, relativePath = ''): Promise<FileTr
         });
 
         if (isAllowedDirectory || isAllowedSubdirectory) {
-          const children: FileTreeItem[] = await buildFileTreeData(fullPath, entryRelativePath);
+          const children: FileTreeItem[] = await buildFileTreeData(
+            fullPath,
+            entryRelativePath,
+            depth + 1
+          );
           if (children.length > 0) {
-            elements.push({
+            // 对子项目进行排序，先按类型，再按名称
+            children.sort((a, b) => {
+              // 如果都有子目录，按名称排序
+              if (a.children && b.children) {
+                return a.name.localeCompare(b.name);
+              }
+              // 目录优先于文件
+              if (a.children && !b.children) return -1;
+              if (!a.children && b.children) return 1;
+
+              // 按文件类型优先级排序
+              const aPriority = a.priority || 999;
+              const bPriority = b.priority || 999;
+              if (aPriority !== bPriority) {
+                return aPriority - bPriority;
+              }
+
+              // 最后按名称排序
+              return a.name.localeCompare(b.name);
+            });
+
+            return {
               id: entryRelativePath,
               name: entry.name,
               isSelectable: true,
               children: children,
-            });
+            };
           }
         }
       } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
@@ -119,29 +259,68 @@ async function buildFileTreeData(dir: string, relativePath = ''): Promise<FileTr
         let urlPath = entryRelativePath;
 
         // 处理路径映射
-        if (dir.includes('Chores/sgmodule')) {
-          urlPath = entryRelativePath.replace('Chores/sgmodule', 'Modules');
-        } else if (dir.includes('Chores/ruleset')) {
-          urlPath = entryRelativePath.replace('Chores/ruleset', 'Rulesets');
+        for (const mapping of PATH_MAPPINGS) {
+          if (dir.includes(mapping.source)) {
+            urlPath = entryRelativePath.replace(mapping.source, mapping.target);
+            break;
+          }
         }
 
         const url = `${CUSTOM_DOMAIN}/${urlPath}`;
         const fileType = path.extname(entry.name).substring(1);
+        const priority = FILE_TYPE_PRIORITY[fileType as keyof typeof FILE_TYPE_PRIORITY] || 999;
 
-        elements.push({
+        return {
           id: entryRelativePath,
           name: entry.name,
           isSelectable: true,
           url: url,
           fileType: fileType,
-        });
+          priority: priority,
+        };
       }
-    }
+
+      return null;
+    });
+
+    // 并行处理所有条目，然后过滤掉null结果
+    const elements = (await Promise.all(promises)).filter(item => item !== null) as FileTreeItem[];
+
+    // 保存缓存
+    fileTreeCache.set(cacheKey, elements);
 
     return elements;
   } catch (error) {
     console.error(`Error building file tree data for ${dir}:`, error);
     return [];
+  }
+}
+
+// 动态扫描根目录，获取所有顶级目录
+async function scanRootDirectories() {
+  try {
+    const entries = await fs.readdir(ROOT_DIR, { withFileTypes: true });
+    const directories = entries
+      .filter(
+        entry =>
+          entry.isDirectory() &&
+          !entry.name.startsWith('.') &&
+          !['node_modules', 'public', 'dist'].includes(entry.name)
+      )
+      .map(entry => entry.name);
+
+    // 合并已有的和扫描到的目录
+    const existingDirs = new Set(allowedDirectories);
+    for (const dir of directories) {
+      existingDirs.add(dir);
+    }
+
+    allowedDirectories = [...existingDirs];
+    console.log(`Discovered directories: ${allowedDirectories.join(', ')}`);
+    return allowedDirectories;
+  } catch (error) {
+    console.error('Error scanning root directories:', error);
+    return allowedDirectories;
   }
 }
 
@@ -1168,6 +1347,15 @@ function generateHtml(treeData: FileTreeItem[]) {
 // 主函数
 async function main() {
   try {
+    console.log('Starting build process...');
+    console.log(`Using output directory: ${OUTPUT_DIR}`);
+
+    // 开始计时
+    buildStats.startTime = Date.now();
+
+    // 扫描根目录，获取所有可用目录
+    await scanRootDirectories();
+
     // 清理 output 目录
     await fs.rm(OUTPUT_DIR, { recursive: true, force: true });
     await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -1176,16 +1364,31 @@ async function main() {
     // 创建新的根目录结构
     await fs.mkdir(path.join(OUTPUT_DIR, 'Modules'), { recursive: true });
     await fs.mkdir(path.join(OUTPUT_DIR, 'Rulesets'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/Sukka'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/Sukka/Modules'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/Sukka/Modules/Rules', 'sukka_local_dns_mapping'), {
-      recursive: true,
-    });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/Sukka/Mock'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/BiliUniverse'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/DualSubs'), { recursive: true });
-    await fs.mkdir(path.join(OUTPUT_DIR, 'Dial/iRingo'), { recursive: true });
+
+    // 动态创建目录结构
+    for (const dir of allowedDirectories) {
+      await fs.mkdir(path.join(OUTPUT_DIR, dir), { recursive: true });
+
+      // 检查是否是Dial目录，如果是，创建子目录
+      if (dir === 'Dial') {
+        const dialSubdirs = ['Sukka', 'BiliUniverse', 'DualSubs', 'iRingo'];
+        for (const subdir of dialSubdirs) {
+          await fs.mkdir(path.join(OUTPUT_DIR, 'Dial', subdir), { recursive: true });
+
+          // 为Sukka创建特殊子目录
+          if (subdir === 'Sukka') {
+            await fs.mkdir(path.join(OUTPUT_DIR, 'Dial', 'Sukka', 'Modules'), { recursive: true });
+            await fs.mkdir(
+              path.join(OUTPUT_DIR, 'Dial', 'Sukka', 'Modules', 'Rules', 'sukka_local_dns_mapping'),
+              {
+                recursive: true,
+              }
+            );
+            await fs.mkdir(path.join(OUTPUT_DIR, 'Dial', 'Sukka', 'Mock'), { recursive: true });
+          }
+        }
+      }
+    }
 
     // 复制CSS
     const sourceDir = path.join(__dirname, 'styles');
@@ -1213,28 +1416,6 @@ async function main() {
       await copyDirectory(rulesetSource, rulesetDestination);
     } catch {
       console.log(`Directory not found: Chores/ruleset`);
-    }
-
-    // 复制Sukka的模块文件
-    const sukkaModuleSource = path.join(ROOT_DIR, 'Dial', 'Sukka', 'Modules');
-    const sukkaModuleDestination = path.join(OUTPUT_DIR, 'Dial', 'Sukka', 'Modules');
-    try {
-      await fs.access(sukkaModuleSource);
-      console.log(`Copying directory: Dial/Sukka/Modules to Dial/Sukka/Modules`);
-      await copyDirectory(sukkaModuleSource, sukkaModuleDestination);
-    } catch {
-      console.log(`Directory not found: Dial/Sukka/Modules`);
-    }
-
-    // 复制Sukka的Mock文件
-    const sukkaMockSource = path.join(ROOT_DIR, 'Dial', 'Sukka', 'Mock');
-    const sukkaMockDestination = path.join(OUTPUT_DIR, 'Dial', 'Sukka', 'Mock');
-    try {
-      await fs.access(sukkaMockSource);
-      console.log(`Copying directory: Dial/Sukka/Mock to Dial/Sukka/Mock`);
-      await copyDirectory(sukkaMockSource, sukkaMockDestination);
-    } catch {
-      console.log(`Directory not found: Dial/Sukka/Mock`);
     }
 
     // 复制其他目录
@@ -1288,7 +1469,7 @@ async function main() {
         });
       }
     } catch {
-      console.log(`Failed to build file tree data for: Chores/ruleset`);
+      console.log(`Failed to build file tree data for: Surge/Modules/Rules`);
     }
 
     // 添加其他目录到树形结构
@@ -1316,6 +1497,15 @@ async function main() {
 
     // 添加构建完成标记
     await fs.writeFile(path.join(ROOT_DIR, '.BUILD_FINISHED'), 'BUILD_FINISHED\n');
+
+    // 输出构建统计信息
+    const buildTime = (Date.now() - buildStats.startTime) / 1000;
+    console.log('------- Build Statistics -------');
+    console.log(`Total files processed: ${buildStats.totalFiles}`);
+    console.log(`Files copied: ${buildStats.copiedFiles}`);
+    console.log(`Files skipped (identical): ${buildStats.skippedFiles}`);
+    console.log(`Build completed in: ${buildTime.toFixed(2)}s`);
+    console.log('-------------------------------');
 
     console.log('Build completed successfully!');
   } catch (error) {
