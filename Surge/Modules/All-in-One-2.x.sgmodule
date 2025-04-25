@@ -379,7 +379,7 @@ RULE-SET,https://raw.githubusercontent.com/ilychi/esdeath/main/Surge/Modules/Rul
 ^https:\/\/(m|mwsa)\.ximalaya\.com\/community\/square\/v\d\/stream\? data-type=text data="{"data":{"cards":[{"content":{},"type":"RECOMMENDS"}]},"ret":0}" status-code=200 header="Content-Type:text/json"
 
 # ----------- YouTube ------------
-^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data-type=text data="" status-code=502 header="Content-Type:text/plain"
+^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data-type=text data=" " status-code=200
 
 # ----------- VideoGo ------------
 ^https:\/\/i\.ys7\.com\/api\/user\/tabList data-type=text data="{}" status-code=200
