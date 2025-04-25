@@ -28,18 +28,6 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
-      # 添加Node.js和pnpm设置，方便以后扩展功能
-      - name: 设置PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
-      - name: 设置Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
-
       - name: 配置Git
         run: |
           git config --global user.name "github-actions[bot]"
@@ -53,9 +41,17 @@ jobs:
       - name: 等待Docker服务就绪
         run: |
           echo "等待Docker服务就绪..."
-          for i in {1..10}; do
-            nc -z localhost 9101 && break
-            sleep 10
+          for i in {1..30}; do
+            if nc -z localhost 9101; then
+              echo "服务已就绪"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "等待服务超时"
+              exit 1
+            fi
+            echo "等待中... $i/30"
+            sleep 2
           done
 
       - name: 下载README
