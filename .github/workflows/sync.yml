@@ -1,4 +1,4 @@
-name: Sync Ruleset
+name: Sync & Mirror
 
 on:
   workflow_dispatch:
@@ -6,6 +6,11 @@ on:
     #- cron: "30 * * * *"
     #- cron: "0 6,18 * * *"
     - cron: '5,30,55 * * * *'
+
+# 并发控制，避免重复同步
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
   
 jobs:
   Sync-Rules:
@@ -44,9 +49,9 @@ jobs:
         retain_days: 0
         keep_minimum_runs: 2
 
-    - name: Trigger Deploy Workflow  
+    - name: Trigger Convert Workflow  
       if: success()
       uses: peter-evans/repository-dispatch@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        event-type: trigger-deploy
+        event-type: trigger-convert

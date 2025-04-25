@@ -1,10 +1,16 @@
 name: Extract plugin URLs and download sgmodule files
 
 on:
-  push:
-    branches: [ main ]
+  repository_dispatch:
+    types: [trigger-convert]
+  workflow_dispatch:
   schedule:
     - cron: '5,30,55 * * * *'
+
+# 并发控制，避免重复转换
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -160,9 +166,10 @@ jobs:
             git push
           fi
 
-      - name: Trigger Deploy Workflow
+      - name: Trigger Merge Workflow
         if: success()
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          event-type: trigger-deploy
+          event-type: trigger-merge
+

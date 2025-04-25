@@ -125,11 +125,19 @@ const buildStats: BuildStats = {
 };
 
 // 复制目录函数
-async function copyDirectory(source: string, destination: string) {
+async function copyDirectory(source: string, destination: string): Promise<void> {
   try {
-    const entries = await fs.readdir(source, { withFileTypes: true });
+    // 首先检查源目录是否存在
+    try {
+      await fs.access(source);
+    } catch (error) {
+      console.log(`源目录不存在，跳过复制: ${source}`);
+      return;
+    }
 
     await fs.mkdir(destination, { recursive: true });
+
+    const entries = await fs.readdir(source, { withFileTypes: true });
 
     for (const entry of entries) {
       const srcPath = path.join(source, entry.name);
@@ -173,7 +181,7 @@ const FILE_TYPE_PRIORITY = {
 // 文件树缓存
 const fileTreeCache = new Map<string, FileTreeItem[]>();
 
-// 转换目录结构为File Tree组件所需的格式，优化性能
+// 转换目录结构为File Tree组件所需的格式
 async function buildFileTreeData(
   dir: string,
   relativePath = '',
@@ -186,6 +194,14 @@ async function buildFileTreeData(
   }
 
   try {
+    // 首先检查目录是否存在
+    try {
+      await fs.access(dir);
+    } catch (error) {
+      console.log(`目录不存在，跳过构建文件树: ${dir}`);
+      return [];
+    }
+
     const entries = await fs.readdir(dir, { withFileTypes: true });
     // 首先对所有条目进行预先排序
     entries.sort(prioritySorter);
@@ -219,42 +235,49 @@ async function buildFileTreeData(
         });
 
         if (isAllowedDirectory || isAllowedSubdirectory) {
-          const children: FileTreeItem[] = await buildFileTreeData(
-            fullPath,
-            entryRelativePath,
-            depth + 1
-          );
-          if (children.length > 0) {
-            // 对子项目进行排序，先按类型，再按名称
-            children.sort((a, b) => {
-              // 如果都有子目录，按名称排序
-              if (a.children && b.children) {
+          try {
+            const children: FileTreeItem[] = await buildFileTreeData(
+              fullPath,
+              entryRelativePath,
+              depth + 1
+            );
+            if (children.length > 0) {
+              // 对子项目进行排序，先按类型，再按名称
+              children.sort((a, b) => {
+                // 如果都有子目录，按名称排序
+                if (a.children && b.children) {
+                  return a.name.localeCompare(b.name);
+                }
+                // 目录优先于文件
+                if (a.children && !b.children) return -1;
+                if (!a.children && b.children) return 1;
+
+                // 按文件类型优先级排序
+                const aPriority = a.priority || 999;
+                const bPriority = b.priority || 999;
+                if (aPriority !== bPriority) {
+                  return aPriority - bPriority;
+                }
+
+                // 最后按名称排序
                 return a.name.localeCompare(b.name);
-              }
-              // 目录优先于文件
-              if (a.children && !b.children) return -1;
-              if (!a.children && b.children) return 1;
+              });
 
-              // 按文件类型优先级排序
-              const aPriority = a.priority || 999;
-              const bPriority = b.priority || 999;
-              if (aPriority !== bPriority) {
-                return aPriority - bPriority;
-              }
-
-              // 最后按名称排序
-              return a.name.localeCompare(b.name);
-            });
-
-            return {
-              id: entryRelativePath,
-              name: entry.name,
-              isSelectable: true,
-              children: children,
-            };
+              return {
+                id: entryRelativePath,
+                name: entry.name,
+                isSelectable: true,
+                children: children,
+              };
+            }
+          } catch (error) {
+            console.error(`Error processing directory ${fullPath}:`, error);
           }
         }
-      } else if (allowedExtensions.includes(path.extname(entry.name).toLowerCase())) {
+      } else if (
+        entry.isFile() &&
+        allowedExtensions.includes(path.extname(entry.name).toLowerCase())
+      ) {
         // 根据上下文生成正确的URL路径
         let urlPath = entryRelativePath;
 
@@ -274,9 +297,9 @@ async function buildFileTreeData(
           id: entryRelativePath,
           name: entry.name,
           isSelectable: true,
-          url: url,
-          fileType: fileType,
+          url,
           priority: priority,
+          ...(fileType ? { fileType } : {}),
         };
       }
 
@@ -1398,24 +1421,30 @@ async function main() {
 
     // 复制规则文件
     // 特殊处理Chores目录：将sgmodule复制到Modules，ruleset复制到Rulesets
-    const sgmoduleSource = path.join(ROOT_DIR, 'Surge', 'Modules');
+    const sgmoduleSource = path.join(ROOT_DIR, 'Chores', 'sgmodule');
     const sgmoduleDestination = path.join(OUTPUT_DIR, 'Modules');
     try {
-      await fs.access(sgmoduleSource);
-      console.log(`Copying directory: Surge/Modules to Modules`);
-      await copyDirectory(sgmoduleSource, sgmoduleDestination);
-    } catch {
-      console.log(`Directory not found: Surge/Modules`);
+      if (await dirExists(sgmoduleSource)) {
+        console.log(`Copying directory: Chores/sgmodule to Modules`);
+        await copyDirectory(sgmoduleSource, sgmoduleDestination);
+      } else {
+        console.log(`Directory not found: Chores/sgmodule - skipping`);
+      }
+    } catch (error) {
+      console.error(`Error copying Chores/sgmodule:`, error);
     }
 
     const rulesetSource = path.join(ROOT_DIR, 'Chores', 'ruleset');
     const rulesetDestination = path.join(OUTPUT_DIR, 'Rulesets');
     try {
-      await fs.access(rulesetSource);
-      console.log(`Copying directory: Chores/ruleset to Rulesets`);
-      await copyDirectory(rulesetSource, rulesetDestination);
-    } catch {
-      console.log(`Directory not found: Chores/ruleset`);
+      if (await dirExists(rulesetSource)) {
+        console.log(`Copying directory: Chores/ruleset to Rulesets`);
+        await copyDirectory(rulesetSource, rulesetDestination);
+      } else {
+        console.log(`Directory not found: Chores/ruleset - skipping`);
+      }
+    } catch (error) {
+      console.error(`Error copying Chores/ruleset:`, error);
     }
 
     // 复制其他目录
@@ -1423,11 +1452,14 @@ async function main() {
       const source = path.join(ROOT_DIR, dir);
       const destination = path.join(OUTPUT_DIR, dir);
       try {
-        await fs.access(source);
-        console.log(`Copying directory: ${dir}`);
-        await copyDirectory(source, destination);
-      } catch {
-        console.log(`Directory not found: ${dir}`);
+        if (await dirExists(source)) {
+          console.log(`Copying directory: ${dir}`);
+          await copyDirectory(source, destination);
+        } else {
+          console.log(`Directory not found: ${dir} - skipping`);
+        }
+      } catch (error) {
+        console.error(`Error copying directory ${dir}:`, error);
       }
     }
 
@@ -1437,14 +1469,16 @@ async function main() {
     // 添加Modules目录数据
     const modulesData = [];
 
-    // 添加基本模块(Surge/Modules)
+    // 添加基本模块(Chores/sgmodule)
     try {
-      const basicModulesData = await buildFileTreeData(sgmoduleSource, 'Modules');
-      if (basicModulesData.length > 0) {
-        modulesData.push(...basicModulesData);
+      if (await dirExists(sgmoduleSource)) {
+        const basicModulesData = await buildFileTreeData(sgmoduleSource, 'Modules');
+        if (basicModulesData.length > 0) {
+          modulesData.push(...basicModulesData);
+        }
       }
-    } catch {
-      console.log(`Failed to build file tree data for: Surge/Modules`);
+    } catch (error) {
+      console.error(`Failed to build file tree data for: Chores/sgmodule`, error);
     }
 
     // 添加Modules到树形结构
@@ -1459,35 +1493,38 @@ async function main() {
 
     // 添加Rulesets目录(Chores/ruleset)
     try {
-      const rulesetsData = await buildFileTreeData(rulesetSource, 'Rulesets');
-      if (rulesetsData.length > 0) {
-        treeData.push({
-          id: 'Rulesets',
-          name: 'Rulesets',
-          isSelectable: true,
-          children: rulesetsData,
-        });
+      if (await dirExists(rulesetSource)) {
+        const rulesetsData = await buildFileTreeData(rulesetSource, 'Rulesets');
+        if (rulesetsData.length > 0) {
+          treeData.push({
+            id: 'Rulesets',
+            name: 'Rulesets',
+            isSelectable: true,
+            children: rulesetsData,
+          });
+        }
       }
-    } catch {
-      console.log(`Failed to build file tree data for: Surge/Modules/Rules`);
+    } catch (error) {
+      console.error(`Failed to build file tree data for: Chores/ruleset`, error);
     }
 
     // 添加其他目录到树形结构
     for (const dir of allowedDirectories) {
       const dirPath = path.join(ROOT_DIR, dir);
       try {
-        await fs.access(dirPath);
-        const data = await buildFileTreeData(dirPath, dir);
-        if (data.length > 0) {
-          treeData.push({
-            id: dir,
-            name: dir,
-            isSelectable: true,
-            children: data,
-          });
+        if (await dirExists(dirPath)) {
+          const data = await buildFileTreeData(dirPath, dir);
+          if (data.length > 0) {
+            treeData.push({
+              id: dir,
+              name: dir,
+              isSelectable: true,
+              children: data,
+            });
+          }
         }
-      } catch {
-        console.log(`Failed to build file tree data for: ${dir}`);
+      } catch (error) {
+        console.error(`Failed to build file tree data for: ${dir}`, error);
       }
     }
 
@@ -1511,6 +1548,16 @@ async function main() {
   } catch (error) {
     console.error('Build failed:', error);
     process.exit(1);
+  }
+}
+
+// 添加辅助函数检查目录是否存在
+async function dirExists(dirPath: string): Promise<boolean> {
+  try {
+    await fs.access(dirPath);
+    return true;
+  } catch {
+    return false;
   }
 }
 

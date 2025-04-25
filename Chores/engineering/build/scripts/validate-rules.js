@@ -77,13 +77,35 @@ async function extractRulesFromFile(filePath) {
 }
 
 /**
+ * 检查目录是否存在
+ */
+async function dirExists(dirPath) {
+  try {
+    await fs.access(dirPath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
  * 从目录中收集所有规则
  */
 async function collectRulesFromDirectories(directories) {
   const allDomains = new Set();
   const allIPRules = new Set();
 
+  // 过滤掉不存在的目录
+  const validDirs = [];
   for (const dir of directories) {
+    if (await dirExists(dir)) {
+      validDirs.push(dir);
+    } else {
+      console.log(`目录不存在，跳过: ${dir}`);
+    }
+  }
+
+  for (const dir of validDirs) {
     try {
       await scanDirectory(dir);
     } catch (error) {

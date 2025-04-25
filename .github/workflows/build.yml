@@ -1,4 +1,4 @@
-name: 构建与部署
+name: Build & Deploy
 on:
   repository_dispatch:
     types: [trigger-deploy]
@@ -131,6 +131,7 @@ jobs:
           script: |
             const status = '${{ job.status }}' === 'success' ? '✅ 成功' : '❌ 失败';
             const buildDuration = (new Date() - new Date('${{ steps.date.outputs.date }}')) / 1000;
+            const deployUrl = '${{ steps.deployment.outputs.page_url }}' || '等待部署';
             
             // 如果是PR，添加评论
             if (context.payload.pull_request) {
@@ -141,7 +142,7 @@ jobs:
                 body: `## 构建状态: ${status}
                 
                 - 构建时间: ${buildDuration.toFixed(2)}秒
-                - 部署地址: ${process.env.PAGES_URL || '等待部署'}
+                - 部署地址: ${deployUrl}
                 
                 *构建于 ${{ steps.date.outputs.date }}*`
               });

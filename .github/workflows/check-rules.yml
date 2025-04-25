@@ -1,5 +1,7 @@
-name: 检查规则有效性
+name: Validate Rules
 on:
+  repository_dispatch:
+    types: [trigger-check-rules]
   # 每周三自动运行
   schedule:
     - cron: "0 0 * * 3"
@@ -12,6 +14,11 @@ on:
       - 'Surge/Modules/Rules/**/*.list'
   # 允许手动触发
   workflow_dispatch:
+
+# 并发控制，避免重复检查
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   check-rules:
@@ -154,4 +161,4 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
               body: commentBody
-            });
+            }); 
