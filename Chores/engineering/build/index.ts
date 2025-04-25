@@ -235,12 +235,17 @@ async function main() {
   }
 }
 
-// 执行主函数
-if (require.main === module) {
-  main().catch(error => {
-    console.error('未捕获的错误:', error);
-    process.exit(1);
-  });
+// 检查是否为直接运行此模块
+// 在ES模块中，直接运行的文件的import.meta.url会以file://开头
+if (import.meta.url.startsWith('file:')) {
+  const modulePath = fileURLToPath(import.meta.url);
+  // 检查当前执行的文件是否为此模块
+  if (process.argv[1] === modulePath) {
+    main().catch(error => {
+      console.error('未捕获的错误:', error);
+      process.exit(1);
+    });
+  }
 }
 
 export { main };
