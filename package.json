@@ -13,7 +13,7 @@
 		"build:clean": "pnpm run build && rm -rf public",
 		"dev": "pnpm run sync && pnpm run build",
 		"merge": "pnpm run node Chores/engineering/merge.ts",
-		"validate-rules": "pnpm run node Chores/engineering/build/scripts/validate-rules.ts"
+		"validate": "pnpm run node Chores/engineering/build/scripts/validate.ts"
 	},
 	"dependencies": {
 		"@types/js-yaml": "^4.0.9",
