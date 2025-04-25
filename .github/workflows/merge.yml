@@ -14,57 +14,24 @@ concurrency:
 
 jobs:
   merge_files:
-    name: Merge Modules
     runs-on: ubuntu-latest
 
     steps:
-      - name: 获取当前日期
-        id: date
-        run: |
-          echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
-          echo "year=$(date +'%Y')" >> $GITHUB_OUTPUT
-          echo "month=$(date +'%m')" >> $GITHUB_OUTPUT
-          echo "day=$(date +'%d')" >> $GITHUB_OUTPUT
-          echo "hour=$(date +'%H')" >> $GITHUB_OUTPUT
-          echo "minute=$(date +'%M')" >> $GITHUB_OUTPUT
-          echo "second=$(date +'%S')" >> $GITHUB_OUTPUT
-      
-      - name: 恢复缓存
-        uses: actions/cache/restore@v4
-        id: cache-restore
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          path: |
-            .cache
-          key: ${{ runner.os }}-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
-          restore-keys: |
-            ${{ runner.os }}-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:
-            ${{ runner.os }}-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:
-            ${{ runner.os }}-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }}
-            ${{ runner.os }}-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-
-            ${{ runner.os }}-v3-${{ steps.date.outputs.year }}-
-            ${{ runner.os }}-v3-
-            
-      - name: 检出代码
-        uses: actions/checkout@v4
+          node-version: '20'
 
-      - name: 设置PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
+      - name: Install dependencies
+        run: npm install
 
-      - name: 设置Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
+      - name: Run merge script
+        run: npm run merge
 
-      - name: 安装依赖
-        run: pnpm install
-
-      - name: 运行合并脚本
-        run: pnpm run merge
-
-      - name: 检查输出目录
+      - name: Check output directory
         run: |
           mkdir -p Surge/Modules/Rules
           mkdir -p Surge/Scripts
@@ -81,7 +48,7 @@ jobs:
       #     find Chores/sgmodule -type f -name "*.sgmodule" ! -name "All-in-One-2.x.sgmodule" -exec rm {} \;
       #     echo "已清空 Chores/sgmodule 目录中的普通模块文件"
 
-      - name: 提交并推送更改
+      - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
@@ -93,27 +60,19 @@ jobs:
             git push
           fi
 
-      - name: 触发规则检查工作流
+      - name: Trigger Check Rules Workflow
         if: success()
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           event-type: trigger-check-rules
 
-      - name: 触发部署工作流
+      - name: Trigger Deploy Workflow
         if: success()
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           event-type: trigger-deploy
 
-      - name: 保存缓存
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            .cache
-          key: ${{ runner.os }}-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
-        
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}

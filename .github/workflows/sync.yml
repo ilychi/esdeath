@@ -14,33 +14,26 @@ concurrency:
   
 jobs:
   Sync-Rules:
-    name: Sync Data Sources
     runs-on: ubuntu-latest
     
     steps:
-    - name: 检出代码
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
     
-    - name: 设置PNPM
-      uses: pnpm/action-setup@v4
-      with:
-        run_install: false
-    
-    - name: 设置Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version-file: ".node-version"
-        cache: "pnpm"
+        node-version: '20'
     
-    - name: 安装依赖
-      run: pnpm install
+    - name: Install Dependencies
+      run: |
+        npm install
         
-    - name: 运行同步脚本
-      run: pnpm run sync
+    - name: Run Sync Script
+      run: npm run sync
       env:
         TZ: 'Asia/Shanghai'
         
-    - name: 提交更改
+    - name: Commit Changes
       run: |
         if [[ -n $(git status -s) ]]; then
           git config --local user.email "rin.tohsaka@fate-stay-night.com"
@@ -50,13 +43,13 @@ jobs:
           git push
         fi
 
-    - name: 清理工作流记录
+    - name: Cleanup Workflow Runs
       uses: Mattraks/delete-workflow-runs@main
       with:
         retain_days: 0
         keep_minimum_runs: 2
 
-    - name: 触发转换工作流  
+    - name: Trigger Convert Workflow  
       if: success()
       uses: peter-evans/repository-dispatch@v2
       with:

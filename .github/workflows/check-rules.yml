@@ -43,39 +43,32 @@ jobs:
         with:
           path: |
             .cache
-          key: ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+          key: ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
           restore-keys: |
-            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:
-            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:
-            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }}
-            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-
-            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-
-            ${{ runner.os }}-rules-cache-v3-
+            ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }}
+            ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-
+            ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-
+            ${{ runner.os }}-rules-cache-v1-
       
       - name: 检出代码
         uses: actions/checkout@v4
         with:
           persist-credentials: false
       
-      - name: 设置PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-      
       - name: 设置Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
+          node-version: '20'
+          cache: 'npm'
       
       - name: 安装依赖
-        run: pnpm install
+        run: npm ci
       
       - name: 验证规则有效性
         id: rule-check
         run: |
           mkdir -p .cache
-          pnpm run validate
+          npm run validate:rules
       
       - name: 保存缓存
         if: always()
@@ -83,7 +76,7 @@ jobs:
         with:
           path: |
             .cache
-          key: ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+          key: ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
       
       - name: 创建问题（如果发现问题）
         if: (steps.rule-check.outputs.has_dead_domains == 'true' || steps.rule-check.outputs.has_invalid_ip_rules == 'true') && github.event_name != 'pull_request'
@@ -101,6 +94,10 @@ jobs:
             const invalidIPRules = fs.existsSync('.cache/invalid-ip-rules.json')
               ? JSON.parse(fs.readFileSync('.cache/invalid-ip-rules.json', 'utf8'))
               : [];
+              
+            const autoRemovedRules = fs.existsSync('.cache/auto-removed-ip-rules.json')
+              ? JSON.parse(fs.readFileSync('.cache/auto-removed-ip-rules.json', 'utf8'))
+              : [];
             
             // 创建问题标题
             const issueTitle = `发现规则问题 - ${new Date().toISOString().split('T')[0]}`;
@@ -109,13 +106,24 @@ jobs:
             let issueBody = `## 规则验证发现以下问题\n\n`;
             
             if (deadDomains.length > 0) {
-              const deadDomainsList = deadDomains.map(domain => `- \`${domain}\``).join('\n');
+              const deadDomainsList = deadDomains
+                .map(item => `- \`${item.domain}\` (来源: ${item.source})`)
+                .join('\n');
               issueBody += `### 失效域名 (${deadDomains.length})\n\n${deadDomainsList}\n\n`;
             }
             
             if (invalidIPRules.length > 0) {
-              const invalidIPRulesList = invalidIPRules.map(rule => `- \`${rule}\``).join('\n');
+              const invalidIPRulesList = invalidIPRules
+                .map(item => `- \`${item.rule}\` (来源: ${item.source})`)
+                .join('\n');
               issueBody += `### 无效IP规则 (${invalidIPRules.length})\n\n${invalidIPRulesList}\n\n`;
+            }
+            
+            if (autoRemovedRules.length > 0) {
+              const removedRulesList = autoRemovedRules
+                .map(item => `- \`${item.rule}\` (来源: ${item.source})`)
+                .join('\n');
+              issueBody += `### 已自动移除的无效IP规则 (${autoRemovedRules.length})\n\n${removedRulesList}\n\n`;
             }
             
             issueBody += `\n这些规则可能需要修正或移除。\n\n**自动生成于:** ${new Date().toISOString()}`;
@@ -146,18 +154,34 @@ jobs:
             const invalidIPRules = fs.existsSync('.cache/invalid-ip-rules.json')
               ? JSON.parse(fs.readFileSync('.cache/invalid-ip-rules.json', 'utf8'))
               : [];
+              
+            const autoRemovedRules = fs.existsSync('.cache/auto-removed-ip-rules.json')
+              ? JSON.parse(fs.readFileSync('.cache/auto-removed-ip-rules.json', 'utf8'))
+              : [];
             
             // 构建评论正文
             let commentBody = `## 规则验证发现以下问题\n\n`;
             
             if (deadDomains.length > 0) {
-              const deadDomainsList = deadDomains.map(domain => `- \`${domain}\``).join('\n');
+              const deadDomainsList = deadDomains
+                .map(item => `- \`${item.domain}\` (来源: ${item.source})`)
+                .join('\n');
               commentBody += `### 失效域名 (${deadDomains.length})\n\n${deadDomainsList}\n\n`;
             }
             
             if (invalidIPRules.length > 0) {
-              const invalidIPRulesList = invalidIPRules.map(rule => `- \`${rule}\``).join('\n');
+              const invalidIPRulesList = invalidIPRules
+                .map(item => `- \`${item.rule}\` (来源: ${item.source})`)
+                .join('\n');
               commentBody += `### 无效IP规则 (${invalidIPRules.length})\n\n${invalidIPRulesList}\n\n`;
+            }
+            
+            if (autoRemovedRules.length > 0) {
+              const removedRulesList = autoRemovedRules
+                .map(item => `- \`${item.rule}\` (来源: ${item.source})`)
+                .join('\n');
+              commentBody += `### 已自动移除的无效IP规则 (${autoRemovedRules.length})\n\n${removedRulesList}\n\n`;
+              commentBody += `\n已自动清理这些无效规则，请检查相关提交。\n`;
             }
             
             commentBody += `\n请检查并修复这些规则，以确保规则集的质量。\n\n**自动验证于:** ${new Date().toISOString()}`;

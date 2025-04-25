@@ -493,10 +493,12 @@ export const specialRules: SpecialRuleConfig[] = [
       'https://github.com/KuGouGo/Rules/raw/main/emby.list',
       'https://github.com/kefengyoyo/own/raw/main/Emby-P.list',
       'https://github.com/forevergooe/Rules/raw/master/Surge/Emby.list',
+      /** 
       'https://github.com/kudu98/clash_fufu/raw/main/Config/EMBY-domain.yaml',
       'https://github.com/kudu98/clash_fufu/raw/main/Config/EMBY-sntp.yaml',
       'https://github.com/kudu98/clash_fufu/raw/main/Config/Emby.yaml',
       'https://github.com/kudu98/clash_fufu/raw/main/Config/EMBY-AWA.yaml',
+      */
     ],
     cleanup: true,
     keepInlineComments: true,
