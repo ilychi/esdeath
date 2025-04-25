@@ -28,6 +28,18 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
+      # 添加Node.js和pnpm设置，方便以后扩展功能
+      - name: 设置PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: 设置Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".node-version"
+          cache: "pnpm"
+
       - name: 配置Git
         run: |
           git config --global user.name "github-actions[bot]"

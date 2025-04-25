@@ -43,12 +43,14 @@ jobs:
         with:
           path: |
             .cache
-          key: ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+          key: ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
           restore-keys: |
-            ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }}
-            ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-
-            ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-
-            ${{ runner.os }}-rules-cache-v1-
+            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:
+            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:
+            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }}
+            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-
+            ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-
+            ${{ runner.os }}-rules-cache-v3-
       
       - name: 检出代码
         uses: actions/checkout@v4
@@ -58,14 +60,13 @@ jobs:
       - name: 设置PNPM
         uses: pnpm/action-setup@v4
         with:
-          version: 10.9.0
           run_install: false
       
       - name: 设置Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
+          node-version-file: ".node-version"
+          cache: "pnpm"
       
       - name: 安装依赖
         run: pnpm install
@@ -82,7 +83,7 @@ jobs:
         with:
           path: |
             .cache
-          key: ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+          key: ${{ runner.os }}-rules-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
       
       - name: 创建问题（如果发现问题）
         if: (steps.rule-check.outputs.has_dead_domains == 'true' || steps.rule-check.outputs.has_invalid_ip_rules == 'true') && github.event_name != 'pull_request'

@@ -24,14 +24,13 @@ jobs:
     - name: 设置PNPM
       uses: pnpm/action-setup@v4
       with:
-        version: 10.9.0
         run_install: false
     
     - name: 设置Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
-        cache: 'pnpm'
+        node-version-file: ".node-version"
+        cache: "pnpm"
     
     - name: 安装依赖
       run: pnpm install
