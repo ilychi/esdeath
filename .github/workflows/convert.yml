@@ -150,6 +150,26 @@ jobs:
             done
           done
 
+      - name: Add ruleset to fmz200's module
+        run: |
+          fmz_module="Surge/Modules/Remove_ads_by_fmz.sgmodule"
+          if [ -f "$fmz_module" ]; then
+            echo "Adding ruleset to $fmz_module"
+            
+            # 检查文件中是否已有[Rule]部分
+            if grep -q "\[Rule\]" "$fmz_module"; then
+              # 在[Rule]部分后添加规则集
+              sed -i '/\[Rule\]/a RULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list ,REJECT,pre-matching,extended-matching,no-resolve' "$fmz_module"
+              echo "Added ruleset after existing [Rule] section"
+            else
+              # 如果没有[Rule]部分，添加新的部分
+              echo -e "\n[Rule]\nRULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list ,REJECT,pre-matching,extended-matching,no-resolve" >> "$fmz_module"
+              echo "Added new [Rule] section with ruleset"
+            fi
+          else
+            echo "Warning: $fmz_module not found"
+          fi
+
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
