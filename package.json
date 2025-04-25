@@ -4,16 +4,16 @@
 	"description": "sync-rules",
 	"type": "module",
 	"scripts": {
-		"sync:rules": "NODE_NO_WARNINGS=1 NODE_OPTIONS=\"--experimental-specifier-resolution=node\" tsx Chores/engineering/sync/main.ts",
-		"sync:mirror": "NODE_NO_WARNINGS=1 NODE_OPTIONS=\"--experimental-specifier-resolution=node\" tsx Chores/engineering/sync/mirror.ts",
-		"sync": "npm run sync:rules && npm run sync:mirror",
-		"build": "NODE_OPTIONS=\"--experimental-specifier-resolution=node\" tsx Chores/engineering/build/build.ts",
-		"build:temp": "OUTPUT_DIR=$(mktemp -d) NODE_OPTIONS=\"--experimental-specifier-resolution=node\" tsx Chores/engineering/build/build.ts && echo \"构建完成，输出到临时目录: $OUTPUT_DIR\"",
-		"build:clean": "npm run build && rm -rf public",
-		"dev": "npm run sync && npm run build",
-		"merge": "NODE_OPTIONS=\"--experimental-specifier-resolution=node\" tsx Chores/engineering/merge.ts",
-		"validate-rules": "NODE_OPTIONS=\"--experimental-specifier-resolution=node\" tsx Chores/engineering/build/scripts/validate-rules.ts",
-		"convert": "NODE_OPTIONS=\"--experimental-specifier-resolution=node\" tsx Chores/engineering/convert.ts"
+		"node": "NODE_OPTIONS=\"--experimental-specifier-resolution=node\" node -r tsx/esm",
+		"sync:rules": "pnpm run node Chores/engineering/sync/main.ts",
+		"sync:mirror": "pnpm run node Chores/engineering/sync/mirror.ts",
+		"sync": "pnpm run sync:rules && pnpm run sync:mirror",
+		"build": "pnpm run node Chores/engineering/build/build.ts",
+		"build:temp": "OUTPUT_DIR=$(mktemp -d) pnpm run node Chores/engineering/build/build.ts && echo \"构建完成，输出到临时目录: $OUTPUT_DIR\"",
+		"build:clean": "pnpm run build && rm -rf public",
+		"dev": "pnpm run sync && pnpm run build",
+		"merge": "pnpm run node Chores/engineering/merge.ts",
+		"validate-rules": "pnpm run node Chores/engineering/build/scripts/validate-rules.ts"
 	},
 	"dependencies": {
 		"@types/js-yaml": "^4.0.9",
@@ -34,5 +34,6 @@
 	},
 	"keywords": [],
 	"author": "",
-	"license": "ISC"
+	"license": "ISC",
+	"packageManager": "pnpm@10.11.0"
 }
