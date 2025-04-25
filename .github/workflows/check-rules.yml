@@ -1,4 +1,4 @@
-name: Validate Rules
+name: Rules Validation & Quality Check
 on:
   repository_dispatch:
     types: [trigger-check-rules]

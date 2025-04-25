@@ -1,4 +1,4 @@
-name: Merge sgmodule files with merged sections
+name: Merge & Bundle Modules Collection
 
 on:
   repository_dispatch:

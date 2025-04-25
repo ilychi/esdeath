@@ -1,4 +1,4 @@
-name: Sync & Mirror
+name: Sync Rules & Mirror Repositories
 
 on:
   workflow_dispatch:

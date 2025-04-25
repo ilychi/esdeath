@@ -1,4 +1,4 @@
-name: Extract plugin URLs and download sgmodule files
+name: Loon to Surge Module Conversion
 
 on:
   repository_dispatch:

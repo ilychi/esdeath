@@ -1,4 +1,4 @@
-name: Build & Deploy
+name: Build & Deploy Web UI
 on:
   repository_dispatch:
     types: [trigger-deploy]
