@@ -1,4 +1,4 @@
-name: Rules Validation & Quality Check
+name: IP Rules Validation & Auto-Removal
 on:
   repository_dispatch:
     types: [trigger-check-rules]
@@ -22,7 +22,7 @@ concurrency:
 
 jobs:
   check-rules:
-    name: 验证规则
+    name: 验证IP规则
     runs-on: ubuntu-latest
     
     steps:
@@ -64,7 +64,7 @@ jobs:
       - name: 安装依赖
         run: npm ci
       
-      - name: 验证规则有效性
+      - name: 验证IP规则有效性
         id: rule-check
         run: |
           mkdir -p .cache
@@ -79,18 +79,14 @@ jobs:
           key: ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
       
       - name: 创建问题（如果发现问题）
-        if: (steps.rule-check.outputs.has_dead_domains == 'true' || steps.rule-check.outputs.has_invalid_ip_rules == 'true') && github.event_name != 'pull_request'
+        if: steps.rule-check.outputs.has_invalid_ip_rules == 'true' && github.event_name != 'pull_request'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
             
-            // 读取失效域名和无效IP规则
-            const deadDomains = fs.existsSync('.cache/dead-domains.json') 
-              ? JSON.parse(fs.readFileSync('.cache/dead-domains.json', 'utf8')) 
-              : [];
-              
+            // 读取无效IP规则
             const invalidIPRules = fs.existsSync('.cache/invalid-ip-rules.json')
               ? JSON.parse(fs.readFileSync('.cache/invalid-ip-rules.json', 'utf8'))
               : [];
@@ -100,17 +96,10 @@ jobs:
               : [];
             
             // 创建问题标题
-            const issueTitle = `发现规则问题 - ${new Date().toISOString().split('T')[0]}`;
+            const issueTitle = `发现无效IP规则 - ${new Date().toISOString().split('T')[0]}`;
             
             // 构建问题正文
-            let issueBody = `## 规则验证发现以下问题\n\n`;
-            
-            if (deadDomains.length > 0) {
-              const deadDomainsList = deadDomains
-                .map(item => `- \`${item.domain}\` (来源: ${item.source})`)
-                .join('\n');
-              issueBody += `### 失效域名 (${deadDomains.length})\n\n${deadDomainsList}\n\n`;
-            }
+            let issueBody = `## IP规则验证发现以下问题\n\n`;
             
             if (invalidIPRules.length > 0) {
               const invalidIPRulesList = invalidIPRules
@@ -139,18 +128,14 @@ jobs:
 
       # 如果是PR触发，将结果作为评论添加到PR中
       - name: 添加PR评论（如果发现问题）
-        if: (steps.rule-check.outputs.has_dead_domains == 'true' || steps.rule-check.outputs.has_invalid_ip_rules == 'true') && github.event_name == 'pull_request'
+        if: steps.rule-check.outputs.has_invalid_ip_rules == 'true' && github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
             
-            // 读取失效域名和无效IP规则
-            const deadDomains = fs.existsSync('.cache/dead-domains.json') 
-              ? JSON.parse(fs.readFileSync('.cache/dead-domains.json', 'utf8')) 
-              : [];
-              
+            // 读取无效IP规则
             const invalidIPRules = fs.existsSync('.cache/invalid-ip-rules.json')
               ? JSON.parse(fs.readFileSync('.cache/invalid-ip-rules.json', 'utf8'))
               : [];
@@ -160,14 +145,7 @@ jobs:
               : [];
             
             // 构建评论正文
-            let commentBody = `## 规则验证发现以下问题\n\n`;
-            
-            if (deadDomains.length > 0) {
-              const deadDomainsList = deadDomains
-                .map(item => `- \`${item.domain}\` (来源: ${item.source})`)
-                .join('\n');
-              commentBody += `### 失效域名 (${deadDomains.length})\n\n${deadDomainsList}\n\n`;
-            }
+            let commentBody = `## IP规则验证发现以下问题\n\n`;
             
             if (invalidIPRules.length > 0) {
               const invalidIPRulesList = invalidIPRules
