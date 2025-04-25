@@ -28,7 +28,7 @@ let allowedDirectories = ['Dial'];
 
 // 配置化的路径映射
 const PATH_MAPPINGS = [
-  { source: 'Chores/sgmodule', target: 'Modules' },
+  { source: 'Surge/Modules', target: 'Modules' },
   { source: 'Surge/Modules/Rules', target: 'Rulesets' },
   { source: 'Dial/Sukka/Modules', target: 'Dial/Sukka/Modules' },
   { source: 'Dial/Sukka/Mock', target: 'Dial/Sukka/Mock' },
@@ -1398,14 +1398,14 @@ async function main() {
 
     // 复制规则文件
     // 特殊处理Chores目录：将sgmodule复制到Modules，ruleset复制到Rulesets
-    const sgmoduleSource = path.join(ROOT_DIR, 'Chores', 'sgmodule');
+    const sgmoduleSource = path.join(ROOT_DIR, 'Surge', 'Modules');
     const sgmoduleDestination = path.join(OUTPUT_DIR, 'Modules');
     try {
       await fs.access(sgmoduleSource);
-      console.log(`Copying directory: Chores/sgmodule to Modules`);
+      console.log(`Copying directory: Surge/Modules to Modules`);
       await copyDirectory(sgmoduleSource, sgmoduleDestination);
     } catch {
-      console.log(`Directory not found: Chores/sgmodule`);
+      console.log(`Directory not found: Surge/Modules`);
     }
 
     const rulesetSource = path.join(ROOT_DIR, 'Chores', 'ruleset');
@@ -1437,14 +1437,14 @@ async function main() {
     // 添加Modules目录数据
     const modulesData = [];
 
-    // 添加基本模块(Chores/sgmodule)
+    // 添加基本模块(Surge/Modules)
     try {
       const basicModulesData = await buildFileTreeData(sgmoduleSource, 'Modules');
       if (basicModulesData.length > 0) {
         modulesData.push(...basicModulesData);
       }
     } catch {
-      console.log(`Failed to build file tree data for: Chores/sgmodule`);
+      console.log(`Failed to build file tree data for: Surge/Modules`);
     }
 
     // 添加Modules到树形结构

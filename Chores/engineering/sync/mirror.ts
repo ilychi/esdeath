@@ -116,6 +116,59 @@ async function mirrorSukkaModules() {
     if (fileChanged) {
       updatedFiles.push(moduleName);
       assetsChanged = true;
+
+      // 添加分类标记到模块文件
+      try {
+        let content = await fs.readFile(outputFile, 'utf8');
+        if (!content.includes('#!category=[Sukka]')) {
+          // 查找模块名称行
+          const nameLineMatch = content.match(/^#!(name|desc)/m);
+          if (nameLineMatch) {
+            // 在名称行之前插入分类标记
+            const nameLineIndex = content.indexOf(nameLineMatch[0]);
+            content =
+              content.substring(0, nameLineIndex) +
+              '#!category=[Sukka]\n' +
+              content.substring(nameLineIndex);
+          } else {
+            // 如果找不到名称行，在文件开头添加
+            content = '#!category=[Sukka]\n' + content;
+          }
+          await fs.writeFile(outputFile, content, 'utf8');
+          console.log(`已添加分类标记到: ${moduleName}`);
+        }
+      } catch (error) {
+        console.error(`给模块 ${moduleName} 添加分类标记时出错:`, error);
+      }
+    } else {
+      // 即使文件没有更新，也检查并添加分类标记
+      try {
+        // 检查文件是否存在
+        await fs.access(outputFile);
+
+        let content = await fs.readFile(outputFile, 'utf8');
+        if (!content.includes('#!category=[Sukka]')) {
+          // 查找模块名称行
+          const nameLineMatch = content.match(/^#!(name|desc)/m);
+          if (nameLineMatch) {
+            // 在名称行之前插入分类标记
+            const nameLineIndex = content.indexOf(nameLineMatch[0]);
+            content =
+              content.substring(0, nameLineIndex) +
+              '#!category=[Sukka]\n' +
+              content.substring(nameLineIndex);
+          } else {
+            // 如果找不到名称行，在文件开头添加
+            content = '#!category=[Sukka]\n' + content;
+          }
+          await fs.writeFile(outputFile, content, 'utf8');
+          console.log(`已添加分类标记到现有文件: ${moduleName}`);
+          assetsChanged = true; // 文件内容有变化
+        }
+      } catch (error) {
+        // 文件可能不存在或无法读取，忽略
+        console.log(`无法处理现有文件 ${moduleName}: ${(error as Error).message}`);
+      }
     }
   }
 

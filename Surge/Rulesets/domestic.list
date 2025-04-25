@@ -1,3 +1,29 @@
+// Last updated: 2025/4/25 12:27:58
+// DOMAIN: 33
+// DOMAIN-SUFFIX: 917
+// DOMAIN-KEYWORD: 9
+// IP-CIDR: 2
+// PROCESS-NAME: 36
+// USER-AGENT: 4
+// OTHER: 5
+// Total: 1006
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/domestic.conf
+//  - https://ruleset.skk.moe/List/ip/domestic.conf
+//  - https://ruleset.skk.moe/List/non_ip/direct.conf
+// Last updated: 2025/4/25 11:30:31
+// DOMAIN: 33
+// DOMAIN-SUFFIX: 917
+// DOMAIN-KEYWORD: 9
+// IP-CIDR: 2
+// PROCESS-NAME: 36
+// USER-AGENT: 4
+// OTHER: 5
+// Total: 1006
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/domestic.conf
+//  - https://ruleset.skk.moe/List/ip/domestic.conf
+//  - https://ruleset.skk.moe/List/non_ip/direct.conf
 // Last updated: 2025/4/24 09:14:19
 // DOMAIN: 33
 // DOMAIN-SUFFIX: 917

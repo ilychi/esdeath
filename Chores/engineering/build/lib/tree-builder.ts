@@ -13,7 +13,7 @@ export interface TreeFile {
   type: TreeFileType.FILE;
   name: string;
   path: string;
-  fileType?: string | undefined; // 明确接受undefined类型
+  fileType?: string;
   url?: string;
 }
 
@@ -98,12 +98,13 @@ export async function buildFileTree(
           // 生成URL
           const url = customDomain ? `${customDomain}/${relativePath}` : `/${relativePath}`;
 
+          // 使用条件属性而不是undefined值
           const newNode: TreeFile = {
             type: TreeFileType.FILE,
             name: entry.name,
             path: relativePath,
-            fileType: extname || undefined,
             url,
+            ...(extname ? { fileType: extname } : {}),
           };
 
           node.push(newNode);
