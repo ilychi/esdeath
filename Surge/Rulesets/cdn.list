@@ -1,4 +1,16 @@
 // Content Delivery Networks
+// Last updated: 2025/4/26 02:48:28
+// DOMAIN: 5
+// DOMAIN-KEYWORD: 14
+// IP-CIDR: 3
+// URL-REGEX: 2
+// OTHER: 48
+// Total: 72
+// Rules for common static content CDNs to optimize content delivery and network performance
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/cdn.conf
+//  - https://ruleset.skk.moe/List/ip/cdn.conf
+// Content Delivery Networks
 // Last updated: 2025/4/25 12:27:49
 // DOMAIN: 5
 // DOMAIN-KEYWORD: 14

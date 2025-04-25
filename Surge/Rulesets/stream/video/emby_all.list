@@ -1,21 +1,17 @@
 // Emby Media Servers
-// Last updated: 2025/4/25 12:27:55
+// Last updated: 2025/4/26 02:48:29
 // DOMAIN: 74
-// DOMAIN-SUFFIX: 348
+// DOMAIN-SUFFIX: 349
 // DOMAIN-KEYWORD: 4
 // IP-CIDR: 30
 // OTHER: 1
-// Total: 457
+// Total: 458
 // Comprehensive rules for various Emby media servers, combining multiple sources including Clash format rules
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
 //  - https://github.com/KuGouGo/Rules/raw/main/emby.list
 //  - https://github.com/kefengyoyo/own/raw/main/Emby-P.list
 //  - https://github.com/forevergooe/Rules/raw/master/Surge/Emby.list
-//  - https://github.com/kudu98/clash_fufu/raw/main/Config/EMBY-domain.yaml
-//  - https://github.com/kudu98/clash_fufu/raw/main/Config/EMBY-sntp.yaml
-//  - https://github.com/kudu98/clash_fufu/raw/main/Config/Emby.yaml
-//  - https://github.com/kudu98/clash_fufu/raw/main/Config/EMBY-AWA.yaml
 DOMAIN,123456.buzz // DPX 海外
 DOMAIN,581658.best // Added for: 581658.best:443
 DOMAIN,7777777.buzz
@@ -438,6 +434,7 @@ DOMAIN-SUFFIX,www.blueseamusics.com
 DOMAIN-SUFFIX,xiaoyi.one
 DOMAIN-SUFFIX,xmsl.org
 DOMAIN-SUFFIX,xxxh.de
+DOMAIN-SUFFIX,xytx.dpdns.org
 DOMAIN-SUFFIX,yezi.my
 DOMAIN-SUFFIX,yhemby.top
 DOMAIN-SUFFIX,younoyes.com
