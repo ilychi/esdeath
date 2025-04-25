@@ -1,5 +1,10 @@
 import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
+
+// 在ES模块中获取当前文件的目录路径
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const ROOT_DIR = path.resolve(__dirname, '../../../..');
 

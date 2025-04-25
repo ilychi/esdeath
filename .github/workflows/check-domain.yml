@@ -1,4 +1,4 @@
-name: 检查域名可用性
+name: Rules Validation (Domain)
 on:
   # 仅手动触发
   workflow_dispatch:
