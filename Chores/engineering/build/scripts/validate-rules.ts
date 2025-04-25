@@ -38,13 +38,15 @@ const INVALID_IP_RULES_CACHE = path.join(CACHE_DIR, 'invalid-ip-rules.json');
 /**
  * 从规则文件中提取域名和IP规则
  */
-async function extractRulesFromFile(filePath) {
+async function extractRulesFromFile(
+  filePath: string
+): Promise<{ domains: string[]; ipRules: string[] }> {
   try {
     const content = await fs.readFile(filePath, 'utf-8');
     const lines = content.split(/\r?\n/);
 
-    const domains = [];
-    const ipRules = [];
+    const domains: string[] = [];
+    const ipRules: string[] = [];
 
     for (const line of lines) {
       const trimmedLine = line.trim();
@@ -79,7 +81,7 @@ async function extractRulesFromFile(filePath) {
 /**
  * 检查目录是否存在
  */
-async function dirExists(dirPath) {
+async function dirExists(dirPath: string): Promise<boolean> {
   try {
     await fs.access(dirPath);
     return true;
@@ -91,12 +93,14 @@ async function dirExists(dirPath) {
 /**
  * 从目录中收集所有规则
  */
-async function collectRulesFromDirectories(directories) {
-  const allDomains = new Set();
-  const allIPRules = new Set();
+async function collectRulesFromDirectories(
+  directories: string[]
+): Promise<{ domains: string[]; ipRules: string[] }> {
+  const allDomains = new Set<string>();
+  const allIPRules = new Set<string>();
 
   // 过滤掉不存在的目录
-  const validDirs = [];
+  const validDirs: string[] = [];
   for (const dir of directories) {
     if (await dirExists(dir)) {
       validDirs.push(dir);
@@ -113,7 +117,7 @@ async function collectRulesFromDirectories(directories) {
     }
   }
 
-  async function scanDirectory(dir) {
+  async function scanDirectory(dir: string): Promise<void> {
     try {
       const entries = await fs.readdir(dir, { withFileTypes: true });
 
@@ -144,7 +148,7 @@ async function collectRulesFromDirectories(directories) {
 /**
  * 主函数
  */
-async function main() {
+async function main(): Promise<void> {
   try {
     console.log('开始验证规则...');
 
