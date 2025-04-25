@@ -68,7 +68,7 @@ jobs:
         id: rule-check
         run: |
           mkdir -p .cache
-          node Chores/engineering/build/scripts/validate-rules.js
+          npm run validate-rules
       
       - name: 保存缓存
         if: always()

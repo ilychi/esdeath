@@ -173,3 +173,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           event-type: trigger-merge
 
+      - name: Run Convert Script
+        if: github.event_name == 'repository_dispatch'
+        run: npm run convert
+        env:
+          TZ: 'Asia/Shanghai'
+
