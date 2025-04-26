@@ -158,9 +158,9 @@ async function generateIndexPage() {
     // 生成HTML
     const updateTime = BUILD_START_TIME.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
     const html = generateHtml(treeData, {
-      title: 'Esdeath - Surge Rules & Modules',
-      description: '高效管理网络规则和模块的集合',
-      author: 'IKE IKE',
+      title: "Luck's Surge Rules & Modules Hub",
+      description: 'Everything that happens is good for me.',
+      author: 'luck',
       updateTime,
       customDomain: 'https://ruleset.chichi.sh',
     });
