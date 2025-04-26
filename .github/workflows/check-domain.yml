@@ -1,0 +1,102 @@
+name: Rules Validation (Domain)
+on:
+  # 仅手动触发
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: 检查
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 获取当前日期
+        id: date
+        run: |
+          echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+          echo "year=$(date +'%Y')" >> $GITHUB_OUTPUT
+          echo "month=$(date +'%m')" >> $GITHUB_OUTPUT
+          echo "day=$(date +'%d')" >> $GITHUB_OUTPUT
+          echo "hour=$(date +'%H')" >> $GITHUB_OUTPUT
+          echo "minute=$(date +'%M')" >> $GITHUB_OUTPUT
+          echo "second=$(date +'%S')" >> $GITHUB_OUTPUT
+      
+      - name: 恢复缓存
+        uses: actions/cache/restore@v4
+        id: cache-restore
+        with:
+          path: |
+            .cache
+          key: ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+          restore-keys: |
+            ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }}
+            ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-
+            ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-
+            ${{ runner.os }}-domains-cache-v1-
+      
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      
+      - name: 设置Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: 安装依赖
+        run: npm ci
+      
+      - name: 验证域名存活性
+        id: domain-check
+        run: |
+          mkdir -p .cache
+          npm run validate:domains
+      
+      - name: 保存缓存
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .cache
+          key: ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+      
+      - name: 创建问题（如果发现失效域名）
+        if: steps.domain-check.outputs.has_dead_domains == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            
+            // 读取失效域名
+            const deadDomains = fs.existsSync('.cache/dead-domains.json') 
+              ? JSON.parse(fs.readFileSync('.cache/dead-domains.json', 'utf8')) 
+              : [];
+            
+            // 创建问题标题
+            const issueTitle = `发现失效域名 - ${new Date().toISOString().split('T')[0]}`;
+            
+            // 构建问题正文
+            let issueBody = `## 域名存活性检查发现以下失效域名\n\n`;
+            
+            const deadDomainsList = Object.entries(deadDomains)
+              .map(([domain, sources]) => {
+                const sourcesList = Array.isArray(sources) 
+                  ? sources.map(s => `  - ${s}`).join('\n')
+                  : `  - ${sources}`;
+                return `- \`${domain}\`\n${sourcesList}`;
+              })
+              .join('\n\n');
+            
+            issueBody += `${deadDomainsList}\n\n`;
+            issueBody += `\n这些域名需要检查是否已失效，可考虑从规则中移除。\n\n**自动生成于:** ${new Date().toISOString()}`;
+            
+            // 创建GitHub issue
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: issueTitle,
+              body: issueBody,
+              labels: ['domain-validation', 'needs-triage']
+            }); 

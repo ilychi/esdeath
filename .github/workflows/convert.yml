@@ -1,0 +1,195 @@
+name: Loon to Surge Module Conversion
+
+on:
+  repository_dispatch:
+    types: [trigger-convert]
+  workflow_dispatch:
+  schedule:
+    - cron: '5,30,55 * * * *'
+
+# 并发控制，避免重复转换
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    services:
+      docker:
+        image: xream/script-hub:latest
+        ports:
+          - 9100:9100
+          - 9101:9101
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq netcat-openbsd
+
+      - name: Wait for Docker service to be ready
+        run: |
+          echo "Waiting for Docker service to be ready..."
+          for i in {1..10}; do
+            nc -z localhost 9101 && break
+            sleep 10
+          done
+
+      - name: Download README.md
+        run: |
+          curl -s -o README.md https://raw.githubusercontent.com/luestr/ProxyResource/main/README.md
+
+      - name: Extract .plugin URLs
+        run: |
+          grep -oP 'https?://[^ )"]+\?plugin=[^ )"]+' README.md > plugin_urls_raw.txt
+          grep -oP '(?<=\?plugin=)[^ )"]+' plugin_urls_raw.txt > plugin_urls.txt
+          
+          # Add fmz200's blockAds plugin with custom name
+          echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
+
+      - name: Extract categories and process plugins
+        run: |
+          mkdir -p Surge/Modules
+          
+          # 从 README.md 提取分类并建立映射关系
+          declare -A category_map
+          current_category=""
+          
+          while IFS= read -r line; do
+            if [[ $line == *"### 签到插件"* ]]; then
+              current_category="✅ Checkin"
+            elif [[ $line == *"### 功能插件"* ]]; then
+              current_category="🔨 Tools"
+            elif [[ $line == *"### 去广告插件"* ]]; then
+              current_category="🚫 AD Block"
+            elif [[ $line =~ "https://" && -n "$current_category" ]]; then
+              # 提取URL和名称
+              plugin_url=$(echo "$line" | grep -oP 'https://[^)"\s]+')
+              if [[ -n "$plugin_url" ]]; then
+                category_map["$plugin_url"]="$current_category"
+                echo "Mapped $plugin_url to $current_category"
+              fi
+            fi
+          done < README.md
+          
+          # 处理插件下载
+          while read -r plugin_url; do
+            # Extract custom name if specified
+            if [[ "$plugin_url" == *"?rename="* ]]; then
+              plugin_name=$(echo "$plugin_url" | grep -oP '(?<=\?rename=)[^&]+')
+              base_url=$(echo "$plugin_url" | cut -d'?' -f1)
+            else
+              plugin_name=$(basename "$plugin_url" .plugin)
+              base_url="$plugin_url"
+            fi
+            
+            # 确定分类
+            if [[ -n "${category_map[$base_url]}" ]]; then
+              category="${category_map[$base_url]}"
+              echo "Using mapped category for $base_url: $category"
+            else
+              # 转换为小写进行匹配
+              combined_lower=$(echo "$plugin_url$plugin_name" | tr '[:upper:]' '[:lower:]')
+              
+              # 广告拦截类
+              if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad|remove_watermark|ssl_unpinning|filter|clean|purify|privacy|隐私|blocker|去广告|adguard|拦截|intercept) ]]; then
+                category="🚫 AD Block"
+              # 签到类
+              elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus|signin|打卡|登录奖励|每日签到|daily.?reward) ]]; then
+                category="✅ Checkin"
+              # 功能增强类
+              elif [[ "$combined_lower" =~ (unlock|解锁|enhance|增强|功能|feature|redirect|转发|utility|mount|挂载|translation|repair|external_links|query|detection|auto_join) ]]; then
+                category="🔨 Tools"
+              # 默认为工具类
+              else
+                category="🔨 Tools"
+              fi
+              echo "Using fallback category for $plugin_url: $category"
+            fi
+            
+            encoded_category=$(echo "$category" | jq -sRr @uri)
+            encoded_plugin_name=$(echo "$plugin_name" | jq -sRr @uri)
+            download_url="http://localhost:9101/file/_start_/${plugin_url}/_end_/${encoded_plugin_name}.sgmodule?type=loon-plugin&target=surge-module&target=surge-module&sni=%20%2C%20&del=true&pm=REJECT&category=${encoded_category}&jqEnabled=true"
+            
+            echo "Processing $plugin_name with category: $category"
+            curl -A "Surge Mac/2985" -L -o "Surge/Modules/${plugin_name}.sgmodule" "$download_url" || echo "Failed to download ${plugin_name}.sgmodule"
+          done < plugin_urls.txt
+
+      - name: Find and replace external JS resources
+        continue-on-error: true  # 确保步骤在部分失败时继续执行
+        run: |
+          base_js_url="https://github.com/ilychi/esdeath/raw/main/Surge/Scripts"
+          mkdir -p Surge/Scripts
+          for sgmodule_file in Surge/Modules/*.sgmodule; do
+            echo "Processing $sgmodule_file"
+            # 查找 .js 文件的外部链接
+            js_links=$(grep -oP 'https?://[^ ]+\.js' "$sgmodule_file" || echo "")
+            for js_link in $js_links; do
+              js_filename=$(basename "$js_link")
+              local_js_path="Surge/Scripts/$js_filename"
+              # 使用指定的 User-Agent 下载 .js 文件
+              echo "Downloading $js_link to $local_js_path"
+              if curl -A "Surge Mac/2985" -L -o "$local_js_path" "$js_link"; then
+                echo "Download successful for $js_link"
+                # 替换 sgmodule 文件中的链接为 GitHub 仓库的路径
+                github_js_url="$base_js_url/$js_filename"
+                sed -i "s|$js_link|$github_js_url|g" "$sgmodule_file"
+              else
+                echo "Failed to download $js_link, skipping..."
+              fi
+            done
+          done
+
+      - name: Add ruleset to fmz200's module
+        run: |
+          fmz_module="Surge/Modules/Remove_ads_by_fmz.sgmodule"
+          if [ -f "$fmz_module" ]; then
+            echo "Adding ruleset to $fmz_module"
+            
+            # 检查文件中是否已有[Rule]部分
+            if grep -q "\[Rule\]" "$fmz_module"; then
+              # 在[Rule]部分后添加规则集
+              sed -i '/\[Rule\]/a RULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list ,REJECT,pre-matching,extended-matching,no-resolve' "$fmz_module"
+              echo "Added ruleset after existing [Rule] section"
+            else
+              # 如果没有[Rule]部分，添加新的部分
+              echo -e "\n[Rule]\nRULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list ,REJECT,pre-matching,extended-matching,no-resolve" >> "$fmz_module"
+              echo "Added new [Rule] section with ruleset"
+            fi
+          else
+            echo "Warning: $fmz_module not found"
+          fi
+
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add Surge/Modules/*.sgmodule Surge/Scripts/*.js
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git stash
+            git pull --rebase  # 同步远程仓库的最新更改以避免冲突
+            git stash pop  # 恢复之前的更改
+            git add Surge/Modules/*.sgmodule Surge/Scripts/*.js  # 再次添加文件
+            git commit -m "Update sgmodule files with GitHub-hosted JS resources"
+            git push
+          fi
+
+      - name: Trigger Merge Workflow
+        if: success()
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: trigger-merge
+

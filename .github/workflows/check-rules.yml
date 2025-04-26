@@ -1,0 +1,173 @@
+name: IP Rules Validation & Auto-Removal
+on:
+  repository_dispatch:
+    types: [trigger-check-rules]
+  # 每周三自动运行
+  schedule:
+    - cron: "0 0 * * 3"
+  # PR触发条件 - 当修改规则文件时触发
+  pull_request:
+    paths:
+      - 'Dial/**/*.list'
+      - 'Chores/ruleset/**/*.list'
+      - 'Rulesets/**/*.list'
+      - 'Surge/Modules/Rules/**/*.list'
+  # 允许手动触发
+  workflow_dispatch:
+
+# 并发控制，避免重复检查
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-rules:
+    name: 验证IP规则
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 获取当前日期
+        id: date
+        run: |
+          echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+          echo "year=$(date +'%Y')" >> $GITHUB_OUTPUT
+          echo "month=$(date +'%m')" >> $GITHUB_OUTPUT
+          echo "day=$(date +'%d')" >> $GITHUB_OUTPUT
+          echo "hour=$(date +'%H')" >> $GITHUB_OUTPUT
+          echo "minute=$(date +'%M')" >> $GITHUB_OUTPUT
+          echo "second=$(date +'%S')" >> $GITHUB_OUTPUT
+      
+      - name: 恢复缓存
+        uses: actions/cache/restore@v4
+        id: cache-restore
+        with:
+          path: |
+            .cache
+          key: ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+          restore-keys: |
+            ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }}
+            ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-
+            ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-
+            ${{ runner.os }}-rules-cache-v1-
+      
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      
+      - name: 设置Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: 安装依赖
+        run: npm ci
+      
+      - name: 验证IP规则有效性
+        id: rule-check
+        run: |
+          mkdir -p .cache
+          npm run validate:rules
+      
+      - name: 保存缓存
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .cache
+          key: ${{ runner.os }}-rules-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+      
+      - name: 创建问题（如果发现问题）
+        if: steps.rule-check.outputs.has_invalid_ip_rules == 'true' && github.event_name != 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            
+            // 读取无效IP规则
+            const invalidIPRules = fs.existsSync('.cache/invalid-ip-rules.json')
+              ? JSON.parse(fs.readFileSync('.cache/invalid-ip-rules.json', 'utf8'))
+              : [];
+              
+            const autoRemovedRules = fs.existsSync('.cache/auto-removed-ip-rules.json')
+              ? JSON.parse(fs.readFileSync('.cache/auto-removed-ip-rules.json', 'utf8'))
+              : [];
+            
+            // 创建问题标题
+            const issueTitle = `发现无效IP规则 - ${new Date().toISOString().split('T')[0]}`;
+            
+            // 构建问题正文
+            let issueBody = `## IP规则验证发现以下问题\n\n`;
+            
+            if (invalidIPRules.length > 0) {
+              const invalidIPRulesList = invalidIPRules
+                .map(item => `- \`${item.rule}\` (来源: ${item.source})`)
+                .join('\n');
+              issueBody += `### 无效IP规则 (${invalidIPRules.length})\n\n${invalidIPRulesList}\n\n`;
+            }
+            
+            if (autoRemovedRules.length > 0) {
+              const removedRulesList = autoRemovedRules
+                .map(item => `- \`${item.rule}\` (来源: ${item.source})`)
+                .join('\n');
+              issueBody += `### 已自动移除的无效IP规则 (${autoRemovedRules.length})\n\n${removedRulesList}\n\n`;
+            }
+            
+            issueBody += `\n这些规则可能需要修正或移除。\n\n**自动生成于:** ${new Date().toISOString()}`;
+            
+            // 创建GitHub issue
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: issueTitle,
+              body: issueBody,
+              labels: ['rules-validation', 'needs-triage']
+            }); 
+
+      # 如果是PR触发，将结果作为评论添加到PR中
+      - name: 添加PR评论（如果发现问题）
+        if: steps.rule-check.outputs.has_invalid_ip_rules == 'true' && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            
+            // 读取无效IP规则
+            const invalidIPRules = fs.existsSync('.cache/invalid-ip-rules.json')
+              ? JSON.parse(fs.readFileSync('.cache/invalid-ip-rules.json', 'utf8'))
+              : [];
+              
+            const autoRemovedRules = fs.existsSync('.cache/auto-removed-ip-rules.json')
+              ? JSON.parse(fs.readFileSync('.cache/auto-removed-ip-rules.json', 'utf8'))
+              : [];
+            
+            // 构建评论正文
+            let commentBody = `## IP规则验证发现以下问题\n\n`;
+            
+            if (invalidIPRules.length > 0) {
+              const invalidIPRulesList = invalidIPRules
+                .map(item => `- \`${item.rule}\` (来源: ${item.source})`)
+                .join('\n');
+              commentBody += `### 无效IP规则 (${invalidIPRules.length})\n\n${invalidIPRulesList}\n\n`;
+            }
+            
+            if (autoRemovedRules.length > 0) {
+              const removedRulesList = autoRemovedRules
+                .map(item => `- \`${item.rule}\` (来源: ${item.source})`)
+                .join('\n');
+              commentBody += `### 已自动移除的无效IP规则 (${autoRemovedRules.length})\n\n${removedRulesList}\n\n`;
+              commentBody += `\n已自动清理这些无效规则，请检查相关提交。\n`;
+            }
+            
+            commentBody += `\n请检查并修复这些规则，以确保规则集的质量。\n\n**自动验证于:** ${new Date().toISOString()}`;
+            
+            // 添加PR评论
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: commentBody
+            }); 
