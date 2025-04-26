@@ -78,8 +78,18 @@ export class RuleConverter {
         return '';
       }
     } else {
-      // 非cleanup模式保留空格和注释
-      if (!line.trim() || line.startsWith('#') || line.startsWith(';') || line.startsWith('//')) {
+      // 非cleanup模式保留注释，但将分号(;)开头的注释转换为井号(#)开头的注释
+      if (!line.trim()) {
+        return line;
+      }
+
+      // 将分号(;)开头的注释转换为井号(#)开头的注释
+      if (line.startsWith(';')) {
+        return line.replace(/^;/, '#');
+      }
+
+      // 其他注释类型保持不变
+      if (line.startsWith('#') || line.startsWith('//')) {
         return line;
       }
     }
