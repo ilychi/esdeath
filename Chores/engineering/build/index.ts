@@ -3,11 +3,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import process from 'node:process';
 import os from 'node:os';
-import { exec } from 'node:child_process';
-import { promisify } from 'node:util';
-
-// 将exec转换为Promise版本
-const execPromise = promisify(exec);
 
 // 导入目录常量
 import {
@@ -42,18 +37,11 @@ const SOURCE_TO_OUTPUT_MAP = [
   { src: path.join(SURGE_DIR, 'Rulesets'), dest: OUTPUT_RULESETS_DIR },
   { src: path.join(ROOT_DIR, 'Source', 'domainset'), dest: OUTPUT_DOMAINSET_DIR },
   { src: DIAL_DIR, dest: OUTPUT_DIAL_DIR },
+  {
+    src: path.join(ROOT_DIR, 'Chores/engineering/data/images'),
+    dest: path.join(PUBLIC_DIR, 'images'),
+  },
 ];
-
-// favicon路径
-const FAVICON_SOURCE = path.join(ROOT_DIR, 'Chores', 'engineering', 'data', 'images', 'favicon');
-const FAVICON_GENERATE_SCRIPT = path.join(
-  ROOT_DIR,
-  'Chores',
-  'engineering',
-  'build',
-  'scripts',
-  'generate-favicons.sh'
-);
 
 // 必需的源目录，这些目录必须存在
 const REQUIRED_SOURCE_DIRS = [SURGE_DIR, DIAL_DIR];
@@ -163,57 +151,6 @@ async function copyRuleFiles() {
   );
 }
 
-// 生成favicon图标
-async function generateFavicons() {
-  console.log('生成网站图标...');
-
-  try {
-    // 检查favicon源目录是否存在
-    try {
-      await fs.access(FAVICON_SOURCE);
-    } catch (error) {
-      console.log(`Favicon源目录不存在，跳过图标生成: ${FAVICON_SOURCE}`);
-      return;
-    }
-
-    // 检查生成脚本是否存在
-    try {
-      await fs.access(FAVICON_GENERATE_SCRIPT);
-    } catch (error) {
-      console.log(`Favicon生成脚本不存在，跳过图标生成: ${FAVICON_GENERATE_SCRIPT}`);
-      return;
-    }
-
-    // 检查是否安装了ImageMagick
-    try {
-      await execPromise('which convert');
-    } catch (error) {
-      console.log(
-        '未找到ImageMagick工具，跳过图标生成。请安装ImageMagick: brew install imagemagick'
-      );
-      return;
-    }
-
-    // 执行生成脚本
-    console.log('执行Favicon生成脚本...');
-    const { stdout, stderr } = await execPromise(`bash ${FAVICON_GENERATE_SCRIPT}`);
-
-    if (stdout) {
-      console.log(stdout);
-    }
-
-    if (stderr) {
-      console.error(stderr);
-    }
-
-    console.log('网站图标生成完成');
-  } catch (error) {
-    console.error('生成网站图标失败:', error);
-    // 不阻止主构建流程，只记录错误
-    console.log('继续构建流程...');
-  }
-}
-
 // 生成网站首页
 async function generateIndexPage() {
   console.log('生成网站首页...');
@@ -280,9 +217,6 @@ async function main() {
 
     // 复制规则文件
     await copyRuleFiles();
-
-    // 生成网站图标
-    await generateFavicons();
 
     // 生成网站首页
     await generateIndexPage();
