@@ -20,1024 +20,594 @@ export function generateHtml(
     customDomain = '',
   } = options;
 
-  // 将树结构转换为JSON字符串，方便在Vue中使用
-  const treeDataJson = JSON.stringify(tree);
+  // 遍历树生成HTML
+  function renderTree(tree: TreeTypeArray): string {
+    let html = '';
 
-  // 完整的HTML模板 - 使用与build.ts相同的Vue驱动设计
-  return `
-    <!DOCTYPE html>
-    <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${title}</title>
-        <link rel="icon" href="https://raw.githubusercontent.com/ilychi/esdeath/main/favicon.ico" type="image/x-icon">
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- Iconify for icons -->
-        <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-        <!-- VueJS -->
-        <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.prod.js"></script>
-        <style>
-    /* Tailwind 兼容性基础样式 - 浅色主题 */
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 240 10% 3.9%;
-      --card: 0 0% 100%;
-      --card-foreground: 240 10% 3.9%;
-      --popover: 0 0% 100%;
-      --popover-foreground: 240 10% 3.9%;
-      --primary: 240 5.9% 10%;
-      --primary-foreground: 0 0% 98%;
-      --secondary: 240 4.8% 95.9%;
-      --secondary-foreground: 240 5.9% 10%;
-      --muted: 240 4.8% 95.9%;
-      --muted-foreground: 240 3.8% 46.1%;
-      --accent: 240 4.8% 95.9%;
-      --accent-foreground: 240 5.9% 10%;
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
-      --border: 240 5.9% 90%;
-      --input: 240 5.9% 90%;
-      --ring: 240 5.9% 10%;
-      --radius: 0.5rem;
-    }
-    
-    /* Inspira UI Pattern Background CSS */
-    @keyframes pattern-movement {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 0% 100%; }
-    }
-    
-    @keyframes pattern-movement-reverse {
-      0% { background-position: 0% 100%; }
-      100% { background-position: 0% 0%; }
-    }
-    
-    .pattern-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -10;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    
-    .pattern-bg-grid {
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(to right, rgba(17, 24, 39, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(17, 24, 39, 0.05) 1px, transparent 1px);
-      background-size: 24px 24px;
-      animation: pattern-movement 50s linear infinite;
-    }
-    
-    .pattern-bg-dots {
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(rgba(17, 24, 39, 0.08) 1px, transparent 1px);
-      background-size: 18px 18px;
-      animation: pattern-movement-reverse 40s linear infinite;
-    }
-    
-    .pattern-mask {
-      position: absolute;
-      inset: 0;
-      z-index: -5;
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.95) 70%);
-    }
-    
-    /* Inspira UI File Tree CSS */
-    .file-tree {
-      font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, Consolas, monospace;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #111827;
-    }
-    
-    .tree-item {
-      position: relative;
-      transition: all 0.2s ease;
-    }
-    
-    .tree-folder-header,
-    .tree-file {
-      display: flex;
-      align-items: center;
-      padding: 0.275rem 0.5rem;
-      border-radius: 0.375rem;
-      transition: background-color 0.15s ease;
-      cursor: pointer;
-    }
-    
-    .tree-folder-header:hover,
-    .tree-file:hover {
-      background-color: rgba(17, 24, 39, 0.04);
-    }
-    
-    .tree-folder-header .folder-icon,
-    .tree-file .file-icon {
-      margin-right: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-icon, rgba(17, 24, 39, 0.7));
-    }
-    
-    .tree-folder-header .folder-name,
-    .tree-file .file-name {
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    
-    .tree-folder-content {
-      margin-left: 0.75rem;
-      padding-left: 1rem;
-      border-left: 1px dashed rgba(17, 24, 39, 0.15);
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .tree-file-actions {
-      display: flex;
-      gap: 0.5rem;
-      opacity: 0.7;
-      transition: opacity 0.15s ease;
-    }
-    
-    .tree-file:hover .tree-file-actions {
-      opacity: 1;
-    }
-    
-    .tree-file-action {
-      padding: 0.175rem;
-      border-radius: 0.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s ease;
-      background-color: rgba(17, 24, 39, 0.05);
-    }
-    
-    .tree-file-action:hover {
-      background-color: rgba(17, 24, 39, 0.1);
-    }
-    
-    /* 文件类型标签 */
-    .file-type-tag {
-      font-size: 0.65rem;
-      padding: 0.1rem 0.3rem;
-      border-radius: 0.25rem;
-      margin-right: 0.5rem;
-      text-transform: uppercase;
-      opacity: 0.7;
-    }
-    
-    .file-type-sgmodule {
-      background-color: rgba(56, 189, 248, 0.15);
-      color: rgba(3, 105, 161, 0.9);
-    }
-    
-    .file-type-list {
-      background-color: rgba(52, 211, 153, 0.15);
-      color: rgba(6, 95, 70, 0.9);
-    }
-    
-    .file-type-mmdb {
-      background-color: rgba(251, 146, 60, 0.15);
-      color: rgba(154, 52, 18, 0.9);
-    }
-    
-    /* 折叠指示器 */
-    .folder-toggle {
-      width: 0.95rem;
-      height: 0.95rem;
-      margin-right: 0.35rem;
-      transition: transform 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .folder-toggle-open {
-      transform: rotate(90deg);
-    }
-    
-    /* Tooltip */
-    .tooltip {
-      position: relative;
-    }
-    
-    .tooltip-content {
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-0.25rem);
-      padding: 0.35rem 0.5rem;
-      border-radius: 0.25rem;
-      background-color: hsl(var(--popover));
-      color: hsl(var(--popover-foreground));
-      font-size: 0.75rem;
-      white-space: nowrap;
-      pointer-events: none;
-      opacity: 0;
-      transition: all 0.2s ease;
-      z-index: 50;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-    
-    .tooltip:hover .tooltip-content {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-0.5rem);
-    }
-    
-    /* 顶部导航栏 */
-    .header-navigation {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.4rem 0.7rem;
-      margin-bottom: 1rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(17, 24, 39, 0.1);
-      font-size: 0.875rem;
-      color: #4b5563;
-    }
-    
-    .header-navigation-separator {
-      color: rgba(17, 24, 39, 0.3);
-    }
-    
-    /* 提示框 */
-    .alert {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      padding: 0.75rem 1rem;
-      border-radius: 0.375rem;
-      background-color: rgb(240, 253, 244);
-      color: rgb(6, 95, 70);
-      transform: translateY(-1rem);
-      opacity: 0;
-      transition: all 0.3s ease;
-      z-index: 50;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid rgb(187, 247, 208);
-    }
-    
-    .alert.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    
-    /* 搜索框 */
-    .search-container {
-      position: relative;
-      margin-bottom: 1.25rem;
-    }
-    
-    .search-input {
-      width: 100%;
-      padding: 0.75rem 1rem 0.75rem 2.5rem;
-      border-radius: 0.5rem;
-      background-color: white;
-      border: 1px solid rgba(17, 24, 39, 0.1);
-      color: #111827;
-      transition: all 0.2s ease;
-      font-family: inherit;
-    }
-    
-    .search-input::placeholder {
-      color: rgba(17, 24, 39, 0.4);
-    }
-    
-    .search-input:focus {
-      outline: none;
-      border-color: rgba(17, 24, 39, 0.2);
-      background-color: white;
-      box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.05);
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: rgba(17, 24, 39, 0.4);
-      pointer-events: none;
-    }
-    
-    /* 信息卡片 */
-    .info-card {
-      margin-bottom: 1.5rem;
-      padding: 1.25rem;
-      border-radius: 0.5rem;
-      background-color: white;
-      border: 1px solid rgba(17, 24, 39, 0.07);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
-      overflow: hidden;
-    }
-    
-    .info-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 0.75rem;
-      cursor: pointer;
-      user-select: none;
-    }
-    
-    .info-card-title-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .info-card-title {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: #111827;
-    }
-    
-    .info-card-content {
-      max-height: 0;
-      opacity: 0;
-      transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
-      margin-top: 0;
-    }
-    
-    .info-card-content.expanded {
-      max-height: 500px;
-      opacity: 1;
-      margin-top: 0.75rem;
-      border-top: 1px solid rgba(17, 24, 39, 0.07);
-      padding-top: 0.75rem;
-    }
-    
-    .info-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-    
-    .info-feature-icon {
-      flex-shrink: 0;
-      color: rgba(17, 24, 39, 0.7);
-    }
-    
-    .info-feature-text {
-      color: #4b5563;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    
-    /* 文件预览模态框 */
-    .file-preview-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    
-    .file-preview-modal.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    
-    .file-preview-content {
-      width: 90%;
-      max-width: 1000px;
-      max-height: 80vh;
-      background-color: white;
-      border-radius: 0.5rem;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .file-preview-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem;
-      border-bottom: 1px solid rgba(17, 24, 39, 0.1);
-    }
-    
-    .file-preview-title {
-      font-weight: 600;
-      font-size: 1.125rem;
-      color: #111827;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .file-preview-close {
-      background: transparent;
-      border: none;
-      color: rgba(17, 24, 39, 0.5);
-      cursor: pointer;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 9999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s ease;
-    }
-    
-    .file-preview-close:hover {
-      background-color: rgba(17, 24, 39, 0.05);
-      color: rgba(17, 24, 39, 0.8);
-    }
-    
-    .file-preview-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem;
-    }
-    
-    .file-preview-content-text {
-      font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, Consolas, monospace;
-      font-size: 0.875rem;
-      line-height: 1.7;
-      white-space: pre-wrap;
-      color: #111827;
-    }
-    
-    .file-preview-footer {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 1rem;
-      padding: 0.75rem 1rem;
-      border-top: 1px solid rgba(17, 24, 39, 0.1);
-    }
-    
-    .file-preview-button {
-      padding: 0.5rem 1rem;
-      border-radius: 0.375rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: all 0.15s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .file-preview-button-primary {
-      background-color: rgba(17, 24, 39, 0.9);
-      color: white;
-      border: none;
-    }
-    
-    .file-preview-button-primary:hover {
-      background-color: rgba(17, 24, 39, 1);
-    }
-    
-    .file-preview-button-secondary {
-      background-color: white;
-      color: rgba(17, 24, 39, 0.8);
-      border: 1px solid rgba(17, 24, 39, 0.2);
-    }
-    
-    .file-preview-button-secondary:hover {
-      background-color: rgba(17, 24, 39, 0.05);
-    }
-    
-    .file-preview-loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      min-height: 200px;
-    }
-
-    /* Hyper Text 特效 */
-    .hyper-text {
-      display: inline-block;
-      position: relative;
-    }
-    
-    .hyper-text-char {
-      display: inline-block;
-      position: relative;
-      transition: transform 0.3s, color 0.3s;
-      transition-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1);
-    }
-    
-    .hyper-text:hover .hyper-text-char {
-      color: #4299e1;
-    }
-    
-    /* Text Generate Effect 特效 */
-    .text-generate-effect {
-      display: inline-block;
-    }
-    
-    .text-generate-effect span {
-      opacity: 0;
-      filter: blur(5px);
-      animation: textGenerateAppear 0.5s forwards;
-    }
-    
-    @keyframes textGenerateAppear {
-      to {
-        opacity: 1;
-        filter: blur(0);
-      }
-    }
-    
-    /* Neon Border 特效 */
-    .neon-border {
-      position: relative;
-      overflow: hidden;
-      border-radius: 0.5rem;
-    }
-
-    .neon-border::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      z-index: -1;
-      background: linear-gradient(90deg, #0496ff, #ff0a54, #0496ff);
-      background-size: 200% 200%;
-      animation: neonGradient 6s linear infinite;
-    }
-    
-    @keyframes neonGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    /* Text Hover Effect 特效 */
-    .text-hover-effect {
-      display: inline-block;
-      position: relative;
-      white-space: nowrap;
-    }
-    
-    .text-hover-effect-mask {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      mask-image: linear-gradient(
-        to bottom,
-        transparent,
-        black 25%,
-        black 75%,
-        transparent
-      );
-      mask-size: 100% 100%;
-      mask-repeat: no-repeat;
-      background: linear-gradient(
-        to right,
-        #ff0080,
-        #7928ca,
-        #ff0080
-      );
-      background-size: 200% 100%;
-      animation: shimmer 2s linear infinite;
-      opacity: 0;
-      transition: opacity 200ms ease;
-    }
-    
-    .text-hover-effect:hover .text-hover-effect-mask {
-      opacity: 1;
-    }
-    
-    @keyframes shimmer {
-      from {
-        background-position: 0 0;
-      }
-      to {
-        background-position: -200% 0;
-      }
-    }
-    
-    /* 标题区域样式 */
-    .title-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    
-    .main-title {
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(to right, #d4af37, #b8860b, #cd5c5c, #c41e3a, #d4af37);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: bg-position 6s infinite alternate linear;
-      text-shadow: 0 2px 10px rgba(153, 101, 21, 0.15);
-      letter-spacing: 0.5px;
-    }
-    
-    .subtitle {
-      font-size: 1.25rem;
-      max-width: 36rem;
-      line-height: 1.5;
-      color: #64748b;
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    /* 目录嵌套深度指示器 */
-    .nesting-level-indicator {
-      display: inline-block;
-      width: 2px;
-      height: 100%;
-      background-color: rgba(17, 24, 39, 0.1);
-      margin-right: 8px;
-    }
-        </style>
-    </head>
-    <body class="bg-white text-gray-900 min-h-screen">
-      <!-- Inspira UI Pattern Background -->
-      <div class="pattern-bg">
-        <div class="pattern-bg-grid"></div>
-        <div class="pattern-bg-dots"></div>
-      </div>
-      <div class="pattern-mask"></div>
-      
-      <div id="app" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <header class="text-center mb-8">
-          <div class="title-container">
-            <!-- 混合使用特效：Text Hover Effect外层，内部为Text Generate Effect -->
-            <h1 class="main-title">
-              <div class="text-hover-effect">
-                <span>${title}</span>
-                <div class="text-hover-effect-mask"></div>
-              </div>
-            </h1>
-            <p class="subtitle">
-              <div class="text-generate-effect" id="generateSubtitle"></div>
-            </p>
-          </div>
-          
-          <div class="header-navigation justify-center">
-            <span>Made by <a href="https://github.com/ilychi" class="text-blue-600 hover:underline">${author}</a></span>
-            <span class="header-navigation-separator">•</span>
-            <span><a href="https://github.com/ilychi/esdeath" class="text-blue-600 hover:underline">Source @ GitHub</a></span>
-            <span class="header-navigation-separator">•</span>
-            <span>Fork from <a href="https://github.com/SukkaW/Surge" class="text-blue-600 hover:underline">Sukka</a></span>
-            <span class="header-navigation-separator">•</span>
-            <span>更新于: ${updateTime}</span>
-          </div>
-        </header>
-
-        <!-- 使用Neon Border 特效 -->
-        <div class="search-container neon-border">
-          <iconify-icon icon="tabler:search" class="search-icon"></iconify-icon>
-          <input 
-            type="text" 
-            v-model="searchTerm" 
-            placeholder="搜索文件和文件夹..." 
-            class="search-input"
-            @input="handleSearch"
-          >
-        </div>
-
-        <!-- 可折叠的使用说明卡片 -->
-        <div class="info-card">
-          <div class="info-card-header" @click="toggleInfoCard">
-            <div class="info-card-title-wrapper">
-              <iconify-icon icon="tabler:info-circle" width="22" class="text-blue-600"></iconify-icon>
-              <h2 class="info-card-title">使用说明</h2>
-            </div>
-            <div class="folder-toggle" :class="{ 'folder-toggle-open': infoCardExpanded }">
-              <iconify-icon icon="tabler:chevron-right" width="18"></iconify-icon>
-            </div>
-          </div>
-          <div class="info-card-content" :class="{ expanded: infoCardExpanded }">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-              <div class="info-feature">
-                <iconify-icon icon="tabler:clipboard" width="20" class="info-feature-icon"></iconify-icon>
-                <span class="info-feature-text">点击文件可以预览内容</span>
-              </div>
-              <div class="info-feature">
-                <iconify-icon icon="tabler:plug" width="20" class="info-feature-icon"></iconify-icon>
-                <span class="info-feature-text">sgmodule 文件支持一键导入到 Surge</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Inspira UI File Tree -->
-        <div class="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
-          <div class="file-tree">
-            <!-- 使用递归组件来渲染文件树 -->
-            <file-tree-item
-              v-for="item in filteredTreeData"
-              :key="item.id"
-              :item="item"
-              :level="0"
-              :is-expanded="isExpanded"
-              :toggle-folder="toggleFolder"
-              :preview-file="previewFile"
-              :get-file-icon="getFileIcon"
-              :copy-to-clipboard="copyToClipboard"
-              :install-module="installModule"
-            ></file-tree-item>
-          </div>
-        </div>
-
-        <!-- 文件预览模态框 -->
-        <div class="file-preview-modal" :class="{ show: showPreview }">
-          <div class="file-preview-content" v-if="showPreview">
-            <div class="file-preview-header">
-              <div class="file-preview-title">
-                <iconify-icon :icon="getFileIcon(previewingFile)" width="20"></iconify-icon>
-                <span>{{ previewingFile.name }}</span>
-              </div>
-              <button class="file-preview-close" @click="closePreview">
-                <iconify-icon icon="tabler:x" width="20"></iconify-icon>
-              </button>
-            </div>
-            <div class="file-preview-body">
-              <div v-if="previewLoading" class="file-preview-loading">
-                <iconify-icon icon="tabler:loader-2" width="32" class="animate-spin text-gray-400"></iconify-icon>
-              </div>
-              <pre v-else class="file-preview-content-text">{{ previewContent }}</pre>
-            </div>
-            <div class="file-preview-footer">
-              <button class="file-preview-button file-preview-button-secondary" @click="closePreview">
-                关闭
-              </button>
-              <button class="file-preview-button file-preview-button-primary" @click="copyToClipboard(previewingFile.url)">
-                <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                <span>复制链接</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- 提示框 -->
-        <div class="alert" :class="{ show: showAlert }">
-          <iconify-icon icon="tabler:check" width="18"></iconify-icon>
-          <span>{{ alertMessage }}</span>
-        </div>
-      </div>
-
-    <script>
-    // 递归文件树项组件
-    const FileTreeItem = {
-      name: 'FileTreeItem',
-      props: {
-        item: Object,
-        level: Number,
-        isExpanded: Function,
-        toggleFolder: Function,
-        previewFile: Function,
-        getFileIcon: Function,
-        copyToClipboard: Function,
-        installModule: Function
-      },
-      template: \`
-        <div>
-          <!-- 文件夹 -->
-          <div v-if="item.children" class="tree-item">
-            <div class="tree-folder-header" @click="toggleFolder(item.id)">
-              <div class="folder-toggle" :class="{ 'folder-toggle-open': isExpanded(item.id) }">
+    for (const item of tree) {
+      if (item.type === TreeFileType.DIRECTORY) {
+        html += `
+          <li class="folder">
+            <div class="tree-folder-header">
+              <div class="folder-toggle">
                 <iconify-icon icon="tabler:chevron-right" width="14"></iconify-icon>
               </div>
               <div class="folder-icon">
-                <iconify-icon :icon="isExpanded(item.id) ? 'tabler:folder-open' : 'tabler:folder'" width="18"></iconify-icon>
+                <iconify-icon icon="tabler:folder" width="18"></iconify-icon>
               </div>
-              <div class="folder-name">{{ item.name }}</div>
+              <div class="folder-name">${item.name}</div>
             </div>
-            <div class="tree-folder-content" v-show="isExpanded(item.id)" :key="'content-'+item.id">
-              <file-tree-item
-                v-for="child in item.children"
-                :key="child.id"
-                :item="child"
-                :level="level + 1"
-                :is-expanded="isExpanded"
-                :toggle-folder="toggleFolder"
-                :preview-file="previewFile"
-                :get-file-icon="getFileIcon"
-                :copy-to-clipboard="copyToClipboard"
-                :install-module="installModule"
-              ></file-tree-item>
-            </div>
-          </div>
-          
-          <!-- 文件 -->
-          <div v-else class="tree-file" @click="previewFile(item)">
+            <ul class="tree-folder-content">
+              ${renderTree(item.children)}
+            </ul>
+          </li>
+        `;
+      } else {
+        // 获取文件类型标签样式
+        const fileTypeClass = item.fileType ? `file-type-${item.fileType}` : '';
+
+        // 获取文件图标
+        let fileIcon = 'tabler:file';
+        if (item.fileType === 'sgmodule') fileIcon = 'tabler:plug';
+        else if (item.fileType === 'list') fileIcon = 'tabler:list';
+        else if (item.fileType === 'js') fileIcon = 'tabler:brand-javascript';
+        else if (item.fileType === 'conf') fileIcon = 'tabler:settings';
+        else if (item.fileType === 'mmdb') fileIcon = 'tabler:database';
+
+        html += `
+          <li class="tree-file">
             <div class="file-icon">
-              <iconify-icon :icon="getFileIcon(item)" width="16"></iconify-icon>
+              <iconify-icon icon="${fileIcon}" width="16"></iconify-icon>
             </div>
-            <div class="file-name">{{ item.name }}</div>
+            <div class="file-name">${item.name}</div>
             <div class="tree-file-actions">
-              <span v-if="item.fileType" class="file-type-tag" :class="'file-type-'+item.fileType">
-                {{ item.fileType }}
-              </span>
-              <div v-if="item.fileType === 'sgmodule'" 
-                   class="tree-file-action tooltip" 
-                   @click.stop="installModule(item.url)">
-                <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                <div class="tooltip-content">导入到 Surge</div>
-              </div>
-              <div class="tree-file-action tooltip" @click.stop="copyToClipboard(item.url)">
+              ${
+                item.fileType
+                  ? `<span class="file-type-tag ${fileTypeClass}">${item.fileType}</span>`
+                  : ''
+              }
+              ${
+                item.fileType === 'sgmodule'
+                  ? `
+                <div class="tree-file-action tooltip" data-module-url="${item.url}">
+                  <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
+                  <div class="tooltip-content">导入到 Surge</div>
+                </div>
+              `
+                  : ''
+              }
+              <div class="tree-file-action tooltip" data-copy-url="${item.url}">
                 <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
                 <div class="tooltip-content">复制链接</div>
               </div>
             </div>
+          </li>
+        `;
+      }
+    }
+
+    return html;
+  }
+
+  // 完整的HTML模板
+  return `
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${title}</title>
+      <link rel="icon" href="https://raw.githubusercontent.com/ilychi/esdeath/main/favicon.ico" type="image/x-icon">
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="styles/main.css">
+      <!-- Iconify for icons -->
+      <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+      <!-- VueJS -->
+      <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.prod.js"></script>
+      <style>
+        /* 样式内容 - 这里会非常长，包含所有CSS样式 */
+        :root {
+          --background: 0 0% 100%;
+          --foreground: 240 10% 3.9%;
+          --card: 0 0% 100%;
+          --card-foreground: 240 10% 3.9%;
+          --primary: 240 5.9% 10%;
+          --primary-foreground: 0 0% 98%;
+          --secondary: 240 4.8% 95.9%;
+          --secondary-foreground: 240 5.9% 10%;
+          --border: 240 5.9% 90%;
+          --radius: 0.5rem;
+          --radiant-anim-duration: 10s;
+          --radiant-width: 100px;
+        }
+        
+        /* 基础样式 */
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          color: hsl(var(--foreground));
+          background: hsl(var(--background));
+          background-image: 
+            radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 0.04) 0px, transparent 50%),
+            radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 0.04) 0px, transparent 50%),
+            radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 0.04) 0px, transparent 50%),
+            radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 0.04) 0px, transparent 50%),
+            radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 0.04) 0px, transparent 50%),
+            radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 0.04) 0px, transparent 50%),
+            radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 0.04) 0px, transparent 50%);
+        }
+        
+        /* 文件树样式 */
+        .file-tree {
+          font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, Consolas, monospace;
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+        
+        .tree-folder-header,
+        .tree-file {
+          display: flex;
+          align-items: center;
+          padding: 0.275rem 0.5rem;
+          border-radius: 0.375rem;
+          transition: background-color 0.15s ease;
+          cursor: pointer;
+        }
+        
+        .tree-folder-header:hover,
+        .tree-file:hover {
+          background-color: rgba(17, 24, 39, 0.04);
+        }
+        
+        .folder-icon,
+        .file-icon {
+          margin-right: 0.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: rgba(17, 24, 39, 0.7);
+        }
+        
+        .folder-name,
+        .file-name {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        
+        .tree-folder-content {
+          margin-left: 0.75rem;
+          padding-left: 1rem;
+          border-left: 1px dashed rgba(17, 24, 39, 0.15);
+          overflow: hidden;
+          display: none;
+        }
+        
+        .folder.open > .tree-folder-content {
+          display: block;
+        }
+        
+        .folder-toggle {
+          width: 0.95rem;
+          height: 0.95rem;
+          margin-right: 0.35rem;
+          transition: transform 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        .folder.open > .tree-folder-header .folder-toggle {
+          transform: rotate(90deg);
+        }
+        
+        /* 文件操作按钮 */
+        .tree-file-actions {
+          display: flex;
+          gap: 0.5rem;
+          opacity: 0.7;
+          transition: opacity 0.15s ease;
+        }
+        
+        .tree-file:hover .tree-file-actions {
+          opacity: 1;
+        }
+        
+        .tree-file-action {
+          padding: 0.175rem;
+          border-radius: 0.25rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.15s ease;
+          background-color: rgba(17, 24, 39, 0.05);
+        }
+        
+        .tree-file-action:hover {
+          background-color: rgba(17, 24, 39, 0.1);
+        }
+        
+        /* 文件类型标签 */
+        .file-type-tag {
+          font-size: 0.65rem;
+          padding: 0.1rem 0.3rem;
+          border-radius: 0.25rem;
+          margin-right: 0.5rem;
+          text-transform: uppercase;
+          opacity: 0.7;
+        }
+        
+        .file-type-sgmodule {
+          background-color: rgba(56, 189, 248, 0.15);
+          color: rgba(3, 105, 161, 0.9);
+        }
+        
+        .file-type-list {
+          background-color: rgba(52, 211, 153, 0.15);
+          color: rgba(6, 95, 70, 0.9);
+        }
+        
+        .file-type-js {
+          background-color: rgba(251, 191, 36, 0.15);
+          color: rgba(146, 64, 14, 0.9);
+        }
+        
+        .file-type-conf {
+          background-color: rgba(167, 139, 250, 0.15);
+          color: rgba(76, 29, 149, 0.9);
+        }
+        
+        .file-type-mmdb {
+          background-color: rgba(251, 146, 60, 0.15);
+          color: rgba(154, 52, 18, 0.9);
+        }
+        
+        /* 工具提示 */
+        .tooltip {
+          position: relative;
+        }
+        
+        .tooltip-content {
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-0.25rem);
+          padding: 0.35rem 0.5rem;
+          border-radius: 0.25rem;
+          background-color: #111827;
+          color: white;
+          font-size: 0.75rem;
+          white-space: nowrap;
+          pointer-events: none;
+          opacity: 0;
+          transition: all 0.2s ease;
+          z-index: 50;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .tooltip:hover .tooltip-content {
+          opacity: 1;
+          transform: translateX(-50%) translateY(-0.5rem);
+        }
+        
+        /* 搜索框 */
+        .search-container {
+          position: relative;
+          margin-bottom: 1.25rem;
+        }
+        
+        .search-input {
+          width: 100%;
+          padding: 0.75rem 1rem 0.75rem 2.5rem;
+          border-radius: 0.5rem;
+          background-color: white;
+          border: 1px solid rgba(17, 24, 39, 0.1);
+          color: #111827;
+          transition: all 0.2s ease;
+          font-family: inherit;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        
+        .search-input::placeholder {
+          color: rgba(17, 24, 39, 0.4);
+        }
+        
+        .search-input:focus {
+          outline: none;
+          border-color: rgba(17, 24, 39, 0.2);
+          background-color: white;
+          box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.05);
+        }
+        
+        .search-icon {
+          position: absolute;
+          left: 0.75rem;
+          top: 50%;
+          transform: translateY(-50%);
+          color: rgba(17, 24, 39, 0.4);
+          pointer-events: none;
+        }
+        
+        /* 警告框 */
+        .alert {
+          position: fixed;
+          top: 1rem;
+          right: 1rem;
+          padding: 0.75rem 1rem;
+          border-radius: 0.375rem;
+          background-color: rgb(240, 253, 244);
+          color: rgb(6, 95, 70);
+          transform: translateY(-1rem);
+          opacity: 0;
+          transition: all 0.3s ease;
+          z-index: 50;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          border: 1px solid rgb(187, 247, 208);
+        }
+        
+        .alert.show {
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        /* 标题区域 */
+        .title-container {
+          text-align: center;
+          margin-bottom: 2rem;
+          padding: 2rem 1rem;
+          border-radius: 1rem;
+          background-color: rgba(255, 255, 255, 0.8);
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+          backdrop-filter: blur(8px);
+        }
+        
+        @keyframes bg-position {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
+        }
+        
+        @keyframes radiant {
+          0%,
+          90%,
+          100% {
+            background-position: calc(-100% - var(--radiant-width)) 0;
+          }
+          30%,
+          60% {
+            background-position: calc(100% + var(--radiant-width)) 0;
+          }
+        }
+        
+        .main-title {
+          font-size: 2.8rem;
+          font-weight: 700;
+          margin-bottom: 0.75rem;
+          display: inline-block;
+          background: linear-gradient(to right, #d4af37, #b8860b, #cd5c5c, #c41e3a, #d4af37);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: bg-position 6s infinite alternate linear;
+          text-shadow: 0 2px 10px rgba(153, 101, 21, 0.15);
+          letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+          font-size: 1.2rem;
+          max-width: 36rem;
+          margin: 0 auto 1rem;
+          font-style: italic;
+          position: relative;
+          display: inline-block;
+          background: linear-gradient(to right, transparent, #333, transparent);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation: radiant var(--radiant-anim-duration) infinite;
+          background-size: var(--radiant-width) 100%;
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .radiant-animation {
+          animation: radiant var(--radiant-anim-duration) infinite;
+        }
+        
+        /* Card styles */
+        .esdeath-card {
+          background-color: white;
+          border-radius: 1rem;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          overflow: hidden;
+        }
+        
+        .esdeath-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* 3D Depth effect */
+        .depth-effect {
+          position: relative;
+        }
+        
+        .depth-effect::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: inherit;
+          box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+          z-index: 2;
+          pointer-events: none;
+        }
+      </style>
+    </head>
+    <body class="bg-white text-gray-900 min-h-screen">
+      <div id="app" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <header>
+          <div class="title-container depth-effect">
+            <h1 class="main-title">${title}</h1>
+            <p class="subtitle">${description}</p>
+          </div>
+          
+          <div class="flex flex-wrap items-center justify-center gap-2 mb-8 text-sm text-gray-600">
+            <span>Made by <a href="https://github.com/ilychi" class="text-blue-600 hover:underline">${author}</a></span>
+            <span class="text-gray-400">•</span>
+            <span><a href="https://github.com/ilychi/esdeath" class="text-blue-600 hover:underline">Source @ GitHub</a></span>
+            <span class="text-gray-400">•</span>
+            <span>更新于: ${updateTime}</span>
+          </div>
+        </header>
+
+        <div class="search-container">
+          <iconify-icon icon="tabler:search" class="search-icon"></iconify-icon>
+          <input 
+            type="text" 
+            id="searchInput"
+            placeholder="搜索文件和文件夹..." 
+            class="search-input"
+          >
+        </div>
+
+        <div class="esdeath-card depth-effect p-5">
+          <div class="file-tree">
+            <ul>
+              ${renderTree(tree)}
+            </ul>
           </div>
         </div>
-      \`
-    };
+        
+        <div class="alert" id="alertBox">
+          <iconify-icon icon="tabler:check" width="18"></iconify-icon>
+          <span id="alertMessage"></span>
+        </div>
+      </div>
 
-    const app = Vue.createApp({
-      components: {
-        FileTreeItem
-      },
-      data() {
-        return {
-          treeData: ${treeDataJson},
-          expandedFolders: [],
-          searchTerm: '',
-          filteredTreeData: [],
-          showAlert: false,
-          alertMessage: '',
-          // 文件预览相关
-          showPreview: false,
-          previewingFile: null,
-          previewContent: '',
-          previewLoading: false,
-          // 使用说明折叠状态
-          infoCardExpanded: false
-        }
-      },
-      mounted() {
-        // 默认展开第一级文件夹
-        this.expandedFolders = this.treeData.map(item => item.id);
-        this.filteredTreeData = this.treeData;
-        
-        // 初始化副标题动画效果
-        this.initTextGenerateEffect();
-      },
-      methods: {
-        // 副标题特效 - Text Generate Effect
-        initTextGenerateEffect() {
-          const subtitle = "${description}";
-          let html = '';
+      <script>
+        // 文件树交互逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+          // 文件夹展开/折叠
+          document.querySelectorAll('.tree-folder-header').forEach(header => {
+            header.addEventListener('click', function() {
+              const folder = this.parentElement;
+              folder.classList.toggle('open');
+            });
+          });
           
-          for (let i = 0; i < subtitle.length; i++) {
-            const char = subtitle[i] === ' ' ? '&nbsp;' : subtitle[i];
-            const delay = i * 40;
-            html += \`<span style="animation-delay: \${delay}ms">\${char}</span>\`;
-          }
+          // 默认展开第一级文件夹
+          document.querySelectorAll('.file-tree > ul > li.folder').forEach(folder => {
+            folder.classList.add('open');
+          });
           
-          document.getElementById('generateSubtitle').innerHTML = html;
-        },
-        
-        // 切换使用说明卡片的展开状态
-        toggleInfoCard() {
-          this.infoCardExpanded = !this.infoCardExpanded;
-        },
-        
-        toggleFolder(id) {
-          const index = this.expandedFolders.indexOf(id);
-          if (index === -1) {
-            this.expandedFolders.push(id);
-          } else {
-            this.expandedFolders.splice(index, 1);
-          }
-        },
-        isExpanded(id) {
-          return this.expandedFolders.includes(id);
-        },
-        getFileIcon(item) {
-          if (item.fileType === 'list') return 'tabler:list';
-          if (item.fileType === 'sgmodule') return 'tabler:plug';
-          if (item.fileType === 'mmdb') return 'tabler:database';
-          return 'tabler:file';
-        },
-        handleSearch() {
-          if (!this.searchTerm.trim()) {
-            this.filteredTreeData = this.treeData;
-            return;
-          }
+          // 复制链接
+          document.querySelectorAll('[data-copy-url]').forEach(button => {
+            button.addEventListener('click', function(e) {
+              e.stopPropagation();
+              const url = this.getAttribute('data-copy-url');
+              navigator.clipboard.writeText(url)
+                .then(() => showAlert('链接已复制到剪贴板'))
+                .catch(() => showAlert('复制失败，请手动复制'));
+            });
+          });
           
-          const term = this.searchTerm.toLowerCase();
-          this.filteredTreeData = this.searchInTree(this.treeData, term);
-        },
-        searchInTree(tree, term) {
-          return tree.filter(item => {
-            // 名称匹配
-            const nameMatch = item.name.toLowerCase().includes(term);
+          // 导入模块
+          document.querySelectorAll('[data-module-url]').forEach(button => {
+            button.addEventListener('click', function(e) {
+              e.stopPropagation();
+              const url = this.getAttribute('data-module-url');
+              window.open('surge:///install-module?url=' + encodeURIComponent(url), '_blank');
+              showAlert('正在打开 Surge 安装模块');
+            });
+          });
+          
+          // 搜索功能
+          const searchInput = document.getElementById('searchInput');
+          searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
             
-            // 如果是文件夹，递归搜索子项
-            if (item.children && item.children.length) {
-              const matchedChildren = this.searchInTree(item.children, term);
-              
-              if (matchedChildren.length > 0) {
-                // 确保文件夹已展开
-                if (!this.isExpanded(item.id)) {
-                  this.expandedFolders.push(item.id);
-                }
-                
-                // 返回修改后的文件夹及其匹配的子项
-                return {
-                  ...item,
-                  children: matchedChildren
-                };
-              }
+            if (!searchTerm) {
+              // 显示所有项
+              document.querySelectorAll('.tree-file, .folder').forEach(item => {
+                item.style.display = '';
+              });
+              return;
             }
             
-            return nameMatch;
-          });
-        },
-        copyToClipboard(text) {
-          if (!text) return;
-          
-          navigator.clipboard.writeText(text)
-            .then(() => {
-              this.showAlertMessage('链接已复制到剪贴板');
-            })
-            .catch(err => {
-              this.showAlertMessage('复制失败，请手动复制');
-              console.error('复制失败:', err);
-            });
-        },
-        installModule(url) {
-          if (!url) return;
-          window.open('surge:///install-module?url=' + encodeURIComponent(url), '_blank');
-          this.showAlertMessage('正在打开 Surge 安装模块');
-        },
-        showAlertMessage(message) {
-          this.alertMessage = message;
-          this.showAlert = true;
-          
-          // 3秒后隐藏提示
-          setTimeout(() => {
-            this.showAlert = false;
-          }, 3000);
-        },
-        
-        // 文件预览相关功能
-        previewFile(file) {
-          if (!file || !file.url) return;
-          
-          this.previewingFile = file;
-          this.previewContent = '';
-          this.previewLoading = true;
-          this.showPreview = true;
-          
-          // 禁止预览mmdb文件，直接提供下载链接
-          if (file.fileType === 'mmdb') {
-            this.previewLoading = false;
-            this.previewContent = '⚠️ MMDB文件为二进制格式，无法在浏览器中预览，请直接下载使用。';
-            return;
-          }
-          
-          // 请求文件内容
-          fetch(file.url)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('网络请求失败');
+            // 搜索文件
+            document.querySelectorAll('.tree-file').forEach(file => {
+              const fileName = file.querySelector('.file-name').textContent.toLowerCase();
+              if (fileName.includes(searchTerm)) {
+                file.style.display = '';
+                // 确保父文件夹显示
+                let parent = file.parentElement;
+                while (parent) {
+                  if (parent.classList.contains('tree-folder-content')) {
+                    parent.style.display = 'block';
+                    parent = parent.parentElement;
+                    if (parent.classList.contains('folder')) {
+                      parent.classList.add('open');
+                    }
+                  } else {
+                    parent = parent.parentElement;
+                  }
+                }
+              } else {
+                file.style.display = 'none';
               }
-              return response.text();
-            })
-            .then(content => {
-              this.previewContent = content;
-              this.previewLoading = false;
-            })
-            .catch(error => {
-              console.error('预览文件失败:', error);
-              this.previewContent = '加载文件内容失败，请稍后再试或直接下载文件。';
-              this.previewLoading = false;
             });
-        },
-        closePreview() {
-          this.showPreview = false;
-          this.previewingFile = null;
-          this.previewContent = '';
-        }
-      }
-    }).mount('#app');
-    </script>
+            
+            // 处理文件夹
+            document.querySelectorAll('.folder').forEach(folder => {
+              const folderName = folder.querySelector('.folder-name').textContent.toLowerCase();
+              const hasVisibleChildren = folder.querySelector('.tree-folder-content').querySelectorAll('.tree-file, .folder').length > 0 && 
+                                        Array.from(folder.querySelector('.tree-folder-content').querySelectorAll('.tree-file, .folder'))
+                                          .some(el => el.style.display !== 'none');
+              
+              if (folderName.includes(searchTerm) || hasVisibleChildren) {
+                folder.style.display = '';
+                folder.classList.add('open');
+                
+                // 确保父文件夹显示
+                let parent = folder.parentElement;
+                while (parent) {
+                  if (parent.classList.contains('tree-folder-content')) {
+                    parent.style.display = 'block';
+                    parent = parent.parentElement;
+                    if (parent.classList.contains('folder')) {
+                      parent.classList.add('open');
+                    }
+                  } else {
+                    parent = parent.parentElement;
+                  }
+                }
+              } else if (!hasVisibleChildren) {
+                folder.style.display = 'none';
+              }
+            });
+          });
+          
+          // 显示提示框
+          function showAlert(message) {
+            const alertBox = document.getElementById('alertBox');
+            const alertMessage = document.getElementById('alertMessage');
+            
+            alertMessage.textContent = message;
+            alertBox.classList.add('show');
+            
+            setTimeout(() => {
+              alertBox.classList.remove('show');
+            }, 3000);
+          }
+        });
+      </script>
     </body>
     </html>
   `;
