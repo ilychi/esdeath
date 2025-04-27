@@ -38,7 +38,7 @@ const SOURCE_TO_OUTPUT_MAP = [
   { src: path.join(ROOT_DIR, 'Source', 'domainset'), dest: OUTPUT_DOMAINSET_DIR },
   { src: DIAL_DIR, dest: OUTPUT_DIAL_DIR },
   {
-    src: path.join(ROOT_DIR, 'Chores/engineering/data/images'),
+    src: path.join(ROOT_DIR, 'Chores/engineering/data/images/favicon'),
     dest: path.join(PUBLIC_DIR, 'images'),
   },
 ];
