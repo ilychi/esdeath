@@ -35,11 +35,12 @@ const SOURCE_TO_OUTPUT_MAP = [
   { src: path.join(SURGE_DIR, 'Modules'), dest: OUTPUT_MODULES_DIR },
   { src: path.join(SURGE_DIR, 'Scripts'), dest: OUTPUT_SCRIPTS_DIR },
   { src: path.join(SURGE_DIR, 'Rulesets'), dest: OUTPUT_RULESETS_DIR },
-  { src: path.join(ROOT_DIR, 'Source', 'domainset'), dest: OUTPUT_DOMAINSET_DIR },
   { src: DIAL_DIR, dest: OUTPUT_DIAL_DIR },
+  { src: path.join(ROOT_DIR, 'GeoIP'), dest: path.join(PUBLIC_DIR, 'GeoIP') },
   {
     src: path.join(ROOT_DIR, 'Chores/engineering/data/images/favicon'),
     dest: path.join(PUBLIC_DIR, 'images'),
+    hideInFileTree: true,
   },
 ];
 

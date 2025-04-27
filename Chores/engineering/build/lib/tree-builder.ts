@@ -54,6 +54,9 @@ export async function buildFileTree(
 ): Promise<TreeTypeArray> {
   const tree: TreeTypeArray = [];
 
+  // 需要排除的路径
+  const excludedPaths = ['images'];
+
   const walk = async (
     dir: string,
     node: TreeTypeArray,
@@ -72,6 +75,11 @@ export async function buildFileTree(
         const relativePath = dirRelativeToRoot
           ? path.join(dirRelativeToRoot, entry.name)
           : entry.name;
+
+        // 排除favicon图片目录
+        if (excludedPaths.includes(entry.name) && entry.isDirectory()) {
+          continue;
+        }
 
         if (entry.isDirectory()) {
           const newNode: TreeDirectory = {
