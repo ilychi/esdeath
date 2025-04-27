@@ -20,6 +20,9 @@ export function generateHtml(
     customDomain = '',
   } = options;
 
+  // 将favicon编码为base64，直接嵌入HTML中
+  const faviconBase64 = `data:image/png;base64,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`;
+
   // 遍历树生成HTML
   function renderTree(tree: TreeTypeArray): string {
     let html = '';
@@ -76,7 +79,7 @@ export function generateHtml(
               `
                   : ''
               }
-              <div class="tree-file-action tooltip" data-copy-url="${item.url}">
+              <div class="tree-file-action copy-button tooltip" data-copy-url="${item.url}">
                 <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
                 <div class="tooltip-content">复制链接</div>
               </div>
@@ -97,7 +100,7 @@ export function generateHtml(
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>${title}</title>
-      <link rel="icon" href="https://raw.githubusercontent.com/ilychi/esdeath/main/favicon.ico" type="image/x-icon">
+      <link rel="icon" href="${faviconBase64}" type="image/png">
       <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
       <link rel="stylesheet" href="styles/main.css">
       <!-- Iconify for icons -->
@@ -119,6 +122,8 @@ export function generateHtml(
           --radius: 0.5rem;
           --radiant-anim-duration: 10s;
           --radiant-width: 100px;
+          --copy-button-color: #4f46e5;
+          --copy-button-hover-color: #4338ca;
         }
         
         /* 基础样式 */
@@ -214,17 +219,28 @@ export function generateHtml(
         }
         
         .tree-file-action {
-          padding: 0.175rem;
+          padding: 0.275rem;
           border-radius: 0.25rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: all 0.15s ease;
+          transition: all 0.2s ease;
           background-color: rgba(17, 24, 39, 0.05);
+          position: relative;
         }
         
         .tree-file-action:hover {
           background-color: rgba(17, 24, 39, 0.1);
+          transform: scale(1.1);
+        }
+
+        .copy-button {
+          color: var(--copy-button-color);
+        }
+        
+        .copy-button:hover {
+          color: var(--copy-button-hover-color);
+          box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
         }
         
         /* 文件类型标签 */
@@ -269,10 +285,10 @@ export function generateHtml(
         
         .tooltip-content {
           position: absolute;
-          bottom: 100%;
+          bottom: 120%;
           left: 50%;
-          transform: translateX(-50%) translateY(-0.25rem);
-          padding: 0.35rem 0.5rem;
+          transform: translateX(-50%) translateY(0);
+          padding: 0.4rem 0.6rem;
           border-radius: 0.25rem;
           background-color: #111827;
           color: white;
@@ -281,13 +297,29 @@ export function generateHtml(
           pointer-events: none;
           opacity: 0;
           transition: all 0.2s ease;
-          z-index: 50;
+          z-index: 100;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          visibility: hidden;
+          min-width: 80px;
+          text-align: center;
         }
         
         .tooltip:hover .tooltip-content {
           opacity: 1;
-          transform: translateX(-50%) translateY(-0.5rem);
+          transform: translateX(-50%) translateY(-0.25rem);
+          visibility: visible;
+        }
+
+        /* 箭头指示器 */
+        .tooltip-content::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #111827 transparent transparent transparent;
         }
         
         /* 搜索框 */
@@ -340,7 +372,7 @@ export function generateHtml(
           transform: translateY(-1rem);
           opacity: 0;
           transition: all 0.3s ease;
-          z-index: 50;
+          z-index: 200;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
           display: flex;
           align-items: center;
@@ -448,6 +480,18 @@ export function generateHtml(
           z-index: 2;
           pointer-events: none;
         }
+
+        /* 复制成功动画 */
+        @keyframes copy-success {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.2); }
+          100% { transform: scale(1); }
+        }
+
+        .copy-success {
+          animation: copy-success 0.5s ease;
+          color: #10b981;
+        }
       </style>
     </head>
     <body class="bg-white text-gray-900 min-h-screen">
@@ -512,8 +556,21 @@ export function generateHtml(
             button.addEventListener('click', function(e) {
               e.stopPropagation();
               const url = this.getAttribute('data-copy-url');
+              const icon = this.querySelector('iconify-icon');
+              
               navigator.clipboard.writeText(url)
-                .then(() => showAlert('链接已复制到剪贴板'))
+                .then(() => {
+                  showAlert('链接已复制到剪贴板');
+                  // 修改图标为成功状态
+                  icon.setAttribute('icon', 'tabler:check');
+                  this.classList.add('copy-success');
+                  
+                  // 2秒后恢复原状
+                  setTimeout(() => {
+                    icon.setAttribute('icon', 'tabler:clipboard');
+                    this.classList.remove('copy-success');
+                  }, 2000);
+                })
                 .catch(() => showAlert('复制失败，请手动复制'));
             });
           });
