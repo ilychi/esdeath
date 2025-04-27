@@ -164,13 +164,14 @@ export const ruleGroups: RuleGroup[] = [
     ],
   },
   {
-    name: 'Anti',
+    name: 'Anti-IP-Attribution',
     files: [
       {
         path: 'Surge/Rulesets/anti-attribution/direct.list',
         url: 'https://github.com/SunsetMkt/anti-ip-attribution/raw/main/generated/rule-set-direct.list',
-        title: 'DIRECT (Anti-IP Attribution)',
-        description: 'Anti IP attribution direct rules',
+        title: 'Ruleset - Anti-IP Attribution (Direct)',
+        description:
+          'This file contains direct rules to counter IP-based location attribution required by Chinese social media platforms',
         header: {
           enable: true, // 明确启用 header
         },
@@ -178,8 +179,9 @@ export const ruleGroups: RuleGroup[] = [
       {
         path: 'Surge/Rulesets/anti-attribution/proxy.list',
         url: 'https://github.com/SunsetMkt/anti-ip-attribution/raw/main/generated/rule-set-proxy.list',
-        title: 'PROXY (Anti-IP Attribution)',
-        description: 'Anti IP attribution proxy rules',
+        title: 'Ruleset - Anti-IP Attribution (Proxy)',
+        description:
+          'This file contains proxy rules to counter IP-based location attribution required by Chinese social media platforms',
         header: {
           enable: true, // 明确启用 header
         },
@@ -187,8 +189,9 @@ export const ruleGroups: RuleGroup[] = [
       {
         path: 'Surge/Rulesets/anti-attribution/reject.list',
         url: 'https://github.com/SunsetMkt/anti-ip-attribution/raw/main/generated/rule-set-reject.list',
-        title: 'REJECT (Anti-IP Attribution)',
-        description: 'Anti IP attribution reject rules',
+        title: 'Ruleset - Anti-IP Attribution (Reject)',
+        description:
+          'This file contains reject rules to counter IP-based location attribution required by Chinese social media platforms',
         header: {
           enable: true, // 明确启用 header
         },
@@ -245,8 +248,8 @@ export const ruleGroups: RuleGroup[] = [
       {
         path: 'Surge/Rulesets/ipcidr/chinaip_DH.list',
         url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_IP_CN.txt',
-        title: 'IPv4+IPv6 Information in China.',
-        description: 'Made by DH-Teams, All rights reserved',
+        title: 'Ruleset - IPv4+IPv6 in China',
+        description: 'This file contains IPv4 and IPv6 information in China. Made by DH-Teams.',
         header: {
           enable: true, // 明确启用 header
         },
@@ -270,13 +273,15 @@ export const ruleGroups: RuleGroup[] = [
       {
         path: 'Surge/Rulesets/asn/missuo/cn.list',
         url: 'https://raw.githubusercontent.com/missuo/ASN-China/main/ASN.China.list',
+        title: 'Ruleset - China ASN (Missuo)',
+        description: 'This file contains China ASN rules compiled by Missuo',
         cleanup: false,
       },
       {
         path: 'Surge/Rulesets/asn/DH-Teams/cn.list',
         url: 'https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_CN.list',
-        title: 'ASN Information in China.',
-        description: 'Made by DH-Teams, All rights reserved',
+        title: 'Ruleset - ASN in China',
+        description: 'This file contains ASN information in China. Made by DH-Teams.',
         header: {
           enable: true, // 明确启用 header
         },
@@ -395,9 +400,9 @@ export const specialRules: SpecialRuleConfig[] = [
     cleanup: true,
     deleteSourceFiles: true,
     header: {
-      title: 'AIGC Services',
+      title: 'Ruleset - AIGC Services',
       description:
-        'Rules for AI services including OpenAI, Google Gemini, Claude, Perplexity and other generative AI platforms',
+        'This file contains rules for AI services including OpenAI, Google Gemini, Claude, Perplexity and other generative AI platforms',
     },
   },
   {
@@ -412,9 +417,9 @@ export const specialRules: SpecialRuleConfig[] = [
     ],
     cleanup: true,
     header: {
-      title: 'Apple Services',
+      title: 'Ruleset - Apple Services',
       description:
-        'Rules for Apple services, including services operated in mainland China (iCloud.com.cn, Apple Maps China, etc).',
+        'This file contains rules for Apple services, including services operated in mainland China (iCloud.com.cn, Apple Maps China, etc).',
     },
   },
   {
@@ -426,9 +431,9 @@ export const specialRules: SpecialRuleConfig[] = [
     ],
     cleanup: true,
     header: {
-      title: 'Microsoft Services',
+      title: 'Ruleset - Microsoft Services',
       description:
-        'Rules for Microsoft services, including services operated in mainland China (Microsoft 365, Microsoft Teams, etc).',
+        'This file contains rules for Microsoft services, including services operated in mainland China (Microsoft 365, Microsoft Teams, etc).',
     },
   },
   {
@@ -445,8 +450,9 @@ export const specialRules: SpecialRuleConfig[] = [
     dedup: true,
     header: {
       enable: true,
-      title: 'Advertising, Malicious Sites & Tracking Protection',
-      description: 'Combined rules for blocking ads, malicious sites and user tracking services',
+      title: 'Ruleset - Advertising, Malicious Sites & Tracking Protection',
+      description:
+        'This file contains combined rules for blocking ads, malicious sites and user tracking services',
     },
   },
   {
@@ -463,9 +469,9 @@ export const specialRules: SpecialRuleConfig[] = [
     deleteSourceFiles: true,
     header: {
       enable: true,
-      title: 'Privacy & Security Protection',
+      title: 'Ruleset - Privacy & Security Protection',
       description:
-        'Comprehensive ruleset for blocking advertising, privacy-invasive services, malware, and phishing sites',
+        'This file contains comprehensive ruleset for blocking advertising, privacy-invasive services, malware, and phishing sites',
     },
   },
   {
@@ -480,9 +486,9 @@ export const specialRules: SpecialRuleConfig[] = [
     deleteSourceFiles: true,
     header: {
       enable: true,
-      title: 'Content Delivery Networks',
+      title: 'Ruleset - Content Delivery Networks',
       description:
-        'Rules for common static content CDNs to optimize content delivery and network performance',
+        'This file contains rules for common static content CDNs to optimize content delivery and network performance',
     },
   },
   {
@@ -507,9 +513,9 @@ export const specialRules: SpecialRuleConfig[] = [
     deleteSourceFiles: false,
     header: {
       enable: true,
-      title: 'Emby Media Servers',
+      title: 'Ruleset - Emby Media Servers',
       description:
-        'Comprehensive rules for various Emby media servers, combining multiple sources including Clash format rules',
+        'This file contains rules for third-party Emby media server instances requiring proxy access',
     },
   },
   {
@@ -520,9 +526,9 @@ export const specialRules: SpecialRuleConfig[] = [
     applyNoResolve: true,
     header: {
       enable: true,
-      title: 'Direct Emby Connections',
+      title: 'Ruleset - Direct Emby Connections',
       description:
-        'Rules for Emby servers that can be accessed directly from Mainland China without proxy. Includes optimized paths for better performance within China network.',
+        'This file contains rules for Emby servers that can be accessed directly from Mainland China without proxy',
     },
   },
   {
@@ -535,9 +541,9 @@ export const specialRules: SpecialRuleConfig[] = [
     cleanup: true,
     deleteSourceFiles: true,
     header: {
-      title: 'NetEase Cloud Music',
+      title: 'Ruleset - NetEase Cloud Music',
       description:
-        'Rules for NetEase Cloud Music streaming service, optimized for China mainland access',
+        'This file contains rules for NetEase Cloud Music streaming service, optimized for China mainland access',
     },
   },
   {
@@ -549,9 +555,9 @@ export const specialRules: SpecialRuleConfig[] = [
     ],
     header: {
       enable: true,
-      title: 'Global Streaming Services',
+      title: 'Ruleset - Global Streaming Services',
       description:
-        'Combined rules for various streaming media platforms including both domain and IP-based matches',
+        'This file contains combined rules for various streaming media platforms including Netflix, Disney+, HBO, Amazon Prime, Spotify, YouTube, Twitch, BBC, Hulu and many other global video/audio services',
     },
   },
   {
@@ -561,10 +567,15 @@ export const specialRules: SpecialRuleConfig[] = [
       'https://ruleset.skk.moe/List/non_ip/domestic.conf',
       'https://ruleset.skk.moe/List/non_ip/domestic.conf',
       'https://ruleset.skk.moe/List/ip/domestic.conf',
-      'https://ruleset.skk.moe/List/non_ip/direct.conf',
     ],
+    //'https://ruleset.skk.moe/List/non_ip/direct.conf',
     cleanup: false,
     dedup: true,
+    header: {
+      enable: true,
+      title: 'Ruleset - Domestic Services',
+      description: 'This file contains known addresses that are available in Mainland China',
+    },
   },
   {
     name: 'Telegram',
@@ -576,6 +587,12 @@ export const specialRules: SpecialRuleConfig[] = [
     ],
     cleanup: true,
     dedup: true,
+    header: {
+      enable: true,
+      title: 'Ruleset - Telegram',
+      description:
+        'This file contains rules for Telegram messaging service including IP addresses and domains',
+    },
   },
   {
     name: 'Direct (Sukka)',
@@ -586,6 +603,12 @@ export const specialRules: SpecialRuleConfig[] = [
     ],
     cleanup: false,
     dedup: true,
+    header: {
+      enable: true,
+      title: 'Ruleset - Direct Connection',
+      description:
+        'This file contains domains and process that should not be proxied and accessed directly',
+    },
   },
   {
     name: 'Lan',
@@ -596,6 +619,12 @@ export const specialRules: SpecialRuleConfig[] = [
     ],
     cleanup: false,
     dedup: true,
+    header: {
+      enable: true,
+      title: 'Ruleset - Local Area Network',
+      description:
+        'This file contains rules for local area network addresses, private IP ranges and reserved TLDs',
+    },
   },
 ];
 
