@@ -1,3 +1,26 @@
+# >> KeliAds
+DOMAIN,acdn.adnxs.com
+DOMAIN,mediation.adnxs.com
+DOMAIN,sin3-ib.adnxs.com
+DOMAIN,sdkconfig.ad.xiaomi.com
+DOMAIN,data.mistat.xiaomi.com
+DOMAIN,tracking.intl.miui.com
+DOMAIN-SUFFIX,doubleclick-cn.net
+DOMAIN-SUFFIX,doubleclick.net
+DOMAIN,business.msstatic.com
+DOMAIN-SUFFIX,v1d.szbdyd.com
+URL-REGEX,"^http:\/\/cdn\.wup\.huya\.com\/launch\/queryHttpDns$"
+DOMAIN-SUFFIX,m1.ad.10010.com
+DOMAIN,ad.21cn.com
+DOMAIN,ad.k.21cn.com
+DOMAIN,admarket.21cn.com
+DOMAIN,adshows.21cn.com
+IP-CIDR,122.229.8.47/32,no-resolve
+IP-CIDR,122.229.29.89/32,no-resolve
+DOMAIN,mall-dsp2.qinlinkeji.com
+DOMAIN,mallapi2.qinlinkeji.com
+DOMAIN,open-pixon.ads-pixiv.net
+
 # >> BlockAds
 AND,((DOMAIN-KEYWORD,-ad-),(DOMAIN-SUFFIX,byteimg.com))
 AND,((DOMAIN-KEYWORD,-ttam-),(DOMAIN-SUFFIX,ibyteimg.com))
@@ -202,7 +225,6 @@ DOMAIN,api.anythinktech.com
 DOMAIN,tk.anythinktech.com
 DOMAIN,da.anythinktech.com
 DOMAIN,gorgon.youdao.com
-DOMAIN,sdkconfig.ad.xiaomi.com
 DOMAIN,al-log.d.meituan.net
 DOMAIN,babel-statistics-android.d.meituan.net
 DOMAIN,maplocatesdksnapshot.d.meituan.net
@@ -247,6 +269,13 @@ DOMAIN,ad-evods.tianya.tv
 DOMAIN,adx.tuia.cn
 DOMAIN-SUFFIX,66mobi.com
 
+# >> Weibo
+DOMAIN,huodong.weibo.cn
+DOMAIN-SUFFIX,biz.weibo.com
+
+# >> RedPaper
+AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com))
+
 # >> Zhihu
 DOMAIN,appcloud.zhihu.com
 DOMAIN,appcloud2.in.zhihu.com
@@ -257,6 +286,9 @@ DOMAIN,zxid-m.mobileservice.cn
 IP-CIDR,103.41.167.237/32,no-resolve
 IP-CIDR,118.89.204.198/32,no-resolve
 IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,no-resolve
+
+# >> Snowball
+URL-REGEX,"^http:\/\/119\.29\.29\.98\/d\?"
 
 # >> WeChatMP
 DOMAIN,wxsnsdy.wxs.qq.com
@@ -293,6 +325,15 @@ DOMAIN,iadmusicmatvideo.music.126.net
 DOMAIN,ipv4.music.163.com
 DOMAIN,ipv6.music.163.com
 
+# >> Himalaya
+DOMAIN,adse.ximalaya.com
+DOMAIN,adsehera.ximalaya.com
+DOMAIN,adse.wsa.ximalaya.com
+DOMAIN,adbehavior.ximalaya.com
+DOMAIN,adbehavior.wsa.ximalaya.com
+DOMAIN,dns2.q2cdn.com
+URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
+
 # >> YouTube
 AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
 AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
@@ -302,6 +343,25 @@ DOMAIN,httpdns.yunxindns.com
 DOMAIN-SUFFIX,gdtimg.com
 DOMAIN-SUFFIX,pos.baidu.com
 
+# >> SodaMusic
+AND,((DOMAIN-KEYWORD,api100-core-quic-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-normal-quic-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-normal-quic-aweme-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-quic-core-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-quic-normal-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,frontier100-aweme),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,ma5-normal-),(DOMAIN-SUFFIX,zijieapi.com))
+AND,((DOMAIN-KEYWORD,polaris5-normal-),(DOMAIN-SUFFIX,zijieapi.com))
+AND,((DOMAIN-KEYWORD,webcast100-ws-c-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,tnc),(AND,((OR,((DOMAIN-KEYWORD,-bjlgy),(DOMAIN-KEYWORD,-alisc),(DOMAIN-KEYWORD,-aliec),(DOMAIN-KEYWORD,-alisg))),(OR,((DOMAIN-SUFFIX,snssdk.com),(DOMAIN-SUFFIX,isnssdk.com),(DOMAIN-SUFFIX,toutiaoapi.com),(DOMAIN-SUFFIX,bytedance.com),(DOMAIN-SUFFIX,zijieapi.com))))))
+DOMAIN,frontier-aweme-hl.snssdk.com
+DOMAIN,frontier-quic-test.bytedance.com
+AND,((IP-CIDR,101.126.58.201/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,110.249.199.75/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,111.225.147.191/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,111.63.61.101/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,220.243.141.0/32,no-resolve),(DEST-PORT,6443))
+
 # >> JD
 DOMAIN,dns.jd.com
 AND,((PROTOCOL,TCP),(DOMAIN,api.m.jd.com)),REJECT-NO-DROP
@@ -309,12 +369,63 @@ URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?"
 IP-CIDR,101.124.19.122/32,no-resolve
 IP-CIDR6,2402:db40:5100:1011::5/128,no-resolve
 
+# >> Taobao
+DOMAIN,adashx.m.taobao.com
+DOMAIN,h-adashx.ut.taobao.com
+DOMAIN,ut.taobao.com
+
+# >> SMZDM
+DOMAIN,acs4baichuan.m.taobao.com
+DOMAIN,adashxgc.ut.taobao.com
+DOMAIN,analytics-api.smzdm.com
+DOMAIN,baichuan-sdk.alicdn.com
+DOMAIN,dgstatic.jd.com
+DOMAIN,msg.umengcloud.com
+DOMAIN,sec.umeng.com
+DOMAIN,ynuf.aliapp.org
+
 # >> FleaMarket
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
 
+# >> Cainiao
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
+DOMAIN,amdc.m.youku.com
+DOMAIN,apiv4-iyes.youku.com
+DOMAIN,httpdns.alicdn.com
+DOMAIN,huichuan-mc.sm.cn
+DOMAIN,huichuan.sm.cn
+DOMAIN,iyes.youku.com
+DOMAIN,mc.atm.youku.com
+DOMAIN,vali-g1.cp31.ott.cibntv.net
+DOMAIN,vali-ugc.cp31.ott.cibntv.net
+DOMAIN,yk-ssp.ad.youku.com
+DOMAIN,ykad-data.youku.com
+
+# >> Amap
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
+DOMAIN,amap-aos-info-nogw.amap.com
+DOMAIN,free-aos-cdn-image.amap.com
+DOMAIN-SUFFIX,v.smtcdns.com
+
+# >> DiDi
+DOMAIN,hd.xiaojukeji.com
+DOMAIN,gwp.xiaojukeji.com
+AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
+AND,((IP-ASN,63646,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
+
+# >> Umetrip
+URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native"
+
+# >> MeiTu
+DOMAIN,adui.tg.meitu.com
+
+# >> Keep
+DOMAIN,httpdns.n.netease.com
+DOMAIN,httpdns.calorietech.com
+DOMAIN,hc-ssp.sm.cn
+
 # >> MailMaster
 DOMAIN,httpdns.music.163.com
-DOMAIN,httpdns.n.netease.com
 DOMAIN,httpdns-sdk.n.netease.com
 DOMAIN,lofter.httpdns.c.163.com
 DOMAIN,music.httpdns.c.163.com
@@ -331,6 +442,11 @@ URL-REGEX,"^http:\/\/114\.110\.97\.30\/d"
 URL-REGEX,"^http:\/\/114\.110\.97\.97\/d"
 URL-REGEX,"^http:\/\/121\.5\.84\.85\/d"
 URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d"
+
+# >> ColorfulClouds
+DOMAIN,abyss.cyapi.cn
+DOMAIN,ad.cyapi.cn
+DOMAIN,gather.colorfulclouds.net
 
 # >> Aiinquiry
 URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/"
