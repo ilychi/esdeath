@@ -298,9 +298,6 @@ DOMAIN,ads-shopping.shouqianba.com
 DOMAIN,ad.maoyan.com
 DOMAIN,e.jparking.cn
 
-# >> WeChatOA
-DOMAIN-SUFFIX,wxs.qq.com
-
 # >> QQMusic
 DOMAIN,adstats.tencentmusic.com
 DOMAIN,ad.tencentmusic.com
