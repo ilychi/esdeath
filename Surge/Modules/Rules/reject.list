@@ -374,16 +374,6 @@ DOMAIN,adashx.m.taobao.com
 DOMAIN,h-adashx.ut.taobao.com
 DOMAIN,ut.taobao.com
 
-# >> SMZDM
-DOMAIN,acs4baichuan.m.taobao.com
-DOMAIN,adashxgc.ut.taobao.com
-DOMAIN,analytics-api.smzdm.com
-DOMAIN,baichuan-sdk.alicdn.com
-DOMAIN,dgstatic.jd.com
-DOMAIN,msg.umengcloud.com
-DOMAIN,sec.umeng.com
-DOMAIN,ynuf.aliapp.org
-
 # >> FleaMarket
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
 
@@ -406,6 +396,12 @@ AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*")
 DOMAIN,amap-aos-info-nogw.amap.com
 DOMAIN,free-aos-cdn-image.amap.com
 DOMAIN-SUFFIX,v.smtcdns.com
+
+# >> DiDi
+DOMAIN,hd.xiaojukeji.com
+DOMAIN,gwp.xiaojukeji.com
+AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
+AND,((IP-ASN,63646,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
 
 # >> Umetrip
 URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native"
