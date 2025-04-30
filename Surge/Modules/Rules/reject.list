@@ -338,6 +338,11 @@ URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
 AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
 AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
 
+# >> VideoGo
+DOMAIN,httpdns.yunxindns.com
+DOMAIN-SUFFIX,gdtimg.com
+DOMAIN-SUFFIX,pos.baidu.com
+
 # >> SodaMusic
 AND,((DOMAIN-KEYWORD,api100-core-quic-),(DOMAIN-SUFFIX,amemv.com))
 AND,((DOMAIN-KEYWORD,api100-normal-quic-),(DOMAIN-SUFFIX,amemv.com))
@@ -422,7 +427,6 @@ DOMAIN,hc-ssp.sm.cn
 # >> MailMaster
 DOMAIN,httpdns.music.163.com
 DOMAIN,httpdns-sdk.n.netease.com
-DOMAIN,httpdns.yunxindns.com
 DOMAIN,lofter.httpdns.c.163.com
 DOMAIN,music.httpdns.c.163.com
 IP-CIDR,59.111.239.61/32,no-resolve
