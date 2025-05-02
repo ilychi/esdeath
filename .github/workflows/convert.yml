@@ -56,6 +56,9 @@ jobs:
           
           # Add fmz200's blockAds plugin with custom name
           echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
+          
+          # Add Keywos's NetEase Music AD Block plugin with custom name
+          echo "https://raw.githubusercontent.com/Keywos/rule/main/loon/wy.plugin?rename=NeteaseMusic_remove_ads" >> plugin_urls.txt
 
       - name: Extract categories and process plugins
         run: |
