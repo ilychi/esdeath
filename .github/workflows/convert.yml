@@ -65,8 +65,8 @@ jobs:
           
           # 修改模块的分类、名称和描述
           sed -i 's/#!category=.*/#!category= 🚫 AD Block/' "Surge/Modules/Netease_Music_AdBlock.sgmodule"
-          sed -i 's/#!name=.*/#!name= 网易云去广告/' "Surge/Modules/Netease_Music_AdBlock.sgmodule"
-          sed -i 's/#!desc=.*/#!desc= 网易云去广告/' "Surge/Modules/Netease_Music_AdBlock.sgmodule"
+          sed -i 's/#!name=.*/#!name= NetEase Cloud Music Ad Removal/' "Surge/Modules/Netease_Music_AdBlock.sgmodule"
+          sed -i 's/#!desc=.*/#!desc= Remove ads from NetEase Cloud Music app/' "Surge/Modules/Netease_Music_AdBlock.sgmodule"
           
           # 不需要在这里下载脚本和替换路径
           # 让"Find and replace external JS resources"步骤处理这部分工作
