@@ -51,141 +51,141 @@ jobs:
 
       - name: Extract .plugin URLs
         run: |
-          grep -oP 'https?://[^ )"]+\?plugin=[^ )"]+' README.md > plugin_urls_raw.txt
-          grep -oP '(?<=\?plugin=)[^ )"]+' plugin_urls_raw.txt > plugin_urls.txt
-          
-          # Add fmz200's blockAds plugin with custom name
-          echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
+          grep -oP \'https?://[^ )"]+\\?plugin=[^ )"]+\' README.md > plugin_urls_raw.txt
+          # Extract base URL or full URL with rename param
+          while IFS= read -r line; do
+            if [[ "$line" == *"?plugin="* ]]; then
+              echo "$line" | grep -oP \'(?<=\\?plugin=)[^ )"]+\'
+            fi
+          done < plugin_urls_raw.txt > plugin_urls.txt
 
-      - name: Extract categories from README
+          # Add fmz200\'s blockAds plugin with custom name
+          echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
+          echo "Added fmz200 plugin to list"
+
+      - name: Prepare Plugin Metadata
+        id: prepare_metadata
         run: |
+          echo "Preparing plugin metadata..."
+          # 定义分类变量
+          CAT_CHECKIN="✅ Checkin"
+          CAT_TOOLS="🔨 Tools"
+          CAT_ADBLOCK="🚫 AD Block"
+          
           # 从 README.md 提取分类并建立映射关系
-          mkdir -p Surge/Modules
-          
-          # 定义确定分类的函数
-          determine_category() {
-            local url="$1"
-            local name="$2"
-            
-            # 首先查找预定义映射
-            if [[ -n "${category_map[$url]}" ]]; then
-              echo "${category_map[$url]}"
-              return
-            fi
-            
-            # 没有映射时，根据关键词判断
-            local combined_lower=$(echo "$url$name" | tr '[:upper:]' '[:lower:]')
-            
-            # 广告拦截类
-            if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad|remove_watermark|ssl_unpinning|filter|clean|purify|privacy|隐私|blocker|去广告|adguard|拦截|intercept) ]]; then
-              echo "🚫 AD Block"
-            # 签到类
-            elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus|signin|打卡|登录奖励|每日签到|daily.?reward) ]]; then
-              echo "✅ Checkin"
-            # 功能增强类
-            elif [[ "$combined_lower" =~ (unlock|解锁|enhance|增强|功能|feature|redirect|转发|utility|mount|挂载|translation|repair|external_links|query|detection|auto_join) ]]; then
-              echo "🔨 Tools"
-            # 默认为工具类
-            else
-              echo "🔨 Tools"
-            fi
-          }
-          
-          # 导出函数，使其在子shell中可用
-          export -f determine_category
-          
           declare -A category_map
           current_category=""
-          
+
           while IFS= read -r line; do
             if [[ $line == *"### 签到插件"* ]]; then
-              current_category="✅ Checkin"
+              current_category="$CAT_CHECKIN"
             elif [[ $line == *"### 功能插件"* ]]; then
-              current_category="🔨 Tools"
+              current_category="$CAT_TOOLS"
             elif [[ $line == *"### 去广告插件"* ]]; then
-              current_category="🚫 AD Block"
+              current_category="$CAT_ADBLOCK"
             elif [[ $line =~ "https://" && -n "$current_category" ]]; then
-              # 提取URL和名称
-              plugin_url=$(echo "$line" | grep -oP 'https://[^)"\s]+')
-              if [[ -n "$plugin_url" ]]; then
-                category_map["$plugin_url"]="$current_category"
-                echo "Mapped $plugin_url to $current_category"
+              # 提取URL (plugin=后面的部分)
+              readme_plugin_url=$(echo "$line" | grep -oP \'(?<=\\?plugin=)[^)"\\s]+\')
+              if [[ -n "$readme_plugin_url" ]]; then
+                 # 提取基础URL (去掉可能的rename参数)
+                 readme_base_url=$(echo "$readme_plugin_url" | cut -d\'?\' -f1)
+                 if [[ -n "$readme_base_url" ]]; then
+                    category_map["$readme_base_url"]="$current_category"
+                    echo "Mapped base URL $readme_base_url to $current_category"
+                 fi
               fi
             fi
           done < README.md
-          
-          # 保存分类映射到文件，供后续步骤使用
-          declare -p category_map > category_map.sh
-          # 保存函数到文件
-          echo 'determine_category() {
-            local url="$1"
-            local name="$2"
-            
-            # 首先查找预定义映射
-            if [[ -n "${category_map[$url]}" ]]; then
-              echo "${category_map[$url]}"
-              return
-            fi
-            
-            # 没有映射时，根据关键词判断
-            local combined_lower=$(echo "$url$name" | tr "[:upper:]" "[:lower:]")
-            
-            # 广告拦截类
-            if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad|remove_watermark|ssl_unpinning|filter|clean|purify|privacy|隐私|blocker|去广告|adguard|拦截|intercept) ]]; then
-              echo "🚫 AD Block"
-            # 签到类
-            elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus|signin|打卡|登录奖励|每日签到|daily.?reward) ]]; then
-              echo "✅ Checkin"
-            # 功能增强类
-            elif [[ "$combined_lower" =~ (unlock|解锁|enhance|增强|功能|feature|redirect|转发|utility|mount|挂载|translation|repair|external_links|query|detection|auto_join) ]]; then
-              echo "🔨 Tools"
-            # 默认为工具类
+          echo "Finished reading README for categories."
+
+          # 处理所有插件，确定名称和最终分类
+          plugin_metadata=\'[]\' # Initialize as empty JSON array
+
+          while IFS= read -r plugin_full_url; do
+            echo "Processing URL: $plugin_full_url"
+            # Extract custom name and base url
+            if [[ "$plugin_full_url" == *"?rename="* ]]; then
+              plugin_name=$(echo "$plugin_full_url" | grep -oP \'(?<=\\?rename=)[^&]+\')
+              base_url=$(echo "$plugin_full_url" | cut -d\'?\' -f1)
+              echo "  Custom name found: $plugin_name, Base URL: $base_url"
             else
-              echo "🔨 Tools"
+              plugin_name=$(basename "$plugin_full_url" .plugin)
+              base_url="$plugin_full_url"
+              echo "  Default name: $plugin_name, Base URL: $base_url"
             fi
-          }' >> category_map.sh
+
+            # 确定分类 (优先使用映射，否则使用关键字)
+            if [[ -n "${category_map[$base_url]}" ]]; then
+              category="${category_map[$base_url]}"
+              echo "  Using mapped category: $category"
+            else
+              echo "  No mapped category found for $base_url. Using fallback."
+              # 转换为小写进行匹配
+              combined_lower=$(echo "$plugin_full_url$plugin_name" | tr \'[:upper:]\' \'[:lower:]\')
+              # 广告拦截类
+              if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad|remove_watermark|ssl_unpinning|filter|clean|purify|privacy|隐私|blocker|去广告|adguard|拦截|intercept) ]]; then
+                category="$CAT_ADBLOCK"
+              # 签到类
+              elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus|signin|打卡|登录奖励|每日签到|daily.?reward) ]]; then
+                category="$CAT_CHECKIN"
+              # 功能增强类
+              elif [[ "$combined_lower" =~ (unlock|解锁|enhance|增强|功能|feature|redirect|转发|utility|mount|挂载|translation|repair|external_links|query|detection|auto_join) ]]; then
+                category="$CAT_TOOLS"
+              # 默认为工具类
+              else
+                category="$CAT_TOOLS"
+              fi
+              echo "  Fallback category determined: $category"
+            fi
+
+            # 将信息添加到JSON数组 (确保正确转义)
+            json_entry=$(jq -n --arg url "$plugin_full_url" --arg name "$plugin_name" --arg category "$category" \'{url: $url, name: $name, category: $category}\')
+            plugin_metadata=$(echo "$plugin_metadata" | jq --argjson entry "$json_entry" \'. + [$entry]\')
+
+          done < plugin_urls.txt
+
+          # 保存元数据到JSON文件
+          echo "Final metadata JSON: $plugin_metadata"
+          echo "$plugin_metadata" > plugin_metadata.json
+          echo "Plugin metadata saved to plugin_metadata.json"
 
       - name: Download Netease Cloud Music Ad Removal Module
         run: |
-          # 载入分类映射和函数
-          source category_map.sh
-          
-          # 使用ScriptHub转换网易云音乐去广告模块（Surge模块转Surge模块）
+          # 网易云模块单独处理，不使用上述元数据
+          mkdir -p Surge/Modules
           encoded_name=$(echo "NetEase Music AdBlock" | jq -sRr @uri)
           encoded_desc=$(echo "Ad removal for NetEase Music" | jq -sRr @uri)
           encoded_category=$(echo "🚫 AD Block" | jq -sRr @uri)
           download_url="http://localhost:9101/file/_start_/https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule/_end_/Netease_Music_AdBlock.sgmodule?type=surge-module&target=surge-module&del=true&n=${encoded_name}&y=${encoded_desc}&category=${encoded_category}&jqEnabled=true"
-          
+
           echo "Downloading Netease Music AdBlock module via ScriptHub"
           curl -A "Surge Mac/2985" -L -o "Surge/Modules/Netease_Music_AdBlock.sgmodule" "$download_url" || echo "Failed to download Netease_Music_AdBlock.sgmodule"
 
       - name: Process Loon plugins to Surge modules
         run: |
-          # 载入分类映射和函数
-          source category_map.sh
-          
-          # 处理Loon插件到Surge模块的转换
-          while read -r plugin_url; do
-            # Extract custom name if specified
-            if [[ "$plugin_url" == *"?rename="* ]]; then
-              plugin_name=$(echo "$plugin_url" | grep -oP '(?<=\?rename=)[^&]+')
-              base_url=$(echo "$plugin_url" | cut -d'?' -f1)
-            else
-              plugin_name=$(basename "$plugin_url" .plugin)
-              base_url="$plugin_url"
-            fi
-            
-            # 使用函数确定分类
-            category=$(determine_category "$base_url" "$plugin_name")
-            echo "Category for $plugin_name: $category"
-            
-            encoded_category=$(echo "$category" | jq -sRr @uri)
-            encoded_plugin_name=$(echo "$plugin_name" | jq -sRr @uri)
-            download_url="http://localhost:9101/file/_start_/${plugin_url}/_end_/${encoded_plugin_name}.sgmodule?type=loon-plugin&target=surge-module&sni=%20%2C%20&del=true&pm=REJECT&category=${encoded_category}&jqEnabled=true"
-            
-            echo "Processing $plugin_name with category: $category"
-            curl -A "Surge Mac/2985" -L -o "Surge/Modules/${plugin_name}.sgmodule" "$download_url" || echo "Failed to download ${plugin_name}.sgmodule"
-          done < plugin_urls.txt
+          echo "Processing Loon plugins..."
+          mkdir -p Surge/Modules
+
+          # 读取之前生成的元数据文件
+          jq -c \'.[]\' plugin_metadata.json | while IFS= read -r entry; do
+              plugin_full_url=$(echo "$entry" | jq -r \'.url\')
+              plugin_name=$(echo "$entry" | jq -r \'.name\')
+              category=$(echo "$entry" | jq -r \'.category\')
+
+              echo "Processing $plugin_name ($category) from $plugin_full_url"
+
+              encoded_category=$(echo "$category" | jq -sRr @uri)
+              encoded_plugin_name=$(echo "$plugin_name" | jq -sRr @uri)
+
+              # 构建下载URL (Loon -> Surge)
+              # 注意：这里的 source URL ($plugin_full_url) 可能是包含 ?rename= 的完整URL
+              # ScriptHub 应该能正确处理这种情况，因为它会解析 _start_ 和 _end_ 之间的内容作为源URL
+              download_url="http://localhost:9101/file/_start_/${plugin_full_url}/_end_/${encoded_plugin_name}.sgmodule?type=loon-plugin&target=surge-module&sni=%20%2C%20&del=true&pm=REJECT&category=${encoded_category}&jqEnabled=true"
+
+              echo "  Download URL: $download_url"
+              curl -A "Surge Mac/2985" -L -o "Surge/Modules/${plugin_name}.sgmodule" "$download_url" || echo "  Failed to download ${plugin_name}.sgmodule"
+          done
+          echo "Finished processing Loon plugins."
 
       - name: Find and replace external JS resources
         continue-on-error: true  # 确保步骤在部分失败时继续执行
