@@ -56,15 +56,12 @@ jobs:
           
           # Add fmz200's blockAds plugin with custom name
           echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
-          
-          # Add Netease Cloud Music module as a special plugin
-          echo "https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule?rename=Netease_Music_AdBlock" >> plugin_urls.txt
 
-      - name: Extract categories and process plugins
+      - name: Extract categories from README
         run: |
+          # 从 README.md 提取分类并建立映射关系
           mkdir -p Surge/Modules
           
-          # 从 README.md 提取分类并建立映射关系
           declare -A category_map
           current_category=""
           
@@ -85,10 +82,29 @@ jobs:
             fi
           done < README.md
           
-          # 添加特定URL的自定义分类
-          category_map["https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule"]="🚫 AD Block"
+          # 保存分类映射到文件，供后续步骤使用
+          declare -p category_map > category_map.sh
+
+      - name: Download Netease Cloud Music Ad Removal Module
+        run: |
+          # 载入分类映射
+          source category_map.sh
           
-          # 处理插件下载
+          # 使用ScriptHub转换网易云音乐去广告模块（Surge模块转Surge模块）
+          encoded_name=$(echo "NetEase Music AdBlock" | jq -sRr @uri)
+          encoded_desc=$(echo "Ad removal for NetEase Music" | jq -sRr @uri)
+          encoded_category=$(echo "🚫 AD Block" | jq -sRr @uri)
+          download_url="http://localhost:9101/file/_start_/https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule/_end_/Netease_Music_AdBlock.sgmodule?type=surge-module&target=surge-module&del=true&n=${encoded_name}&y=${encoded_desc}&category=${encoded_category}&jqEnabled=true"
+          
+          echo "Downloading Netease Music AdBlock module via ScriptHub"
+          curl -A "Surge Mac/2985" -L -o "Surge/Modules/Netease_Music_AdBlock.sgmodule" "$download_url" || echo "Failed to download Netease_Music_AdBlock.sgmodule"
+
+      - name: Process Loon plugins to Surge modules
+        run: |
+          # 载入分类映射
+          source category_map.sh
+          
+          # 处理Loon插件到Surge模块的转换
           while read -r plugin_url; do
             # Extract custom name if specified
             if [[ "$plugin_url" == *"?rename="* ]]; then
@@ -125,18 +141,9 @@ jobs:
             
             encoded_category=$(echo "$category" | jq -sRr @uri)
             encoded_plugin_name=$(echo "$plugin_name" | jq -sRr @uri)
+            download_url="http://localhost:9101/file/_start_/${plugin_url}/_end_/${encoded_plugin_name}.sgmodule?type=loon-plugin&target=surge-module&sni=%20%2C%20&del=true&pm=REJECT&category=${encoded_category}&jqEnabled=true"
             
-            # 根据文件类型选择不同的处理方式
-            if [[ "$base_url" == *".sgmodule" ]]; then
-              # 对sgmodule文件使用surge-module作为源类型
-              download_url="http://localhost:9101/file/_start_/${base_url}/_end_/${encoded_plugin_name}.sgmodule?type=surge-module&target=surge-module&del=true&category=${encoded_category}&jqEnabled=true"
-              echo "Processing sgmodule $plugin_name with category: $category"
-            else
-              # 对plugin文件使用loon-plugin作为源类型
-              download_url="http://localhost:9101/file/_start_/${plugin_url}/_end_/${encoded_plugin_name}.sgmodule?type=loon-plugin&target=surge-module&sni=%20%2C%20&del=true&pm=REJECT&category=${encoded_category}&jqEnabled=true"
-              echo "Processing plugin $plugin_name with category: $category"
-            fi
-            
+            echo "Processing $plugin_name with category: $category"
             curl -A "Surge Mac/2985" -L -o "Surge/Modules/${plugin_name}.sgmodule" "$download_url" || echo "Failed to download ${plugin_name}.sgmodule"
           done < plugin_urls.txt
 
