@@ -167,36 +167,19 @@ jobs:
         run: |
           base_js_url="https://github.com/ilychi/esdeath/raw/main/Surge/Scripts"
           mkdir -p Surge/Scripts
-          
-          # 创建通用目录结构，可以存放所有JS文件
-          mkdir -p Surge/Scripts/js
-          
           for sgmodule_file in Surge/Modules/*.sgmodule; do
             echo "Processing $sgmodule_file"
-            
-            # 处理所有模块中的JS文件链接
-            js_links=$(grep -oP 'https?://[^\s"]+\.js' "$sgmodule_file" || echo "")
+            # 查找 .js 文件的外部链接
+            js_links=$(grep -oP 'https?://[^ ]+\.js' "$sgmodule_file" || echo "")
             for js_link in $js_links; do
-              # 提取脚本文件名和路径
               js_filename=$(basename "$js_link")
-              js_path=$(dirname "$js_link" | grep -oP '(?<=\/)[^\/]+\/[^\/]+$' || echo "")
-              
-              if [[ -n "$js_path" ]]; then
-                # 如果存在路径结构，保留相同结构
-                mkdir -p "Surge/Scripts/$js_path"
-                local_js_path="Surge/Scripts/$js_path/$js_filename"
-                github_js_url="$base_js_url/$js_path/$js_filename"
-              else
-                # 否则放在根目录
-                local_js_path="Surge/Scripts/$js_filename"
-                github_js_url="$base_js_url/$js_filename"
-              fi
-              
-              # 下载JS文件
+              local_js_path="Surge/Scripts/$js_filename"
+              # 使用指定的 User-Agent 下载 .js 文件
               echo "Downloading $js_link to $local_js_path"
               if curl -A "Surge Mac/2985" -L -o "$local_js_path" "$js_link"; then
                 echo "Download successful for $js_link"
-                # 替换sgmodule文件中的链接为GitHub仓库的路径
+                # 替换 sgmodule 文件中的链接为 GitHub 仓库的路径
+                github_js_url="$base_js_url/$js_filename"
                 sed -i "s|$js_link|$github_js_url|g" "$sgmodule_file"
               else
                 echo "Failed to download $js_link, skipping..."
@@ -208,21 +191,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 使用通配符递归添加所有JS文件
-          find Surge/Scripts -name "*.js" | xargs git add 2>/dev/null || true
-          git add Surge/Modules/*.sgmodule
-          
+          git add Surge/Modules/*.sgmodule Surge/Scripts/*.js
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
             git stash
             git pull --rebase  # 同步远程仓库的最新更改以避免冲突
             git stash pop  # 恢复之前的更改
-            
-            # 再次添加文件 (使用递归查找)
-            find Surge/Scripts -name "*.js" | xargs git add 2>/dev/null || true
-            git add Surge/Modules/*.sgmodule
-            
+            git add Surge/Modules/*.sgmodule Surge/Scripts/*.js  # 再次添加文件
             git commit -m "Update sgmodule files with GitHub-hosted JS resources"
             git push
           fi
