@@ -62,6 +62,38 @@ jobs:
           # 从 README.md 提取分类并建立映射关系
           mkdir -p Surge/Modules
           
+          # 定义确定分类的函数
+          determine_category() {
+            local url="$1"
+            local name="$2"
+            
+            # 首先查找预定义映射
+            if [[ -n "${category_map[$url]}" ]]; then
+              echo "${category_map[$url]}"
+              return
+            fi
+            
+            # 没有映射时，根据关键词判断
+            local combined_lower=$(echo "$url$name" | tr '[:upper:]' '[:lower:]')
+            
+            # 广告拦截类
+            if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad|remove_watermark|ssl_unpinning|filter|clean|purify|privacy|隐私|blocker|去广告|adguard|拦截|intercept) ]]; then
+              echo "🚫 AD Block"
+            # 签到类
+            elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus|signin|打卡|登录奖励|每日签到|daily.?reward) ]]; then
+              echo "✅ Checkin"
+            # 功能增强类
+            elif [[ "$combined_lower" =~ (unlock|解锁|enhance|增强|功能|feature|redirect|转发|utility|mount|挂载|translation|repair|external_links|query|detection|auto_join) ]]; then
+              echo "🔨 Tools"
+            # 默认为工具类
+            else
+              echo "🔨 Tools"
+            fi
+          }
+          
+          # 导出函数，使其在子shell中可用
+          export -f determine_category
+          
           declare -A category_map
           current_category=""
           
@@ -84,10 +116,38 @@ jobs:
           
           # 保存分类映射到文件，供后续步骤使用
           declare -p category_map > category_map.sh
+          # 保存函数到文件
+          echo 'determine_category() {
+            local url="$1"
+            local name="$2"
+            
+            # 首先查找预定义映射
+            if [[ -n "${category_map[$url]}" ]]; then
+              echo "${category_map[$url]}"
+              return
+            fi
+            
+            # 没有映射时，根据关键词判断
+            local combined_lower=$(echo "$url$name" | tr "[:upper:]" "[:lower:]")
+            
+            # 广告拦截类
+            if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad|remove_watermark|ssl_unpinning|filter|clean|purify|privacy|隐私|blocker|去广告|adguard|拦截|intercept) ]]; then
+              echo "🚫 AD Block"
+            # 签到类
+            elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus|signin|打卡|登录奖励|每日签到|daily.?reward) ]]; then
+              echo "✅ Checkin"
+            # 功能增强类
+            elif [[ "$combined_lower" =~ (unlock|解锁|enhance|增强|功能|feature|redirect|转发|utility|mount|挂载|translation|repair|external_links|query|detection|auto_join) ]]; then
+              echo "🔨 Tools"
+            # 默认为工具类
+            else
+              echo "🔨 Tools"
+            fi
+          }' >> category_map.sh
 
       - name: Download Netease Cloud Music Ad Removal Module
         run: |
-          # 载入分类映射
+          # 载入分类映射和函数
           source category_map.sh
           
           # 使用ScriptHub转换网易云音乐去广告模块（Surge模块转Surge模块）
@@ -101,7 +161,7 @@ jobs:
 
       - name: Process Loon plugins to Surge modules
         run: |
-          # 载入分类映射
+          # 载入分类映射和函数
           source category_map.sh
           
           # 处理Loon插件到Surge模块的转换
@@ -115,29 +175,9 @@ jobs:
               base_url="$plugin_url"
             fi
             
-            # 确定分类
-            if [[ -n "${category_map[$base_url]}" ]]; then
-              category="${category_map[$base_url]}"
-              echo "Using mapped category for $base_url: $category"
-            else
-              # 转换为小写进行匹配
-              combined_lower=$(echo "$plugin_url$plugin_name" | tr '[:upper:]' '[:lower:]')
-              
-              # 广告拦截类
-              if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad|remove_watermark|ssl_unpinning|filter|clean|purify|privacy|隐私|blocker|去广告|adguard|拦截|intercept) ]]; then
-                category="🚫 AD Block"
-              # 签到类
-              elif [[ "$combined_lower" =~ (checkin|sign|签到|dailybonus|bonus|signin|打卡|登录奖励|每日签到|daily.?reward) ]]; then
-                category="✅ Checkin"
-              # 功能增强类
-              elif [[ "$combined_lower" =~ (unlock|解锁|enhance|增强|功能|feature|redirect|转发|utility|mount|挂载|translation|repair|external_links|query|detection|auto_join) ]]; then
-                category="🔨 Tools"
-              # 默认为工具类
-              else
-                category="🔨 Tools"
-              fi
-              echo "Using fallback category for $plugin_url: $category"
-            fi
+            # 使用函数确定分类
+            category=$(determine_category "$base_url" "$plugin_name")
+            echo "Category for $plugin_name: $category"
             
             encoded_category=$(echo "$category" | jq -sRr @uri)
             encoded_plugin_name=$(echo "$plugin_name" | jq -sRr @uri)
