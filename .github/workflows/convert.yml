@@ -56,20 +56,22 @@ jobs:
           
           # Add fmz200's blockAds plugin with custom name
           echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
+          
+          # 我们不再在这里添加网易云模块，而是单独处理
 
-      - name: Download Netease Cloud Music Ad Removal Module
+      - name: Process modules with ScriptHub
         run: |
           mkdir -p Surge/Modules
-          # 下载网易云去广告模块
-          curl -s -o "Surge/Modules/Netease_Music_AdBlock.sgmodule" "https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule"
           
-          # 修改模块的分类、名称和描述
-          sed -i 's/#!category=.*/#!category= 🚫 AD Block/' "Surge/Modules/Netease_Music_AdBlock.sgmodule"
+          # 下载网易云去广告模块 (通过ScriptHub处理)
+          echo "处理网易云音乐模块..."
+          netease_url="http://localhost:9101/file/_start_/https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule/_end_/Netease_Music_AdBlock.sgmodule?type=surge-module&target=surge-module&del=true&jqEnabled=true&category=%F0%9F%9A%AB%20AD%20Block"
+          curl -A "Surge Mac/2985" -L -o "Surge/Modules/Netease_Music_AdBlock.sgmodule" "$netease_url"
+          
+          # 修改模块的名称和描述
           sed -i 's/#!name=.*/#!name= NetEase Music AdBlock/' "Surge/Modules/Netease_Music_AdBlock.sgmodule"
           sed -i 's/#!desc=.*/#!desc= Ad removal for NetEase Music/' "Surge/Modules/Netease_Music_AdBlock.sgmodule"
-          
-          # 不需要在这里下载脚本和替换路径
-          # 让"Find and replace external JS resources"步骤处理这部分工作
+          echo "网易云音乐模块处理完成"
 
       - name: Extract categories and process plugins
         run: |
@@ -139,33 +141,9 @@ jobs:
             curl -A "Surge Mac/2985" -L -o "Surge/Modules/${plugin_name}.sgmodule" "$download_url" || echo "Failed to download ${plugin_name}.sgmodule"
           done < plugin_urls.txt
 
-      - name: Find and replace external JS resources
-        continue-on-error: true  # 确保步骤在部分失败时继续执行
+      - name: Add rulesets to modules
         run: |
-          base_js_url="https://github.com/ilychi/esdeath/raw/main/Surge/Scripts"
-          mkdir -p Surge/Scripts
-          for sgmodule_file in Surge/Modules/*.sgmodule; do
-            echo "Processing $sgmodule_file"
-            # 查找 .js 文件的外部链接
-            js_links=$(grep -oP 'https?://[^ ]+\.js' "$sgmodule_file" || echo "")
-            for js_link in $js_links; do
-              js_filename=$(basename "$js_link")
-              local_js_path="Surge/Scripts/$js_filename"
-              # 使用指定的 User-Agent 下载 .js 文件
-              echo "Downloading $js_link to $local_js_path"
-              if curl -A "Surge Mac/2985" -L -o "$local_js_path" "$js_link"; then
-                echo "Download successful for $js_link"
-                # 替换 sgmodule 文件中的链接为 GitHub 仓库的路径
-                github_js_url="$base_js_url/$js_filename"
-                sed -i "s|$js_link|$github_js_url|g" "$sgmodule_file"
-              else
-                echo "Failed to download $js_link, skipping..."
-              fi
-            done
-          done
-
-      - name: Add ruleset to fmz200's module
-        run: |
+          # 处理fmz200的模块
           fmz_module="Surge/Modules/Remove_ads_by_fmz.sgmodule"
           if [ -f "$fmz_module" ]; then
             echo "Adding ruleset to $fmz_module"
@@ -184,18 +162,70 @@ jobs:
             echo "Warning: $fmz_module not found"
           fi
 
+      - name: Find and replace external JS resources
+        continue-on-error: true  # 确保步骤在部分失败时继续执行
+        run: |
+          base_js_url="https://github.com/ilychi/esdeath/raw/main/Surge/Scripts"
+          mkdir -p Surge/Scripts
+          
+          # 创建网易云脚本的特殊目录
+          mkdir -p Surge/Scripts/wy/js
+          
+          for sgmodule_file in Surge/Modules/*.sgmodule; do
+            echo "Processing $sgmodule_file"
+            sgmodule_name=$(basename "$sgmodule_file")
+            
+            # 专门处理网易云模块的JS文件
+            if [[ "$sgmodule_name" == "Netease_Music_AdBlock.sgmodule" ]]; then
+              echo "处理网易云音乐模块的JS资源..."
+              # 提取wyres.js脚本链接
+              js_links=$(grep -oP 'https?://[^ ]+/wyres\.js' "$sgmodule_file" || echo "")
+              for js_link in $js_links; do
+                js_filename="wyres.js"
+                local_js_path="Surge/Scripts/wy/js/$js_filename"
+                echo "Downloading $js_link to $local_js_path"
+                if curl -A "Surge Mac/2985" -L -o "$local_js_path" "$js_link"; then
+                  echo "Download successful for $js_link"
+                  # 替换sgmodule文件中的链接为GitHub仓库的路径
+                  github_js_url="$base_js_url/wy/js/$js_filename"
+                  sed -i "s|$js_link|$github_js_url|g" "$sgmodule_file"
+                else
+                  echo "Failed to download $js_link, skipping..."
+                fi
+              done
+              continue
+            fi
+            
+            # 处理其他一般模块
+            js_links=$(grep -oP 'https?://[^ ]+\.js' "$sgmodule_file" || echo "")
+            for js_link in $js_links; do
+              js_filename=$(basename "$js_link")
+              local_js_path="Surge/Scripts/$js_filename"
+              # 使用指定的 User-Agent 下载 .js 文件
+              echo "Downloading $js_link to $local_js_path"
+              if curl -A "Surge Mac/2985" -L -o "$local_js_path" "$js_link"; then
+                echo "Download successful for $js_link"
+                # 替换 sgmodule 文件中的链接为 GitHub 仓库的路径
+                github_js_url="$base_js_url/$js_filename"
+                sed -i "s|$js_link|$github_js_url|g" "$sgmodule_file"
+              else
+                echo "Failed to download $js_link, skipping..."
+              fi
+            done
+          done
+
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add Surge/Modules/*.sgmodule Surge/Scripts/*.js
+          git add Surge/Modules/*.sgmodule Surge/Scripts/*.js Surge/Scripts/wy/js/*.js
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
             git stash
             git pull --rebase  # 同步远程仓库的最新更改以避免冲突
             git stash pop  # 恢复之前的更改
-            git add Surge/Modules/*.sgmodule Surge/Scripts/*.js  # 再次添加文件
+            git add Surge/Modules/*.sgmodule Surge/Scripts/*.js Surge/Scripts/wy/js/*.js  # 再次添加文件
             git commit -m "Update sgmodule files with GitHub-hosted JS resources"
             git push
           fi
