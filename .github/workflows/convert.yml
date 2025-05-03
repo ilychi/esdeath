@@ -57,34 +57,17 @@ jobs:
           # Add fmz200's blockAds plugin with custom name
           echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
 
-      - name: Download Additional Modules via ScriptHub
+      - name: Download Netease Cloud Music Ad Removal Module
         run: |
           mkdir -p Surge/Modules
+          # 使用ScriptHub转换网易云音乐去广告模块
+          encoded_name=$(echo "NetEase Music AdBlock" | jq -sRr @uri)
+          encoded_desc=$(echo "Ad removal for NetEase Music" | jq -sRr @uri)
+          encoded_category=$(echo "🚫 AD Block" | jq -sRr @uri)
+          download_url="http://localhost:9101/file/_start_/https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule/_end_/Netease_Music_AdBlock.sgmodule?type=surge-module&target=surge-module&del=true&n=${encoded_name}&y=${encoded_desc}&category=${encoded_category}&jqEnabled=true"
           
-          # 定义要通过ScriptHub下载的模块列表
-          declare -A scripthub_modules=(
-            ["Netease_Music_AdBlock"]="http://script.hub/file/_start_/https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule/_end_/Netease_Music_AdBlock.sgmodule?n=%5BK%5D%E7%BD%91%E6%98%93%E4%BA%91%E5%8E%BB%E9%9F%B3%E4%B9%90%2B%E5%8E%BB%E5%B9%BF%E5%91%8A%26%E8%87%AA%E5%AE%9A%E4%B9%89%E7%95%8C%E9%9D%A2&type=surge-module&target=surge-module&del=true&jqEnabled=true"
-          )
-          
-          # 下载并处理每个ScriptHub模块
-          for module_name in "${!scripthub_modules[@]}"; do
-            module_url="${scripthub_modules[$module_name]}"
-            output_file="Surge/Modules/${module_name}.sgmodule"
-            
-            echo "Downloading $module_name from ScriptHub..."
-            curl -A "Surge Mac/2985" -L -o "$output_file" "$module_url" || echo "Failed to download ${module_name}.sgmodule"
-            
-            if [ -f "$output_file" ]; then
-              # 设置模块分类
-              sed -i 's/#!category=.*/#!category= 🚫 AD Block/' "$output_file"
-              # 设置英文名称和描述
-              if [ "$module_name" == "Netease_Music_AdBlock" ]; then
-                sed -i 's/#!name=.*/#!name= NetEase Music AdBlock/' "$output_file"
-                sed -i 's/#!desc=.*/#!desc= Ad removal for NetEase Music/' "$output_file"
-              fi
-              echo "Successfully processed $module_name"
-            fi
-          done
+          echo "Downloading Netease Music AdBlock module via ScriptHub"
+          curl -A "Surge Mac/2985" -L -o "Surge/Modules/Netease_Music_AdBlock.sgmodule" "$download_url" || echo "Failed to download Netease_Music_AdBlock.sgmodule"
 
       - name: Extract categories and process plugins
         run: |
@@ -154,29 +137,6 @@ jobs:
             curl -A "Surge Mac/2985" -L -o "Surge/Modules/${plugin_name}.sgmodule" "$download_url" || echo "Failed to download ${plugin_name}.sgmodule"
           done < plugin_urls.txt
 
-      - name: Add ruleset to special modules
-        run: |
-          # 处理fmz200的模块
-          fmz_module="Surge/Modules/Remove_ads_by_fmz.sgmodule"
-          if [ -f "$fmz_module" ]; then
-            echo "Adding ruleset to $fmz_module"
-            
-            # 检查文件中是否已有[Rule]部分
-            if grep -q "\[Rule\]" "$fmz_module"; then
-              # 在[Rule]部分后添加规则集
-              sed -i '/\[Rule\]/a RULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list ,REJECT,pre-matching,extended-matching,no-resolve' "$fmz_module"
-              echo "Added ruleset after existing [Rule] section"
-            else
-              # 如果没有[Rule]部分，添加新的部分
-              echo -e "\n[Rule]\nRULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list ,REJECT,pre-matching,extended-matching,no-resolve" >> "$fmz_module"
-              echo "Added new [Rule] section with ruleset"
-            fi
-          else
-            echo "Warning: $fmz_module not found"
-          fi
-          
-          # 可以在这里添加对其他特殊模块的处理...
-
       - name: Find and replace external JS resources
         continue-on-error: true  # 确保步骤在部分失败时继续执行
         run: |
@@ -201,6 +161,26 @@ jobs:
               fi
             done
           done
+
+      - name: Add ruleset to fmz200's module
+        run: |
+          fmz_module="Surge/Modules/Remove_ads_by_fmz.sgmodule"
+          if [ -f "$fmz_module" ]; then
+            echo "Adding ruleset to $fmz_module"
+            
+            # 检查文件中是否已有[Rule]部分
+            if grep -q "\[Rule\]" "$fmz_module"; then
+              # 在[Rule]部分后添加规则集
+              sed -i '/\[Rule\]/a RULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list ,REJECT,pre-matching,extended-matching,no-resolve' "$fmz_module"
+              echo "Added ruleset after existing [Rule] section"
+            else
+              # 如果没有[Rule]部分，添加新的部分
+              echo -e "\n[Rule]\nRULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list ,REJECT,pre-matching,extended-matching,no-resolve" >> "$fmz_module"
+              echo "Added new [Rule] section with ruleset"
+            fi
+          else
+            echo "Warning: $fmz_module not found"
+          fi
 
       - name: Commit and push changes
         env:
