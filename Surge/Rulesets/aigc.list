@@ -1,12 +1,12 @@
 // Ruleset - AIGC Services
-// Last updated: 2025/5/4 22:36:05
-// DOMAIN: 42
-// DOMAIN-SUFFIX: 46
+// Last updated: 2025/5/4 22:58:46
+// DOMAIN: 43
+// DOMAIN-SUFFIX: 47
 // DOMAIN-KEYWORD: 6
 // IP-CIDR: 1
 // IP-CIDR6: 1
 // OTHER: 2
-// Total: 98
+// Total: 100
 // This file contains rules for AI services including OpenAI, Google Gemini, Claude, Perplexity and other generative AI platforms
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/ai.conf
@@ -54,6 +54,7 @@ DOMAIN,proactivebackend-pa.googleapis.com
 DOMAIN,production-openaicom-storage.azureedge.net
 DOMAIN,sydney.bing.com
 DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
+DOMAIN,trae-api-sg.mchost.guru
 DOMAIN,turn.livekit.cloud
 DOMAIN,www.bing.com
 DOMAIN-KEYWORD,alkalimakersuite-pa.clients6.google.com
@@ -107,6 +108,7 @@ DOMAIN-SUFFIX,pplx.ai
 DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com
 DOMAIN-SUFFIX,smoot.apple.com
 DOMAIN-SUFFIX,sora.com
+DOMAIN-SUFFIX,trae.ai
 DOMAIN-SUFFIX,x.ai
 IP-CIDR,160.79.104.0/23,no-resolve
 IP-CIDR6,2607:6bc0::/48,no-resolve

@@ -210,3 +210,6 @@ DOMAIN,object-web.gundamevolution.jp
 
 # Cloudflare云存储
 DOMAIN-SUFFIX,cloudflarestorage.com
+
+# Hugging Face模型下载
+DOMAIN-SUFFIX,hf.co
