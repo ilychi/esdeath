@@ -1,8 +1,8 @@
 // Ruleset - Direct Emby Connections
-// Last updated: 2025/5/4 23:00:08
+// Last updated: 2025/5/4 23:13:30
 // DOMAIN-SUFFIX: 24
-// IP-CIDR: 19
-// Total: 43
+// IP-CIDR: 21
+// Total: 45
 // This file contains rules for Emby servers that can be accessed directly from Mainland China without proxy
 // Data sources:
 //  - https://github.com/h05n/-/raw/main/直连emby
@@ -49,3 +49,5 @@ IP-CIDR,43.143.248.18/32,no-resolve
 IP-CIDR,45.142.176.135/32,no-resolve
 IP-CIDR,45.196.233.152/32,no-resolve
 IP-CIDR,45.196.233.152/32,no-resolve
+IP-CIDR,46.3.109.178/32,no-resolve
+IP-CIDR,89.251.26.222/32,no-resolve
