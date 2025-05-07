@@ -1,8 +1,8 @@
 // Ruleset - Direct Emby Connections
-// Last updated: 2025/5/7 13:39:37
-// DOMAIN-SUFFIX: 26
+// Last updated: 2025/5/7 14:00:34
+// DOMAIN-SUFFIX: 27
 // IP-CIDR: 23
-// Total: 49
+// Total: 50
 // This file contains rules for Emby servers that can be accessed directly from Mainland China without proxy
 // Data sources:
 //  - https://github.com/h05n/-/raw/main/直连emby
@@ -12,6 +12,7 @@ DOMAIN-SUFFIX,115cdn.net
 DOMAIN-SUFFIX,28.al
 DOMAIN-SUFFIX,285286.xyz
 DOMAIN-SUFFIX,306699.xyz
+DOMAIN-SUFFIX,43992026.xyz
 DOMAIN-SUFFIX,7tfvo-os5ve-8jpde.biliblili.uk
 DOMAIN-SUFFIX,994959.xyz
 DOMAIN-SUFFIX,bangumi.ca
