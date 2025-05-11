@@ -1,7 +1,7 @@
 // Ruleset - ASN in China
-// Last updated: 2025/5/11 11:29:35
-// IP-ASN: 5042
-// Total: 5042
+// Last updated: 2025/5/11 11:49:17
+// IP-ASN: 5041
+// Total: 5041
 // This file contains ASN information in China. Made by DH-Teams.
 // Data sources:
 //  - https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_CN.list
@@ -473,7 +473,6 @@ IP-ASN,137795
 IP-ASN,137798
 IP-ASN,137799
 IP-ASN,137801
-IP-ASN,137804
 IP-ASN,137806
 IP-ASN,137908
 IP-ASN,138029
