@@ -1,11 +1,11 @@
 // Ruleset - Emby Media Servers
-// Last updated: 2025/5/13 16:43:11
+// Last updated: 2025/5/13 17:01:08
 // DOMAIN: 71
-// DOMAIN-SUFFIX: 209
+// DOMAIN-SUFFIX: 210
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 15
 // OTHER: 1
-// Total: 299
+// Total: 300
 // This file contains rules for third-party Emby media server instances requiring proxy access
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -244,6 +244,7 @@ DOMAIN-SUFFIX,nakonako.net
 DOMAIN-SUFFIX,nanflix.net
 DOMAIN-SUFFIX,nebula-emby.com
 DOMAIN-SUFFIX,nebula-media.org
+DOMAIN-SUFFIX,niceduck.lol
 DOMAIN-SUFFIX,nijigem.by
 DOMAIN-SUFFIX,ntt1.jmsooo.com
 DOMAIN-SUFFIX,odysseyplus.site
