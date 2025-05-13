@@ -1,14 +1,15 @@
 // Ruleset - NetEase Cloud Music
-// Last updated: 2025/5/13 20:49:22
-// DOMAIN: 1
+// Last updated: 2025/5/13 21:10:49
+// DOMAIN: 2
 // DOMAIN-SUFFIX: 2
 // IP-CIDR: 17
 // USER-AGENT: 2
-// Total: 22
+// Total: 23
 // This file contains rules for NetEase Cloud Music streaming service, optimized for China mainland access
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/neteasemusic.conf
 //  - https://ruleset.skk.moe/List/ip/neteasemusic.conf
+DOMAIN,th1s_rule5et_1s_m4d3_by_5ukk4w_ruleset.skk.moe
 DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
 DOMAIN-SUFFIX,music.126.net
 DOMAIN-SUFFIX,music.163.com

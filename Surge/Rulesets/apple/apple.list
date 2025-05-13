@@ -1,10 +1,10 @@
 // Ruleset - Apple Services
-// Last updated: 2025/5/13 20:47:50
-// DOMAIN: 9
+// Last updated: 2025/5/13 21:09:22
+// DOMAIN: 10
 // DOMAIN-SUFFIX: 184
 // IP-CIDR: 10
 // PROCESS-NAME: 10
-// Total: 213
+// Total: 214
 // This file contains rules for Apple services, including services operated in mainland China (iCloud.com.cn, Apple Maps China, etc).
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/apple_services.conf
@@ -20,6 +20,7 @@ DOMAIN,mask-canary.icloud.com
 DOMAIN,mask-h2.icloud.com
 DOMAIN,mask.apple-dns.net
 DOMAIN,mask.icloud.com
+DOMAIN,th1s_rule5et_1s_m4d3_by_5ukk4w_ruleset.skk.moe
 DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
 DOMAIN-SUFFIX,a1.mzstatic.com
 DOMAIN-SUFFIX,a2.mzstatic.com
