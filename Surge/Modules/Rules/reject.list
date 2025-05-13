@@ -384,9 +384,6 @@ DOMAIN,msg.umengcloud.com
 DOMAIN,sec.umeng.com
 DOMAIN,ynuf.aliapp.org
 
-# >> FleaMarket
-AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
-
 # >> Cainiao
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
 DOMAIN,amdc.m.youku.com
@@ -400,12 +397,6 @@ DOMAIN,vali-g1.cp31.ott.cibntv.net
 DOMAIN,vali-ugc.cp31.ott.cibntv.net
 DOMAIN,yk-ssp.ad.youku.com
 DOMAIN,ykad-data.youku.com
-
-# >> Amap
-AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
-DOMAIN,amap-aos-info-nogw.amap.com
-DOMAIN,free-aos-cdn-image.amap.com
-DOMAIN-SUFFIX,v.smtcdns.com
 
 # >> DiDi
 DOMAIN,hd.xiaojukeji.com
