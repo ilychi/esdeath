@@ -1,4 +1,16 @@
 // Ruleset - Domestic Services
+// Last updated: 2025/5/15 01:38:29
+// DOMAIN: 20
+// DOMAIN-SUFFIX: 773
+// IP-CIDR: 2
+// USER-AGENT: 3
+// OTHER: 5
+// Total: 803
+// This file contains known addresses that are available in Mainland China
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/domestic.conf
+//  - https://ruleset.skk.moe/List/ip/domestic.conf
+// Ruleset - Domestic Services
 // Last updated: 2025/5/15 01:13:31
 // DOMAIN: 20
 // DOMAIN-SUFFIX: 773
