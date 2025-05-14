@@ -1,11 +1,11 @@
 // Ruleset - Emby Media Servers
-// Last updated: 2025/5/15 01:00:32
+// Last updated: 2025/5/15 01:13:30
 // DOMAIN: 71
-// DOMAIN-SUFFIX: 210
+// DOMAIN-SUFFIX: 211
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 15
 // OTHER: 1
-// Total: 300
+// Total: 301
 // This file contains rules for third-party Emby media server instances requiring proxy access
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -86,6 +86,7 @@ DOMAIN,z.sfcj.org // 非越
 DOMAIN-KEYWORD,emby.wtf
 DOMAIN-KEYWORD,jmsooo
 DOMAIN-KEYWORD,odysseyplus
+DOMAIN-SUFFIX,023168.xyz
 DOMAIN-SUFFIX,1.4545.cf
 DOMAIN-SUFFIX,1.loseremby.org
 DOMAIN-SUFFIX,1024.name
