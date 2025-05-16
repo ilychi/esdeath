@@ -1,4 +1,14 @@
 // Ruleset - Anti-IP Attribution (Proxy)
+// Last updated: 2025/5/17 05:34:56
+// DOMAIN: 47
+// DOMAIN-SUFFIX: 29
+// DOMAIN-KEYWORD: 14
+// IP-CIDR: 97
+// Total: 187
+// This file contains proxy rules to counter IP-based location attribution required by Chinese social media platforms
+// Data sources:
+//  - https://github.com/SunsetMkt/anti-ip-attribution/raw/main/generated/rule-set-proxy.list
+// Ruleset - Anti-IP Attribution (Proxy)
 // Last updated: 2025/5/17 05:11:56
 // DOMAIN: 47
 // DOMAIN-SUFFIX: 29
