@@ -1,11 +1,11 @@
 // Ruleset - Emby Media Servers
-// Last updated: 2025/5/16 19:36:29
+// Last updated: 2025/5/16 20:48:54
 // DOMAIN: 71
-// DOMAIN-SUFFIX: 211
+// DOMAIN-SUFFIX: 212
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 15
 // OTHER: 1
-// Total: 301
+// Total: 302
 // This file contains rules for third-party Emby media server instances requiring proxy access
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -98,6 +98,7 @@ DOMAIN-SUFFIX,23.emby77.cf
 DOMAIN-SUFFIX,23s.casacam.net
 DOMAIN-SUFFIX,28.al
 DOMAIN-SUFFIX,285286.xyz
+DOMAIN-SUFFIX,313445.xyz
 DOMAIN-SUFFIX,581658.best
 DOMAIN-SUFFIX,697758.best
 DOMAIN-SUFFIX,7777777.buzz
