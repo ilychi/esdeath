@@ -290,14 +290,6 @@ IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,no-resolve
 # >> Snowball
 URL-REGEX,"^http:\/\/119\.29\.29\.98\/d\?"
 
-# >> WeChatMP
-DOMAIN,wxsnsdy.wxs.qq.com
-DOMAIN,wxsmsdy.video.qq.com
-DOMAIN,wxsnsdythumb.wxs.qq.com
-DOMAIN,ads-shopping.shouqianba.com
-DOMAIN,ad.maoyan.com
-DOMAIN,e.jparking.cn
-
 # >> WeChatOA
 DOMAIN-SUFFIX,wxs.qq.com
 
@@ -333,10 +325,6 @@ DOMAIN,adbehavior.ximalaya.com
 DOMAIN,adbehavior.wsa.ximalaya.com
 DOMAIN,dns2.q2cdn.com
 URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
-
-# >> YouTube
-AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
-AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
 
 # >> VideoGo
 DOMAIN,httpdns.yunxindns.com
