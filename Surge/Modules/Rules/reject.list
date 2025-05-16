@@ -362,6 +362,13 @@ AND,((IP-CIDR,111.225.147.191/32,no-resolve),(DEST-PORT,6443))
 AND,((IP-CIDR,111.63.61.101/32,no-resolve),(DEST-PORT,6443))
 AND,((IP-CIDR,220.243.141.0/32,no-resolve),(DEST-PORT,6443))
 
+# >> JD
+DOMAIN,dns.jd.com
+AND,((PROTOCOL,TCP),(DOMAIN,api.m.jd.com)),REJECT-NO-DROP
+URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?"
+IP-CIDR,101.124.19.122/32,no-resolve
+IP-CIDR6,2402:db40:5100:1011::5/128,no-resolve
+
 # >> Taobao
 DOMAIN,adashx.m.taobao.com
 DOMAIN,h-adashx.ut.taobao.com
@@ -377,6 +384,9 @@ DOMAIN,msg.umengcloud.com
 DOMAIN,sec.umeng.com
 DOMAIN,ynuf.aliapp.org
 
+# >> FleaMarket
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
+
 # >> Cainiao
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
 DOMAIN,amdc.m.youku.com
@@ -390,6 +400,12 @@ DOMAIN,vali-g1.cp31.ott.cibntv.net
 DOMAIN,vali-ugc.cp31.ott.cibntv.net
 DOMAIN,yk-ssp.ad.youku.com
 DOMAIN,ykad-data.youku.com
+
+# >> Amap
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
+DOMAIN,amap-aos-info-nogw.amap.com
+DOMAIN,free-aos-cdn-image.amap.com
+DOMAIN-SUFFIX,v.smtcdns.com
 
 # >> DiDi
 DOMAIN,hd.xiaojukeji.com
