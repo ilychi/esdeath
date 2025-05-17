@@ -273,6 +273,9 @@ DOMAIN-SUFFIX,66mobi.com
 DOMAIN,huodong.weibo.cn
 DOMAIN-SUFFIX,biz.weibo.com
 
+# >> RedPaper
+AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com))
+
 # >> Zhihu
 DOMAIN,appcloud.zhihu.com
 DOMAIN,appcloud2.in.zhihu.com
@@ -284,8 +287,13 @@ IP-CIDR,103.41.167.237/32,no-resolve
 IP-CIDR,118.89.204.198/32,no-resolve
 IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,no-resolve
 
-# >> Snowball
-URL-REGEX,"^http:\/\/119\.29\.29\.98\/d\?"
+# >> WeChatMP
+DOMAIN,wxsnsdy.wxs.qq.com
+DOMAIN,wxsmsdy.video.qq.com
+DOMAIN,wxsnsdythumb.wxs.qq.com
+DOMAIN,ads-shopping.shouqianba.com
+DOMAIN,ad.maoyan.com
+DOMAIN,e.jparking.cn
 
 # >> WeChatOA
 DOMAIN-SUFFIX,wxs.qq.com
@@ -306,6 +314,14 @@ DOMAIN,p.l.qq.com
 DOMAIN,tangram.e.qq.com
 DOMAIN-SUFFIX,imtmp.net
 
+# >> NetEaseMusic
+DOMAIN,iadmat.nosdn.127.net
+DOMAIN,iadmatapk.nosdn.127.net
+DOMAIN,iadmusicmat.music.126.net
+DOMAIN,iadmusicmatvideo.music.126.net
+DOMAIN,ipv4.music.163.com
+DOMAIN,ipv6.music.163.com
+
 # >> Himalaya
 DOMAIN,adse.ximalaya.com
 DOMAIN,adsehera.ximalaya.com
@@ -315,10 +331,33 @@ DOMAIN,adbehavior.wsa.ximalaya.com
 DOMAIN,dns2.q2cdn.com
 URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
 
+# >> YouTube
+AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
+AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
+
 # >> VideoGo
 DOMAIN,httpdns.yunxindns.com
 DOMAIN-SUFFIX,gdtimg.com
 DOMAIN-SUFFIX,pos.baidu.com
+
+# >> SodaMusic
+AND,((DOMAIN-KEYWORD,api100-core-quic-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-normal-quic-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-normal-quic-aweme-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-quic-core-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,api100-quic-normal-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,frontier100-aweme),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,ma5-normal-),(DOMAIN-SUFFIX,zijieapi.com))
+AND,((DOMAIN-KEYWORD,polaris5-normal-),(DOMAIN-SUFFIX,zijieapi.com))
+AND,((DOMAIN-KEYWORD,webcast100-ws-c-),(DOMAIN-SUFFIX,amemv.com))
+AND,((DOMAIN-KEYWORD,tnc),(AND,((OR,((DOMAIN-KEYWORD,-bjlgy),(DOMAIN-KEYWORD,-alisc),(DOMAIN-KEYWORD,-aliec),(DOMAIN-KEYWORD,-alisg))),(OR,((DOMAIN-SUFFIX,snssdk.com),(DOMAIN-SUFFIX,isnssdk.com),(DOMAIN-SUFFIX,toutiaoapi.com),(DOMAIN-SUFFIX,bytedance.com),(DOMAIN-SUFFIX,zijieapi.com))))))
+DOMAIN,frontier-aweme-hl.snssdk.com
+DOMAIN,frontier-quic-test.bytedance.com
+AND,((IP-CIDR,101.126.58.201/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,110.249.199.75/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,111.225.147.191/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,111.63.61.101/32,no-resolve),(DEST-PORT,6443))
+AND,((IP-CIDR,220.243.141.0/32,no-resolve),(DEST-PORT,6443))
 
 # >> Taobao
 DOMAIN,adashx.m.taobao.com
@@ -335,12 +374,45 @@ DOMAIN,msg.umengcloud.com
 DOMAIN,sec.umeng.com
 DOMAIN,ynuf.aliapp.org
 
+# >> Cainiao
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
+DOMAIN,amdc.m.youku.com
+DOMAIN,apiv4-iyes.youku.com
+DOMAIN,httpdns.alicdn.com
+DOMAIN,huichuan-mc.sm.cn
+DOMAIN,huichuan.sm.cn
+DOMAIN,iyes.youku.com
+DOMAIN,mc.atm.youku.com
+DOMAIN,vali-g1.cp31.ott.cibntv.net
+DOMAIN,vali-ugc.cp31.ott.cibntv.net
+DOMAIN,yk-ssp.ad.youku.com
+DOMAIN,ykad-data.youku.com
+
+# >> Amap
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
+DOMAIN,amap-aos-info-nogw.amap.com
+DOMAIN,free-aos-cdn-image.amap.com
+DOMAIN-SUFFIX,v.smtcdns.com
+
+# >> DiDi
+DOMAIN,hd.xiaojukeji.com
+DOMAIN,gwp.xiaojukeji.com
+AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
+AND,((IP-ASN,63646,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
+
+# >> Umetrip
+URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native"
+
 # >> MeiTu
 DOMAIN,adui.tg.meitu.com
 
+# >> Keep
+DOMAIN,httpdns.n.netease.com
+DOMAIN,httpdns.calorietech.com
+DOMAIN,hc-ssp.sm.cn
+
 # >> MailMaster
 DOMAIN,httpdns.music.163.com
-DOMAIN,httpdns.n.netease.com
 DOMAIN,httpdns-sdk.n.netease.com
 DOMAIN,lofter.httpdns.c.163.com
 DOMAIN,music.httpdns.c.163.com
