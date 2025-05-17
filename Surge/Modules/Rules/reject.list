@@ -298,6 +298,9 @@ DOMAIN,ads-shopping.shouqianba.com
 DOMAIN,ad.maoyan.com
 DOMAIN,e.jparking.cn
 
+# >> WeChatOA
+DOMAIN-SUFFIX,wxs.qq.com
+
 # >> QQMusic
 DOMAIN,adstats.tencentmusic.com
 DOMAIN,ad.tencentmusic.com
@@ -313,6 +316,14 @@ DOMAIN,h.trace.qq.com
 DOMAIN,p.l.qq.com
 DOMAIN,tangram.e.qq.com
 DOMAIN-SUFFIX,imtmp.net
+
+# >> NetEaseMusic
+DOMAIN,iadmat.nosdn.127.net
+DOMAIN,iadmatapk.nosdn.127.net
+DOMAIN,iadmusicmat.music.126.net
+DOMAIN,iadmusicmatvideo.music.126.net
+DOMAIN,ipv4.music.163.com
+DOMAIN,ipv6.music.163.com
 
 # >> Himalaya
 DOMAIN,adse.ximalaya.com
