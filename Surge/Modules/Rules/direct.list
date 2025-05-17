@@ -1,2 +1,5 @@
 # >> Weibo
 DOMAIN-SUFFIX,uve.weibo.com
+
+# >> 12306
+DOMAIN,ad.12306.cn
