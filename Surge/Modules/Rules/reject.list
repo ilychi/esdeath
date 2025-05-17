@@ -419,13 +419,9 @@ URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/
 # >> MeiTu
 DOMAIN,adui.tg.meitu.com
 
-# >> Keep
-DOMAIN,httpdns.n.netease.com
-DOMAIN,httpdns.calorietech.com
-DOMAIN,hc-ssp.sm.cn
-
 # >> MailMaster
 DOMAIN,httpdns.music.163.com
+DOMAIN,httpdns.n.netease.com
 DOMAIN,httpdns-sdk.n.netease.com
 DOMAIN,lofter.httpdns.c.163.com
 DOMAIN,music.httpdns.c.163.com
@@ -442,11 +438,6 @@ URL-REGEX,"^http:\/\/114\.110\.97\.30\/d"
 URL-REGEX,"^http:\/\/114\.110\.97\.97\/d"
 URL-REGEX,"^http:\/\/121\.5\.84\.85\/d"
 URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d"
-
-# >> ColorfulClouds
-DOMAIN,abyss.cyapi.cn
-DOMAIN,ad.cyapi.cn
-DOMAIN,gather.colorfulclouds.net
 
 # >> Aiinquiry
 URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/"
