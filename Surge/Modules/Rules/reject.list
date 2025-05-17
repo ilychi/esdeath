@@ -276,6 +276,17 @@ DOMAIN-SUFFIX,biz.weibo.com
 # >> RedPaper
 AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com))
 
+# >> Zhihu
+DOMAIN,appcloud.zhihu.com
+DOMAIN,appcloud2.in.zhihu.com
+DOMAIN,crash2.zhihu.com
+DOMAIN,mqtt.zhihu.com
+DOMAIN,sugar.zhihu.com
+DOMAIN,zxid-m.mobileservice.cn
+IP-CIDR,103.41.167.237/32,no-resolve
+IP-CIDR,118.89.204.198/32,no-resolve
+IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,no-resolve
+
 # >> Snowball
 URL-REGEX,"^http:\/\/119\.29\.29\.98\/d\?"
 
@@ -289,6 +300,22 @@ DOMAIN,e.jparking.cn
 
 # >> WeChatOA
 DOMAIN-SUFFIX,wxs.qq.com
+
+# >> QQMusic
+DOMAIN,adstats.tencentmusic.com
+DOMAIN,ad.tencentmusic.com
+DOMAIN,adcdn.tencentmusic.com
+DOMAIN,adcdn6.tencentmusic.com
+DOMAIN,adexpo.tencentmusic.com
+DOMAIN,adclick.tencentmusic.com
+DOMAIN,monitor.music.qq.com
+DOMAIN,stat.y.qq.com
+DOMAIN,tmeadquic.y.qq.com
+DOMAIN,oth.str.mdt.qq.com
+DOMAIN,h.trace.qq.com
+DOMAIN,p.l.qq.com
+DOMAIN,tangram.e.qq.com
+DOMAIN-SUFFIX,imtmp.net
 
 # >> NetEaseMusic
 DOMAIN,iadmat.nosdn.127.net
@@ -360,6 +387,20 @@ DOMAIN,ynuf.aliapp.org
 # >> FleaMarket
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
 
+# >> Cainiao
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
+DOMAIN,amdc.m.youku.com
+DOMAIN,apiv4-iyes.youku.com
+DOMAIN,httpdns.alicdn.com
+DOMAIN,huichuan-mc.sm.cn
+DOMAIN,huichuan.sm.cn
+DOMAIN,iyes.youku.com
+DOMAIN,mc.atm.youku.com
+DOMAIN,vali-g1.cp31.ott.cibntv.net
+DOMAIN,vali-ugc.cp31.ott.cibntv.net
+DOMAIN,yk-ssp.ad.youku.com
+DOMAIN,ykad-data.youku.com
+
 # >> Amap
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
 DOMAIN,amap-aos-info-nogw.amap.com
@@ -372,6 +413,9 @@ DOMAIN,gwp.xiaojukeji.com
 AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
 AND,((IP-ASN,63646,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
 
+# >> Umetrip
+URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native"
+
 # >> MeiTu
 DOMAIN,adui.tg.meitu.com
 
@@ -379,6 +423,25 @@ DOMAIN,adui.tg.meitu.com
 DOMAIN,httpdns.n.netease.com
 DOMAIN,httpdns.calorietech.com
 DOMAIN,hc-ssp.sm.cn
+
+# >> MailMaster
+DOMAIN,httpdns.music.163.com
+DOMAIN,httpdns-sdk.n.netease.com
+DOMAIN,lofter.httpdns.c.163.com
+DOMAIN,music.httpdns.c.163.com
+IP-CIDR,59.111.239.61/32,no-resolve
+IP-CIDR,59.111.239.62/32,no-resolve
+IP-CIDR,115.236.121.51/32,no-resolve
+IP-CIDR,115.236.121.195/32,no-resolve
+URL-REGEX,"^http:\/\/81\.69\.130\.131\/d"
+URL-REGEX,"^http:\/\/101\.35\.204\.35\/d"
+URL-REGEX,"^http:\/\/101\.35\.212\.35\/d"
+URL-REGEX,"^http:\/\/114\.110\.96\.6\/d"
+URL-REGEX,"^http:\/\/114\.110\.96\.26\/d"
+URL-REGEX,"^http:\/\/114\.110\.97\.30\/d"
+URL-REGEX,"^http:\/\/114\.110\.97\.97\/d"
+URL-REGEX,"^http:\/\/121\.5\.84\.85\/d"
+URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d"
 
 # >> ColorfulClouds
 DOMAIN,abyss.cyapi.cn
