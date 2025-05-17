@@ -447,6 +447,3 @@ URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d"
 DOMAIN,abyss.cyapi.cn
 DOMAIN,ad.cyapi.cn
 DOMAIN,gather.colorfulclouds.net
-
-# >> Aiinquiry
-URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/"
