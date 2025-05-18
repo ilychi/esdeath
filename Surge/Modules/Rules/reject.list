@@ -273,9 +273,6 @@ DOMAIN-SUFFIX,66mobi.com
 DOMAIN,huodong.weibo.cn
 DOMAIN-SUFFIX,biz.weibo.com
 
-# >> RedPaper
-AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com))
-
 # >> Zhihu
 DOMAIN,appcloud.zhihu.com
 DOMAIN,appcloud2.in.zhihu.com
@@ -297,9 +294,6 @@ DOMAIN,wxsnsdythumb.wxs.qq.com
 DOMAIN,ads-shopping.shouqianba.com
 DOMAIN,ad.maoyan.com
 DOMAIN,e.jparking.cn
-
-# >> WeChatOA
-DOMAIN-SUFFIX,wxs.qq.com
 
 # >> QQMusic
 DOMAIN,adstats.tencentmusic.com
@@ -369,11 +363,6 @@ URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?"
 IP-CIDR,101.124.19.122/32,no-resolve
 IP-CIDR6,2402:db40:5100:1011::5/128,no-resolve
 
-# >> Taobao
-DOMAIN,adashx.m.taobao.com
-DOMAIN,h-adashx.ut.taobao.com
-DOMAIN,ut.taobao.com
-
 # >> SMZDM
 DOMAIN,acs4baichuan.m.taobao.com
 DOMAIN,adashxgc.ut.taobao.com
@@ -386,20 +375,6 @@ DOMAIN,ynuf.aliapp.org
 
 # >> FleaMarket
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
-
-# >> Cainiao
-AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
-DOMAIN,amdc.m.youku.com
-DOMAIN,apiv4-iyes.youku.com
-DOMAIN,httpdns.alicdn.com
-DOMAIN,huichuan-mc.sm.cn
-DOMAIN,huichuan.sm.cn
-DOMAIN,iyes.youku.com
-DOMAIN,mc.atm.youku.com
-DOMAIN,vali-g1.cp31.ott.cibntv.net
-DOMAIN,vali-ugc.cp31.ott.cibntv.net
-DOMAIN,yk-ssp.ad.youku.com
-DOMAIN,ykad-data.youku.com
 
 # >> Amap
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
@@ -415,9 +390,6 @@ AND,((IP-ASN,63646,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
 
 # >> Umetrip
 URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native"
-
-# >> MeiTu
-DOMAIN,adui.tg.meitu.com
 
 # >> Keep
 DOMAIN,httpdns.n.netease.com
