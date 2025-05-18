@@ -1,11 +1,11 @@
 // Ruleset - Emby Media Servers
-// Last updated: 2025/5/18 22:13:24
+// Last updated: 2025/5/18 23:36:38
 // DOMAIN: 71
-// DOMAIN-SUFFIX: 214
+// DOMAIN-SUFFIX: 215
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 15
 // OTHER: 1
-// Total: 304
+// Total: 305
 // This file contains rules for third-party Emby media server instances requiring proxy access
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -291,6 +291,7 @@ DOMAIN-SUFFIX,uhdnow.com
 DOMAIN-SUFFIX,vfing.de
 DOMAIN-SUFFIX,web.nebula-emby.com
 DOMAIN-SUFFIX,wiri.tk
+DOMAIN-SUFFIX,worldline.space
 DOMAIN-SUFFIX,www.blueseamusics.com
 DOMAIN-SUFFIX,xmsl.org
 DOMAIN-SUFFIX,xxxh.de
