@@ -325,15 +325,6 @@ DOMAIN,iadmusicmatvideo.music.126.net
 DOMAIN,ipv4.music.163.com
 DOMAIN,ipv6.music.163.com
 
-# >> Himalaya
-DOMAIN,adse.ximalaya.com
-DOMAIN,adsehera.ximalaya.com
-DOMAIN,adse.wsa.ximalaya.com
-DOMAIN,adbehavior.ximalaya.com
-DOMAIN,adbehavior.wsa.ximalaya.com
-DOMAIN,dns2.q2cdn.com
-URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
-
 # >> YouTube
 AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
 AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
