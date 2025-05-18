@@ -21,23 +21,8 @@ DOMAIN,mall-dsp2.qinlinkeji.com
 DOMAIN,mallapi2.qinlinkeji.com
 DOMAIN,open-pixon.ads-pixiv.net
 
-# >> Weibo
-DOMAIN,huodong.weibo.cn
-DOMAIN-SUFFIX,biz.weibo.com
-
 # >> RedPaper
 AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com))
-
-# >> Zhihu
-DOMAIN,appcloud.zhihu.com
-DOMAIN,appcloud2.in.zhihu.com
-DOMAIN,crash2.zhihu.com
-DOMAIN,mqtt.zhihu.com
-DOMAIN,sugar.zhihu.com
-DOMAIN,zxid-m.mobileservice.cn
-IP-CIDR,103.41.167.237/32,no-resolve
-IP-CIDR,118.89.204.198/32,no-resolve
-IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,no-resolve
 
 # >> Snowball
 URL-REGEX,"^http:\/\/119\.29\.29\.98\/d\?"
@@ -122,6 +107,14 @@ DOMAIN,ulogs.umeng.com
 DOMAIN,utoken.umeng.com
 DOMAIN,deeplink.umeng.com
 DOMAIN,aspect-upush.umeng.com
+
+# >> WeChatMP
+DOMAIN,wxsnsdy.wxs.qq.com
+DOMAIN,wxsmsdy.video.qq.com
+DOMAIN,wxsnsdythumb.wxs.qq.com
+DOMAIN,ads-shopping.shouqianba.com
+DOMAIN,ad.maoyan.com
+DOMAIN,e.jparking.cn
 
 # >> WeChatOA
 DOMAIN-SUFFIX,wxs.qq.com
@@ -252,8 +245,33 @@ DOMAIN,hudong.alicdn.com
 DOMAIN,h-adashx.ut.taobao.com
 DOMAIN,ut.taobao.com
 
+# >> SMZDM
+DOMAIN,aaid.uyunad.com
+DOMAIN,acs4baichuan.m.taobao.com
+DOMAIN,adashxgc.ut.taobao.com
+DOMAIN,analytics-api.smzdm.com
+DOMAIN,baichuan-sdk.alicdn.com
+DOMAIN,dgstatic.jd.com
+DOMAIN,msg.umengcloud.com
+DOMAIN,sec.umeng.com
+DOMAIN,ynuf.aliapp.org
+
 # >> FleaMarket
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
+
+# >> Cainiao
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
+DOMAIN,amdc.m.youku.com
+DOMAIN,apiv4-iyes.youku.com
+DOMAIN,httpdns.alicdn.com
+DOMAIN,huichuan-mc.sm.cn
+DOMAIN,huichuan.sm.cn
+DOMAIN,iyes.youku.com
+DOMAIN,mc.atm.youku.com
+DOMAIN,vali-g1.cp31.ott.cibntv.net
+DOMAIN,vali-ugc.cp31.ott.cibntv.net
+DOMAIN,yk-ssp.ad.youku.com
+DOMAIN,ykad-data.youku.com
 
 # >> Amap
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
@@ -267,11 +285,8 @@ DOMAIN,gwp.xiaojukeji.com
 AND,((IP-ASN,45090,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
 AND,((IP-ASN,63646,no-resolve),(DEST-PORT,25641),(PROTOCOL,TCP))
 
-# >> MeiTu
-DOMAIN,nadvideo2.baidu.com
-DOMAIN,api.mosspf.com
-DOMAIN,da.mosspf.com
-DOMAIN,adui.tg.meitu.com
+# >> Umetrip
+URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native"
 
 # >> Keep
 DOMAIN,httpdns.n.netease.com
@@ -279,72 +294,7 @@ DOMAIN,httpdns.calorietech.com
 DOMAIN,hc-ssp.sm.cn
 DOMAIN,us.l.qq.com
 
-# >> MailMaster
-DOMAIN,httpdns.music.163.com
-DOMAIN,httpdns-sdk.n.netease.com
-DOMAIN,lofter.httpdns.c.163.com
-DOMAIN,music.httpdns.c.163.com
-IP-CIDR,59.111.239.61/32,no-resolve
-IP-CIDR,59.111.239.62/32,no-resolve
-IP-CIDR,115.236.121.51/32,no-resolve
-IP-CIDR,115.236.121.195/32,no-resolve
-URL-REGEX,"^http:\/\/81\.69\.130\.131\/d"
-URL-REGEX,"^http:\/\/101\.35\.204\.35\/d"
-URL-REGEX,"^http:\/\/101\.35\.212\.35\/d"
-URL-REGEX,"^http:\/\/114\.110\.96\.6\/d"
-URL-REGEX,"^http:\/\/114\.110\.96\.26\/d"
-URL-REGEX,"^http:\/\/114\.110\.97\.30\/d"
-URL-REGEX,"^http:\/\/114\.110\.97\.97\/d"
-URL-REGEX,"^http:\/\/121\.5\.84\.85\/d"
-URL-REGEX,"^http:\/\/\[2402:4e00:1411:201:0:9964:ba21:5a41\]\/d"
-DOMAIN,click-bes.baidu.com
-DOMAIN,eclick.baidu.com
-DOMAIN,miniapp-ad.cdn.bcebos.com
-DOMAIN,et.tanx.com
-DOMAIN,beacon-api.aliyuncs.com
-DOMAIN,adash.man.aliyuncs.com
-DOMAIN,applog.uc.cn
-AND,((DOMAIN-KEYWORD,adash),(DOMAIN-SUFFIX,ut.taobao.com))
-DOMAIN,nex.163.com
-DOMAIN,iad.g.163.com
-DOMAIN,adx-bj.anythinktech.com
-DOMAIN,api.anythinktech.com
-DOMAIN,tk.anythinktech.com
-DOMAIN,da.anythinktech.com
-DOMAIN,gorgon.youdao.com
-DOMAIN,dsp-x.jd.com
-DOMAIN,xlog.jd.com
-DOMAIN,janapi.jd.com
-DOMAIN,sdk.beizi.biz
-DOMAIN,api-htp.beizi.biz
-DOMAIN,guide2.bianxianmao.com
-DOMAIN,mores.toponad.com
-DOMAIN,api.toponadss.com
-DOMAIN,da.toponadss.com
-DOMAIN,tk.toponadss.com
-DOMAIN,adx-os.toponadss.com
-DOMAIN,mores.motowoo.com
-DOMAIN-SUFFIX,motowoo.com
-DOMAIN,aaid.uyunad.com
-DOMAIN,api.htp.hubcloud.com.cn
-DOMAIN,res1.hubcloud.com.cn
-DOMAIN,sdktmp.hubcloud.com.cn
-DOMAIN,v.adx.hubcloud.com.cn
-DOMAIN,caid.adintl.cn
-DOMAIN,sv.adintl.cn
-DOMAIN,v.adintl.cn
-DOMAIN,oss.cdn.adintl.cn
-DOMAIN,tk.bridgeoos.com
-DOMAIN,da.bridgeoos.com
-DOMAIN,api.bridgeoos.com
-DOMAIN,adx-os.bridgeoos.com
-DOMAIN,adx-sg-req.bridgeoos.com
-DOMAIN-SUFFIX,bridgeoos.com
-
 # >> ColorfulClouds
 DOMAIN,abyss.cyapi.cn
 DOMAIN,ad.cyapi.cn
 DOMAIN,gather.colorfulclouds.net
-
-# >> Aiinquiry
-URL-REGEX,"^http:\/\/180\.76\.76\.112\/v\d\/"
