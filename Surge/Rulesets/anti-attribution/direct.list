@@ -1,4 +1,12 @@
 // Ruleset - Anti-IP Attribution (Direct)
+// Last updated: 2025/5/18 17:34:58
+// DOMAIN: 3
+// DOMAIN-SUFFIX: 20
+// Total: 23
+// This file contains direct rules to counter IP-based location attribution required by Chinese social media platforms
+// Data sources:
+//  - https://github.com/SunsetMkt/anti-ip-attribution/raw/main/generated/rule-set-direct.list
+// Ruleset - Anti-IP Attribution (Direct)
 // Last updated: 2025/5/18 17:12:06
 // DOMAIN: 3
 // DOMAIN-SUFFIX: 20
