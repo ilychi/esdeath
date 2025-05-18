@@ -276,6 +276,17 @@ DOMAIN-SUFFIX,biz.weibo.com
 # >> RedPaper
 AND,((PROTOCOL,QUIC),(DOMAIN-SUFFIX,xiaohongshu.com))
 
+# >> Zhihu
+DOMAIN,appcloud.zhihu.com
+DOMAIN,appcloud2.in.zhihu.com
+DOMAIN,crash2.zhihu.com
+DOMAIN,mqtt.zhihu.com
+DOMAIN,sugar.zhihu.com
+DOMAIN,zxid-m.mobileservice.cn
+IP-CIDR,103.41.167.237/32,no-resolve
+IP-CIDR,118.89.204.198/32,no-resolve
+IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,no-resolve
+
 # >> Snowball
 URL-REGEX,"^http:\/\/119\.29\.29\.98\/d\?"
 
@@ -327,6 +338,11 @@ URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
 AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
 AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
 
+# >> VideoGo
+DOMAIN,httpdns.yunxindns.com
+DOMAIN-SUFFIX,gdtimg.com
+DOMAIN-SUFFIX,pos.baidu.com
+
 # >> SodaMusic
 AND,((DOMAIN-KEYWORD,api100-core-quic-),(DOMAIN-SUFFIX,amemv.com))
 AND,((DOMAIN-KEYWORD,api100-normal-quic-),(DOMAIN-SUFFIX,amemv.com))
@@ -352,6 +368,11 @@ AND,((PROTOCOL,TCP),(DOMAIN,api.m.jd.com)),REJECT-NO-DROP
 URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?"
 IP-CIDR,101.124.19.122/32,no-resolve
 IP-CIDR6,2402:db40:5100:1011::5/128,no-resolve
+
+# >> Taobao
+DOMAIN,adashx.m.taobao.com
+DOMAIN,h-adashx.ut.taobao.com
+DOMAIN,ut.taobao.com
 
 # >> SMZDM
 DOMAIN,acs4baichuan.m.taobao.com
@@ -406,7 +427,6 @@ DOMAIN,hc-ssp.sm.cn
 # >> MailMaster
 DOMAIN,httpdns.music.163.com
 DOMAIN,httpdns-sdk.n.netease.com
-DOMAIN,httpdns.yunxindns.com
 DOMAIN,lofter.httpdns.c.163.com
 DOMAIN,music.httpdns.c.163.com
 IP-CIDR,59.111.239.61/32,no-resolve
