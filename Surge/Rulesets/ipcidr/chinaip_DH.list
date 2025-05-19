@@ -1,4 +1,11 @@
 // Ruleset - IPv4+IPv6 in China
+// Last updated: 2025/5/19 18:12:33
+// IP-CIDR: 4605
+// Total: 4605
+// This file contains IPv4 and IPv6 information in China. Made by DH-Teams.
+// Data sources:
+//  - https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_IP_CN.txt
+// Ruleset - IPv4+IPv6 in China
 // Last updated: 2025/5/19 17:58:55
 // IP-CIDR: 4605
 // Total: 4605
