@@ -301,22 +301,6 @@ DOMAIN,e.jparking.cn
 # >> WeChatOA
 DOMAIN-SUFFIX,wxs.qq.com
 
-# >> QQMusic
-DOMAIN,adstats.tencentmusic.com
-DOMAIN,ad.tencentmusic.com
-DOMAIN,adcdn.tencentmusic.com
-DOMAIN,adcdn6.tencentmusic.com
-DOMAIN,adexpo.tencentmusic.com
-DOMAIN,adclick.tencentmusic.com
-DOMAIN,monitor.music.qq.com
-DOMAIN,stat.y.qq.com
-DOMAIN,tmeadquic.y.qq.com
-DOMAIN,oth.str.mdt.qq.com
-DOMAIN,h.trace.qq.com
-DOMAIN,p.l.qq.com
-DOMAIN,tangram.e.qq.com
-DOMAIN-SUFFIX,imtmp.net
-
 # >> NetEaseMusic
 DOMAIN,iadmat.nosdn.127.net
 DOMAIN,iadmatapk.nosdn.127.net
@@ -333,10 +317,6 @@ DOMAIN,adbehavior.ximalaya.com
 DOMAIN,adbehavior.wsa.ximalaya.com
 DOMAIN,dns2.q2cdn.com
 URL-REGEX,"^http:\/\/xmc\.ximalaya\.com\/xmlymain-login-web\/login\/"
-
-# >> YouTube
-AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
-AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
 
 # >> VideoGo
 DOMAIN,httpdns.yunxindns.com
@@ -386,20 +366,6 @@ DOMAIN,ynuf.aliapp.org
 
 # >> FleaMarket
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%97%B2%E9%B1%BC*"))
-
-# >> Cainiao
-AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"Cainiao4iPhone*"))
-DOMAIN,amdc.m.youku.com
-DOMAIN,apiv4-iyes.youku.com
-DOMAIN,httpdns.alicdn.com
-DOMAIN,huichuan-mc.sm.cn
-DOMAIN,huichuan.sm.cn
-DOMAIN,iyes.youku.com
-DOMAIN,mc.atm.youku.com
-DOMAIN,vali-g1.cp31.ott.cibntv.net
-DOMAIN,vali-ugc.cp31.ott.cibntv.net
-DOMAIN,yk-ssp.ad.youku.com
-DOMAIN,ykad-data.youku.com
 
 # >> Amap
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"AMapiPhone*"))
