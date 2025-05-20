@@ -1,11 +1,11 @@
 // Ruleset - Emby Media Servers
-// Last updated: 2025/5/20 22:13:53
+// Last updated: 2025/5/20 22:41:00
 // DOMAIN: 71
 // DOMAIN-SUFFIX: 215
 // DOMAIN-KEYWORD: 3
-// IP-CIDR: 15
+// IP-CIDR: 11
 // OTHER: 1
-// Total: 305
+// Total: 301
 // This file contains rules for third-party Emby media server instances requiring proxy access
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -305,15 +305,11 @@ IP-CIDR,102.223.180.108/32,no-resolve // misakaf
 IP-CIDR,141.147.166.107/32,no-resolve // Added for: 141.147.166.107:19798
 IP-CIDR,146.235.214.2/32,no-resolve // Added for: 146.235.214.2:12180
 IP-CIDR,157.180.0.157/32,no-resolve
-IP-CIDR,157.180.0.157/32,no-resolve
 IP-CIDR,167.235.116.53/32,no-resolve // Lyrebird-琴鸟
 IP-CIDR,168.138.45.100/32,no-resolve
 IP-CIDR,188.172.228.65/32,no-resolve
-IP-CIDR,188.172.228.65/32,no-resolve
-IP-CIDR,193.123.232.141/32,no-resolve
 IP-CIDR,193.123.232.141/32,no-resolve
 IP-CIDR,193.123.232.141/32,no-resolve // 193.123.232.141:10000 peach
-IP-CIDR,38.58.181.218/32,no-resolve
 IP-CIDR,38.58.181.218/32,no-resolve
 IP-CIDR,74.50.80.23/32,no-resolve // TEmby
 OR,((DOMAIN-SUFFIX,123456.buzz),(DOMAIN-SUFFIX,1110111.top)) // DPX 直连
