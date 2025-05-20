@@ -1,4 +1,16 @@
 // Ruleset - Direct Connection
+// Last updated: 2025/5/21 01:00:44
+// DOMAIN: 18
+// DOMAIN-SUFFIX: 155
+// DOMAIN-KEYWORD: 10
+// PROCESS-NAME: 38
+// USER-AGENT: 1
+// Total: 222
+// This file contains domains and process that should not be proxied and accessed directly
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/my_direct.conf
+//  - https://ruleset.skk.moe/List/non_ip/direct.conf
+// Ruleset - Direct Connection
 // Last updated: 2025/5/21 00:42:08
 // DOMAIN: 18
 // DOMAIN-SUFFIX: 154
@@ -15939,3 +15951,4 @@ PROCESS-NAME,Logi Options Daemon
 DOMAIN-SUFFIX,local
 DOMAIN,mirrorbits.lineageos.org
 DOMAIN,th1s_rule5et_1s_m4d3_by_5ukk4w_ruleset.skk.moe
+DOMAIN-SUFFIX,internal
