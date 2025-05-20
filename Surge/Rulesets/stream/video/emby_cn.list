@@ -1,8 +1,8 @@
 // Ruleset - Direct Emby Connections
-// Last updated: 2025/5/20 21:43:57
+// Last updated: 2025/5/20 22:00:30
 // DOMAIN-SUFFIX: 27
-// IP-CIDR: 23
-// Total: 50
+// IP-CIDR: 12
+// Total: 39
 // This file contains rules for Emby servers that can be accessed directly from Mainland China without proxy
 // Data sources:
 //  - https://github.com/h05n/-/raw/main/直连emby
@@ -34,25 +34,14 @@ DOMAIN-SUFFIX,viclub.top
 DOMAIN-SUFFIX,violet.run
 DOMAIN-SUFFIX,xmsl.org
 IP-CIDR,104.21.16.1/32,no-resolve
-IP-CIDR,104.21.16.1/32,no-resolve
-IP-CIDR,111.255.254.121/32,no-resolve
 IP-CIDR,111.255.254.121/32,no-resolve
 IP-CIDR,135.181.134.46/32,no-resolve
-IP-CIDR,135.181.134.46/32,no-resolve
-IP-CIDR,152.70.233.134/32,no-resolve
 IP-CIDR,152.70.233.134/32,no-resolve
 IP-CIDR,183.214.197.130/32,no-resolve
-IP-CIDR,183.214.197.130/32,no-resolve
-IP-CIDR,188.172.228.65/32,no-resolve
 IP-CIDR,188.172.228.65/32,no-resolve
 IP-CIDR,218.93.206.95/32,no-resolve
-IP-CIDR,218.93.206.95/32,no-resolve
-IP-CIDR,43.143.248.18/32,no-resolve
 IP-CIDR,43.143.248.18/32,no-resolve
 IP-CIDR,45.142.176.135/32,no-resolve
 IP-CIDR,45.196.233.152/32,no-resolve
-IP-CIDR,45.196.233.152/32,no-resolve
 IP-CIDR,46.3.109.178/32,no-resolve
-IP-CIDR,46.3.109.178/32,no-resolve
-IP-CIDR,89.251.26.222/32,no-resolve
 IP-CIDR,89.251.26.222/32,no-resolve
