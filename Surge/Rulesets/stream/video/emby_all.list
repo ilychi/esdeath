@@ -1,11 +1,11 @@
 // Ruleset - Emby Media Servers
-// Last updated: 2025/5/21 10:16:30
+// Last updated: 2025/5/21 11:04:04
 // DOMAIN: 71
-// DOMAIN-SUFFIX: 215
+// DOMAIN-SUFFIX: 216
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 15
 // OTHER: 1
-// Total: 305
+// Total: 306
 // This file contains rules for third-party Emby media server instances requiring proxy access
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -200,6 +200,7 @@ DOMAIN-SUFFIX,embyserver.ga
 DOMAIN-SUFFIX,embyus.bili.rip
 DOMAIN-SUFFIX,facmata.net
 DOMAIN-SUFFIX,favoritewife.com
+DOMAIN-SUFFIX,feiniu.lol
 DOMAIN-SUFFIX,film.goodisp.org
 DOMAIN-SUFFIX,film.hovervan.org
 DOMAIN-SUFFIX,film.nmg.llc
