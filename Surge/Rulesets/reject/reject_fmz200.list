@@ -1149,9 +1149,8 @@ DOMAIN-SUFFIX,adashbc.m.taobao.com,REJECT
 # host-suffix, api.poll.video.qq.com, reject
 # host-suffix, static-res.qq.com, reject
 # host-suffix, stat.tpns.tencent.com, reject
-# host, h.trace.qq.com, reject
-# host-keyword, omgmta.qq.com, reject
-# host-keyword, omgmta1.qq.com, reject
+# host-suffix, omgmta.qq.com, reject
+# host-suffix, omgmta1.qq.com, reject
 
 # >  腾讯
 DOMAIN-SUFFIX,news.ssp.qq.com,REJECT
