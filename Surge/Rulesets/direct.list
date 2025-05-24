@@ -1,4 +1,16 @@
 // Ruleset - Direct Connection
+// Last updated: 2025/5/25 00:00:30
+// DOMAIN: 18
+// DOMAIN-SUFFIX: 155
+// DOMAIN-KEYWORD: 10
+// PROCESS-NAME: 38
+// USER-AGENT: 1
+// Total: 222
+// This file contains domains and process that should not be proxied and accessed directly
+// Data sources:
+//  - https://ruleset.skk.moe/List/non_ip/my_direct.conf
+//  - https://ruleset.skk.moe/List/non_ip/direct.conf
+// Ruleset - Direct Connection
 // Last updated: 2025/5/24 23:36:47
 // DOMAIN: 18
 // DOMAIN-SUFFIX: 155
