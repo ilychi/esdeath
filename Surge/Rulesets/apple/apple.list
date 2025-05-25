@@ -1,10 +1,10 @@
 // Ruleset - Apple Services
-// Last updated: 2025/5/25 20:13:25
+// Last updated: 2025/5/25 20:47:06
 // DOMAIN: 10
-// DOMAIN-SUFFIX: 184
+// DOMAIN-SUFFIX: 185
 // IP-CIDR: 10
 // PROCESS-NAME: 10
-// Total: 214
+// Total: 215
 // This file contains rules for Apple services, including services operated in mainland China (iCloud.com.cn, Apple Maps China, etc).
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/apple_services.conf
@@ -60,6 +60,7 @@ DOMAIN-SUFFIX,cds-cdn.v.aaplimg.com
 DOMAIN-SUFFIX,cds.apple.com
 DOMAIN-SUFFIX,cds.apple.com.akadns.net
 DOMAIN-SUFFIX,cdsassets.apple.com
+DOMAIN-SUFFIX,certs.apple.com
 DOMAIN-SUFFIX,cl1-cdn.origin-apple.com.akadns.net
 DOMAIN-SUFFIX,cl1.apple.com
 DOMAIN-SUFFIX,cl2-cn.apple.com
