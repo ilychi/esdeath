@@ -813,8 +813,10 @@ dialog::backdrop {
 }
 
 textarea {
-      height: 6em;
-      resize: vertical;
+    min-height: 100px; 
+    max-height: 500px; 
+    overflow-y: auto;
+    resize: vertical;  
 }
 textarea::-webkit-resizer {
   background: transparent;
@@ -840,6 +842,7 @@ textarea::-webkit-resizer {
 // <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 const htmls = `
+
 </script>
   <div id="app"><a href="https://github.com/Script-Hub-Org/Script-Hub"><h1 style="margin-bottom: 0;">Script Hub</h1></a>
       <p>重写 & 规则集转换 <small>&#9432; <a href="https://github.com/Script-Hub-Org/Script-Hub/wiki" target="_blank">查看文档</a></small></p>
@@ -850,8 +853,8 @@ const htmls = `
             <input type="radio" :id="'input-type-' + item.value" :value="item.value" v-model.lazy="inputType" :disabled="item.disabled"/>
             <label :for="'input-type-' + item.value" class="radio-label">{{item.label}}</label>
         </span>
-        <textarea v-if=" inputType === 'local-text' " style=" position: relative; top: 4px; " id="localtext" v-model.lazy="localtext" placeholder="请填写本地文件内容"></textarea>
-        <textarea v-else style=" position: relative; top: 4px; " id="src" v-model.lazy="src" placeholder="请填写来源 URL 链接(多个 URL 用 😂 连接)"></textarea>
+        <textarea ref="textTextarea" @input="autoResize('textTextarea')" v-if=" inputType === 'local-text' " style=" position: relative; top: 4px; " id="localtext" v-model.lazy="localtext" placeholder="请填写本地文件内容"></textarea>
+        <textarea ref="textTextarea" @input="autoResize('textTextarea')" v-else style=" position: relative; top: 4px; " id="src" v-model.lazy="src" placeholder="请填写来源 URL 链接(多个 URL 用 😂 连接)"></textarea>
       </div>
       <!--font-size: 16px;  style=" position: relative; top: -3px; "-->
       <small style=" position: relative; top: 7px; ">&nbsp;&#9432; <a href="https://github.com/Script-Hub-Org/Script-Hub/wiki/%E6%88%91%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E9%80%89%E6%8B%A9%E6%9D%A5%E6%BA%90%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%9B%AE%E6%A0%87%E7%B1%BB%E5%9E%8B" target="_blank">如何选择类型</a></small>
@@ -898,7 +901,7 @@ const htmls = `
 
     <!-- position: fixed; -->
     <div style="padding: 1rem;bottom: 0rem;margin-right: 0rem;background-color: var(--kbg);/* border: 1px solid var(--border); */border-radius: var(--standard-border-radius);">
-        <span v-if="result" style="color: red">请勿打开链接之后复制浏览器地址栏的链接 浏览器地址栏中的链接可能未编码 可能会导致导入参数异常</span><br/>
+        <span v-if="result" style="color: red">请勿打开链接之后复制浏览器地址栏的链接 浏览器地址栏中的链接可能未编码 可能会导致导入参数异常</span><br/><span v-if="src && src.includes('.lpx')" style="color: red">⚠️ 你填入的可能是 Loon 加密的私有插件(.lpx) Script Hub 无法处理</span><br/>
         <a v-if="result" :href="result" target="_blank" style="margin: 0 0.5rem 0 0">打开链接</a>
         <a v-if="previewResult" :href="previewResult" target="_blank" style="margin: 0 0.5rem 0 0">预览结果</a>
         <a v-if="result && target === 'shadowrocket-module' " :href=" 'https://api.boxjs.app/shadowrocket/install?module=' + encodeURIComponent(result) " target="_blank" style="margin: 0 0.5rem 0 0">导入(Shadowrocket)</a>
@@ -1471,7 +1474,14 @@ const htmls = `
         // if (this.isHttps) {
         //   alert("✅ 已复制");
         // }
-      }
+      },
+      autoResize(refName) {
+        const el = this.$refs[refName]
+        if (el) {
+          el.style.height = 'auto'
+          el.style.height = Math.min(el.scrollHeight, 500) + 'px'
+        }
+      },
     },
     watch: {
       async result(v) {
@@ -1552,7 +1562,12 @@ const htmls = `
         } else if(v === 'plain-text' && this.type !== 'plain-text'){
           this.type='plain-text'
         }
-      }
+      },
+      inputType() {
+        this.$nextTick(() => {
+          this.autoResize(this.inputType === 'local-text' ? 'textTextarea' : 'srcTextarea')
+        })
+      },
   },
     computed: {
       frontendConvertDisabled: function () {
@@ -1630,7 +1645,10 @@ const htmls = `
     },
     mounted() {
       if (this.editMode) {
-        openAllDetails()
+        openAllDetails(),
+        this.$nextTick(() => {
+          this.autoResize('textTextarea')
+        })
       }
   }
   }).mount('#app')

@@ -562,156 +562,156 @@ RULE-SET,https://raw.githubusercontent.com/ilychi/esdeath/main/Surge/Modules/Rul
 [Script]
 
 # ------------ Weibo -------------
-移除首页推广 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除首页顶部标签 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/groups\/allgroups\/v2\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:cardlist|page), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除评论区广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/comments\/build_comments\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除个人微博详情页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:container\/asyn|flowlist|flowpage), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除关注、取消关注弹窗 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/friendships\/(?:create|destroy), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除个人主页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/profile\/(?:container_timeline|dealatt|me|statuses\/tab|userinfo), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除超话搜索页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/shproxy\/chaohua\/discovery\/searchactive\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:container_timeline(?:_hot|_topic|_topicpage|_unread)?|repost_timeline|unread_hot_timeline), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除微博详情页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:extend|show), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除视频流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/video\/(?:full_screen_stream|tiny_stream_mid_detail|tiny_stream_video_list)\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除超话顶部标签 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/!\/huati\/discovery_home_bottom_channels\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除消息页列表广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/direct_messages\/user_list\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除消息页提醒 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/messageflow\/notice\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除热门微博信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/search\/(?:container_timeline|finder), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除发现页搜索结果广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/searchall\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除开屏广告 = type=http-response, pattern=^https:\/\/bootpreload\.uve\.weibo\.com\/v[12]\/ad\/preload, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除开屏广告 = type=http-response, pattern=^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-移除开屏广告 = type=http-response, pattern=^https:\/\/wbapp\.uve\.weibo\.com\/(?:preload\/get_ad|wbapplua\/wbpullad\.lua), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
-会员图标 = type=http-response, pattern=^https:\/\/new\.vip\.weibo\.cn\/aj\/appicon\/list\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除首页推广 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除首页顶部标签 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/groups\/allgroups\/v2\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:cardlist|page), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除评论区广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/comments\/build_comments\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除个人微博详情页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:container\/asyn|flowlist|flowpage), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除关注、取消关注弹窗 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/friendships\/(?:create|destroy), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除个人主页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/profile\/(?:container_timeline|dealatt|me|statuses\/tab|userinfo), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除超话搜索页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/shproxy\/chaohua\/discovery\/searchactive\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:container_timeline(?:_hot|_topic|_topicpage|_unread)?|repost_timeline|unread_hot_timeline), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除微博详情页广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:extend|show), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除视频流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/video\/(?:full_screen_stream|tiny_stream_mid_detail|tiny_stream_video_list)\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除超话顶部标签 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/!\/huati\/discovery_home_bottom_channels\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除消息页列表广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/direct_messages\/user_list\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除消息页提醒 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/messageflow\/notice\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除热门微博信息流广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/search\/(?:container_timeline|finder), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除发现页搜索结果广告 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/searchall\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/bootpreload\.uve\.weibo\.com\/v[12]\/ad\/preload, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/wbapp\.uve\.weibo\.com\/(?:preload\/get_ad|wbapplua\/wbpullad\.lua), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
+会员图标 = type=http-response, pattern=^https:\/\/new\.vip\.weibo\.cn\/aj\/appicon\/list\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weibo_remove_ads.js, requires-body=true
 
 # ----------- RedPaper -----------
-移除图片和实况照片水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/note\/(?:imagefeed|live_photo\/save), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除整体配置 ui = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system\/service\/ui\/config\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除开屏广告 config = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system_service\/config\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除开屏广告 splash_config = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除详情页小部件、关注页感兴趣的人 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/(?:note\/widgets|user\/followings\/followfeed), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除信息流广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/followfeed\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除详情页感兴趣的人 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/recommend\/user\/follow_recommend\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除搜索页广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v10\/search\/notes\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除评论区实况照片水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v1\/interaction\/comment\/video\/download|v5\/note\/comment\/list), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除图片和视频水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v2\/note\/feed|v3\/note\/videofeed), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除信息流广告 = type=http-response, pattern=^https:\/\/(?:edith|rec)\.xiaohongshu\.com\/api\/sns\/v6\/homefeed\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
-移除视频水印 = type=http-response, pattern=^https:\/\/(?:edith|rec|www)\.xiaohongshu\.com\/api\/sns\/(?:v4\/note\/videofeed|v10\/note\/video\/save), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除图片和实况照片水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/note\/(?:imagefeed|live_photo\/save), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除整体配置 ui = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system\/service\/ui\/config\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除开屏广告 config = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system_service\/config\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除开屏广告 splash_config = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除详情页小部件、关注页感兴趣的人 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/(?:note\/widgets|user\/followings\/followfeed), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除信息流广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/followfeed\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除详情页感兴趣的人 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/recommend\/user\/follow_recommend\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除搜索页广告 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v10\/search\/notes\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除评论区实况照片水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v1\/interaction\/comment\/video\/download|v5\/note\/comment\/list), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除图片和视频水印 = type=http-response, pattern=^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v2\/note\/feed|v3\/note\/videofeed), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除信息流广告 = type=http-response, pattern=^https:\/\/(?:edith|rec)\.xiaohongshu\.com\/api\/sns\/v6\/homefeed\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
+移除视频水印 = type=http-response, pattern=^https:\/\/(?:edith|rec|www)\.xiaohongshu\.com\/api\/sns\/(?:v4\/note\/videofeed|v10\/note\/video\/save), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/RedPaper_remove_ads.js, requires-body=true
 
 # ------------ Zhihu -------------
-移除回答底部卡片推广 = type=http-response, pattern=^https:\/\/(?:api|page-info)\.zhihu\.com\/(?:answers|articles)\/v2\/\d+, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
-移除首页悬浮图标 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
-移除推荐信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/feed\/render\/tab\/config\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
-移除推荐信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/(?:moments_v3|topstory\/hot-lists\/total|topstory\/recommend), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
-精简顶部标签 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/root\/tab, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
-移除热榜信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists\/everyone-seeing\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
-移除下一个回答推广、评论区顶部推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/next-(?:bff|data|render), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
-移除回答详情页推广 = type=http-response, pattern=^https:\/\/www\.zhihu\.com\/api\/v4\/(?:articles|answers)\/\d+\/recommendations?\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
-拦截服务器推送配置 config = type=http-response, pattern=^https:\/\/appcloud2\.zhihu\.com\/v3\/config, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
-拦截服务器推送配置 config all = type=http-response, pattern=^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+移除回答底部卡片推广 = type=http-response, pattern=^https:\/\/(?:api|page-info)\.zhihu\.com\/(?:answers|articles)\/v2\/\d+, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+移除首页悬浮图标 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+移除推荐信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/feed\/render\/tab\/config\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+移除推荐信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/(?:moments_v3|topstory\/hot-lists\/total|topstory\/recommend), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+精简顶部标签 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/root\/tab, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+移除热榜信息流推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists\/everyone-seeing\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+移除下一个回答推广、评论区顶部推广 = type=http-response, pattern=^https:\/\/api\.zhihu\.com\/next-(?:bff|data|render), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+移除回答详情页推广 = type=http-response, pattern=^https:\/\/www\.zhihu\.com\/api\/v4\/(?:articles|answers)\/\d+\/recommendations?\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+拦截服务器推送配置 config = type=http-response, pattern=^https:\/\/appcloud2\.zhihu\.com\/v3\/config, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
+拦截服务器推送配置 config all = type=http-response, pattern=^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Zhihu_remove_ads.js, requires-body=true
 
 # ----------- WeChatMP -----------
-企迈点单系统去广告 = type=http-response, pattern=^https:\/\/webapi\.qmai\.cn\/web\/catering\/design\/homePage-Config, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/kff.js, requires-body=true
-EMS中国邮政物流速递去广告 = type=http-response, pattern=^https:\/\/ump\.ems\.com\.cn\/new-generation-extend\/redis\/pageInfoByChannel, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/ems.js, requires-body=true
-小兔充充去广告 = type=http-response, pattern=^https:\/\/mapi\.xiaotucc\.com\/(mall\/main|main_page\/index\/getActivity), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/xiaotucc.js, requires-body=true
-全家微会员去广告 = type=http-response, pattern=^https:\/\/minifm\.maxxipoint\.com\/banner\/list, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/FamilyMart.js, requires-body=true
-罗森点点去广告 = type=http-response, pattern=^https:\/\/lawsonapi\.yorentown\.com\/area\/sh-lawson\/app\/v1\/home, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/lawson.js, requires-body=true
-茶颜悦色去广告 = type=http-response, pattern=^https:\/\/miniapp\.sexytea2013\.com\/cms\/slot\/queryByCodes\?codes=INDEX_TOP_BANNER, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/chayanyuese_remove_ads.js, requires-body=true
-COCO点单去广告 = type=http-response, pattern=^https:\/\/coco-com\.e\.verystar\.net\/v1\/home\/info, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/coco.js, requires-body=true
-滴滴青桔去广告 = type=http-response, pattern=^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/qingju.js, requires-body=true
-一点点+去广告 = type=http-response, pattern=^https:\/\/cappapi\.alittle-tea\.com\/open\?method=catering\.set\.ad, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/alittle-tea.js, requires-body=true
-M Stand去广告 = type=http-response, pattern=^https:\/\/api\.prod\.dj\.mstand\.cn\/scrm\/mini\/app\/index\/info, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/M_Stand.js, requires-body=true
-T3出行去广告 = type=http-response, pattern=^https:\/\/passenger\.t3go\.cn\/(solution\-|common\-)?(passenger\-)?(activity\-|app\-)?api\/notoken\/(trip\/)?api\/(home\/|common\/)?(v[1-3]\/)?(ad\/getNegativescreen|solution\/passenger\/open\/getHomeMenu|leftmenu|getHomeInfoGlobal), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/T3.js, requires-body=true
-古茗去广告 = type=http-response, pattern=^https:\/\/newton\.gumingnc\.com\/newton-buyer\/newton\/buyer\/(ump|touch|external\/front), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/ming.js, requires-body=true
+企迈点单系统去广告 = type=http-response, pattern=^https:\/\/webapi\.qmai\.cn\/web\/catering\/design\/homePage-Config, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/kff.js, requires-body=true
+EMS中国邮政物流速递去广告 = type=http-response, pattern=^https:\/\/ump\.ems\.com\.cn\/new-generation-extend\/redis\/pageInfoByChannel, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/ems.js, requires-body=true
+小兔充充去广告 = type=http-response, pattern=^https:\/\/mapi\.xiaotucc\.com\/(mall\/main|main_page\/index\/getActivity), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/xiaotucc.js, requires-body=true
+全家微会员去广告 = type=http-response, pattern=^https:\/\/minifm\.maxxipoint\.com\/banner\/list, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/FamilyMart.js, requires-body=true
+罗森点点去广告 = type=http-response, pattern=^https:\/\/lawsonapi\.yorentown\.com\/area\/sh-lawson\/app\/v1\/home, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/lawson.js, requires-body=true
+茶颜悦色去广告 = type=http-response, pattern=^https:\/\/miniapp\.sexytea2013\.com\/cms\/slot\/queryByCodes\?codes=INDEX_TOP_BANNER, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/chayanyuese_remove_ads.js, requires-body=true
+COCO点单去广告 = type=http-response, pattern=^https:\/\/coco-com\.e\.verystar\.net\/v1\/home\/info, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/coco.js, requires-body=true
+滴滴青桔去广告 = type=http-response, pattern=^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/qingju.js, requires-body=true
+一点点+去广告 = type=http-response, pattern=^https:\/\/cappapi\.alittle-tea\.com\/open\?method=catering\.set\.ad, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/alittle-tea.js, requires-body=true
+M Stand去广告 = type=http-response, pattern=^https:\/\/api\.prod\.dj\.mstand\.cn\/scrm\/mini\/app\/index\/info, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/M_Stand.js, requires-body=true
+T3出行去广告 = type=http-response, pattern=^https:\/\/passenger\.t3go\.cn\/(solution\-|common\-)?(passenger\-)?(activity\-|app\-)?api\/notoken\/(trip\/)?api\/(home\/|common\/)?(v[1-3]\/)?(ad\/getNegativescreen|solution\/passenger\/open\/getHomeMenu|leftmenu|getHomeInfoGlobal), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/T3.js, requires-body=true
+古茗去广告 = type=http-response, pattern=^https:\/\/newton\.gumingnc\.com\/newton-buyer\/newton\/buyer\/(ump|touch|external\/front), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/ming.js, requires-body=true
 
 # ---------- WeChatURL -----------
-微信外部链接解锁 = type=http-response, pattern=^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Weixin_external_links_unlock.js, requires-body=true
+微信外部链接解锁 = type=http-response, pattern=^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Weixin_external_links_unlock.js, requires-body=true
 
 # --------- NetEaseMusic ---------
-评论区、热推、有话想说、分享一下、歌曲下的祝福等小提示 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:batch|v2\/resource\/comment\/floor\/get), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
-推荐、home、主页 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:homepage\/block\/page|link\/page\/rcmd\/(?:block\/resource\/multi\/refresh|resource\/show)), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20, argument="[{PRGG},{PRRK},{PRDRD},{PRSCVPT},{PRST},{PRRR},{HMPR},{PRMST},{PRCN}]"
-底部选项卡 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/home\/framework\/tab, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20, argument="[{MY},{DT},{FX}]"
-发现页 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/page\/discovery\/resource\/show, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
-我的页面 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/position\/show\/resource, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
-显示未关注你的人 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/user\/follow\/users\/mixed\/get, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
+评论区、热推、有话想说、分享一下、歌曲下的祝福等小提示 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:batch|v2\/resource\/comment\/floor\/get), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
+推荐、home、主页 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:homepage\/block\/page|link\/page\/rcmd\/(?:block\/resource\/multi\/refresh|resource\/show)), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20, argument="[{PRGG},{PRRK},{PRDRD},{PRSCVPT},{PRST},{PRRR},{HMPR},{PRMST},{PRCN}]"
+底部选项卡 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/home\/framework\/tab, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20, argument="[{MY},{DT},{FX}]"
+发现页 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/page\/discovery\/resource\/show, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
+我的页面 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/link\/position\/show\/resource, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
+显示未关注你的人 = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/user\/follow\/users\/mixed\/get, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/NeteaseCloudMusic_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=20
 
 # ----------- YouTube ------------
-YouTube去广告 = type=http-response, pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/YouTube_remove_ads_response.js, requires-body=true, binary-body-mode=true, argument="[{blockUpload},{blockShorts},{blockImmersive},{captionLang},{lyricLang},{debug}]"
+YouTube去广告 = type=http-response, pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/YouTube_remove_ads_response.js, requires-body=true, binary-body-mode=true, argument="[{blockUpload},{blockShorts},{blockImmersive},{captionLang},{lyricLang},{debug}]"
 
 # ----------- Spotify ------------
-JSON处理 = type=http-request, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Spotify_remove_ads.js, timeout=10
-Proto处理 = type=http-response, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Spotify_proto.js, requires-body=true, binary-body-mode=true, timeout=10
+JSON处理 = type=http-request, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Spotify_remove_ads.js, timeout=10
+Proto处理 = type=http-response, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Spotify_proto.js, requires-body=true, binary-body-mode=true, timeout=10
 
 # -------------- JD --------------
-移除京东广告 = type=http-response, pattern=^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/JD_remove_ads.js, requires-body=true
+移除京东广告 = type=http-response, pattern=^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/JD_remove_ads.js, requires-body=true
 
 # ------------ Taobao ------------
-移除淘宝开屏广告 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Taobao_remove_ads.js, requires-body=true
-移除淘宝开屏广告 = type=http-response, pattern=^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Taobao_remove_ads.js, requires-body=true
+移除淘宝开屏广告 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Taobao_remove_ads.js, requires-body=true
+移除淘宝开屏广告 = type=http-response, pattern=^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Taobao_remove_ads.js, requires-body=true
 
 # ------------ SMZDM -------------
-移除广告 = type=http-response, pattern=^https:\/\/app-api\.smzdm\.com\/util\/loading, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
-移除广告 = type=http-response, pattern=^https:\/\/haojia-api\.smzdm\.com\/home\/list, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
-移除广告 = type=http-response, pattern=^https:\/\/app-api\.smzdm\.com\/util\/update, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
-移除广告 = type=http-response, pattern=^https:\/\/homepage-api\.smzdm\.com\/v3\/home, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
-移除广告 = type=http-response, pattern=^https:\/\/user-api\.smzdm\.com\/vip, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
-移除广告 = type=http-response, pattern=^https:\/\/user-api\.smzdm\.com\/vip\/bottom_card_list, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
-移除广告 = type=http-response, pattern=^https:\/\/article-api\.smzdm\.com\/publish\/get_bubble, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
-移除广告 = type=http-response, pattern=^https:\/\/qianbao\.smzdm\.com\/v\d\/app\/home, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
-移除广告 = type=http-response, pattern=^https:\/\/s3\.zdmimg\.com\/third\/index, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
-移除广告 = type=http-response, pattern=^https:\/\/post\.m\.smzdm\.com\/ajax_app\/ajax_get_footer_list, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/app-api\.smzdm\.com\/util\/loading, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/haojia-api\.smzdm\.com\/home\/list, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/app-api\.smzdm\.com\/util\/update, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/homepage-api\.smzdm\.com\/v3\/home, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/user-api\.smzdm\.com\/vip, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/user-api\.smzdm\.com\/vip\/bottom_card_list, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/article-api\.smzdm\.com\/publish\/get_bubble, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/qianbao\.smzdm\.com\/v\d\/app\/home, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/s3\.zdmimg\.com\/third\/index, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
+移除广告 = type=http-response, pattern=^https:\/\/post\.m\.smzdm\.com\/ajax_app\/ajax_get_footer_list, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/smzdm_remove_ads.js, requires-body=true
 
 # ---------- FleaMarket ----------
-移除我的页面推广 = type=http-response, pattern=^https:\/\/(g-)?acs\.m\.goofish\.com\/gw\/mtop\.idle\.user\.page\.my\.adapter\/, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/FleaMarket_remove_ads.js, requires-body=true
-移除首页信息流推广 = type=http-response, pattern=^https:\/\/(g-)?acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.nextfresh\/, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/FleaMarket_remove_ads.js, requires-body=true
-移除首页顶部标签推广 = type=http-response, pattern=^https:\/\/(g-)?acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.circle\.list\/, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/FleaMarket_remove_ads.js, requires-body=true
-移除搜索结果广告 = type=http-response, pattern=^https:\/\/g-(g-)?acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\/, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/FleaMarket_remove_ads.js, requires-body=true
+移除我的页面推广 = type=http-response, pattern=^https:\/\/(g-)?acs\.m\.goofish\.com\/gw\/mtop\.idle\.user\.page\.my\.adapter\/, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/FleaMarket_remove_ads.js, requires-body=true
+移除首页信息流推广 = type=http-response, pattern=^https:\/\/(g-)?acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.nextfresh\/, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/FleaMarket_remove_ads.js, requires-body=true
+移除首页顶部标签推广 = type=http-response, pattern=^https:\/\/(g-)?acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.circle\.list\/, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/FleaMarket_remove_ads.js, requires-body=true
+移除搜索结果广告 = type=http-response, pattern=^https:\/\/g-(g-)?acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\/, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/FleaMarket_remove_ads.js, requires-body=true
 
 # ----------- iMaiCai ------------
-移除下发广告 = type=http-response, pattern=^https:\/\/portal-portm\.meituan\.com\/horn_ios\/mergeRequest, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/iMaiCai_remove_ads.js, requires-body=true
+移除下发广告 = type=http-response, pattern=^https:\/\/portal-portm\.meituan\.com\/horn_ios\/mergeRequest, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/iMaiCai_remove_ads.js, requires-body=true
 
 # ----------- Cainiao ------------
-移除我的页面推广 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.mine\.main\.cn, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
-移除首页推广 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show\.cn, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
-移除首页推广 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get\.cn, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
-移除消息中心推广 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
-移除菜鸟小程序推广 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
+移除我的页面推广 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.mine\.main\.cn, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
+移除首页推广 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show\.cn, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
+移除首页推广 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get\.cn, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
+移除消息中心推广 = type=http-response, pattern=^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
+移除菜鸟小程序推广 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Cainiao_remove_ads.js, requires-body=true
 
 # ------------- Amap -------------
-移除路线规划推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/aos\/perception\/publicTravel\/beforeNavi\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除路线规划、导航结束页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/bus\/plan\/integrate\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除导航详情页底部酒店、处理附近页 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/c3frontend\/(?:af-(?:hotel|launch)\/page\/main|af-nearby\/nearby), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除路线规划推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/perception\/drive\/(?:routeInfo|routePlan), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除导航详情页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/(?:common\/coupon\/info|poi\/detail), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除搜索栏推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_bff\/hotword\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除搜索详情页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/(?:mps|search\/sp|sug|tips_operation_location), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除首页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/(?:card-service-plan-home|main-page), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除首页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable\/1\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除我的页面推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除附近页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除开屏广告 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除打车页推广卡片、弹窗 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(?:car\/order\/content_info|order_web\/friendly_information), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
-移除打车页红点角标、天气图标 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource(\/home)?\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除路线规划推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/aos\/perception\/publicTravel\/beforeNavi\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除路线规划、导航结束页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/bus\/plan\/integrate\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除导航详情页底部酒店、处理附近页 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/c3frontend\/(?:af-(?:hotel|launch)\/page\/main|af-nearby\/nearby), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除路线规划推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/perception\/drive\/(?:routeInfo|routePlan), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除导航详情页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/(?:common\/coupon\/info|poi\/detail), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除搜索栏推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_bff\/hotword\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除搜索详情页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/(?:mps|search\/sp|sug|tips_operation_location), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除首页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/(?:card-service-plan-home|main-page), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除首页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable\/1\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除我的页面推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除附近页推广 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除打车页推广卡片、弹窗 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(?:car\/order\/content_info|order_web\/friendly_information), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
+移除打车页红点角标、天气图标 = type=http-response, pattern=^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource(\/home)?\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Amap_remove_ads.js, requires-body=true
 
 # ------------ 12306 -------------
-移除12306开屏广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/12306_remove_splashscreen_ads.js, requires-body=true
-移除12306应用内广告 = type=http-request, pattern=^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/12306_remove_ads.js
+移除12306开屏广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/12306_remove_splashscreen_ads.js, requires-body=true
+移除12306应用内广告 = type=http-request, pattern=^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/12306_remove_ads.js
 
 # ----------- Umetrip ------------
-移除首页广告 = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/Umetrip_remove_ads.js
+移除首页广告 = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Umetrip_remove_ads.js
 
 # -------- ColorfulClouds --------
-彩云天气去广告 = type=http-response, pattern=^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/ColorfulClouds_remove_ads.js, requires-body=true
+彩云天气去广告 = type=http-response, pattern=^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/ColorfulClouds_remove_ads.js, requires-body=true
 
 # ------------ BooHee ------------
-移除广场推荐页面横幅 = type=http-response, pattern=^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/plaza-flow\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/BooHee_remove_ads.js, requires-body=true
+移除广场推荐页面横幅 = type=http-response, pattern=^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/plaza-flow\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/BooHee_remove_ads.js, requires-body=true
 
 # ------------ Caixin ------------
-移除财新数据通广告 = type=http-response, pattern=^https:\/\/entities\.caixin\.com\/api\/dataplus\/columns, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
-移除文末广告 = type=http-response, pattern=^https:\/\/gateway\.caixin\.com\/api\/app-api\/(caixinapp\/appinfo|search\/getkeyword), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
-移除财新FM广告 = type=http-response, pattern=^https:\/\/gateway\.caixin\.com\/api\/app-content\/fm\/index\/list\?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
-移除开屏广告 = type=http-response, pattern=^https:\/\/gg\.caixin\.com\/s\?z=caixin&op=\d, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
-移除正文广告 = type=http-response, pattern=^https:\/\/mappsv5\.caixin\.com\/articlev5\/\d+\/\d+\.json$, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
-移除正文广告 = type=http-response, pattern=^https:\/\/mapps?v5\.caixin\.com\/(channelv5\/list|\/?index_page_v5\/)\w+, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
+移除财新数据通广告 = type=http-response, pattern=^https:\/\/entities\.caixin\.com\/api\/dataplus\/columns, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
+移除文末广告 = type=http-response, pattern=^https:\/\/gateway\.caixin\.com\/api\/app-api\/(caixinapp\/appinfo|search\/getkeyword), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
+移除财新FM广告 = type=http-response, pattern=^https:\/\/gateway\.caixin\.com\/api\/app-content\/fm\/index\/list\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
+移除开屏广告 = type=http-response, pattern=^https:\/\/gg\.caixin\.com\/s\?z=caixin&op=\d, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
+移除正文广告 = type=http-response, pattern=^https:\/\/mappsv5\.caixin\.com\/articlev5\/\d+\/\d+\.json$, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
+移除正文广告 = type=http-response, pattern=^https:\/\/mapps?v5\.caixin\.com\/(channelv5\/list|\/?index_page_v5\/)\w+, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/CaixinMedia_remove_ads.js, requires-body=true
 
 ########################################################################################
 

@@ -8,12 +8,12 @@
 
 [Script]
 # BiliBili每日等级任务
-B站每日等级任务 = type=cron, cronexp=30 7 * * *, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/BiliBiliDailyBonus.js
+B站每日等级任务 = type=cron, cronexp=30 7 * * *, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/BiliBiliDailyBonus.js, timeout=15
 
-B站Cookie(APP) = type=http-request, pattern=^https?:\/\/cm\.bilibili\.com\/cm\/api\/fees\/wise$, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/BiliBiliDailyBonus.js
+B站Cookie(扫码) = type=http-response, pattern=^https?:\/\/app\.bilibili\.com\/x\/resource\/fingerprint\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/BiliBiliDailyBonus.js, timeout=30
 
-B站Cookie(网页) = type=http-request, pattern=^https?:\/\/m.bilibili.com/$, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/BiliBiliDailyBonus.js
+B站Cookie(APP) = type=http-request, pattern=^https?:\/\/app\.bilibili\.com\/x\/resource\/fingerprint\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/BiliBiliDailyBonus.js
 
 [MITM]
-hostname = %APPEND% cm.bilibili.com, m.bilibili.com
+hostname = %APPEND% app.bilibili.com
 

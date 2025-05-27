@@ -8,14 +8,14 @@
 #!tag=订阅管理
 #!loon_version=3.2.1(749)
 #!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
-#!date=2024-11-28 00:00:00
+#!date=2025-05-13 15:17:08
 
 [Script]
-Sub-Store Core = type=http-request, pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/sub-store-1.min.js, requires-body=true, timeout=120
+Sub-Store Core = type=http-request, pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/sub-store-1.min.js, requires-body=true, timeout=120
 
-Sub-Store Simple = type=http-request, pattern=^https?:\/\/sub\.store, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/sub-store-0.min.js, requires-body=true, timeout=120
+Sub-Store Simple = type=http-request, pattern=^https?:\/\/sub\.store, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/sub-store-0.min.js, requires-body=true, timeout=120
 
-Sub-Store Sync = type=cron, cronexp=0 0 1 ? * ?, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/cron-sync-artifacts.min.js
+Sub-Store Sync = type=cron, cronexp=0 0 1 ? * ?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/cron-sync-artifacts.min.js
 
 [MITM]
 hostname = %APPEND% sub.store

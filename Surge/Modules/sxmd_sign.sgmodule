@@ -11,5 +11,5 @@
 
 [Script]
 # 定时签到
-书香门第每日签到 = type=cron, cronexp={CRONEXP}, script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/sxmd.js, timeout=120, argument="[{account},{password}]"
+书香门第每日签到 = type=cron, cronexp={CRONEXP}, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/sxmd.js, timeout=120, argument="[{account},{password}]"
 

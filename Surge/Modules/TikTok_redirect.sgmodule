@@ -8,7 +8,7 @@
 #!tag=功能增强
 #!loon_version=3.2.4(787)
 #!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
-#!date=2024-11-28 00:00:00
+#!date=2025-05-13 15:17:08
 
 [Rule]
 AND,((GEOIP,CN),(DOMAIN,pitaya.bytedance.com,extended-matching)),DIRECT
@@ -18,7 +18,7 @@ AND,((GEOIP,CN),(DOMAIN,pitaya.bytedance.com,extended-matching)),DIRECT
 ^https:\/\/tnc\d+-platform-\w+\.tiktokv\.com\/get_domains\/ - reject
 
 [Script]
-TikTok解锁 = type=http-request, pattern=https?:\/\/.+.(tiktokv|tiktokcdn).com\/.+(region\d?=CN|&mcc_mnc=\d+), script-path=https://github.com/ilychi/esdeath/raw/main/Surge/Scripts/TikTok_redirect.js
+TikTok解锁 = type=http-request, pattern=https?:\/\/.+.(tiktokv|tiktokcdn).com\/.+(region\d?=CN|&mcc_mnc=\d+), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/TikTok_redirect.js
 
 [MITM]
 hostname = %APPEND% *.byteoversea.com, *.tik-tokapi.com, *.tiktokv.com, *.tiktokcdn.com
