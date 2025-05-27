@@ -51,17 +51,28 @@ jobs:
 
       - name: Extract .plugin URLs
         run: |
-          grep -oP \'https?://[^ )"]+\\?plugin=[^ )"]+\' README.md > plugin_urls_raw.txt
-          # Extract base URL or full URL with rename param
+          echo "Extracting plugin URLs from README.md..."
+          # 提取所有包含 plugin= 参数的链接
+          grep -oP 'https://www\.nsloon\.com/openloon/import\?plugin=[^"]+' README.md > nsloon_urls.txt
+          
+          # 从每个链接中提取实际的插件URL
+          > plugin_urls.txt
           while IFS= read -r line; do
-            if [[ "$line" == *"?plugin="* ]]; then
-              echo "$line" | grep -oP \'(?<=\\?plugin=)[^ )"]+\'
+            # 提取 plugin= 参数的值
+            plugin_url=$(echo "$line" | grep -oP '(?<=plugin=)[^"]+')
+            if [[ -n "$plugin_url" ]]; then
+              echo "$plugin_url" >> plugin_urls.txt
+              echo "Extracted: $plugin_url"
             fi
-          done < plugin_urls_raw.txt > plugin_urls.txt
+          done < nsloon_urls.txt
 
-          # Add fmz200\'s blockAds plugin with custom name
+          # Add fmz200's blockAds plugin with custom name
           echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
           echo "Added fmz200 plugin to list"
+          
+          # 统计提取的插件数量
+          total_count=$(wc -l < plugin_urls.txt)
+          echo "Total plugins extracted: $total_count"
 
       - name: Prepare Plugin Metadata
         id: prepare_metadata
@@ -77,21 +88,29 @@ jobs:
           current_category=""
 
           while IFS= read -r line; do
-            if [[ $line == *"### 签到插件"* ]]; then
+            # 检查表格中的分类标记
+            if [[ $line == *"<strong>签到插件</strong>"* ]]; then
               current_category="$CAT_CHECKIN"
-            elif [[ $line == *"### 功能插件"* ]]; then
+              echo "Found category: 签到插件 -> $current_category"
+            elif [[ $line == *"<strong>功能插件</strong>"* ]]; then
               current_category="$CAT_TOOLS"
-            elif [[ $line == *"### 去广告插件"* ]]; then
+              echo "Found category: 功能插件 -> $current_category"
+            elif [[ $line == *"<strong>去广告插件</strong>"* ]]; then
               current_category="$CAT_ADBLOCK"
-            elif [[ $line =~ "https://" && -n "$current_category" ]]; then
-              # 提取URL (plugin=后面的部分)
-              readme_plugin_url=$(echo "$line" | grep -oP \'(?<=\\?plugin=)[^)"\\s]+\')
-              if [[ -n "$readme_plugin_url" ]]; then
+              echo "Found category: 去广告插件 -> $current_category"
+            elif [[ $line == *"<strong>自签插件</strong>"* ]]; then
+              # 自签插件也归类为去广告
+              current_category="$CAT_ADBLOCK"
+              echo "Found category: 自签插件 -> $current_category"
+            elif [[ $line =~ href=\"https://www\.nsloon\.com/openloon/import\?plugin= && -n "$current_category" ]]; then
+              # 提取插件URL
+              plugin_url=$(echo "$line" | grep -oP '(?<=plugin=)[^"]+')
+              if [[ -n "$plugin_url" ]]; then
                  # 提取基础URL (去掉可能的rename参数)
-                 readme_base_url=$(echo "$readme_plugin_url" | cut -d\'?\' -f1)
-                 if [[ -n "$readme_base_url" ]]; then
-                    category_map["$readme_base_url"]="$current_category"
-                    echo "Mapped base URL $readme_base_url to $current_category"
+                 base_url=$(echo "$plugin_url" | cut -d'?' -f1)
+                 if [[ -n "$base_url" ]]; then
+                    category_map["$base_url"]="$current_category"
+                    echo "Mapped: $base_url -> $current_category"
                  fi
               fi
             fi
@@ -99,14 +118,14 @@ jobs:
           echo "Finished reading README for categories."
 
           # 处理所有插件，确定名称和最终分类
-          plugin_metadata=\'[]\' # Initialize as empty JSON array
+          plugin_metadata='[]' # Initialize as empty JSON array
 
           while IFS= read -r plugin_full_url; do
             echo "Processing URL: $plugin_full_url"
             # Extract custom name and base url
             if [[ "$plugin_full_url" == *"?rename="* ]]; then
-              plugin_name=$(echo "$plugin_full_url" | grep -oP \'(?<=\\?rename=)[^&]+\')
-              base_url=$(echo "$plugin_full_url" | cut -d\'?\' -f1)
+              plugin_name=$(echo "$plugin_full_url" | grep -oP '(?<=\?rename=)[^&]+')
+              base_url=$(echo "$plugin_full_url" | cut -d'?' -f1)
               echo "  Custom name found: $plugin_name, Base URL: $base_url"
             else
               plugin_name=$(basename "$plugin_full_url" .plugin)
@@ -121,7 +140,7 @@ jobs:
             else
               echo "  No mapped category found for $base_url. Using fallback."
               # 转换为小写进行匹配
-              combined_lower=$(echo "$plugin_full_url$plugin_name" | tr \'[:upper:]\' \'[:lower:]\')
+              combined_lower=$(echo "$plugin_full_url$plugin_name" | tr '[:upper:]' '[:lower:]')
               # 广告拦截类
               if [[ "$combined_lower" =~ (remove.*ads|ads.*remove|ad.*block|block.*ad|广告|净化|advertis|anti.?ad|remove_watermark|ssl_unpinning|filter|clean|purify|privacy|隐私|blocker|去广告|adguard|拦截|intercept) ]]; then
                 category="$CAT_ADBLOCK"
@@ -139,8 +158,8 @@ jobs:
             fi
 
             # 将信息添加到JSON数组 (确保正确转义)
-            json_entry=$(jq -n --arg url "$plugin_full_url" --arg name "$plugin_name" --arg category "$category" \'{url: $url, name: $name, category: $category}\')
-            plugin_metadata=$(echo "$plugin_metadata" | jq --argjson entry "$json_entry" \'. + [$entry]\')
+            json_entry=$(jq -n --arg url "$plugin_full_url" --arg name "$plugin_name" --arg category "$category" '{url: $url, name: $name, category: $category}')
+            plugin_metadata=$(echo "$plugin_metadata" | jq --argjson entry "$json_entry" '. + [$entry]')
 
           done < plugin_urls.txt
 
@@ -167,10 +186,10 @@ jobs:
           mkdir -p Surge/Modules
 
           # 读取之前生成的元数据文件
-          jq -c \'.[]\' plugin_metadata.json | while IFS= read -r entry; do
-              plugin_full_url=$(echo "$entry" | jq -r \'.url\')
-              plugin_name=$(echo "$entry" | jq -r \'.name\')
-              category=$(echo "$entry" | jq -r \'.category\')
+          jq -c '.[]' plugin_metadata.json | while IFS= read -r entry; do
+              plugin_full_url=$(echo "$entry" | jq -r '.url')
+              plugin_name=$(echo "$entry" | jq -r '.name')
+              category=$(echo "$entry" | jq -r '.category')
 
               echo "Processing $plugin_name ($category) from $plugin_full_url"
 
@@ -190,7 +209,7 @@ jobs:
       - name: Find and replace external JS resources
         continue-on-error: true  # 确保步骤在部分失败时继续执行
         run: |
-          base_js_url="https://github.com/ilychi/esdeath/raw/main/Surge/Scripts"
+          base_js_url="https://github.com/lucking7/esdeath/raw/main/Surge/Scripts"
           mkdir -p Surge/Scripts
           for sgmodule_file in Surge/Modules/*.sgmodule; do
             echo "Processing $sgmodule_file"
@@ -254,4 +273,3 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           event-type: trigger-merge
-
