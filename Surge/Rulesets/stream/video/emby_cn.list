@@ -1,0 +1,47 @@
+// Ruleset - Direct Emby Connections
+// Last updated: 2025/5/30 00:14:19
+// DOMAIN-SUFFIX: 27
+// IP-CIDR: 12
+// Total: 39
+// This file contains rules for Emby servers that can be accessed directly from Mainland China without proxy
+// Data sources:
+//  - https://github.com/h05n/-/raw/main/直连emby
+DOMAIN-SUFFIX,029902.xyz
+DOMAIN-SUFFIX,0v0.day
+DOMAIN-SUFFIX,115cdn.net
+DOMAIN-SUFFIX,28.al
+DOMAIN-SUFFIX,285286.xyz
+DOMAIN-SUFFIX,306699.xyz
+DOMAIN-SUFFIX,43992026.xyz
+DOMAIN-SUFFIX,7tfvo-os5ve-8jpde.biliblili.uk
+DOMAIN-SUFFIX,994959.xyz
+DOMAIN-SUFFIX,bangumi.ca
+DOMAIN-SUFFIX,bcebos.com
+DOMAIN-SUFFIX,bili.rip
+DOMAIN-SUFFIX,cdn.bgp.yt
+DOMAIN-SUFFIX,emby.moe
+DOMAIN-SUFFIX,embyplus.org
+DOMAIN-SUFFIX,favoritewife.com
+DOMAIN-SUFFIX,lyrebirdemby.com
+DOMAIN-SUFFIX,makifx.com
+DOMAIN-SUFFIX,mcjoker.xyz
+DOMAIN-SUFFIX,nijigem.by
+DOMAIN-SUFFIX,qzuie.top
+DOMAIN-SUFFIX,saturday.video
+DOMAIN-SUFFIX,sharepoint.com
+DOMAIN-SUFFIX,vfing.de
+DOMAIN-SUFFIX,viclub.top
+DOMAIN-SUFFIX,violet.run
+DOMAIN-SUFFIX,xmsl.org
+IP-CIDR,104.21.16.1/32,no-resolve
+IP-CIDR,111.255.254.121/32,no-resolve
+IP-CIDR,135.181.134.46/32,no-resolve
+IP-CIDR,152.70.233.134/32,no-resolve
+IP-CIDR,183.214.197.130/32,no-resolve
+IP-CIDR,188.172.228.65/32,no-resolve
+IP-CIDR,218.93.206.95/32,no-resolve
+IP-CIDR,43.143.248.18/32,no-resolve
+IP-CIDR,45.142.176.135/32,no-resolve
+IP-CIDR,45.196.233.152/32,no-resolve
+IP-CIDR,46.3.109.178/32,no-resolve
+IP-CIDR,89.251.26.222/32,no-resolve
