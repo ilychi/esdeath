@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // 修正仓库 URL
-const REPO_URL = 'https://raw.githubusercontent.com/ilychi/esdeath/main/';
+const REPO_URL = 'https://raw.githubusercontent.com/lucking7/esdeath/main/';
 const ROOT_DIR = path.join(__dirname, '../../..');
 // 使用环境变量指定输出目录，支持RAM磁盘
 const isCI = process.env.CI === 'true';
@@ -359,7 +359,7 @@ function generateHtml(treeData: FileTreeItem[]) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Surge Rules & Modules</title>
-  <link rel="icon" href="https://raw.githubusercontent.com/ilychi/esdeath/main/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://raw.githubusercontent.com/lucking7/esdeath/main/favicon.ico" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   <!-- Iconify for icons -->
@@ -1020,9 +1020,9 @@ function generateHtml(treeData: FileTreeItem[]) {
       </div>
       
       <div class="header-navigation justify-center">
-        <span>Made by <a href="https://github.com/ilychi" class="text-blue-600 hover:underline">IKE IKE</a></span>
+        <span>Made by <a href="https://github.com/lucking7" class="text-blue-600 hover:underline">IKE IKE</a></span>
         <span class="header-navigation-separator">•</span>
-        <span><a href="https://github.com/ilychi/esdeath" class="text-blue-600 hover:underline">Source @ GitHub</a></span>
+        <span><a href="https://github.com/lucking7/esdeath" class="text-blue-600 hover:underline">Source @ GitHub</a></span>
         <span class="header-navigation-separator">•</span>
         <span>Fork from <a href="https://github.com/SukkaW/Surge" class="text-blue-600 hover:underline">Sukka</a></span>
         <span class="header-navigation-separator">•</span>

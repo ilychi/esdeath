@@ -47,7 +47,7 @@ export const ruleGroups: RuleGroup[] = [
     files: [
       {
         path: 'Surge/Rulesets/apple/apns.list',
-        url: 'https://kelee.one/Tool/Loon/Rule/ApplePushNotificationService.list',
+        url: 'https://rule.kelee.one/Loon/ApplePushNotificationService.list',
       },
       {
         path: 'Surge/Rulesets/apple/apple_all.list',
@@ -125,7 +125,7 @@ export const ruleGroups: RuleGroup[] = [
       },
       {
         path: 'Surge/Rulesets/stream/video/tiktok.list',
-        url: 'https://kelee.one/Tool/Loon/Rule/TikTok.list',
+        url: 'https://rule.kelee.one/Loon/TikTok.list',
       },
       {
         path: 'Surge/Rulesets/stream/cn.list',
@@ -230,11 +230,11 @@ export const ruleGroups: RuleGroup[] = [
     files: [
       {
         path: 'Surge/Rulesets/cdn/download_global_kelee.list',
-        url: 'https://kelee.one/Tool/Loon/Rule/InternationalDownloadCDN.list',
+        url: 'https://rule.kelee.one/Loon/InternationalDownloadCDN.list',
       },
       {
         path: 'Surge/Rulesets/cdn/download_cn_kelee.list',
-        url: 'https://kelee.one/Tool/Loon/Rule/ChinaDownloadCDN.list',
+        url: 'https://rule.kelee.one/Loon/ChinaDownloadCDN.list',
       },
     ],
   },
@@ -323,7 +323,7 @@ export const ruleGroups: RuleGroup[] = [
     files: [
       {
         path: 'Surge/Rulesets/extra/speedtest.list',
-        url: 'https://kelee.one/Tool/Loon/Rule/OoklaSpeedtest.list',
+        url: 'https://rule.kelee.one/Loon/OoklaSpeedtest.list',
       },
       {
         path: 'Surge/Rulesets/extra/dns.list',
@@ -393,7 +393,7 @@ export const specialRules: SpecialRuleConfig[] = [
     targetFile: 'Surge/Rulesets/aigc.list',
     sourceFiles: [
       'https://ruleset.skk.moe/List/non_ip/ai.conf',
-      'https://kelee.one/Tool/Loon/Rule/AI.list',
+      'https://rule.kelee.one/Loon/AI.list',
       'https://github.com/ConnersHua/RuleGo/raw/master/Surge/Ruleset/Extra/AI.list',
     ],
     extraRules: ['DOMAIN-SUFFIX,openrouter.ai'],
