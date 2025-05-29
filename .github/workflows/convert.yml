@@ -178,7 +178,7 @@ jobs:
           download_url="http://localhost:9101/file/_start_/https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule/_end_/Netease_Music_AdBlock.sgmodule?type=surge-module&target=surge-module&del=true&n=${encoded_name}&y=${encoded_desc}&category=${encoded_category}&jqEnabled=true"
 
           echo "Downloading Netease Music AdBlock module via ScriptHub"
-          curl -A "Surge Mac/2985" -L -o "Surge/Modules/Netease_Music_AdBlock.sgmodule" "$download_url" || echo "Failed to download Netease_Music_AdBlock.sgmodule"
+          curl -A "script-hub/1.0.0" -L -o "Surge/Modules/Netease_Music_AdBlock.sgmodule" "$download_url" || echo "Failed to download Netease_Music_AdBlock.sgmodule"
 
       - name: Process Loon plugins to Surge modules
         run: |
@@ -202,7 +202,7 @@ jobs:
               download_url="http://localhost:9101/file/_start_/${plugin_full_url}/_end_/${encoded_plugin_name}.sgmodule?type=loon-plugin&target=surge-module&sni=%20%2C%20&del=true&pm=REJECT&category=${encoded_category}&jqEnabled=true"
 
               echo "  Download URL: $download_url"
-              curl -A "Surge Mac/2985" -L -o "Surge/Modules/${plugin_name}.sgmodule" "$download_url" || echo "  Failed to download ${plugin_name}.sgmodule"
+              curl -A "script-hub/1.0.0" -L -o "Surge/Modules/${plugin_name}.sgmodule" "$download_url" || echo "  Failed to download ${plugin_name}.sgmodule"
           done
           echo "Finished processing Loon plugins."
 
@@ -220,7 +220,7 @@ jobs:
               local_js_path="Surge/Scripts/$js_filename"
               # 使用指定的 User-Agent 下载 .js 文件
               echo "Downloading $js_link to $local_js_path"
-              if curl -A "Surge Mac/2985" -L -o "$local_js_path" "$js_link"; then
+              if curl -A "script-hub/1.0.0" -L -o "$local_js_path" "$js_link"; then
                 echo "Download successful for $js_link"
                 # 替换 sgmodule 文件中的链接为 GitHub 仓库的路径
                 github_js_url="$base_js_url/$js_filename"
