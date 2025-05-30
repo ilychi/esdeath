@@ -446,7 +446,7 @@ export const specialRules: SpecialRuleConfig[] = [
       'https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge.txt',
       'https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules.list',
     ],
-    cleanup: false,
+    cleanup: true,
     dedup: true,
     header: {
       enable: true,
