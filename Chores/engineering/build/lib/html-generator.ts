@@ -486,9 +486,9 @@ export function generateHtml(
           </div>
           
           <div class="flex flex-wrap items-center justify-center gap-2 mb-8 text-sm text-gray-600">
-            <span>Made by <a href="https://github.com/ilychi" class="text-blue-600 hover:underline">${author}</a></span>
+            <span>Made by <a href="https://github.com/lucking7" class="text-blue-600 hover:underline">${author}</a></span>
             <span class="text-gray-400">•</span>
-            <span><a href="https://github.com/ilychi/esdeath" class="text-blue-600 hover:underline">Source @ GitHub</a></span>
+            <span><a href="https://github.com/lucking7/esdeath" class="text-blue-600 hover:underline">Source @ GitHub</a></span>
             <span class="text-gray-400">•</span>
             <span>更新于: ${updateTime}</span>
           </div>
