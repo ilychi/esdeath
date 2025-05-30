@@ -36,7 +36,7 @@ export async function fetchContent(url: string): Promise<string | null> {
 
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'Quantumult%20X/1.0.30 (iPhone14,2; iOS 15.6)',
+        'User-Agent': 'script-hub/1.0.0',
       },
       signal: controller.signal,
     });
@@ -71,7 +71,7 @@ export async function downloadFile(url: string, dest: string): Promise<boolean> 
 
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'Quantumult%20X/1.0.30 (iPhone14,2; iOS 15.6)',
+        'User-Agent': 'script-hub/1.0.0',
       },
       signal: controller.signal,
     });
