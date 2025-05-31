@@ -1,0 +1,313 @@
+// Ruleset - Emby Media Servers
+// Last updated: 2025/5/31 16:30:54
+// DOMAIN: 71
+// DOMAIN-SUFFIX: 213
+// DOMAIN-KEYWORD: 3
+// IP-CIDR: 11
+// OTHER: 1
+// Total: 299
+// This file contains rules for third-party Emby media server instances requiring proxy access
+// Data sources:
+//  - https://github.com/m4v8vsyj/me/raw/main/emby.list
+//  - https://github.com/KuGouGo/Rules/raw/main/emby.list
+//  - https://github.com/kefengyoyo/own/raw/main/Emby-P.list
+//  - https://github.com/forevergooe/Rules/raw/master/Surge/Emby.list
+DOMAIN,123456.buzz // DPX 海外
+DOMAIN,581658.best // Added for: 581658.best:443
+DOMAIN,7777777.buzz
+DOMAIN,9wfree.emby.eu.org
+DOMAIN,auto.polodns.xyz // Added for: auto.polodns.xyz:443
+DOMAIN,by.mooguu.org // 蘑菇备用
+DOMAIN,cc.coemn.com // Cc
+DOMAIN,cdn.lyrebirdemby.com // Lyrebird-琴鸟
+DOMAIN,cdnemby.lilyya.xyz // lilyemby
+DOMAIN,cdsalw2lw.catlinks.co.uk
+DOMAIN,cf.carlos.trade
+DOMAIN,cf.sfcj.org // 非越
+DOMAIN,cfemby.lilyya.xyz // lilyemby
+DOMAIN,cm.jingzihan.net // apop 压测服
+DOMAIN,cn.apopcloud.live // apoppro
+DOMAIN,direct.lyrebirdemby.com // Lyrebird-琴鸟
+DOMAIN,dl.carryz.net // Cc 播放线路
+DOMAIN,ehsifohesiohgesfhrioe3.puddingcat.de
+DOMAIN,emby.1024.name // 西瓜
+DOMAIN,emby.aladingnet.com // 阿拉丁
+DOMAIN,emby.as174.com // hxd
+DOMAIN,emby.as174.de
+DOMAIN,emby.awatv.de // awa
+DOMAIN,emby.boaz.cf // plumber
+DOMAIN,emby.carlos.trade // Added for: emby.carlos.trade:8096
+DOMAIN,emby.cn2gias.uk // 守候 gugu
+DOMAIN,emby.lilyya.xyz // lilyemby
+DOMAIN,emby.tnx.one // Nanflix
+DOMAIN,emby3.mcjoker.xyz // Added for: emby3.mcjoker.xyz:443
+DOMAIN,embyfw.alphatvapp.top
+DOMAIN,embymv.tk
+DOMAIN,flare.catlinks.co.uk
+DOMAIN,fun.poloemby.xyz // polo
+DOMAIN,hd.xmsl.org // loser 反代 cf美国
+DOMAIN,hxd.as174.com // hxd
+DOMAIN,if.20120714.xyz // Added for: if.20120714.xyz:443
+DOMAIN,jsq.mooguu.top // 蘑菇-见手青
+DOMAIN,jz.mcjoker.xyz // Added for: jz.mcjoker.xyz:443
+DOMAIN,line.xmsl.org // loser
+DOMAIN,lite.saturdayvideo.top
+DOMAIN,main.gugumedia.site
+DOMAIN,misty.cx // Added for: misty.cx:443
+DOMAIN,nanflix.net // Nanflix
+DOMAIN,new.xmsl.org // loser
+DOMAIN,node1.guguemby.site // 测试线路 gugu
+DOMAIN,oversea.alphatvapp.top // alphatvapp
+DOMAIN,pilipili.club // pilipili
+DOMAIN,pk.catchyoureye.top // pokeremby jms
+DOMAIN,play.charontv.com // Added for: play.charontv.com:443
+DOMAIN,pm.xmsl.org // loser
+DOMAIN,pornemby.maoxiong.cloud // 猫熊 pron
+DOMAIN,robo.656888.xyz // robo
+DOMAIN,robo.668918.xyz // robo
+DOMAIN,shuigawd921hfs-ef27893hrsf.catlinks.co.uk
+DOMAIN,ss.809688.xyz // ciji 德国
+DOMAIN,ss.ianong.cn // 蘑菇
+DOMAIN,stream_pilipili.misakaf.org // PiliPili播放线路
+DOMAIN,su.viclub.top // Added for: su.viclub.top:8090
+DOMAIN,temby.285286.xyz // TEmby
+DOMAIN,temby4837.285286.xyz // TEmby
+DOMAIN,temby856.285286.xyz // tembybeta
+DOMAIN,tiancheng.boaz.cf // plumber
+DOMAIN,tv.ash.yt // ash（卷毛鼠）
+DOMAIN,us.886318.xyz // apoppro
+DOMAIN,us.carlos.trade
+DOMAIN,v.20120714.xyz // Marmot_Emby
+DOMAIN,vip3.jellyfin.asia // 阿拉丁-水母
+DOMAIN,ws1.jellyfin.asia // 水母
+DOMAIN,www.ikun.tv // Added for: www.ikun.tv:443
+DOMAIN,yhemby.top // 飞跃银河
+DOMAIN,z.sfcj.org // 非越
+DOMAIN-KEYWORD,emby.wtf
+DOMAIN-KEYWORD,jmsooo
+DOMAIN-KEYWORD,odysseyplus
+DOMAIN-SUFFIX,010004.xyz
+DOMAIN-SUFFIX,023168.xyz
+DOMAIN-SUFFIX,1.4545.cf
+DOMAIN-SUFFIX,1.loseremby.org
+DOMAIN-SUFFIX,1024.name
+DOMAIN-SUFFIX,114.96.109.46
+DOMAIN-SUFFIX,114514.quest
+DOMAIN-SUFFIX,1l1.icu
+DOMAIN-SUFFIX,202.61.255.248
+DOMAIN-SUFFIX,23.emby77.cf
+DOMAIN-SUFFIX,23s.casacam.net
+DOMAIN-SUFFIX,28.al
+DOMAIN-SUFFIX,285286.xyz
+DOMAIN-SUFFIX,313445.xyz
+DOMAIN-SUFFIX,581658.best
+DOMAIN-SUFFIX,697758.best
+DOMAIN-SUFFIX,7777777.buzz
+DOMAIN-SUFFIX,785858.xyz
+DOMAIN-SUFFIX,789.123456.al
+DOMAIN-SUFFIX,9191001.xyz
+DOMAIN-SUFFIX,9club.lol
+DOMAIN-SUFFIX,Bluesea.ddns.me
+DOMAIN-SUFFIX,aca.best // ACA
+DOMAIN-SUFFIX,agahk1.jmsooo.com
+DOMAIN-SUFFIX,agajp1.jmsooo.com
+DOMAIN-SUFFIX,agasg1.jmsooo.com
+DOMAIN-SUFFIX,aliz.work // hkaemby
+DOMAIN-SUFFIX,alphatvapp.top
+DOMAIN-SUFFIX,api.nebula-emby.com
+DOMAIN-SUFFIX,as174.de
+DOMAIN-SUFFIX,auroramedia.vip
+DOMAIN-SUFFIX,av.happyav.eu.org
+DOMAIN-SUFFIX,awatv.de
+DOMAIN-SUFFIX,aws.jmsooo.com
+DOMAIN-SUFFIX,bangumi.ca
+DOMAIN-SUFFIX,bili.bili.rip
+DOMAIN-SUFFIX,bili.rip
+DOMAIN-SUFFIX,biliblili.uk
+DOMAIN-SUFFIX,blueseamusics.com
+DOMAIN-SUFFIX,bsem.ddns.me
+DOMAIN-SUFFIX,ca.emby.ml
+DOMAIN-SUFFIX,catlinks.co.uk
+DOMAIN-SUFFIX,cc.ccemby.tk
+DOMAIN-SUFFIX,cc.semby.ink
+DOMAIN-SUFFIX,cf.222921.xyz
+DOMAIN-SUFFIX,cf.embytv.cf
+DOMAIN-SUFFIX,cf.imetyou.top
+DOMAIN-SUFFIX,cf.jmsooo.com
+DOMAIN-SUFFIX,cf.misakaf.org
+DOMAIN-SUFFIX,cf.otv.icu
+DOMAIN-SUFFIX,cf.watchemby.net
+DOMAIN-SUFFIX,cf1.jmsooo.com
+DOMAIN-SUFFIX,cf3.misakaf.org
+DOMAIN-SUFFIX,cfca.emby.ml
+DOMAIN-SUFFIX,cfemby.wiri.tk
+DOMAIN-SUFFIX,cflix.acemby.org
+DOMAIN-SUFFIX,cfmusic.imetyou.top
+DOMAIN-SUFFIX,charontv.com
+DOMAIN-SUFFIX,cherry-pornemby.top
+DOMAIN-SUFFIX,chunmusic.imetyou.top
+DOMAIN-SUFFIX,cn2gias.uk
+DOMAIN-SUFFIX,coemn.com
+DOMAIN-SUFFIX,cristiamo.xyz
+DOMAIN-SUFFIX,cynn.top
+DOMAIN-SUFFIX,direct.nebula-emby.com
+DOMAIN-SUFFIX,drei.bgka.me
+DOMAIN-SUFFIX,emby-pub1.blueseacdn.com
+DOMAIN-SUFFIX,emby.222921.xyz
+DOMAIN-SUFFIX,emby.agon.cf
+DOMAIN-SUFFIX,emby.apopcloud.live
+DOMAIN-SUFFIX,emby.awatv.de
+DOMAIN-SUFFIX,emby.cjpc.cc
+DOMAIN-SUFFIX,emby.cjpc.tv
+DOMAIN-SUFFIX,emby.cjpc.xyz
+DOMAIN-SUFFIX,emby.cn2gias.uk
+DOMAIN-SUFFIX,emby.cristiamo.top
+DOMAIN-SUFFIX,emby.dicarerhome.com
+DOMAIN-SUFFIX,emby.ednovas.org
+DOMAIN-SUFFIX,emby.flowercloud.yt
+DOMAIN-SUFFIX,emby.immtel.com
+DOMAIN-SUFFIX,emby.jzq.lol
+DOMAIN-SUFFIX,emby.lzlz.cc
+DOMAIN-SUFFIX,emby.maying.club
+DOMAIN-SUFFIX,emby.mcwy.me
+DOMAIN-SUFFIX,emby.mdss.cloud
+DOMAIN-SUFFIX,emby.misakaf.org
+DOMAIN-SUFFIX,emby.neko.edu.rs
+DOMAIN-SUFFIX,emby.nexitally.com
+DOMAIN-SUFFIX,emby.nyancat.net
+DOMAIN-SUFFIX,emby.ok.edu.hk
+DOMAIN-SUFFIX,emby.paoche.ooo
+DOMAIN-SUFFIX,emby.plusmedia.site
+DOMAIN-SUFFIX,emby.pro
+DOMAIN-SUFFIX,emby.prprcloud.com
+DOMAIN-SUFFIX,emby.riches.cloud
+DOMAIN-SUFFIX,emby.speedx.one
+DOMAIN-SUFFIX,emby.wiri.tk
+DOMAIN-SUFFIX,emby.wtf
+DOMAIN-SUFFIX,emby.wtf // Added for: pub1.emby.wtf:443
+DOMAIN-SUFFIX,emby.xeton.dev
+DOMAIN-SUFFIX,emby.ytoo.li
+DOMAIN-SUFFIX,embycc.link
+DOMAIN-SUFFIX,embyclub.maoxiong.cloud
+DOMAIN-SUFFIX,embyen.222921.xyz
+DOMAIN-SUFFIX,embyhw2.liustar.click
+DOMAIN-SUFFIX,embyjp.222921.xyz
+DOMAIN-SUFFIX,embyjp.bili.rip
+DOMAIN-SUFFIX,embymv.link
+DOMAIN-SUFFIX,embymv.me
+DOMAIN-SUFFIX,embymv.tk
+DOMAIN-SUFFIX,embyplus.org
+DOMAIN-SUFFIX,embyserver.ga
+DOMAIN-SUFFIX,embyus.bili.rip
+DOMAIN-SUFFIX,facmata.net
+DOMAIN-SUFFIX,favoritewife.com
+DOMAIN-SUFFIX,feiniu.lol
+DOMAIN-SUFFIX,film.goodisp.org
+DOMAIN-SUFFIX,film.hovervan.org
+DOMAIN-SUFFIX,film.nmg.llc
+DOMAIN-SUFFIX,film.reddust.link
+DOMAIN-SUFFIX,flare.catlinks.co.uk
+DOMAIN-SUFFIX,gd.9521732.xyz
+DOMAIN-SUFFIX,gtlx.org
+DOMAIN-SUFFIX,gugumedia.link
+DOMAIN-SUFFIX,ha.jmsooo.com
+DOMAIN-SUFFIX,hannn.me
+DOMAIN-SUFFIX,happyav.eu.org
+DOMAIN-SUFFIX,hinet.jmsooo.com
+DOMAIN-SUFFIX,infinityfly.top
+DOMAIN-SUFFIX,itsmyduty.top
+DOMAIN-SUFFIX,jellyfin.xeton.dev
+DOMAIN-SUFFIX,jingzhe.pro
+DOMAIN-SUFFIX,jmsooo.com
+DOMAIN-SUFFIX,jmsuper.com
+DOMAIN-SUFFIX,jp.embymv.me
+DOMAIN-SUFFIX,jsq.mooguu.xyz
+DOMAIN-SUFFIX,kr.embymv.tk
+DOMAIN-SUFFIX,line.emby.men
+DOMAIN-SUFFIX,lite.saturdayvideo.top
+DOMAIN-SUFFIX,loseremby.org // loser
+DOMAIN-SUFFIX,lyrebirdemby.com
+DOMAIN-SUFFIX,magpie.cyou
+DOMAIN-SUFFIX,magpiecdn.tech
+DOMAIN-SUFFIX,mcjoker.xyz
+DOMAIN-SUFFIX,mefun.org
+DOMAIN-SUFFIX,mickeycloud.com
+DOMAIN-SUFFIX,micu.hk // Added for: tv.micu.hk:443
+DOMAIN-SUFFIX,misakaf.org
+DOMAIN-SUFFIX,misakaf.org // misakaf
+DOMAIN-SUFFIX,misty.cx
+DOMAIN-SUFFIX,misty.ltd
+DOMAIN-SUFFIX,mius.uk
+DOMAIN-SUFFIX,mjjemby.org
+DOMAIN-SUFFIX,mobaiemby.site
+DOMAIN-SUFFIX,movie.xeton.dev
+DOMAIN-SUFFIX,mulgore.net
+DOMAIN-SUFFIX,music.mefun.org
+DOMAIN-SUFFIX,nakoemby.com
+DOMAIN-SUFFIX,nakonako.net
+DOMAIN-SUFFIX,nanflix.net
+DOMAIN-SUFFIX,nebula-emby.com
+DOMAIN-SUFFIX,nebula-media.org
+DOMAIN-SUFFIX,niceduck.lol
+DOMAIN-SUFFIX,nijigem.by
+DOMAIN-SUFFIX,ntt1.jmsooo.com
+DOMAIN-SUFFIX,odysseyplus.site
+DOMAIN-SUFFIX,otv.icu
+DOMAIN-SUFFIX,outong-valve.com
+DOMAIN-SUFFIX,oversea.alphatvapp.top
+DOMAIN-SUFFIX,paoluma.de
+DOMAIN-SUFFIX,pilipiliultra.com
+DOMAIN-SUFFIX,play.acemby.org
+DOMAIN-SUFFIX,play.charontv.com
+DOMAIN-SUFFIX,plusmedia.site
+DOMAIN-SUFFIX,poloemby.xyz
+DOMAIN-SUFFIX,pornemby.club
+DOMAIN-SUFFIX,pornemby.com
+DOMAIN-SUFFIX,pornemby.maoxiong.cloud
+DOMAIN-SUFFIX,pppp.us.kg
+DOMAIN-SUFFIX,push-kr.misakaf.org
+DOMAIN-SUFFIX,raisemby.com
+DOMAIN-SUFFIX,rjf37.com
+DOMAIN-SUFFIX,roboemby.de
+DOMAIN-SUFFIX,sana.emby.eu.org
+DOMAIN-SUFFIX,saturday.video
+DOMAIN-SUFFIX,servers.xeton.dev
+DOMAIN-SUFFIX,sfcj.org
+DOMAIN-SUFFIX,sharepoint.com // Added for: 0lh4n-my.sharepoint.com:443
+DOMAIN-SUFFIX,singularity.deja-vu.beauty
+DOMAIN-SUFFIX,sp.pololine.ml
+DOMAIN-SUFFIX,stream.ntrrr.top
+DOMAIN-SUFFIX,stream.ntrrr.top // NTRRR
+DOMAIN-SUFFIX,studyfun.live
+DOMAIN-SUFFIX,synn.cc
+DOMAIN-SUFFIX,tanhuatv.site
+DOMAIN-SUFFIX,tanhuatv.site // tanhua
+DOMAIN-SUFFIX,temby856.285286.xyz
+DOMAIN-SUFFIX,term.wtf
+DOMAIN-SUFFIX,tv.811861.xyz
+DOMAIN-SUFFIX,ucloudhost.top
+DOMAIN-SUFFIX,uhdnow.com
+DOMAIN-SUFFIX,vfing.de
+DOMAIN-SUFFIX,web.nebula-emby.com
+DOMAIN-SUFFIX,wiri.tk
+DOMAIN-SUFFIX,worldline.space
+DOMAIN-SUFFIX,www.blueseamusics.com
+DOMAIN-SUFFIX,xmsl.org
+DOMAIN-SUFFIX,xxxh.de
+DOMAIN-SUFFIX,yezi.my
+DOMAIN-SUFFIX,yhemby.top
+DOMAIN-SUFFIX,younoyes.com
+DOMAIN-SUFFIX,yunti.online
+DOMAIN-SUFFIX,zox.show
+IP-CIDR,102.223.180.108/32,no-resolve // misakaf
+IP-CIDR,141.147.166.107/32,no-resolve // Added for: 141.147.166.107:19798
+IP-CIDR,146.235.214.2/32,no-resolve // Added for: 146.235.214.2:12180
+IP-CIDR,157.180.0.157/32,no-resolve
+IP-CIDR,167.235.116.53/32,no-resolve // Lyrebird-琴鸟
+IP-CIDR,168.138.45.100/32,no-resolve
+IP-CIDR,188.172.228.65/32,no-resolve
+IP-CIDR,193.123.232.141/32,no-resolve
+IP-CIDR,193.123.232.141/32,no-resolve // 193.123.232.141:10000 peach
+IP-CIDR,38.58.181.218/32,no-resolve
+IP-CIDR,74.50.80.23/32,no-resolve // TEmby
+OR,((DOMAIN-SUFFIX,123456.buzz),(DOMAIN-SUFFIX,1110111.top)) // DPX 直连
