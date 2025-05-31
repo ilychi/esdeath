@@ -17,10 +17,9 @@ Chores/engineering/sync/temp/
 Chores/engineering/sync/test-*
 Chores/engineering/sync/test-output/
 
-# Surge规则集
-Surge/
-.qodo
-
-# GeoIP MMDB files
-GeoIP/**/*.mmdb
-GeoIP/**/*.mmdb.bak
+# Surge 文件管理
+# 确保重要的Surge文件不被忽略
+!Surge/Modules/*.sgmodule
+!Surge/Scripts/*.js
+!Surge/Modules/Rules/*.list
+!Surge/Modules/Rules/**/*.conf
