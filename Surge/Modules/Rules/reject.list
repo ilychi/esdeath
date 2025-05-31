@@ -85,6 +85,7 @@ DOMAIN,aaid.uyunad.com
 DOMAIN,yumao.puata.info
 DOMAIN,gdfp.gifshow.com
 DOMAIN,open.e.kuaishou.com
+DOMAIN,open.e.kuaishou.cn
 DOMAIN,adtrack.e.kuaishou.com
 DOMAIN-SUFFIX,adukwai.com
 DOMAIN,init.supersonicads.com
@@ -272,6 +273,10 @@ DOMAIN,ad-evods.tianya.tv
 DOMAIN,adx.tuia.cn
 DOMAIN-SUFFIX,66mobi.com
 DOMAIN,rpe.xdplt.com
+DOMAIN-SUFFIX,adjust.com
+DOMAIN-SUFFIX,adjust.net.in
+DOMAIN,googleads.g.doubleclick-cn.net
+DOMAIN-SUFFIX,googlesyndication-cn.com
 
 # >> BlockHTTPDNS
 DOMAIN,yyapp-httpdns.gslb.yy.com
