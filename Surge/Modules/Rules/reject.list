@@ -511,6 +511,9 @@ DOMAIN,adbehavior.wsa.ximalaya.com
 AND,((DOMAIN-SUFFIX,googlevideo.com),(PROTOCOL,QUIC))
 AND,((DOMAIN-SUFFIX,youtubei.googleapis.com),(PROTOCOL,QUIC))
 
+# >> Spotify
+AND,((DOMAIN,spclient.wg.spotify.com),(PROTOCOL,QUIC))
+
 # >> JD
 URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?"
 
