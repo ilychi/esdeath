@@ -56,12 +56,36 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add Surge/Modules/All-in-One-2.x.sgmodule Surge/Modules/Rules/*.list
+          
+          # 安全添加文件，避免glob展开问题
+          git add Surge/Modules/All-in-One-2.x.sgmodule 2>/dev/null || true
+          find Surge/Modules/Rules -name "*.list" -exec git add {} + 2>/dev/null || true
+          
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Update merged All-in-One-2.x.sgmodule and reject list"
-            git push
+            
+            # 安全推送：处理可能的远程更改
+            max_retries=3
+            retry_count=0
+            while [ $retry_count -lt $max_retries ]; do
+              if git push; then
+                echo "推送成功"
+                break
+              else
+                echo "推送失败，尝试同步远程更改... (尝试 $((retry_count + 1))/$max_retries)"
+                git pull --rebase || {
+                  echo "Rebase失败，使用merge策略"
+                  git pull --no-rebase
+                }
+                retry_count=$((retry_count + 1))
+                if [ $retry_count -eq $max_retries ]; then
+                  echo "达到最大重试次数，推送失败"
+                  exit 1
+                fi
+              fi
+            done
           fi
 
       - name: Trigger Check Rules Workflow

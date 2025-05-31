@@ -41,7 +41,27 @@ jobs:
           git config --local user.name "Rin Tohsaka"
           git add .
           git commit -m "✨ Auto Update by Rin $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')"
-          git push
+          
+          # 安全推送：处理可能的远程更改
+          max_retries=3
+          retry_count=0
+          while [ $retry_count -lt $max_retries ]; do
+            if git push; then
+              echo "推送成功"
+              break
+            else
+              echo "推送失败，尝试同步远程更改... (尝试 $((retry_count + 1))/$max_retries)"
+              git pull --rebase || {
+                echo "Rebase失败，使用merge策略"
+                git pull --no-rebase
+              }
+              retry_count=$((retry_count + 1))
+              if [ $retry_count -eq $max_retries ]; then
+                echo "达到最大重试次数，推送失败"
+                exit 1
+              fi
+            fi
+          done
         fi
 
     - name: Cleanup Workflow Runs
