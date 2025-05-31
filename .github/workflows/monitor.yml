@@ -1,0 +1,74 @@
+name: Workflow Health Monitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 每4小时检查一次工作流健康状态
+    - cron: '0 */4 * * *'
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check workflow runs
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const now = new Date();
+            const fourHoursAgo = new Date(now - 4 * 60 * 60 * 1000);
+            
+            // 检查各个工作流的最近运行状态
+            const workflows = ['sync.yml', 'convert.yml', 'merge.yml', 'check-rules.yml'];
+            const issues = [];
+            
+            for (const workflow of workflows) {
+              const runs = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: workflow,
+                per_page: 5
+              });
+              
+              if (runs.data.workflow_runs.length === 0) {
+                issues.push(`❌ ${workflow}: 没有运行记录`);
+                continue;
+              }
+              
+              const latestRun = runs.data.workflow_runs[0];
+              const runTime = new Date(latestRun.created_at);
+              
+              if (runTime < fourHoursAgo) {
+                issues.push(`⚠️ ${workflow}: 超过4小时未运行`);
+              } else if (latestRun.conclusion === 'failure') {
+                issues.push(`❌ ${workflow}: 最近一次运行失败`);
+              } else if (latestRun.status === 'in_progress') {
+                const duration = (now - runTime) / 1000 / 60;
+                if (duration > 60) {
+                  issues.push(`⏱️ ${workflow}: 运行超过60分钟`);
+                }
+              }
+            }
+            
+            // 如果发现问题，创建issue
+            if (issues.length > 0) {
+              const issueTitle = `工作流健康检查发现问题 - ${now.toISOString().split('T')[0]}`;
+              const issueBody = `## 工作流健康状态报告\n\n${issues.join('\n')}\n\n**检查时间:** ${now.toISOString()}`;
+              
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: issueTitle,
+                body: issueBody,
+                labels: ['workflow-health', 'automation']
+              });
+            }
+            
+      - name: Restart stalled workflows
+        if: failure()
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: trigger-sync-cycle
+        continue-on-error: true 

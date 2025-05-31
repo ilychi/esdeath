@@ -2,15 +2,16 @@ name: Sync Rules & Mirror Repositories
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-sync-cycle]  # 接收来自check-rules的循环触发
   schedule:
-    #- cron: "30 * * * *"
-    #- cron: "0 6,18 * * *"
-    - cron: '5,30,55 * * * *'
+    # 每小时的第5分钟执行（作为工作流链的起点）
+    - cron: '5 * * * *'
 
 # 并发控制，避免重复同步
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: sync-workflow
+  cancel-in-progress: false  # 不取消正在进行的任务
   
 jobs:
   Sync-Rules:
@@ -55,3 +56,10 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         event-type: trigger-convert
+
+    # 添加工作流状态检查
+    - name: Set Workflow Status
+      if: always()
+      run: |
+        echo "SYNC_STATUS=${{ job.status }}" >> $GITHUB_ENV
+        echo "SYNC_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV

@@ -17,8 +17,8 @@ on:
 
 # 并发控制，避免重复检查
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  group: check-rules-workflow-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
 
 jobs:
   check-rules:
@@ -171,3 +171,19 @@ jobs:
               issue_number: context.issue.number,
               body: commentBody
             }); 
+
+      # 在工作流最后添加
+      - name: Complete workflow cycle
+        if: success() && github.event_name == 'repository_dispatch'
+        run: |
+          echo "Rules validation completed, waiting before next sync cycle..."
+          # 等待一段时间后再触发下一轮同步，避免过于频繁
+          sleep 300  # 等待5分钟
+          
+      - name: Trigger next sync cycle
+        if: success() && github.event_name == 'repository_dispatch' 
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: trigger-sync-cycle
+        continue-on-error: true  # 即使触发失败也不影响当前工作流

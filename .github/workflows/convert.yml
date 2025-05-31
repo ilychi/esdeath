@@ -4,13 +4,11 @@ on:
   repository_dispatch:
     types: [trigger-convert]
   workflow_dispatch:
-  schedule:
-    - cron: '5,30,55 * * * *'
 
 # 并发控制，避免重复转换
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: convert-workflow
+  cancel-in-progress: false  # 不取消正在进行的任务
 
 jobs:
   build:
@@ -24,6 +22,12 @@ jobs:
           - 9100:9100
           - 9101:9101
     steps:
+      # 添加等待检查，确保前序工作流完成
+      - name: Wait for prerequisites
+        run: |
+          echo "Starting conversion workflow..."
+          sleep 5  # 给予短暂延迟确保资源就绪
+          
       - name: Checkout repository
         uses: actions/checkout@v3
 

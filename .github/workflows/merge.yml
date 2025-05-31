@@ -4,19 +4,23 @@ on:
   repository_dispatch:
     types: [trigger-merge]
   workflow_dispatch:
-  schedule:
-    - cron: '7,32,57 * * * *' 
 
 # 并发控制，避免重复合并操作
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: merge-workflow
+  cancel-in-progress: false  # 不取消正在进行的任务
 
 jobs:
   merge_files:
     runs-on: ubuntu-latest
 
     steps:
+      # 添加等待检查
+      - name: Wait for prerequisites
+        run: |
+          echo "Starting merge workflow..."
+          sleep 5  # 给予短暂延迟确保资源就绪
+          
       - name: Check out the repository
         uses: actions/checkout@v2
 

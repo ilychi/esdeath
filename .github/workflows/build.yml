@@ -18,12 +18,13 @@ on:
 
 # 并发控制，避免重复构建
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  group: build-workflow-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true  # 允许取消构建任务，不影响主循环
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 30  # 设置超时，避免阻塞
     permissions:
       contents: read
       pages: write
