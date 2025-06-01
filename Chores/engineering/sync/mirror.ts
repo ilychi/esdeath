@@ -487,14 +487,33 @@ async function mirrorDualSubsModules() {
   }
 }
 
-// 下载iRingo模块
+// 下载iRingo模块 (NSRingo)
 async function mirrorIRingoModules() {
   console.log('开始同步 iRingo 模块...');
 
   const outputDir = path.join(REPO_PATH, 'Dial', 'iRingo');
   await ensureDir(outputDir);
 
-  const repositories = ['VirgilClyne/iRingo'];
+  // 创建子目录
+  const pluginDir = path.join(outputDir, 'plugin');
+  const sgmoduleDir = path.join(outputDir, 'sgmodule');
+  const snippetDir = path.join(outputDir, 'snippet');
+  const stoverrideDir = path.join(outputDir, 'stoverride');
+
+  await ensureDir(pluginDir);
+  await ensureDir(sgmoduleDir);
+  await ensureDir(snippetDir);
+  await ensureDir(stoverrideDir);
+
+  // NSRingo 仓库列表
+  const repositories = [
+    'NSRingo/WeatherKit',
+    'NSRingo/News',
+    'NSRingo/Testflight',
+    'NSRingo/GeoServices',
+    'NSRingo/Siri',
+    'NSRingo/TV',
+  ];
 
   let assetsChanged = false;
   let modificationsMode = false;
@@ -506,54 +525,113 @@ async function mirrorIRingoModules() {
 
       // 获取最新release
       const releaseUrl = `https://api.github.com/repos/${repo}/releases/latest`;
-      const releaseResponse = await axios.get(releaseUrl);
+      const releaseResponse = await axios.get(releaseUrl, {
+        headers: {
+          'User-Agent': 'mirror-sync-bot',
+        },
+      });
 
-      if (!releaseResponse.data) {
-        console.log(`没有找到${repo}的Release，跳过`);
+      if (!releaseResponse.data || releaseResponse.data.message === 'Not Found') {
+        console.log(`Release not found for ${repo}, skipping.`);
         continue;
       }
 
+      console.log(`Release data for ${repo}:`);
       const assets = releaseResponse.data.assets;
 
       for (const asset of assets) {
         const assetName = asset.name;
-        const assetUrl = asset.browser_download_url || asset.url;
+        const assetUrl = asset.url;
+        const assetSize = asset.size;
 
-        // 过滤出Surge模块
-        if (
-          assetName.endsWith('.sgmodule') ||
-          assetName.endsWith('.js') ||
-          assetName.endsWith('.conf') ||
-          assetName.endsWith('.json')
-        ) {
-          const outputFile = path.join(outputDir, assetName);
-          const tempFile = `${outputFile}.tmp`;
+        console.log(`Found asset: ${assetName} (Size: ${assetSize} bytes)`);
 
+        const extension = path.extname(assetName).toLowerCase().substring(1);
+        let targetDir = outputDir;
+
+        // 根据扩展名分类存储
+        switch (extension) {
+          case 'plugin':
+            targetDir = pluginDir;
+            break;
+          case 'sgmodule':
+            targetDir = sgmoduleDir;
+            break;
+          case 'snippet':
+            targetDir = snippetDir;
+            break;
+          case 'stoverride':
+            targetDir = stoverrideDir;
+            break;
+          default:
+            console.log(`Skipping file: ${assetName}`);
+            continue;
+        }
+
+        const outputFile = path.join(targetDir, assetName);
+        const tempFile = `${outputFile}.tmp`;
+
+        // 下载文件
+        try {
+          console.log(`Downloading: ${assetName}`);
+
+          // 使用现有的 downloadFile 函数，它已经包含了完整的下载和校验逻辑
           const fileChanged = await downloadFile(assetUrl, outputFile, tempFile);
           if (fileChanged) {
             updatedFiles.push(assetName);
             assetsChanged = true;
           }
+        } catch (error) {
+          console.error(`Failed to download ${assetName}:`, error);
         }
       }
     }
 
-    // 修改iRingo模块中的Proxy设置
-    try {
-      console.log('修改 iRingo 模块中的Proxy设置...');
+    // 下载额外的Siri模块
+    console.log('下载额外的Siri模块...');
+    const extraSiriModules = [
+      {
+        url: 'https://raw.githubusercontent.com/NSRingo/Siri/dev/debug/Siri.V2.beta.sgmodule',
+        name: 'Siri.V2.beta.sgmodule',
+      },
+      {
+        url: 'https://raw.githubusercontent.com/NSRingo/Siri/dev/debug/Siri.V2.macOS.beta.sgmodule',
+        name: 'Siri.V2.macOS.beta.sgmodule',
+      },
+    ];
 
-      const sgmoduleFiles = await fs.readdir(outputDir);
+    for (const module of extraSiriModules) {
+      const outputFile = path.join(sgmoduleDir, module.name);
+      const tempFile = `${outputFile}.tmp`;
+
+      try {
+        const fileChanged = await downloadFile(module.url, outputFile, tempFile);
+        if (fileChanged) {
+          updatedFiles.push(module.name);
+          assetsChanged = true;
+        }
+      } catch (error) {
+        console.error(`Failed to download ${module.name}:`, error);
+      }
+    }
+
+    // 修改sgmodule文件中的代理设置
+    try {
+      console.log('修改 iRingo sgmodule 文件中的代理设置...');
+
+      const sgmoduleFiles = await fs.readdir(sgmoduleDir);
 
       for (const file of sgmoduleFiles) {
         if (file.endsWith('.sgmodule')) {
-          const filePath = path.join(outputDir, file);
+          const filePath = path.join(sgmoduleDir, file);
           let content = await fs.readFile(filePath, 'utf8');
           let contentChanged = false;
 
-          // 修改Proxy设置为美国国旗
-          const newContent = content.replace(/Proxy\s*=\s*[^,\s\n]*/g, 'Proxy = 🇺🇸');
+          // 修改#!arguments=行中的Proxy设置
+          const newContent = content.replace(/^#!arguments=.*Proxy:\s*[^,]*/gm, match =>
+            match.replace(/(Proxy:\s*)[^,]*/, '$1United States')
+          );
 
-          // 检查是否有变化
           if (newContent !== content) {
             await fs.writeFile(filePath, newContent, 'utf8');
             modificationsMode = true;
@@ -567,12 +645,12 @@ async function mirrorIRingoModules() {
       }
 
       if (modificationsMode) {
-        console.log('iRingo 模块Proxy设置已修改为美国国旗');
+        console.log('iRingo sgmodule 文件代理设置已修改为 United States');
       } else {
-        console.log('iRingo 模块无需修改Proxy设置');
+        console.log('iRingo sgmodule 文件无需修改代理设置');
       }
     } catch (error) {
-      console.error('修改 iRingo 模块Proxy设置时出错:', error);
+      console.error('修改 iRingo sgmodule 文件代理设置时出错:', error);
     }
 
     console.log(`iRingo 模块同步完成${assetsChanged ? '，有文件更新' : '，无文件更新'}`);
