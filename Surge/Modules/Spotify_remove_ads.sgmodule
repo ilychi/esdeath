@@ -20,7 +20,7 @@ AND,((DOMAIN,spclient.wg.spotify.com,extended-matching),(PROTOCOL,QUIC)),REJECT
 ^https:\/\/spclient\.wg\.spotify\.com\/pendragon\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [Script]
-Protobuf处理 = type=http-response, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(?:bootstrap|user-customization-service), script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/Spotify_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=10, argument="[{tab},{useractivity}]"
+Protobuf处理 = type=http-response, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(?:bootstrap|user-customization-service), script-path=https://kelee.one/Resource/Script/Spotify/Spotify_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=10, argument="[{tab},{useractivity}]"
 
 [MITM]
 hostname = %APPEND% spclient.wg.spotify.com
