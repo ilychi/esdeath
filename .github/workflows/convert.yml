@@ -212,28 +212,118 @@ jobs:
 
       - name: Find and replace external JS resources
         continue-on-error: true  # 确保步骤在部分失败时继续执行
+        shell: bash
         run: |
+          set -e
           base_js_url="https://github.com/lucking7/esdeath/raw/main/Surge/Scripts"
+          mirror_key="github.com/lucking7/esdeath"  # 排除已镜像的文件
           mkdir -p Surge/Scripts
-          for sgmodule_file in Surge/Modules/*.sgmodule; do
-            echo "Processing $sgmodule_file"
-            # 查找 .js 文件的外部链接
-            js_links=$(grep -oP 'https?://[^ ]+\.js' "$sgmodule_file" || echo "")
-            for js_link in $js_links; do
-              js_filename=$(basename "$js_link")
-              local_js_path="Surge/Scripts/$js_filename"
-              # 使用指定的 User-Agent 下载 .js 文件
-              echo "Downloading $js_link to $local_js_path"
-              if curl -A "script-hub/1.0.0" -L -o "$local_js_path" "$js_link"; then
-                echo "Download successful for $js_link"
-                # 替换 sgmodule 文件中的链接为 GitHub 仓库的路径
-                github_js_url="$base_js_url/$js_filename"
-                sed -i "s|$js_link|$github_js_url|g" "$sgmodule_file"
+          
+          # 检查是否有生成的 sgmodule 文件
+          if [ ! -d "Surge/Modules" ] || [ -z "$(ls -A Surge/Modules/*.sgmodule 2>/dev/null)" ]; then
+            echo "No sgmodule files found to process"
+            exit 0
+          fi
+          
+          echo "Generated sgmodule files:"
+          ls -la Surge/Modules/*.sgmodule
+          
+          # 提取所有 JavaScript URL - 使用更精确的正则表达式
+          echo "Searching for JS URLs..."
+          
+          find Surge/Modules -name "*.sgmodule" \
+            -exec grep -hoE 'script-path\s*=\s*https?://[^[:space:],"]+\.js[^[:space:],"]*' {} \; 2>/dev/null \
+            | sed -E 's/^script-path\s*=\s*//' \
+            | sort -u > external-js-raw.txt || touch external-js-raw.txt
+          
+          echo "Found JavaScript URLs:"
+          cat external-js-raw.txt || echo "No JS URLs found"
+          
+          # 过滤掉已经指向镜像的 URL
+          if [ -s external-js-raw.txt ]; then
+            grep -v "$mirror_key" external-js-raw.txt \
+              | grep -v "$base_js_url" > external-js.txt \
+              || touch external-js.txt
+          else
+            touch external-js.txt
+          fi
+          
+          echo "External JS URLs to mirror:"
+          cat external-js.txt || echo "No external JS URLs to mirror"
+
+          # 如果没有需要镜像的 JS 文件，直接退出
+          if [ ! -s external-js.txt ]; then
+            echo "No external JS links found to mirror."
+            rm -f external-js.txt external-js-raw.txt
+            exit 0
+          fi
+
+          # 下载并镜像 JS 文件
+          echo "Processing external JS files:"
+          failed_downloads=0
+          successful_downloads=0
+          
+          while IFS= read -r url; do
+            [ -z "$url" ] && continue
+            
+            # 提取文件名，处理可能的查询参数
+            filename=$(basename "${url%%[\?#]*}")
+            
+            # 确保文件名以 .js 结尾
+            if [[ ! "$filename" =~ \.js$ ]]; then
+              filename="${filename}.js"
+            fi
+            
+            local_js_path="Surge/Scripts/$filename"
+            echo "Mirroring: $url → $local_js_path"
+            
+            # 下载文件 - 添加超时控制和更详细的错误处理
+            if curl -Ls --connect-timeout 30 --max-time 60 \
+                    -A "script-hub/1.0.0" \
+                    "$url" -o "$local_js_path"; then
+              
+              # 检查下载的文件是否为空或过小
+              if [ -s "$local_js_path" ] && [ "$(stat -c%s "$local_js_path" 2>/dev/null || stat -f%z "$local_js_path")" -gt 10 ]; then
+                echo "✓ Successfully downloaded $filename ($(stat -c%s "$local_js_path" 2>/dev/null || stat -f%z "$local_js_path") bytes)"
+                
+                # 在所有 sgmodule 文件中替换链接 - 使用更精确的替换
+                mirror_url="$base_js_url/$filename"
+                find Surge/Modules -name "*.sgmodule" -type f \
+                  -exec perl -pi -e "s,\Q${url}\E,${mirror_url},g" {} \; 2>/dev/null || \
+                  find Surge/Modules -name "*.sgmodule" -type f \
+                    -exec sed -i "s|$url|$mirror_url|g" {} \;
+                
+                echo "✓ Updated links: $url → $mirror_url"
+                ((successful_downloads++))
               else
-                echo "Failed to download $js_link, skipping..."
+                echo "✗ Downloaded file is empty or too small: $filename"
+                rm -f "$local_js_path"
+                ((failed_downloads++))
               fi
-            done
-          done
+            else
+              echo "✗ Failed to download: $url"
+              ((failed_downloads++))
+            fi
+            
+            # 添加短暂延迟，避免请求过于频繁
+            sleep 0.5
+          done < external-js.txt
+          
+          echo ""
+          echo "📊 Processing Summary:"
+          echo "  ✓ Successful downloads: $successful_downloads"
+          echo "  ✗ Failed downloads: $failed_downloads"
+          echo "  📁 Total JS files in Surge/Scripts: $(ls -1 Surge/Scripts/*.js 2>/dev/null | wc -l)"
+          
+          # 清理临时文件
+          rm -f external-js.txt external-js-raw.txt
+          
+          # 如果有太多失败，给出警告
+          if [ $failed_downloads -gt 0 ] && [ $successful_downloads -eq 0 ]; then
+            echo "⚠️  Warning: All JS downloads failed. Please check network connectivity."
+          elif [ $failed_downloads -gt 5 ]; then
+            echo "⚠️  Warning: High number of failed downloads ($failed_downloads). Some modules may not work properly."
+          fi
 
       - name: Add ruleset to fmz200's module
         run: |
@@ -256,39 +346,104 @@ jobs:
           fi
 
       - name: Commit and push changes
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 使用find避免glob展开限制
+          set -e
+          
+          # 检查是否有文件需要提交
+          echo "🔍 Checking for files to commit..."
+          
+          if [ ! -d "Surge/Modules" ] && [ ! -d "Surge/Scripts" ]; then
+            echo "📭 No Surge directories found to commit."
+            exit 0
+          fi
+          
+          # 暂存需要管控的文件
+          echo "📦 Staging files..."
           find Surge/Modules -name "*.sgmodule" -exec git add {} + 2>/dev/null || true
           find Surge/Scripts -name "*.js" -exec git add {} + 2>/dev/null || true
           
+          # 检查暂存区是否为空
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "📝 No changes to commit."
+            exit 0
+          fi
+          
+          # 显示将要提交的变化
+          echo "📋 Changes to be committed:"
+          git diff --cached --name-status
+          
+          echo ""
+          echo "📊 File statistics:"
+          sgmodule_count=$(git diff --cached --name-only | grep "\.sgmodule$" | wc -l || echo "0")
+          js_count=$(git diff --cached --name-only | grep "\.js$" | wc -l || echo "0")
+          echo "  📄 SGModule files: $sgmodule_count"
+          echo "  📜 JavaScript files: $js_count"
+          
+          # 同步远端变化
+          echo "🔄 Syncing with remote..."
+          git fetch origin
+          
+          if git diff --quiet HEAD origin/main; then
+            echo "✅ Local branch is up to date with origin/main"
           else
-            git commit -m "Update sgmodule files with GitHub-hosted JS resources"
+            echo "⬇️  Pulling latest changes from origin..."
+            git pull --rebase origin main
             
-            # 安全推送：处理可能的远程更改
-            max_retries=3
-            retry_count=0
-            while [ $retry_count -lt $max_retries ]; do
-              if git push; then
-                echo "推送成功"
-                break
-              else
-                echo "推送失败，尝试同步远程更改... (尝试 $((retry_count + 1))/$max_retries)"
+            # rebase 后重新添加文件
+            echo "🔄 Re-staging files after rebase..."
+            find Surge/Modules -name "*.sgmodule" -exec git add {} + 2>/dev/null || true
+            find Surge/Scripts -name "*.js" -exec git add {} + 2>/dev/null || true
+            
+            # rebase 后再次检查
+            if git diff --cached --quiet; then
+              echo "📝 No changes to commit after rebase."
+              exit 0
+            fi
+          fi
+          
+          # 提交变化
+          commit_msg="🔄 Update sgmodule files with GitHub-hosted JS resources - $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
+          echo "💾 Committing changes..."
+          git commit -m "$commit_msg"
+          
+          # 安全推送：处理可能的远程更改
+          echo "⬆️  Pushing changes to remote..."
+          max_retries=3
+          retry_count=0
+          
+          while [ $retry_count -lt $max_retries ]; do
+            if git push; then
+              echo "✅ Successfully pushed changes to remote!"
+              break
+            else
+              retry_count=$((retry_count + 1))
+              echo "❌ Push failed (attempt $retry_count/$max_retries)"
+              
+              if [ $retry_count -lt $max_retries ]; then
+                echo "🔄 Syncing remote changes and retrying..."
                 git pull --rebase || {
-                  echo "Rebase失败，使用merge策略"
+                  echo "⚠️  Rebase failed, using merge strategy..."
                   git pull --no-rebase
                 }
-                retry_count=$((retry_count + 1))
-                if [ $retry_count -eq $max_retries ]; then
-                  echo "达到最大重试次数，推送失败"
-                  exit 1
-                fi
+                sleep 2  # 短暂延迟
+              else
+                echo "💥 Reached maximum retry attempts, push failed!"
+                echo "🔍 Current git status:"
+                git status --porcelain
+                exit 1
               fi
-            done
-          fi
+            fi
+          done
+          
+          echo ""
+          echo "🎉 Conversion workflow completed successfully!"
+          echo "📊 Final summary:"
+          echo "  📁 Repository: $(git remote get-url origin)"
+          echo "  🏷️  Latest commit: $(git rev-parse --short HEAD)"
+          echo "  📅 Timestamp: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S CST')"
 
       - name: Trigger Merge Workflow
         if: success()
