@@ -370,8 +370,12 @@ export const ruleGroups: RuleGroup[] = [
     name: 'Google',
     files: [
       {
-        path: 'Surge/Rulesets/google/google.list',
+        path: 'Surge/Rulesets/google/google_lite.list',
         url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list',
+      },
+      {
+        path: 'Surge/Rulesets/google/google.list',
+        url: 'https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Surge/Google/Google.list',
       },
     ],
   },
@@ -499,6 +503,7 @@ export const specialRules: SpecialRuleConfig[] = [
       'https://github.com/KuGouGo/Rules/raw/main/emby.list',
       'https://github.com/kefengyoyo/own/raw/main/Emby-P.list',
       'https://github.com/forevergooe/Rules/raw/master/Surge/Emby.list',
+      'https://github.com/Repcz/Tool/raw/X/Surge/Custom/Emby.list',
     ],
     /** 
       'https://github.com/kudu98/clash_fufu/raw/main/Config/EMBY-domain.yaml',
