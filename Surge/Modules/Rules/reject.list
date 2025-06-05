@@ -492,14 +492,6 @@ DOMAIN,p.l.qq.com
 DOMAIN,tangram.e.qq.com
 DOMAIN-SUFFIX,imtmp.net
 
-# >> NetEaseMusic
-DOMAIN,iadmat.nosdn.127.net
-DOMAIN,iadmatapk.nosdn.127.net
-DOMAIN,iadmusicmat.music.126.net
-DOMAIN,iadmusicmatvideo.music.126.net
-DOMAIN,ipv4.music.163.com
-DOMAIN,ipv6.music.163.com
-
 # >> Himalaya
 DOMAIN,adse.ximalaya.com
 DOMAIN,adsehera.ximalaya.com
