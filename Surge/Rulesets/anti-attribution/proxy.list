@@ -1,5 +1,5 @@
 // Ruleset - Anti-IP Attribution (Proxy)
-// Last updated: 2025/6/9 21:17:48
+// Last updated: 2025/6/9 22:09:17
 // DOMAIN: 47
 // DOMAIN-SUFFIX: 29
 // DOMAIN-KEYWORD: 14
@@ -9,7 +9,7 @@
 // Data sources:
 //  - https://github.com/SunsetMkt/anti-ip-attribution/raw/main/generated/rule-set-proxy.list
 # 针对部分网站显示IP归属地的分流规则
-# anti-ip-attribution rule-set-proxy.list v0.3.1 24db48a4973b31d718703136cfcc2b3621171f36
+# anti-ip-attribution rule-set-proxy.list v0.3.1 02fb4202d7d0cd9a67941d12ae7eedeaeb4d4bbf
 # https://github.com/SunsetMkt/anti-ip-attribution
 # 适用于Clash RULE-SET
 DOMAIN-SUFFIX,biliapi.net
