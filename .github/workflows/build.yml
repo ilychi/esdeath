@@ -83,7 +83,7 @@ jobs:
         run: npm ci
         
       - name: 构建
-        run: npm run build:index
+        run: npm run build
         env:
           TZ: 'Asia/Shanghai'
           CI: 'true'

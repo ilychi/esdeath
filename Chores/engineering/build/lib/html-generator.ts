@@ -62,8 +62,11 @@ export function generateHtml(
           fileTypeDisplay = 'GeoIP Database';
         }
 
+        const isPreviewable = item.fileType === 'list' || item.fileType === 'sgmodule';
+        const fileRowAttributes = isPreviewable ? `data-preview-url="${item.url}"` : '';
+
         html += `
-          <li class="tree-file">
+          <li class="tree-file" ${fileRowAttributes}>
             <div class="file-icon">
               <iconify-icon icon="${fileIcon}" width="16"></iconify-icon>
             </div>
@@ -77,16 +80,16 @@ export function generateHtml(
               ${
                 item.fileType === 'sgmodule'
                   ? `
-                <div class="tree-file-action tooltip" data-module-url="${item.url}">
+                <div class="tree-file-action" data-tooltip-text="导入到 Surge" data-module-url="${item.url}">
                   <iconify-icon icon="tabler:plug" width="16"></iconify-icon>
-                  <div class="tooltip-content">导入到 Surge</div>
                 </div>
               `
                   : ''
               }
-              <div class="tree-file-action tooltip" data-copy-url="${item.url}">
+              <div class="tree-file-action" data-tooltip-text="复制链接" data-copy-url="${
+                item.url
+              }">
                 <iconify-icon icon="tabler:clipboard" width="16"></iconify-icon>
-                <div class="tooltip-content">复制链接</div>
               </div>
             </div>
           </li>
@@ -162,7 +165,10 @@ export function generateHtml(
           padding: 0.275rem 0.5rem;
           border-radius: 0.375rem;
           transition: background-color 0.15s ease;
-          cursor: pointer;
+        }
+        
+        .tree-folder-header, .tree-file[data-preview-url] {
+            cursor: pointer;
         }
         
         .tree-folder-header:hover,
@@ -233,6 +239,7 @@ export function generateHtml(
           justify-content: center;
           transition: all 0.15s ease;
           background-color: rgba(17, 24, 39, 0.05);
+          cursor: pointer;
         }
         
         .tree-file-action:hover {
@@ -274,47 +281,21 @@ export function generateHtml(
           color: rgba(154, 52, 18, 0.9);
         }
         
-        /* 工具提示 */
-        .tooltip {
-          position: relative;
-        }
-        
-        .tooltip-content {
-          position: absolute;
-          bottom: 100%;
-          left: 50%;
-          transform: translateX(-50%) translateY(-0.25rem);
-          padding: 0.35rem 0.5rem;
-          border-radius: 0.25rem;
-          background-color: #111827;
-          color: white;
-          font-size: 0.75rem;
-          white-space: nowrap;
-          pointer-events: none;
-          opacity: 0;
-          transition: all 0.2s ease;
-          z-index: 50;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-          right: auto;
-          max-width: none;
-        }
-        
-        .tooltip:hover .tooltip-content {
-          opacity: 1;
-          transform: translateX(-50%) translateY(-0.5rem);
-        }
-        
-        /* 当tooltip靠近右侧边缘时自动调整位置 */
-        @media (max-width: 768px) {
-          .tree-file-actions .tooltip-content {
-            left: auto;
-            right: 0;
-            transform: translateY(-0.25rem);
-          }
-          
-          .tree-file-actions .tooltip:hover .tooltip-content {
-            transform: translateY(-0.5rem);
-          }
+        /* Animated Tooltip */
+        #animated-tooltip {
+            position: fixed;
+            padding: 0.35rem 0.6rem;
+            border-radius: 0.375rem;
+            background-color: #111827;
+            color: white;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translate(-50%, -100%); /* Center tooltip above cursor */
         }
         
         /* 搜索框 */
@@ -475,6 +456,84 @@ export function generateHtml(
           z-index: 2;
           pointer-events: none;
         }
+
+        /* iPhone Mockup Modal */
+        #preview-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #preview-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            position: relative;
+        }
+        .iphone-mockup {
+            position: relative;
+            width: 300px;
+            height: 612px;
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 40px;
+            box-shadow: 0px 0px 0px 2px #444, 0px 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .iphone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 20px;
+            background: #111;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 2;
+        }
+        .iphone-screen {
+            width: 280px;
+            height: 592px;
+            background: #fff;
+            border-radius: 30px;
+            overflow: auto;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #333;
+            font-family: monospace;
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .close-modal-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
       </style>
     </head>
     <body class="bg-white text-gray-900 min-h-screen">
@@ -516,25 +575,51 @@ export function generateHtml(
           <iconify-icon icon="tabler:check" width="18"></iconify-icon>
           <span id="alertMessage"></span>
         </div>
+
+        <div id="animated-tooltip"></div>
+
+        <div id="preview-modal">
+            <div class="modal-content">
+                <div class="iphone-mockup">
+                    <pre id="iphone-screen" class="iphone-screen"></pre>
+                </div>
+                <button id="close-modal-btn" class="close-modal-btn">
+                    <iconify-icon icon="tabler:x" width="20"></iconify-icon>
+                </button>
+            </div>
+        </div>
       </div>
 
       <script>
-        // 文件树交互逻辑
         document.addEventListener('DOMContentLoaded', function() {
-          // 文件夹展开/折叠
+          // --- Animated Tooltip ---
+          const tooltip = document.getElementById('animated-tooltip');
+          document.querySelectorAll('[data-tooltip-text]').forEach(el => {
+            el.addEventListener('mousemove', e => {
+              tooltip.style.left = e.clientX + 'px';
+              tooltip.style.top = e.clientY + 'px';
+            });
+            el.addEventListener('mouseenter', e => {
+              tooltip.textContent = el.getAttribute('data-tooltip-text');
+              tooltip.style.opacity = '1';
+            });
+            el.addEventListener('mouseleave', () => {
+              tooltip.style.opacity = '0';
+            });
+          });
+
+          // --- File tree interaction ---
           document.querySelectorAll('.tree-folder-header').forEach(header => {
             header.addEventListener('click', function() {
-              const folder = this.parentElement;
-              folder.classList.toggle('open');
+              this.parentElement.classList.toggle('open');
             });
           });
           
-          // 默认展开第一级文件夹
           document.querySelectorAll('.file-tree > ul > li.folder').forEach(folder => {
             folder.classList.add('open');
           });
           
-          // 复制链接
+          // --- Action buttons ---
           document.querySelectorAll('[data-copy-url]').forEach(button => {
             button.addEventListener('click', function(e) {
               e.stopPropagation();
@@ -545,7 +630,6 @@ export function generateHtml(
             });
           });
           
-          // 导入模块
           document.querySelectorAll('[data-module-url]').forEach(button => {
             button.addEventListener('click', function(e) {
               e.stopPropagation();
@@ -555,7 +639,7 @@ export function generateHtml(
             });
           });
           
-          // 搜索功能
+          // --- Search ---
           const searchInput = document.getElementById('searchInput');
           searchInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
@@ -620,8 +704,44 @@ export function generateHtml(
               }
             });
           });
+
+          // --- iPhone Preview Modal ---
+          const modal = document.getElementById('preview-modal');
+          const screen = document.getElementById('iphone-screen');
+          const closeModalBtn = document.getElementById('close-modal-btn');
+
+          document.querySelectorAll('.tree-file[data-preview-url]').forEach(row => {
+            row.addEventListener('click', async e => {
+              // Only trigger preview if not clicking on an action button
+              if (e.target.closest('.tree-file-action')) {
+                  return;
+              }
+              e.preventDefault();
+              const url = row.getAttribute('data-preview-url');
+              screen.textContent = 'Loading...';
+              modal.classList.add('show');
+              
+              try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const text = await response.text();
+                screen.textContent = text;
+              } catch (error) {
+                screen.textContent = 'Error loading file content.';
+                console.error('Fetch error:', error);
+              }
+            });
+          });
+
+          const closeModal = () => modal.classList.remove('show');
+          closeModalBtn.addEventListener('click', closeModal);
+          modal.addEventListener('click', e => {
+            if (e.target === modal) {
+              closeModal();
+            }
+          });
           
-          // 显示提示框
+          // --- Alert Box ---
           function showAlert(message) {
             const alertBox = document.getElementById('alertBox');
             const alertMessage = document.getElementById('alertMessage');

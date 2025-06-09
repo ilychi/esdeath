@@ -176,13 +176,13 @@ jobs:
         run: |
           # 网易云模块单独处理，不使用上述元数据
           mkdir -p Surge/Modules
-          encoded_name=$(echo "NetEase Music AdBlock" | jq -sRr @uri)
-          encoded_desc=$(echo "Ad removal for NetEase Music" | jq -sRr @uri)
+          encoded_name=$(echo "网易云音乐净化" | jq -sRr @uri)
+          encoded_desc=$(echo "优化网易云音乐体验，包括广告拦截、界面简化等功能。" | jq -sRr @uri)
           encoded_category=$(echo "🚫 AD Block" | jq -sRr @uri)
-          download_url="http://localhost:9101/file/_start_/https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule/_end_/Netease_Music_AdBlock.sgmodule?type=surge-module&target=surge-module&del=true&n=${encoded_name}&y=${encoded_desc}&category=${encoded_category}&jqEnabled=true"
+          download_url="http://localhost:9101/file/_start_/https://raw.githubusercontent.com/Keywos/rule/main/script/wy/wy.sgmodule/_end_/Netease_Music_Purification.sgmodule?type=surge-module&target=surge-module&del=true&n=${encoded_name}&y=${encoded_desc}&category=${encoded_category}&jqEnabled=true"
 
-          echo "Downloading Netease Music AdBlock module via ScriptHub"
-          curl -A "script-hub/1.0.0" -L -o "Surge/Modules/Netease_Music_AdBlock.sgmodule" "$download_url" || echo "Failed to download Netease_Music_AdBlock.sgmodule"
+          echo "Downloading Netease Music Purification module via ScriptHub"
+          curl -A "script-hub/1.0.0" -L -o "Surge/Modules/Netease_Music_Purification.sgmodule" "$download_url" || echo "Failed to download Netease_Music_Purification.sgmodule"
 
       - name: Process Loon plugins to Surge modules
         run: |

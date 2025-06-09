@@ -1,0 +1,26 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# 构建输出
+public/
+public.zip
+
+# 开发环境
+.cursor/
+.vscode/
+
+# 临时文件
+*.patch
+Chores/engineering/sync/temp/
+Chores/engineering/sync/test-*
+Chores/engineering/sync/test-output/
+
+# Surge规则集
+Surge/
+.qodo
+
+# GeoIP MMDB files
+GeoIP/**/*.mmdb
+GeoIP/**/*.mmdb.bak
