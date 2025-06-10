@@ -1,5 +1,5 @@
 // Ruleset - Anti-IP Attribution (Reject)
-// Last updated: 2025/6/9 01:09:09
+// Last updated: 2025/6/10 15:09:13
 // DOMAIN: 1
 // IP-CIDR: 18
 // IP-CIDR6: 1
@@ -8,7 +8,7 @@
 // Data sources:
 //  - https://github.com/SunsetMkt/anti-ip-attribution/raw/main/generated/rule-set-reject.list
 # 针对部分网站显示IP归属地的分流规则
-# anti-ip-attribution rule-set-reject.list v0.3.1 24db48a4973b31d718703136cfcc2b3621171f36
+# anti-ip-attribution rule-set-reject.list v0.3.1 02fb4202d7d0cd9a67941d12ae7eedeaeb4d4bbf
 # https://github.com/SunsetMkt/anti-ip-attribution
 # 适用于Clash RULE-SET
 DOMAIN,httpdns.bilivideo.com
