@@ -464,7 +464,8 @@ export function generateHtml(
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -481,58 +482,122 @@ export function generateHtml(
             position: relative;
         }
         .iphone-mockup {
+            --iphone-width: 300px;
+            --iphone-height: calc(var(--iphone-width) * 2.037);
+            width: var(--iphone-width);
+            height: var(--iphone-height);
             position: relative;
-            width: 300px;
-            height: 612px;
-            background: #111;
-            border: 2px solid #333;
-            border-radius: 40px;
-            box-shadow: 0px 0px 0px 2px #444, 0px 10px 30px rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            z-index: 1;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
         }
-        .iphone-mockup::before {
-            content: '';
+        #preview-modal.show .iphone-mockup {
+            transform: scale(1);
+        }
+        .iphone-bezel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            background: linear-gradient(145deg, #2a2a2c, #161618);
+            padding: 12px;
+            box-shadow: inset 0 0 3px 2px #000, 0 25px 35px rgba(0,0,0,0.45);
+            box-sizing: border-box;
+            position: relative;
+        }
+        .iphone-side-button {
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 20px;
-            background: #111;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            z-index: 2;
+            background: linear-gradient(to right, #4a4a4e, #3a3a3c);
+            border-radius: 4px;
+        }
+        .action-button {
+            top: 110px;
+            left: -3px;
+            width: 3px;
+            height: 22px;
+        }
+        .volume-up-button {
+            top: 150px;
+            left: -3px;
+            width: 3px;
+            height: 45px;
+        }
+        .volume-down-button {
+            top: 205px;
+            left: -3px;
+            width: 3px;
+            height: 45px;
+        }
+        .power-button {
+            top: 170px;
+            right: -3px;
+            width: 3px;
+            height: 70px;
         }
         .iphone-screen {
-            width: 280px;
-            height: 592px;
+            width: 100%;
+            height: 100%;
             background: #fff;
-            border-radius: 30px;
-            overflow: auto;
-            padding: 20px;
-            box-sizing: border-box;
+            border-radius: 38px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .dynamic-island {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 28px;
+            background: #000;
+            border-radius: 20px;
+            z-index: 2;
+        }
+        #iphone-screen-content {
+            flex-grow: 1;
+            overflow-y: auto;
             color: #333;
             font-family: monospace;
             font-size: 0.8rem;
             white-space: pre-wrap;
             word-wrap: break-word;
+            padding: 45px 15px 15px 15px;
+            scrollbar-width: thin;
+            scrollbar-color: #aaa #f1f1f1;
+        }
+        #iphone-screen-content::-webkit-scrollbar {
+          width: 5px;
+        }
+        #iphone-screen-content::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 10px;
+        }
+        #iphone-screen-content::-webkit-scrollbar-thumb {
+          background: #aaa;
+          border-radius: 10px;
+        }
+        #iphone-screen-content::-webkit-scrollbar-thumb:hover {
+          background: #888;
         }
         .close-modal-btn {
             position: absolute;
-            top: -40px;
-            right: 0;
+            top: -15px;
+            right: -15px;
             background: white;
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+        }
+        .close-modal-btn:hover {
+            transform: scale(1.1);
         }
       </style>
     </head>
@@ -581,7 +646,16 @@ export function generateHtml(
         <div id="preview-modal">
             <div class="modal-content">
                 <div class="iphone-mockup">
-                    <pre id="iphone-screen" class="iphone-screen"></pre>
+                    <div class="iphone-bezel">
+                        <div class="iphone-side-button action-button"></div>
+                        <div class="iphone-side-button volume-up-button"></div>
+                        <div class="iphone-side-button volume-down-button"></div>
+                        <div class="iphone-side-button power-button"></div>
+                        <div class="iphone-screen">
+                            <div class="dynamic-island"></div>
+                            <pre id="iphone-screen-content"></pre>
+                        </div>
+                    </div>
                 </div>
                 <button id="close-modal-btn" class="close-modal-btn">
                     <iconify-icon icon="tabler:x" width="20"></iconify-icon>
@@ -707,7 +781,7 @@ export function generateHtml(
 
           // --- iPhone Preview Modal ---
           const modal = document.getElementById('preview-modal');
-          const screen = document.getElementById('iphone-screen');
+          const screen = document.getElementById('iphone-screen-content');
           const closeModalBtn = document.getElementById('close-modal-btn');
 
           document.querySelectorAll('.tree-file[data-preview-url]').forEach(row => {
