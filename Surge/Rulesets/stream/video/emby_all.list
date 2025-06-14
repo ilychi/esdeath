@@ -1,11 +1,11 @@
 // Ruleset - Emby Media Servers
-// Last updated: 2025/6/14 21:17:39
+// Last updated: 2025/6/14 22:11:45
 // DOMAIN: 84
-// DOMAIN-SUFFIX: 316
+// DOMAIN-SUFFIX: 317
 // DOMAIN-KEYWORD: 3
 // IP-CIDR: 24
 // OTHER: 1
-// Total: 428
+// Total: 429
 // This file contains rules for third-party Emby media server instances requiring proxy access
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -300,6 +300,7 @@ DOMAIN-SUFFIX,jmsooo.com
 DOMAIN-SUFFIX,jmsuper.com
 DOMAIN-SUFFIX,jp.embymv.me
 DOMAIN-SUFFIX,jsq.mooguu.xyz
+DOMAIN-SUFFIX,jsq.vban.xyz
 DOMAIN-SUFFIX,ju.dog
 DOMAIN-SUFFIX,kr.embymv.tk
 DOMAIN-SUFFIX,lilyemby.my
