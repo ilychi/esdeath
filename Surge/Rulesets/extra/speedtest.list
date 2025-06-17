@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Speedtest Domains
-# Last Updated: 2025-06-15T03:54:05.164Z
-# Size: 1184
+# Last Updated: 2025-06-17T16:10:22.683Z
+# Size: 1185
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -877,6 +877,7 @@ DOMAIN,speedtest.ip-projects.de
 DOMAIN,speedtest.fra01.datascheune.de
 DOMAIN,speed.netlixor.de
 DOMAIN,speedtest1.synlinq.de
+DOMAIN,speedtest.fra.plusnet.de
 DOMAIN,speedtest01.dns-net.de
 DOMAIN,speedtest3.dacor.de
 DOMAIN,speedtest.ropa.de
