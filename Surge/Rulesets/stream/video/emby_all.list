@@ -1,11 +1,11 @@
 // Ruleset - Emby Media Servers
-// Last updated: 2025/6/10 15:12:44
+// Last updated: 2025/6/17 18:54:24
 // DOMAIN: 84
-// DOMAIN-SUFFIX: 316
+// DOMAIN-SUFFIX: 298
 // DOMAIN-KEYWORD: 3
-// IP-CIDR: 24
+// IP-CIDR: 20
 // OTHER: 1
-// Total: 428
+// Total: 406
 // This file contains rules for third-party Emby media server instances requiring proxy access
 // Data sources:
 //  - https://github.com/m4v8vsyj/me/raw/main/emby.list
@@ -101,7 +101,6 @@ DOMAIN-KEYWORD,emby.wtf
 DOMAIN-KEYWORD,jmsooo
 DOMAIN-KEYWORD,odysseyplus
 DOMAIN-SUFFIX,010004.xyz
-DOMAIN-SUFFIX,023168.xyz
 DOMAIN-SUFFIX,1.4545.cf
 DOMAIN-SUFFIX,1.loseremby.org
 DOMAIN-SUFFIX,1024.name
@@ -117,7 +116,6 @@ DOMAIN-SUFFIX,23s.casacam.net
 DOMAIN-SUFFIX,252798.xyz
 DOMAIN-SUFFIX,28.al
 DOMAIN-SUFFIX,285286.xyz
-DOMAIN-SUFFIX,313445.xyz
 DOMAIN-SUFFIX,404.sb
 DOMAIN-SUFFIX,4545.cf
 DOMAIN-SUFFIX,581658.best
@@ -180,11 +178,9 @@ DOMAIN-SUFFIX,cfemby.wiri.tk
 DOMAIN-SUFFIX,cflix.acemby.org
 DOMAIN-SUFFIX,cfmusic.imetyou.top
 DOMAIN-SUFFIX,charontv.com
-DOMAIN-SUFFIX,cherry-pornemby.top
 DOMAIN-SUFFIX,cherrytv.one
 DOMAIN-SUFFIX,chunmusic.imetyou.top
 DOMAIN-SUFFIX,cinema.facmata.net
-DOMAIN-SUFFIX,cn2gias.uk
 DOMAIN-SUFFIX,coemn.com
 DOMAIN-SUFFIX,cristiamo.xyz
 DOMAIN-SUFFIX,cynn.top
@@ -269,7 +265,6 @@ DOMAIN-SUFFIX,embyplus.org
 DOMAIN-SUFFIX,embyserver.ga
 DOMAIN-SUFFIX,embytv.cf
 DOMAIN-SUFFIX,embyus.bili.rip
-DOMAIN-SUFFIX,facmata.net
 DOMAIN-SUFFIX,favoritewife.com
 DOMAIN-SUFFIX,feiniu.lol
 DOMAIN-SUFFIX,film.goodisp.org
@@ -296,15 +291,11 @@ DOMAIN-SUFFIX,infinityfly.top
 DOMAIN-SUFFIX,itsmyduty.top
 DOMAIN-SUFFIX,jellyfin.xeton.dev
 DOMAIN-SUFFIX,jingzhe.pro
-DOMAIN-SUFFIX,jmsooo.com
 DOMAIN-SUFFIX,jmsuper.com
 DOMAIN-SUFFIX,jp.embymv.me
-DOMAIN-SUFFIX,jsq.mooguu.xyz
 DOMAIN-SUFFIX,ju.dog
 DOMAIN-SUFFIX,kr.embymv.tk
-DOMAIN-SUFFIX,lilyemby.my
 DOMAIN-SUFFIX,line.emby.men
-DOMAIN-SUFFIX,lite.saturdayvideo.top
 DOMAIN-SUFFIX,loseremby.org
 DOMAIN-SUFFIX,loseremby.org // loser
 DOMAIN-SUFFIX,lucasmedia.top
@@ -312,7 +303,6 @@ DOMAIN-SUFFIX,lyrebirdemby.com
 DOMAIN-SUFFIX,magpie.cyou
 DOMAIN-SUFFIX,magpiecdn.tech
 DOMAIN-SUFFIX,mcjoker.xyz
-DOMAIN-SUFFIX,mefun.org
 DOMAIN-SUFFIX,mickeycloud.com
 DOMAIN-SUFFIX,micu.hk // Added for: tv.micu.hk:443
 DOMAIN-SUFFIX,misakaf.org
@@ -328,17 +318,14 @@ DOMAIN-SUFFIX,music.mefun.org
 DOMAIN-SUFFIX,nakoemby.com
 DOMAIN-SUFFIX,nakonako.net
 DOMAIN-SUFFIX,nanflix.net
-DOMAIN-SUFFIX,nebula-emby.com
 DOMAIN-SUFFIX,nebula-media.org
 DOMAIN-SUFFIX,newpppp.com
 DOMAIN-SUFFIX,newwan.top
-DOMAIN-SUFFIX,niceduck.lol
 DOMAIN-SUFFIX,nijigem.by
 DOMAIN-SUFFIX,nivod4.tv
 DOMAIN-SUFFIX,ntrrr.am.sb
 DOMAIN-SUFFIX,ntt1.jmsooo.com
 DOMAIN-SUFFIX,nvidia.rip
-DOMAIN-SUFFIX,odysseyplus.site
 DOMAIN-SUFFIX,ohhhh.org
 DOMAIN-SUFFIX,onyra.cc
 DOMAIN-SUFFIX,otv.icu
@@ -369,10 +356,8 @@ DOMAIN-SUFFIX,pub3.emby.wtf
 DOMAIN-SUFFIX,pub3back.emby.wtf
 DOMAIN-SUFFIX,pub3cf.emby.wtf
 DOMAIN-SUFFIX,push-kr.misakaf.org
-DOMAIN-SUFFIX,raisemby.com
 DOMAIN-SUFFIX,reddust.link
 DOMAIN-SUFFIX,rjf37.com
-DOMAIN-SUFFIX,roboemby.de
 DOMAIN-SUFFIX,ru.odysseyplus.site
 DOMAIN-SUFFIX,sana.emby.eu.org
 DOMAIN-SUFFIX,saturday.video
@@ -389,10 +374,8 @@ DOMAIN-SUFFIX,stream.ntrrr.top
 DOMAIN-SUFFIX,stream.ntrrr.top // NTRRR
 DOMAIN-SUFFIX,stream.synn.cc
 DOMAIN-SUFFIX,studyfun.live
-DOMAIN-SUFFIX,synn.cc
 DOMAIN-SUFFIX,tanhuatv.site
 DOMAIN-SUFFIX,tanhuatv.site // tanhua
-DOMAIN-SUFFIX,temby856.285286.xyz
 DOMAIN-SUFFIX,term.wtf
 DOMAIN-SUFFIX,texon.fans
 DOMAIN-SUFFIX,tkremby.xyz
@@ -404,7 +387,6 @@ DOMAIN-SUFFIX,uuuoo.cc
 DOMAIN-SUFFIX,vfing.de
 DOMAIN-SUFFIX,web.nebula-emby.com
 DOMAIN-SUFFIX,wiri.tk
-DOMAIN-SUFFIX,worldline.space
 DOMAIN-SUFFIX,www.blueseamusics.com
 DOMAIN-SUFFIX,xiaoyi.one
 DOMAIN-SUFFIX,xmsl.org
@@ -421,14 +403,11 @@ IP-CIDR,141.147.166.107/32,no-resolve // Added for: 141.147.166.107:19798
 IP-CIDR,146.235.214.2/32,no-resolve // Added for: 146.235.214.2:12180
 IP-CIDR,152.53.67.239/32,no-resolve
 IP-CIDR,157.180.0.157/32,no-resolve
-IP-CIDR,157.180.0.157/32,no-resolve
 IP-CIDR,167.235.116.53/32,no-resolve // Lyrebird-琴鸟
 IP-CIDR,168.119.137.205/32,no-resolve
 IP-CIDR,168.138.45.100/32,no-resolve
 IP-CIDR,188.172.228.49/32,no-resolve
 IP-CIDR,188.172.228.65/32,no-resolve
-IP-CIDR,188.172.228.65/32,no-resolve
-IP-CIDR,193.123.232.141/32,no-resolve
 IP-CIDR,193.123.232.141/32,no-resolve
 IP-CIDR,193.123.232.141/32,no-resolve // 193.123.232.141:10000 peach
 IP-CIDR,195.128.100.146/32,no-resolve
@@ -437,7 +416,6 @@ IP-CIDR,195.201.86.86/32,no-resolve
 IP-CIDR,202.61.247.129/32,no-resolve
 IP-CIDR,202.61.255.248/32,no-resolve
 IP-CIDR,212.90.120.164/32,no-resolve
-IP-CIDR,38.58.181.218/32,no-resolve
 IP-CIDR,38.58.181.218/32,no-resolve
 IP-CIDR,74.50.80.23/32,no-resolve // TEmby
 OR,((DOMAIN-SUFFIX,123456.buzz),(DOMAIN-SUFFIX,1110111.top)) // DPX 直连

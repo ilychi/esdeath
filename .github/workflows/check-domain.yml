@@ -1,12 +1,33 @@
-name: Rules Validation (Domain)
+name: Manual Domain Alive Check
 on:
-  # 仅手动触发
+  # 仅手动触发 - 域名测活资源消耗大，避免自动触发
   workflow_dispatch:
+    inputs:
+      auto_fix:
+        description: '是否自动修复发现的问题 (删除失效域名)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+      concurrency_level:
+        description: '并发数量 (推荐: 32-64，过高可能被DNS服务器限制)'
+        required: false
+        default: '64'
+        type: choice
+        options:
+          - '32'
+          - '64'
+          - '96'
+          - '128'
 
 jobs:
-  check:
-    name: 检查
-    runs-on: ubuntu-latest
+  domain-alive-check:
+    name: 🔍 域名活性检测
+    # 使用ARM runner降低成本（参考Surge策略）
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 180  # 3小时超时保护
 
     steps:
       - name: 获取当前日期
@@ -20,23 +41,31 @@ jobs:
           echo "minute=$(date +'%M')" >> $GITHUB_OUTPUT
           echo "second=$(date +'%S')" >> $GITHUB_OUTPUT
       
-      - name: 恢复缓存
+      - name: 🗄️ 恢复域名缓存 (Surge级策略)
         uses: actions/cache/restore@v4
         id: cache-restore
         with:
           path: |
             .cache
-          key: ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+            .cache/undici-better-sqlite3-cache-store.db
+            .cache/dns-cache.db
+            .cache/doh-cache.db
+          # 分钟级精确缓存键 - 最大化缓存命中率
+          key: ${{ runner.os }}-domain-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+          # 多级回退策略 - 参考Surge实现
           restore-keys: |
-            ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }}
-            ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-
-            ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-
-            ${{ runner.os }}-domains-cache-v1-
+            ${{ runner.os }}-domain-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:
+            ${{ runner.os }}-domain-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:
+            ${{ runner.os }}-domain-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }}
+            ${{ runner.os }}-domain-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-
+            ${{ runner.os }}-domain-cache-v3-${{ steps.date.outputs.year }}-
+            ${{ runner.os }}-domain-cache-v3-
       
       - name: 检出代码
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          persist-credentials: ${{ github.event.inputs.auto_fix == 'true' }}
+          token: ${{ github.event.inputs.auto_fix == 'true' && secrets.GITHUB_TOKEN || '' }}
       
       - name: 设置Node.js
         uses: actions/setup-node@v4
@@ -47,56 +76,104 @@ jobs:
       - name: 安装依赖
         run: npm ci
       
-      - name: 验证域名存活性
+      # 核心域名活性检测 - 高并发优化
+      - name: 🚀 域名活性检测 (并发=${{ github.event.inputs.concurrency_level }})
         id: domain-check
+        env:
+          CONCURRENCY: ${{ github.event.inputs.concurrency_level }}
         run: |
           mkdir -p .cache
-          npm run validate:domains
+          echo "🔍 开始高并发域名活性检测..."
+          echo "⚙️ 并发数量: ${{ github.event.inputs.concurrency_level }}"
+          echo "📊 缓存状态: ${{ steps.cache-restore.outputs.cache-hit == 'true' && '命中' || '未命中' }}"
+          
+          # 传递并发数量给脚本
+          export CONCURRENCY=${{ github.event.inputs.concurrency_level }}
+          
+          if [ "${{ github.event.inputs.auto_fix }}" == "true" ]; then
+            NODE_OPTIONS="--experimental-specifier-resolution=node" tsx Chores/engineering/build/scripts/clean-dead-domains.ts --fix
+            echo "auto_fix_executed=true" >> $GITHUB_OUTPUT
+          else
+            NODE_OPTIONS="--experimental-specifier-resolution=node" tsx Chores/engineering/build/scripts/clean-dead-domains.ts
+          fi
+          
+          # 统计检测结果
+          if [ -f ".cache/dead-domains.json" ]; then
+            DEAD_COUNT=$(jq length .cache/dead-domains.json)
+            echo "dead_domains_count=$DEAD_COUNT" >> $GITHUB_OUTPUT
+            if [ "$DEAD_COUNT" -gt 0 ]; then
+              echo "has_dead_domains=true" >> $GITHUB_OUTPUT
+              echo "🔴 发现 $DEAD_COUNT 个失效域名"
+            else
+              echo "has_dead_domains=false" >> $GITHUB_OUTPUT
+              echo "🟢 所有域名存活正常"
+            fi
+          else
+            echo "has_dead_domains=false" >> $GITHUB_OUTPUT
+          fi
       
-      - name: 保存缓存
+      # 自动修复功能
+      - name: 🔧 自动修复失效域名
+        if: github.event.inputs.auto_fix == 'true' && steps.domain-check.outputs.auto_fix_executed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if git diff --quiet; then
+            echo "💡 没有文件被修改，跳过提交"
+          else
+            git add .
+            git commit -m "🤖 自动修复: 移除失效域名 [skip ci]
+            
+            - 移除 ${{ steps.domain-check.outputs.dead_domains_count }} 个失效域名
+            - 并发数量: ${{ github.event.inputs.concurrency_level }}
+            - 修复时间: ${{ steps.date.outputs.date }}
+            - 触发者: @${{ github.actor }}"
+            
+            git push
+            echo "✅ 自动修复已提交"
+          fi
+      
+      # 保存增强缓存
+      - name: 💾 保存域名缓存 (持久化DNS查询结果)
         if: always()
         uses: actions/cache/save@v4
         with:
           path: |
             .cache
-          key: ${{ runner.os }}-domains-cache-v1-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
+            .cache/undici-better-sqlite3-cache-store.db
+            .cache/dns-cache.db
+            .cache/doh-cache.db
+          key: ${{ runner.os }}-domain-cache-v3-${{ steps.date.outputs.year }}-${{ steps.date.outputs.month }}-${{ steps.date.outputs.day }} ${{ steps.date.outputs.hour }}:${{ steps.date.outputs.minute }}:${{ steps.date.outputs.second }}
       
-      - name: 创建问题（如果发现失效域名）
-        if: steps.domain-check.outputs.has_dead_domains == 'true'
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const fs = require('fs');
-            
-            // 读取失效域名
-            const deadDomains = fs.existsSync('.cache/dead-domains.json') 
-              ? JSON.parse(fs.readFileSync('.cache/dead-domains.json', 'utf8')) 
-              : [];
-            
-            // 创建问题标题
-            const issueTitle = `发现失效域名 - ${new Date().toISOString().split('T')[0]}`;
-            
-            // 构建问题正文
-            let issueBody = `## 域名存活性检查发现以下失效域名\n\n`;
-            
-            const deadDomainsList = Object.entries(deadDomains)
-              .map(([domain, sources]) => {
-                const sourcesList = Array.isArray(sources) 
-                  ? sources.map(s => `  - ${s}`).join('\n')
-                  : `  - ${sources}`;
-                return `- \`${domain}\`\n${sourcesList}`;
-              })
-              .join('\n\n');
-            
-            issueBody += `${deadDomainsList}\n\n`;
-            issueBody += `\n这些域名需要检查是否已失效，可考虑从规则中移除。\n\n**自动生成于:** ${new Date().toISOString()}`;
-            
-            // 创建GitHub issue
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: issueTitle,
-              body: issueBody,
-              labels: ['domain-validation', 'needs-triage']
-            }); 
+      # 详细性能报告
+      - name: 📊 性能与结果汇总
+        run: |
+          echo "## 🔍 域名活性检测报告" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # 性能指标
+          echo "### ⚡ 性能指标" >> $GITHUB_STEP_SUMMARY
+          echo "- **并发数量**: ${{ github.event.inputs.concurrency_level }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **缓存状态**: ${{ steps.cache-restore.outputs.cache-hit == 'true' && '✅ 命中 (大幅加速)' || '❌ 未命中 (首次运行)' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **执行时间**: 开始于 ${{ steps.date.outputs.date }}" >> $GITHUB_STEP_SUMMARY
+          
+          # 检测结果
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🎯 检测结果" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.domain-check.outputs.has_dead_domains }}" == "true" ]; then
+            echo "- **状态**: ❌ 发现问题" >> $GITHUB_STEP_SUMMARY
+            echo "- **失效域名**: ${{ steps.domain-check.outputs.dead_domains_count }} 个" >> $GITHUB_STEP_SUMMARY
+            if [ "${{ github.event.inputs.auto_fix }}" == "true" ]; then
+              echo "- **修复状态**: ✅ 已自动修复并提交" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- **修复建议**: 💡 使用 \`auto_fix=true\` 自动修复" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "- **状态**: ✅ 所有域名存活正常" >> $GITHUB_STEP_SUMMARY
+            echo "- **失效域名**: 0 个" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "💡 **优化建议**: 定期运行可维护缓存，提升后续检测速度" >> $GITHUB_STEP_SUMMARY

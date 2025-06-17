@@ -323,7 +323,7 @@ export const ruleGroups: RuleGroup[] = [
     files: [
       {
         path: 'Surge/Rulesets/extra/speedtest.list',
-        url: 'https://kelee.one/Tool/Loon/Rule/OoklaSpeedtest.list',
+        url: 'https://ruleset.skk.moe/List/domainset/speedtest.conf',
       },
       {
         path: 'Surge/Rulesets/extra/dns.list',
@@ -399,8 +399,9 @@ export const specialRules: SpecialRuleConfig[] = [
       'https://ruleset.skk.moe/List/non_ip/ai.conf',
       'https://kelee.one/Tool/Loon/Rule/AI.list',
       'https://github.com/ConnersHua/RuleGo/raw/master/Surge/Ruleset/Extra/AI.list',
+      'https://github.com/dler-io/Rules/raw/main/Surge/Surge%203/Provider/AI%20Suite.list',
     ],
-    extraRules: ['DOMAIN-SUFFIX,openrouter.ai'],
+    //extraRules: ['DOMAIN-SUFFIX,openrouter.ai'],
     cleanup: true,
     deleteSourceFiles: true,
     header: {

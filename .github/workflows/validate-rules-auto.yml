@@ -1,0 +1,133 @@
+name: Auto Rules Validation (Syntax Only)
+
+on:
+  # 自动触发：完成同步规则、合并规则后
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'Surge/Rulesets/**'
+      - 'Chores/ruleset/**'
+  pull_request:
+    paths:
+      - 'Surge/Rulesets/**'
+      - 'Chores/ruleset/**'
+  schedule:
+    # 每日凌晨2点自动检查
+    - cron: "0 2 * * *"
+
+# 避免重复运行
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-syntax:
+    name: 🔍 规则语法验证
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      
+      - name: 设置Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: 安装依赖
+        run: npm ci
+      
+      # 快速语法验证（不包含域名测活）
+      - name: 📝 验证规则语法
+        id: syntax-check
+        run: |
+          mkdir -p .cache
+          echo "🔍 开始规则语法验证..."
+          NODE_OPTIONS="--experimental-specifier-resolution=node" tsx Chores/engineering/build/scripts/validate-rule-syntax.ts
+          
+          # 检查语法错误数量
+          if [ -f ".cache/syntax-errors.json" ]; then
+            ERROR_COUNT=$(jq '.errors | length' .cache/syntax-errors.json 2>/dev/null || echo "0")
+            echo "syntax_errors_count=$ERROR_COUNT" >> $GITHUB_OUTPUT
+            if [ "$ERROR_COUNT" -gt 0 ]; then
+              echo "has_syntax_errors=true" >> $GITHUB_OUTPUT
+              echo "❌ 发现 $ERROR_COUNT 个语法错误"
+              exit 1
+            else
+              echo "has_syntax_errors=false" >> $GITHUB_OUTPUT
+              echo "✅ 所有规则语法正确"
+            fi
+          else
+            echo "has_syntax_errors=false" >> $GITHUB_OUTPUT
+            echo "✅ 规则语法验证完成"
+          fi
+      
+      - name: 🌐 验证非法TLD
+        id: tld-check
+        run: |
+          echo "🌐 开始TLD验证..."
+          NODE_OPTIONS="--experimental-specifier-resolution=node" tsx Chores/engineering/build/scripts/validate-illegal-tld.ts
+          
+          if [ -f ".cache/illegal-tlds.json" ]; then
+            TLD_COUNT=$(jq length .cache/illegal-tlds.json)
+            if [ "$TLD_COUNT" -gt 0 ]; then
+              echo "❌ 发现 $TLD_COUNT 个非法TLD"
+              exit 1
+            else
+              echo "✅ 所有TLD合法"
+            fi
+          fi
+      
+      - name: 🔗 验证哈希冲突
+        id: hash-check
+        run: |
+          echo "🔗 开始哈希冲突检测..."
+          NODE_OPTIONS="--experimental-specifier-resolution=node" tsx Chores/engineering/build/scripts/validate-hash-collision.ts
+          
+          if [ -f ".cache/hash-collisions.json" ]; then
+            HASH_COUNT=$(jq length .cache/hash-collisions.json)
+            if [ "$HASH_COUNT" -gt 0 ]; then
+              echo "❌ 发现 $HASH_COUNT 个哈希冲突"
+              exit 1
+            else
+              echo "✅ 无哈希冲突"
+            fi
+          fi
+      
+      # 验证成功后的后续操作
+      - name: ✅ 规则验证通过
+        run: |
+          echo "🎉 所有规则验证通过，可以继续构建流程"
+          echo "## ✅ 规则验证结果" >> $GITHUB_STEP_SUMMARY
+          echo "- **规则语法**: 通过" >> $GITHUB_STEP_SUMMARY
+          echo "- **TLD验证**: 通过" >> $GITHUB_STEP_SUMMARY  
+          echo "- **哈希冲突**: 无冲突" >> $GITHUB_STEP_SUMMARY
+          echo "- **验证时间**: $(date)" >> $GITHUB_STEP_SUMMARY
+
+  # 规则验证通过后，触发构建流程
+  trigger-build:
+    name: 🚀 触发构建
+    needs: validate-syntax
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 触发网站构建
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // 触发 build.yml 工作流
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'build.yml',
+              ref: 'main'
+            });
+            
+            console.log('✅ 已触发网站构建工作流');

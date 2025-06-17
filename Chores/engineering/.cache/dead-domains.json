@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-06-17T10:43:21.730Z",
+  "totalChecked": 0,
+  "deadDomainsFound": 0,
+  "filesModified": 0,
+  "rulesRemoved": 0,
+  "deadDomains": [],
+  "summary": {
+    "hasDeadDomains": false,
+    "mode": "report"
+  }
+}
