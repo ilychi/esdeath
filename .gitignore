@@ -17,6 +17,13 @@ Chores/engineering/sync/temp/
 Chores/engineering/sync/test-*
 Chores/engineering/sync/test-output/
 
+# 缓存文件
+.cache/
+Chores/engineering/.cache/
+*.db
+*.db-wal
+*.db-shm
+
 # Surge 文件管理
 # 确保重要的Surge文件不被忽略
 !Surge/Modules/*.sgmodule
