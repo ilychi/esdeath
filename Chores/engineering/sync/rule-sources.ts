@@ -219,10 +219,12 @@ export const ruleGroups: RuleGroup[] = [
         path: 'Surge/Rulesets/domestic/cn-max_bm7.list',
         url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/ChinaMax/ChinaMax.list',
       },
+      /**
       {
         path: 'Surge/Rulesets/domestic/cn_lmfirefly.list',
         url: 'https://github.com/LM-Firefly/Rules/raw/master/Domestic.list',
       },
+      */
     ],
   },
   {
@@ -324,10 +326,6 @@ export const ruleGroups: RuleGroup[] = [
       {
         path: 'Surge/Rulesets/extra/speedtest.list',
         url: 'https://ruleset.skk.moe/List/domainset/speedtest.conf',
-      },
-      {
-        path: 'Surge/Rulesets/extra/dns.list',
-        url: 'https://github.com/LM-Firefly/Rules/raw/master/Special/DNS.list',
       },
     ],
   },
@@ -524,6 +522,7 @@ export const specialRules: SpecialRuleConfig[] = [
         'This file contains rules for third-party Emby media server instances requiring proxy access',
     },
   },
+  /**
   {
     name: 'Emby Streaming Media (Direct)',
     targetFile: 'Surge/Rulesets/stream/video/emby_cn.list',
@@ -537,6 +536,7 @@ export const specialRules: SpecialRuleConfig[] = [
         'This file contains rules for Emby servers that can be accessed directly from Mainland China without proxy',
     },
   },
+  */
   {
     name: 'NeteaseMusic',
     targetFile: 'Surge/Rulesets/stream/music/neteasemusic.list',
