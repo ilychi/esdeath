@@ -217,8 +217,7 @@ export class RuleConverter {
       .replace(/^HOST$/i, 'DOMAIN')
       .replace(/^IP6-CIDR$/i, 'IP-CIDR6')
       .replace(/^GEOIP$/i, 'GEOIP')
-      .replace(/^IP-ASN$/i, 'IP-ASN')
-      .replace(/^DEST-PORT$/i, 'DST-PORT');
+      .replace(/^IP-ASN$/i, 'IP-ASN');
 
     // Clash特有规则转换为Surge规则
     if (type === 'MATCH') {
