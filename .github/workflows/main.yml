@@ -514,112 +514,76 @@ jobs:
       - name: 构建网站
         run: |
           echo "开始构建网站..."
-          npm run build || echo "构建脚本未定义，使用默认构建流程"
           
-          # 如果没有 build 脚本，手动创建构建
-          RAM_DIR="${{ steps.build_dir.outputs.dir }}"
+          # 设置环境变量指定 RAM 磁盘为输出目录
+          export OUTPUT_DIR="${{ steps.build_dir.outputs.dir }}"
+          export RAM_DIR="${{ steps.build_dir.outputs.dir }}"
+          export CI=true
           
-          # 创建基础目录结构
-          mkdir -p $RAM_DIR/{Surge/Rulesets,Surge/Modules,Surge/Scripts,GeoIP,Dial}
+          # 执行构建命令
+          npm run build
           
-          # 复制规则文件
-          [ -d "Surge/Rulesets" ] && cp -r Surge/Rulesets/* $RAM_DIR/Surge/Rulesets/ || true
-          [ -d "Surge/Modules" ] && cp -r Surge/Modules/* $RAM_DIR/Surge/Modules/ || true
-          [ -d "Surge/Scripts" ] && cp -r Surge/Scripts/* $RAM_DIR/Surge/Scripts/ || true
+          # 验证构建结果
+          if [ ! -d "$OUTPUT_DIR" ] || [ -z "$(ls -A $OUTPUT_DIR)" ]; then
+            echo "❌ 构建失败：输出目录为空"
+            exit 1
+          fi
           
-          # 复制其他资源
-          [ -d "Dial" ] && cp -r Dial/* $RAM_DIR/Dial/ || true
-          [ -d "GeoIP" ] && cp -r GeoIP/* $RAM_DIR/GeoIP/ || true
+          # 如果构建输出到了 public 目录而不是 RAM 磁盘，则复制过去
+          if [ -d "public" ] && [ "$OUTPUT_DIR" != "$(pwd)/public" ]; then
+            echo "复制构建结果到 RAM 磁盘..."
+            cp -r public/* "$OUTPUT_DIR/" || true
+          fi
           
-          # 生成简单的 index.html
-          cat > $RAM_DIR/index.html << 'EOF'
-          <!DOCTYPE html>
-          <html lang="zh-CN">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Esdeath - Surge Rules Repository</title>
-              <style>
-                  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
-                  h1 { color: #333; }
-                  .section { margin: 20px 0; padding: 20px; background: #f5f5f5; border-radius: 8px; }
-                  .links a { display: inline-block; margin: 5px; padding: 8px 16px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; }
-                  .links a:hover { background: #0056b3; }
-                  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-                  .stat-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-                  .stat-card h3 { margin: 0 0 10px 0; color: #666; font-size: 14px; }
-                  .stat-card .number { font-size: 32px; font-weight: bold; color: #007bff; }
-              </style>
-          </head>
-          <body>
-              <h1>🛡️ Esdeath - Surge Rules Repository</h1>
-              
-              <div class="section">
-                  <h2>📊 仓库统计</h2>
-                  <div class="stats">
-                      <div class="stat-card">
-                          <h3>规则文件</h3>
-                          <div class="number">$(find $RAM_DIR/Surge/Rulesets -name "*.list" 2>/dev/null | wc -l || echo "0")</div>
-                      </div>
-                      <div class="stat-card">
-                          <h3>模块文件</h3>
-                          <div class="number">$(find $RAM_DIR/Surge/Modules -name "*.sgmodule" 2>/dev/null | wc -l || echo "0")</div>
-                      </div>
-                      <div class="stat-card">
-                          <h3>脚本文件</h3>
-                          <div class="number">$(find $RAM_DIR/Surge/Scripts -name "*.js" 2>/dev/null | wc -l || echo "0")</div>
-                      </div>
-                  </div>
-              </div>
-              
-              <div class="section">
-                  <h2>🔗 快速链接</h2>
-                  <div class="links">
-                      <a href="/Surge/Rulesets/">规则集</a>
-                      <a href="/Surge/Modules/">模块</a>
-                      <a href="/Surge/Scripts/">脚本</a>
-                      <a href="/GeoIP/">GeoIP 数据库</a>
-                      <a href="https://github.com/lucking7/esdeath">GitHub 仓库</a>
-                  </div>
-              </div>
-              
-              <div class="section">
-                  <p>最后更新: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')</p>
-                  <p>Commit: ${{ github.sha }}</p>
-              </div>
-          </body>
-          </html>
-          EOF
+          # 确保有 index.html
+          if [ ! -f "$OUTPUT_DIR/index.html" ]; then
+            echo "❌ 构建失败：缺少 index.html"
+            exit 1
+          fi
           
-          # 创建构建完成标记
-          touch .BUILD_FINISHED
+          # 输出构建统计
+          echo "✅ 网站构建成功！"
+          echo "📊 构建统计："
+          echo "  - 规则文件: $(find $OUTPUT_DIR/Rulesets -name "*.list" 2>/dev/null | wc -l || echo "0") 个"
+          echo "  - 模块文件: $(find $OUTPUT_DIR/Modules -name "*.sgmodule" 2>/dev/null | wc -l || echo "0") 个"
+          echo "  - 脚本文件: $(find $OUTPUT_DIR/Scripts -name "*.js" 2>/dev/null | wc -l || echo "0") 个"
+          echo "  - 总大小: $(du -sh $OUTPUT_DIR | cut -f1)"
           
           # 生成部署信息
-          echo "部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')" > $RAM_DIR/deploy-info.txt
-          echo "Git Commit: ${{ github.sha }}" >> $RAM_DIR/deploy-info.txt
+          echo "部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')" > $OUTPUT_DIR/deploy-info.txt
+          echo "Git Commit: ${{ github.sha }}" >> $OUTPUT_DIR/deploy-info.txt
+          echo "构建目录: $OUTPUT_DIR" >> $OUTPUT_DIR/deploy-info.txt
         env:
           TZ: 'Asia/Shanghai'
           CI: 'true'
-          RAM_DIR: ${{ steps.build_dir.outputs.dir }}
 
       - name: 构建后检查
         run: |
-          if [ ! -d ${{ steps.build_dir.outputs.dir }} ]; then
-            echo "构建目录不存在"
+          OUTPUT_DIR="${{ steps.build_dir.outputs.dir }}"
+          
+          if [ ! -d "$OUTPUT_DIR" ]; then
+            echo "❌ 构建目录不存在"
             exit 1
           fi
-          if [ ! "$(ls -A ${{ steps.build_dir.outputs.dir }})" ]; then
-            echo "构建目录为空"
+          
+          if [ ! -f "$OUTPUT_DIR/index.html" ]; then
+            echo "❌ index.html 不存在"
             exit 1
           fi
-          if [ ! -f .BUILD_FINISHED ]; then
-            echo "构建完成标记不存在"
+          
+          if [ -z "$(ls -A $OUTPUT_DIR)" ]; then
+            echo "❌ 构建目录为空"
             exit 1
           fi
           
           echo "✅ 构建检查通过"
           echo "📁 构建目录内容："
-          ls -la ${{ steps.build_dir.outputs.dir }}
+          ls -la $OUTPUT_DIR
+          
+          # 显示 index.html 的前几行确认是正确的网站
+          echo ""
+          echo "📄 index.html 预览："
+          head -n 20 $OUTPUT_DIR/index.html || true
 
       - name: 设置 GitHub Pages
         uses: actions/configure-pages@v5
