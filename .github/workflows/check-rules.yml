@@ -1,0 +1,150 @@
+name: IP Rules Validation & Auto-Removal
+
+on:
+  workflow_dispatch:
+    inputs:
+      auto-remove:
+        description: '自动移除无效IP规则'
+        type: boolean
+        default: false
+  # 每周三自动运行
+  schedule:
+    - cron: "0 0 * * 3"
+  # PR触发条件 - 当修改规则文件时触发
+  pull_request:
+    paths:
+      - 'Surge/Rulesets/**/*.list'
+      - 'Chores/ruleset/**/*.list'
+      - 'Source/**/*.list'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-ip-rules:
+    name: 验证IP规则
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: 安装依赖
+        run: |
+          cd Chores/engineering
+          npm ci --prefer-offline --no-audit
+          
+      - name: 运行IP规则验证
+        id: validate
+        run: |
+          cd Chores/engineering
+          echo "开始IP规则验证..."
+          
+          # 运行IP规则验证脚本
+          NODE_OPTIONS="--experimental-specifier-resolution=node" tsx build/scripts/validate-ip-rules.ts || true
+          
+          # 检查是否有错误
+          if [ -f ".cache/invalid-ip-rules.json" ]; then
+            invalid_count=$(jq length .cache/invalid-ip-rules.json 2>/dev/null || echo "0")
+            echo "invalid_ip_count=$invalid_count" >> $GITHUB_OUTPUT
+            
+            if [ "$invalid_count" -gt "0" ]; then
+              echo "⚠️ 发现 $invalid_count 个无效的IP规则" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "### 无效IP规则列表：" >> $GITHUB_STEP_SUMMARY
+              jq -r '.[] | "- \(.source): \(.rule)"' .cache/invalid-ip-rules.json >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "invalid_ip_count=0" >> $GITHUB_OUTPUT
+            echo "✅ 所有IP规则验证通过！" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+      - name: 生成修复建议
+        if: steps.validate.outputs.invalid_ip_count != '0'
+        run: |
+          cd Chores/engineering
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔧 修复建议" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ github.event_name }}" == "schedule" ] || [ "${{ inputs.auto-remove }}" == "true" ]; then
+            echo "自动移除功能已启用，将在下一步自动处理无效规则。" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "可以通过以下方式修复：" >> $GITHUB_STEP_SUMMARY
+            echo "1. 手动编辑规则文件，移除或修正无效的IP规则" >> $GITHUB_STEP_SUMMARY
+            echo "2. 运行工作流时启用 'auto-remove' 选项自动移除" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+      - name: 自动移除无效IP规则
+        if: |
+          steps.validate.outputs.invalid_ip_count != '0' && 
+          (github.event_name == 'schedule' || inputs.auto-remove == true)
+        run: |
+          cd Chores/engineering
+          echo "开始自动移除无效IP规则..."
+          
+          # 使用 --fix 参数重新运行脚本以自动移除无效规则
+          NODE_OPTIONS="--experimental-specifier-resolution=node" tsx build/scripts/validate-ip-rules.ts --fix
+          
+          # 统计修改的文件
+          cd ../..
+          modified_files=$(git diff --name-only | wc -l)
+          echo "modified_files=$modified_files" >> $GITHUB_OUTPUT
+          
+          if [ "$modified_files" -gt "0" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### ✅ 自动移除完成" >> $GITHUB_STEP_SUMMARY
+            echo "已修改 $modified_files 个文件" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "修改的文件：" >> $GITHUB_STEP_SUMMARY
+            git diff --name-only | while read file; do
+              echo "- $file" >> $GITHUB_STEP_SUMMARY
+            done
+            
+            # 读取自动移除的规则详情
+            if [ -f "Chores/engineering/.cache/auto-removed-ip-rules.json" ]; then
+              removed_count=$(jq length Chores/engineering/.cache/auto-removed-ip-rules.json 2>/dev/null || echo "0")
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "共移除 $removed_count 条无效IP规则" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
+          
+      - name: 创建 Pull Request
+        if: |
+          steps.validate.outputs.invalid_ip_count != '0' && 
+          (github.event_name == 'schedule' || inputs.auto-remove == true) &&
+          github.ref == 'refs/heads/main'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: '🔧 自动移除无效的IP规则'
+          title: '🔧 [自动] 移除无效的IP规则'
+          body: |
+            ## 📊 IP规则验证报告
+            
+            本次验证发现了 ${{ steps.validate.outputs.invalid_ip_count }} 个无效的IP规则，已自动移除。
+            
+            ### 详细信息
+            请查看工作流运行日志获取具体的无效规则列表。
+            
+            ---
+            *此PR由 GitHub Actions 自动创建*
+          branch: auto/remove-invalid-ip-rules
+          delete-branch: true
+          
+      - name: 上传验证报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ip-validation-report-${{ github.run_id }}
+          path: |
+            Chores/engineering/.cache/invalid-ip-rules.json
+          retention-days: 30
+          if-no-files-found: ignore
