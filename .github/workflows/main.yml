@@ -6,7 +6,12 @@ on:
       - main
   pull_request:
   schedule:
+    # 每天午夜运行
+    - cron: "0 0 * * *"
+    # 每天中午运行
     - cron: "0 12 * * *"
+    # 每周三傍晚额外运行
+    - cron: "0 18 * * 3"
   workflow_dispatch:
   repository_dispatch:
     types: [trigger-main-build]
