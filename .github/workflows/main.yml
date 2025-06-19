@@ -6,7 +6,12 @@ on:
       - main
   pull_request:
   schedule:
+    # 每天午夜运行
+    - cron: "0 0 * * *"
+    # 每天中午运行
     - cron: "0 12 * * *"
+    # 每周三傍晚额外运行
+    - cron: "0 18 * * 3"
   workflow_dispatch:
   repository_dispatch:
     types: [trigger-main-build]
@@ -484,45 +489,137 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
         with:
-          sparse-checkout: |
-            public
-            Surge
-            Dial
-            GeoIP
-            Chores
-            Source
-          sparse-checkout-cone-mode: false
+          persist-credentials: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 准备部署文件
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 创建 RAM 磁盘构建目录
+        id: build_dir
         run: |
-          echo "准备部署文件..."
-          # 创建部署目录
-          mkdir -p _site
+          # 创建RAM磁盘目录
+          RAM_DIR="/dev/shm/esdeath_build"
+          sudo mkdir -p $RAM_DIR
+          sudo chmod 777 $RAM_DIR
+          echo "临时构建目录: $RAM_DIR"
+          echo "dir=$RAM_DIR" >> $GITHUB_OUTPUT
+
+      - name: 构建网站
+        run: |
+          echo "开始构建网站..."
+          npm run build || echo "构建脚本未定义，使用默认构建流程"
           
-          # 复制静态文件
-          cp -r public/* _site/
+          # 如果没有 build 脚本，手动创建构建
+          RAM_DIR="${{ steps.build_dir.outputs.dir }}"
           
-          # 复制规则文件和模块
-          mkdir -p _site/Surge/Rulesets _site/Surge/Modules _site/Surge/Scripts
-          [ -d "Surge/Rulesets" ] && cp -r Surge/Rulesets/* _site/Surge/Rulesets/ || true
-          [ -d "Surge/Modules" ] && cp -r Surge/Modules/* _site/Surge/Modules/ || true
-          [ -d "Surge/Scripts" ] && cp -r Surge/Scripts/* _site/Surge/Scripts/ || true
+          # 创建基础目录结构
+          mkdir -p $RAM_DIR/{Surge/Rulesets,Surge/Modules,Surge/Scripts,GeoIP,Dial}
           
-          # 复制Dial目录
-          [ -d "Dial" ] && cp -r Dial _site/ || true
+          # 复制规则文件
+          [ -d "Surge/Rulesets" ] && cp -r Surge/Rulesets/* $RAM_DIR/Surge/Rulesets/ || true
+          [ -d "Surge/Modules" ] && cp -r Surge/Modules/* $RAM_DIR/Surge/Modules/ || true
+          [ -d "Surge/Scripts" ] && cp -r Surge/Scripts/* $RAM_DIR/Surge/Scripts/ || true
           
-          # 复制GeoIP数据库
-          [ -d "GeoIP" ] && cp -r GeoIP _site/ || true
+          # 复制其他资源
+          [ -d "Dial" ] && cp -r Dial/* $RAM_DIR/Dial/ || true
+          [ -d "GeoIP" ] && cp -r GeoIP/* $RAM_DIR/GeoIP/ || true
+          
+          # 生成简单的 index.html
+          cat > $RAM_DIR/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="zh-CN">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Esdeath - Surge Rules Repository</title>
+              <style>
+                  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+                  h1 { color: #333; }
+                  .section { margin: 20px 0; padding: 20px; background: #f5f5f5; border-radius: 8px; }
+                  .links a { display: inline-block; margin: 5px; padding: 8px 16px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; }
+                  .links a:hover { background: #0056b3; }
+                  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+                  .stat-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+                  .stat-card h3 { margin: 0 0 10px 0; color: #666; font-size: 14px; }
+                  .stat-card .number { font-size: 32px; font-weight: bold; color: #007bff; }
+              </style>
+          </head>
+          <body>
+              <h1>🛡️ Esdeath - Surge Rules Repository</h1>
+              
+              <div class="section">
+                  <h2>📊 仓库统计</h2>
+                  <div class="stats">
+                      <div class="stat-card">
+                          <h3>规则文件</h3>
+                          <div class="number">$(find $RAM_DIR/Surge/Rulesets -name "*.list" 2>/dev/null | wc -l || echo "0")</div>
+                      </div>
+                      <div class="stat-card">
+                          <h3>模块文件</h3>
+                          <div class="number">$(find $RAM_DIR/Surge/Modules -name "*.sgmodule" 2>/dev/null | wc -l || echo "0")</div>
+                      </div>
+                      <div class="stat-card">
+                          <h3>脚本文件</h3>
+                          <div class="number">$(find $RAM_DIR/Surge/Scripts -name "*.js" 2>/dev/null | wc -l || echo "0")</div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="section">
+                  <h2>🔗 快速链接</h2>
+                  <div class="links">
+                      <a href="/Surge/Rulesets/">规则集</a>
+                      <a href="/Surge/Modules/">模块</a>
+                      <a href="/Surge/Scripts/">脚本</a>
+                      <a href="/GeoIP/">GeoIP 数据库</a>
+                      <a href="https://github.com/lucking7/esdeath">GitHub 仓库</a>
+                  </div>
+              </div>
+              
+              <div class="section">
+                  <p>最后更新: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')</p>
+                  <p>Commit: ${{ github.sha }}</p>
+              </div>
+          </body>
+          </html>
+          EOF
+          
+          # 创建构建完成标记
+          touch .BUILD_FINISHED
           
           # 生成部署信息
-          echo "部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')" > _site/deploy-info.txt
-          echo "Git Commit: ${{ github.sha }}" >> _site/deploy-info.txt
+          echo "部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')" > $RAM_DIR/deploy-info.txt
+          echo "Git Commit: ${{ github.sha }}" >> $RAM_DIR/deploy-info.txt
+        env:
+          TZ: 'Asia/Shanghai'
+          CI: 'true'
+          RAM_DIR: ${{ steps.build_dir.outputs.dir }}
+
+      - name: 构建后检查
+        run: |
+          if [ ! -d ${{ steps.build_dir.outputs.dir }} ]; then
+            echo "构建目录不存在"
+            exit 1
+          fi
+          if [ ! "$(ls -A ${{ steps.build_dir.outputs.dir }})" ]; then
+            echo "构建目录为空"
+            exit 1
+          fi
+          if [ ! -f .BUILD_FINISHED ]; then
+            echo "构建完成标记不存在"
+            exit 1
+          fi
           
-          # 统计文件数量
-          echo "统计部署文件..."
-          echo "规则文件: $(find _site/Surge/Rulesets -name "*.list" 2>/dev/null | wc -l || echo "0") 个"
-          echo "模块文件: $(find _site/Surge/Modules -name "*.sgmodule" 2>/dev/null | wc -l || echo "0") 个"
-          echo "脚本文件: $(find _site/Surge/Scripts -name "*.js" 2>/dev/null | wc -l || echo "0") 个"
+          echo "✅ 构建检查通过"
+          echo "📁 构建目录内容："
+          ls -la ${{ steps.build_dir.outputs.dir }}
 
       - name: 设置 GitHub Pages
         uses: actions/configure-pages@v5
@@ -530,7 +627,7 @@ jobs:
       - name: 上传部署文件
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: ${{ steps.build_dir.outputs.dir }}
 
       - name: 部署到 GitHub Pages
         id: deployment

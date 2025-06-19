@@ -224,8 +224,6 @@ export class RuleConverter {
       type = 'FINAL';
     } else if (type === 'SRC-IP-CIDR') {
       type = 'SRC-IP';
-    } else if (type === 'SRC-PORT') {
-      type = 'SRC-PORT';
     } else if (type === 'PROCESS-NAME') {
       type = 'PROCESS-NAME';
     } else if (type === 'RULE-SET') {
