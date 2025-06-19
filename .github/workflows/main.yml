@@ -481,6 +481,65 @@ jobs:
       id-token: write
     
     steps:
-      - name: 部署到 GitHub Pages
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            public
+            Surge
+            Dial
+            GeoIP
+            Chores
+            Source
+          sparse-checkout-cone-mode: false
+
+      - name: 准备部署文件
         run: |
-          echo "部署功能待实现"
+          echo "准备部署文件..."
+          # 创建部署目录
+          mkdir -p _site
+          
+          # 复制静态文件
+          cp -r public/* _site/
+          
+          # 复制规则文件和模块
+          mkdir -p _site/Surge/Rulesets _site/Surge/Modules _site/Surge/Scripts
+          [ -d "Surge/Rulesets" ] && cp -r Surge/Rulesets/* _site/Surge/Rulesets/ || true
+          [ -d "Surge/Modules" ] && cp -r Surge/Modules/* _site/Surge/Modules/ || true
+          [ -d "Surge/Scripts" ] && cp -r Surge/Scripts/* _site/Surge/Scripts/ || true
+          
+          # 复制Dial目录
+          [ -d "Dial" ] && cp -r Dial _site/ || true
+          
+          # 复制GeoIP数据库
+          [ -d "GeoIP" ] && cp -r GeoIP _site/ || true
+          
+          # 生成部署信息
+          echo "部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')" > _site/deploy-info.txt
+          echo "Git Commit: ${{ github.sha }}" >> _site/deploy-info.txt
+          
+          # 统计文件数量
+          echo "统计部署文件..."
+          echo "规则文件: $(find _site/Surge/Rulesets -name "*.list" 2>/dev/null | wc -l || echo "0") 个"
+          echo "模块文件: $(find _site/Surge/Modules -name "*.sgmodule" 2>/dev/null | wc -l || echo "0") 个"
+          echo "脚本文件: $(find _site/Surge/Scripts -name "*.js" 2>/dev/null | wc -l || echo "0") 个"
+
+      - name: 设置 GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传部署文件
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        
+      - name: 部署成功通知
+        if: success()
+        run: |
+          echo "✅ 部署成功！" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 访问地址: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "📅 部署时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
+          echo "📦 Git Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
