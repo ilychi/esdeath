@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Speedtest Domains
-# Last Updated: 2025-06-18T14:29:18.488Z
-# Size: 1187
+# Last Updated: 2025-06-20T07:17:39.311Z
+# Size: 1189
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -791,6 +791,7 @@ DOMAIN,spdms.twincher.ru
 DOMAIN,speedtest.starlink.ru
 DOMAIN,speedtest.spacenet.ru
 DOMAIN,speedtest.gatchina.ru
+DOMAIN,msk.speedtest.timeweb.ru
 DOMAIN,speedtest.netrack.ru
 DOMAIN,speedtest.myarena.ru
 DOMAIN,speedtest-stf.megafon.ru
@@ -1111,6 +1112,7 @@ DOMAIN,speed.sdmnet.com.br
 DOMAIN,speedtest.inforr.com.br
 DOMAIN,speedtest.snnet.com.br
 DOMAIN,speedtest.mixam.com.br
+DOMAIN,spd79.claro.com.br
 DOMAIN,spd76.claro.com.br
 DOMAIN,spd53.claro.com.br
 DOMAIN,spd49.claro.com.br
