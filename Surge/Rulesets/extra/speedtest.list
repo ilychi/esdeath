@@ -1,6 +1,6 @@
 #########################################
 # Sukka's Ruleset - Speedtest Domains
-# Last Updated: 2025-06-20T14:09:43.724Z
+# Last Updated: 2025-06-21T07:43:06.478Z
 # Size: 1192
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
@@ -1200,3 +1200,4 @@ DOMAIN,speedtest.capti.com.au
 DOMAIN,speedtest.58243.as
 DOMAIN-SUFFIX,speedtest.angolacables.co.ao
 ################## EOF ##################
+

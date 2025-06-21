@@ -1,6 +1,6 @@
 #########################################
 # Sukka's Ruleset - Internal Special
-# Last Updated: 2025-05-13T12:57:52.683Z
+# Last Updated: 2025-06-21T07:43:06.790Z
 # Size: 7
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
@@ -14,3 +14,4 @@ DOMAIN,alive.github.com
 DOMAIN,api.github.com
 DOMAIN-SUFFIX,huggingface.co
 ################## EOF ##################
+
