@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Speedtest Domains
-# Last Updated: 2025-06-20T07:17:39.311Z
-# Size: 1189
+# Last Updated: 2025-06-20T14:09:43.724Z
+# Size: 1192
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -202,6 +202,7 @@ DOMAIN,speedtest1-sttlwawb.as20055.net
 DOMAIN,speedtest-ntt-ldn.as20011.net
 DOMAIN,speedtest-ntt-fra.as20011.net
 DOMAIN,spt-nyc.as13786.net
+DOMAIN,speedtest.anksoft.net
 DOMAIN,spdtst.xenyth.net
 DOMAIN-SUFFIX,speedtest.warian.net
 DOMAIN,speed.sparcs.net
@@ -696,6 +697,7 @@ DOMAIN,st-kocaeli-1.turksatkablo.com.tr
 DOMAIN,st-kayseri-1.turksatkablo.com.tr
 DOMAIN,st-erzurum-1.turksatkablo.com.tr
 DOMAIN,st-denizli-1.turksatkablo.com.tr
+DOMAIN,st-antalya-1.turksatkablo.com.tr
 DOMAIN,st-samsun-1.turksatkablo.com.tr
 DOMAIN,st-manisa-1.turksatkablo.com.tr
 DOMAIN,st-atakoy-1.turksatkablo.com.tr
@@ -790,6 +792,7 @@ DOMAIN,stmsk.volga-ix.ru
 DOMAIN,spdms.twincher.ru
 DOMAIN,speedtest.starlink.ru
 DOMAIN,speedtest.spacenet.ru
+DOMAIN,speedtest.my-infra.ru
 DOMAIN,speedtest.gatchina.ru
 DOMAIN,msk.speedtest.timeweb.ru
 DOMAIN,speedtest.netrack.ru
