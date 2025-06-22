@@ -1,13 +1,13 @@
 // Ruleset - Global Streaming Services
-// Last updated: 2025/6/22 08:22:33
-// DOMAIN: 52
+// Last updated: 2025/6/22 20:16:15
+// DOMAIN: 53
 // DOMAIN-SUFFIX: 198
 // DOMAIN-KEYWORD: 15
 // IP-CIDR: 15
 // IP-CIDR6: 4
 // PROCESS-NAME: 14
 // USER-AGENT: 49
-// Total: 347
+// Total: 348
 // This file contains combined rules for various streaming media platforms including Netflix, Disney+, HBO, Amazon Prime, Spotify, YouTube, Twitch, BBC, Hulu and many other global video/audio services
 // Data sources:
 //  - https://ruleset.skk.moe/List/non_ip/stream.conf
@@ -16,6 +16,7 @@ DOMAIN,44wilhpljf.execute-api.ap-southeast-1.amazonaws.com
 DOMAIN,4gtvfreepcvod-cds.cdn.hinet.net
 DOMAIN,akmcdnoversea-tw.inter.ptqy.gitv.tv
 DOMAIN,apm-misaka.biliapi.net
+DOMAIN,bbc.mp-pxcdn.com
 DOMAIN,bcbolt446c5271-a.akamaihd.net
 DOMAIN,cache.video.iqiyi.com
 DOMAIN,cbsi.live.ott.irdeto.com
