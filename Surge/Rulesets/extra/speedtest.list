@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Speedtest Domains
-# Last Updated: 2025-06-21T07:43:06.478Z
-# Size: 1192
+# Last Updated: 2025-06-21T16:25:29.595Z
+# Size: 1193
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -752,6 +752,7 @@ DOMAIN,speed.tepenet.com.tr
 DOMAIN,speedtest2.plusnet.com.tr
 DOMAIN,speedtest-ist-34-node.netzone.com.tr
 DOMAIN,speedtest.netwifi.com.tr
+DOMAIN,speed.giganet.com.tr
 DOMAIN,hiztesti.fiberim.com.tr
 DOMAIN,speedtest.eminnet.com.tr
 DOMAIN,hizgaziantep.durunet.com.tr
