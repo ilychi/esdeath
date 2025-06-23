@@ -30,3 +30,8 @@ Chores/engineering/.cache/
 !Surge/Scripts/*.js
 !Surge/Modules/Rules/*.list
 !Surge/Modules/Rules/**/*.conf
+
+# iRingo 文件（这些文件应该被忽略）
+Dial/iRingo/plugin/*.plugin
+Dial/iRingo/sgmodule/*.sgmodule
+Dial/iRingo/snippet/*.snippet
