@@ -375,7 +375,7 @@ jobs:
           
           # 定义要转换的 QX 规则
           declare -A qx_rules=(
-            ["App小程序净化合集"]="https://github.com/fmz200/wool_scripts/raw/main/QuantumultX/rewrite/chongxie.txt"
+            ["MiniApp_Cleaner"]="https://github.com/fmz200/wool_scripts/raw/main/QuantumultX/rewrite/chongxie.txt"
           )
           
           # 转换 QX 规则
@@ -385,10 +385,9 @@ jobs:
             
             echo "转换 QX 规则: $name"
             encoded_name=$(echo "$name" | jq -sRr @uri)
-            encoded_url=$(echo "$url" | jq -sRr @uri)
             
             # 使用 Script Hub 转换 QX 重写到 Surge 模块
-            download_url="http://localhost:9101/file/_start_/${encoded_url}/_end_/${encoded_name}.sgmodule?type=qx-rewrite&target=surge-module"
+            download_url="http://localhost:9101/file/_start_/${url}/_end_/${name}.sgmodule?type=qx-rewrite&target=surge-module&del=true"
             
             # 添加主动预防参数
             fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
@@ -418,53 +417,74 @@ jobs:
             # 从原始 Loon 插件提取参数
             loon_url="https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin"
             
-            # 下载原始文件提取参数
-            if curl -s -L "$loon_url" | grep -A 200 "^\[Argument\]" > /tmp/loon_args.txt 2>/dev/null; then
-              echo "提取到 Loon 参数，开始转换..."
-              
-              # 创建临时文件存储转换后的内容
-              cp "Surge/Modules/Remove_ads_by_fmz.sgmodule" "/tmp/module_temp.sgmodule"
+            # 下载原始文件提取参数和脚本
+            if curl -s -L "$loon_url" > /tmp/loon_plugin.txt 2>/dev/null; then
+              echo "提取到 Loon 插件，开始转换..."
               
               # 提取参数并转换格式
               args=""
               args_desc=""
               
+              # 提取参数部分
+              sed -n '/^\[Argument\]/,/^\[/p' /tmp/loon_plugin.txt | grep -v '^\[' > /tmp/loon_args.txt
+              
               while IFS= read -r line; do
-                if [[ "$line" =~ ^([a-zA-Z0-9_]+)[[:space:]]*=[[:space:]]*switch,([^,]+),([^,]+),tag=(.+)$ ]]; then
+                [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+                
+                if [[ "$line" =~ ^([a-zA-Z0-9_]+)[[:space:]]*=[[:space:]]*switch,([^,]+),([^,]+),tag=(.*)$ ]]; then
                   name="${BASH_REMATCH[1]}"
                   default="${BASH_REMATCH[2]}"
-                  desc="${BASH_REMATCH[4]}"
+                  desc="${BASH_REMATCH[4]%%,*}"
                   args="${args}${name}:${default},"
                   args_desc="${args_desc}${name}:${desc}\\n"
-                elif [[ "$line" =~ ^([a-zA-Z0-9_]+)=select,(.+),tag=([^,]+),desc=(.+)$ ]]; then
+                elif [[ "$line" =~ ^([a-zA-Z0-9_]+)=select,(.+),tag=([^,]+) ]]; then
                   name="${BASH_REMATCH[1]}"
                   options="${BASH_REMATCH[2]}"
-                  tag="${BASH_REMATCH[3]}"
-                  desc="${BASH_REMATCH[4]}"
-                  # 获取默认值（第一个选项）
+                  desc="${BASH_REMATCH[3]%%,*}"
                   default=$(echo "$options" | cut -d',' -f1 | tr -d '"')
                   args="${args}${name}:${default},"
-                  args_desc="${args_desc}${name}:${tag}\\n"
+                  args_desc="${args_desc}${name}:${desc}\\n"
                 fi
-              done < <(sed -n '/^\[Argument\]/,/^\[/p' /tmp/loon_args.txt | grep -v '^\[' | grep -v '^$')
+              done < /tmp/loon_args.txt
               
               # 移除尾部逗号
               args="${args%,}"
               args_desc="${args_desc%\\n}"
               
               if [[ -n "$args" ]]; then
-                # 在文件开头添加参数
-                {
-                  echo "#!arguments=$args"
-                  echo "#!arguments-desc=$args_desc"
-                  echo ""
-                  cat "/tmp/module_temp.sgmodule"
-                } > "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+                # 修改 sgmodule 文件，添加参数并更新脚本
+                awk -v args="$args" -v args_desc="$args_desc" '
+                  /^#!category=/ {
+                    print $0
+                    print "#!arguments=" args
+                    print "#!arguments-desc=" args_desc
+                    next
+                  }
+                  # 为脚本添加参数占位符
+                  /^(.*脚本名.*) = type=http-/ {
+                    # 提取脚本名并检查是否有对应的参数
+                    script_name = $0
+                    # 如果是特定的脚本，添加参数占位符
+                    if (match(script_name, /12306/) && index(args, "12306_enable") > 0) {
+                      print "{{{12306_enable}}} = " substr($0, index($0, "type="))
+                    } else if (match(script_name, /555/) && index(args, "555_enable") > 0) {
+                      print "{{{555_enable}}} = " substr($0, index($0, "type="))
+                    } else if (match(script_name, /哔哩哔哩/) && index(args, "bilibili_enable") > 0) {
+                      print "{{{bilibili_enable}}} = " substr($0, index($0, "type="))
+                    } else {
+                      print $0
+                    }
+                    next
+                  }
+                  {print}
+                ' "Surge/Modules/Remove_ads_by_fmz.sgmodule" > "/tmp/module_temp.sgmodule"
+                
+                mv "/tmp/module_temp.sgmodule" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
                 
                 echo "✅ 成功转换参数到 Surge 格式"
               fi
               
-              rm -f /tmp/loon_args.txt /tmp/module_temp.sgmodule
+              rm -f /tmp/loon_plugin.txt /tmp/loon_args.txt
             fi
           fi
           

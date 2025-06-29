@@ -3104,140 +3104,140 @@ https://.+\.gamersky.com/v1/statisticAd data-type=text data="{}" status-code=200
 
 [Script]
 # > 12306
-12306 = type=http-request, pattern=^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList, script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/12306.js, requires-body=true, timeout=60
+{{{12306_enable}}} = type=http-request, pattern=^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList, script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/12306.js, requires-body=true, timeout=60
 
 # > 555影视
-555影视广告 = type=http-response, pattern="^https?:\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+){1,3}(:\d+)?\/api\/v\d\/movie\/index_recommend", script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/555Ad.js, requires-body=true, timeout=60
+{{{555_enable}}} = type=http-response, pattern="^https?:\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+){1,3}(:\d+)?\/api\/v\d\/movie\/index_recommend", script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/555Ad.js, requires-body=true, timeout=60
 
 # > 51信用卡管家
-51信用卡管家 = type=http-response, pattern=^https?:\/\/api\.u51\.com\/liabilitygateway\/api\/v\d\/homepage\/liabilityline, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/51card.js, requires-body=true, timeout=60
+{{{51xyk_enable}}} = type=http-response, pattern=^https?:\/\/api\.u51\.com\/liabilitygateway\/api\/v\d\/homepage\/liabilityline, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/51card.js, requires-body=true, timeout=60
 
-51信用卡管家 = type=http-response, pattern=^https?:\/\/api\.u51\.com\/generic-config-gateway\/api\/v\d\/guanjia\/me-tab2\/config, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/51card.js, requires-body=true, timeout=60
+{{{51xyk_enable}}} = type=http-response, pattern=^https?:\/\/api\.u51\.com\/generic-config-gateway\/api\/v\d\/guanjia\/me-tab2\/config, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/51card.js, requires-body=true, timeout=60
 
 # > 51job
-51job = type=http-response, pattern=^https?:\/\/cupid\.51job(app)?\.com\/open\/noauth\/recommend\/job-tab-dynamic, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/51job.js, requires-body=true, timeout=60
+{{{51job_enable}}} = type=http-response, pattern=^https?:\/\/cupid\.51job(app)?\.com\/open\/noauth\/recommend\/job-tab-dynamic, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/51job.js, requires-body=true, timeout=60
 
 # > 阿里巴巴
-阿里巴巴广告 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60
+{{{albb_enable}}} = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60
 
-阿里巴巴广告 = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/myBlockAds.js, requires-body=true, timeout=60
+{{{albb_enable}}} = type=http-response, pattern=^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/myBlockAds.js, requires-body=true, timeout=60
 
 myBlockAds = type=http-response, pattern=^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/myBlockAds.js, requires-body=true, timeout=60
 
 # > 阿里云盘
-阿里云盘 = type=http-response, pattern=^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true, timeout=60
+{{{alyp_enable}}} = type=http-response, pattern=^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true, timeout=60
 
-阿里云盘 = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true, timeout=60
+{{{alyp_enable}}} = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true, timeout=60
 
 # 首页信息流广告
-爱奇艺首页信息流广告 = type=http-response, pattern=^https?:\/\/[\d\.]+\/3f1\/cards\.iqiyi\.com\/(views_home\/3\.0\/qy_home|waterfall\/3\.0\/feed)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/[\d\.]+\/3f1\/cards\.iqiyi\.com\/(views_home\/3\.0\/qy_home|waterfall\/3\.0\/feed)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
-爱奇艺首页信息流广告 = type=http-response, pattern=^https?:\/\/access\.if\.iqiyi\.com\/3f1\/cards\.iqiyi\.com\/(views_category\/3\.0\/category_home|views_home\/3\.0\/qy_home|waterfall\/3\.0\/feed)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/access\.if\.iqiyi\.com\/3f1\/cards\.iqiyi\.com\/(views_category\/3\.0\/category_home|views_home\/3\.0\/qy_home|waterfall\/3\.0\/feed)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
-爱奇艺首页信息流广告 = type=http-response, pattern=^https?:\/\/cards\.iqiyi\.com\/views_category\/3\.0\/(category_home|categorylib_content|film_hybrid)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/cards\.iqiyi\.com\/views_category\/3\.0\/(category_home|categorylib_content|film_hybrid)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
-爱奇艺首页信息流广告 = type=http-response, pattern=^https?:\/\/cards\.iqiyi\.com\/(views_home\/3\.0\/qy_home|waterfall\/3\.0\/feed)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/cards\.iqiyi\.com\/(views_home\/3\.0\/qy_home|waterfall\/3\.0\/feed)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 播放详情页
-爱奇艺播放详情页广告 = type=http-response, pattern=^https?:\/\/cards\.iqiyi\.com\/views_plt\/3\.0\/player_tabs_v2\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/cards\.iqiyi\.com\/views_plt\/3\.0\/player_tabs_v2\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 搜索页列表
-爱奇艺搜索页列表广告 = type=http-response, pattern=^https?:\/\/cards\.iqiyi\.com\/views_search\/3\.0\/(hot_query_)?search\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/cards\.iqiyi\.com\/views_search\/3\.0\/(hot_query_)?search\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 评论区
-爱奇艺评论区 = type=http-response, pattern=^https?:\/\/comment-card\.iqiyi\.com\/views_comment\/3\.0\/long_video_comments\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/comment-card\.iqiyi\.com\/views_comment\/3\.0\/long_video_comments\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 我的页面菜单
-爱奇艺我的页面菜单 = type=http-response, pattern=^https?:\/\/iface2\.iqiyi\.com\/aggregate\/3\.0\/getMyMenus\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/iface2\.iqiyi\.com\/aggregate\/3\.0\/getMyMenus\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 首页左上角天气
-爱奇艺首页左上角天气 = type=http-response, pattern=^https?:\/\/iface2\.iqiyi\.com\/control\/3\.0\/init_proxy\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/iface2\.iqiyi\.com\/control\/3\.0\/init_proxy\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 通用控制,各tab页二楼
-爱奇艺通用控制,各tab页二楼 = type=http-response, pattern=^https?:\/\/iface2\.iqiyi\.com\/fusion\/3\.0\/common_switch\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/iface2\.iqiyi\.com\/fusion\/3\.0\/common_switch\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 底部tab,顶部tab
-爱奇艺底部tab,顶部tab = type=http-response, pattern=^https?:\/\/iface2\.iqiyi\.com\/views\/3\.0\/(bottom_theme|home_top_menu)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/iface2\.iqiyi\.com\/views\/3\.0\/(bottom_theme|home_top_menu)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 搜索框填充词
-爱奇艺搜索框填充词 = type=http-response, pattern=^https?:\/\/search\.video\.iqiyi\.com\/q\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/search\.video\.iqiyi\.com\/q\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 开屏广告,播放广告
-爱奇艺开屏广告,播放广告 = type=http-response, pattern=^https?:\/\/(kjp|t7z)\.cupid\.iqiyi\.com\/mixer\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
+{{{aiqiyi_enable}}} = type=http-response, pattern=^https?:\/\/(kjp|t7z)\.cupid\.iqiyi\.com\/mixer\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cnftp.js, requires-body=true, timeout=60
 
 # 登录后个人界面广告
-blued登录后个人界面广告 = type=http-response, pattern=^https?:\/\/social\.blued\.cn\/users\/.+\/more\/ios\?v=2, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/blued.js, requires-body=true, timeout=60
+{{{blued_enable}}} = type=http-response, pattern=^https?:\/\/social\.blued\.cn\/users\/.+\/more\/ios\?v=2, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/blued.js, requires-body=true, timeout=60
 
 # > 百度地图
-百度地图广告 = type=http-response, pattern=^https?:\/\/newclient\.map\.baidu\.com\/client\/phpui2\/\?qt=ads, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/baidumap.js, requires-body=true, timeout=60
+{{{bdduditu_enable}}} = type=http-response, pattern=^https?:\/\/newclient\.map\.baidu\.com\/client\/phpui2\/\?qt=ads, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/baidumap.js, requires-body=true, timeout=60
 
 # > 百度贴吧
-百度贴吧广告 = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/(c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)$|tiebaads\/commonbatch|c\/s\/sync$), script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js, requires-body=true, timeout=60
+{{{bddutpba_enable}}} = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/(c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)$|tiebaads\/commonbatch|c\/s\/sync$), script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-json.js, requires-body=true, timeout=60
 
-百度贴吧广告 = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js, requires-body=true, binary-body-mode=true, timeout=60
+{{{bddutpba_enable}}} = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js, requires-body=true, binary-body-mode=true, timeout=60
 
 # > 哔哩哔哩
-bilibili.airborne = type=http-request, pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.playerunite\.v1\.Player\/PlayViewUnite$, script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.airborne.js, requires-body=true, binary-body-mode=true
+{{{bilibili_enable}}} = type=http-request, pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.playerunite\.v1\.Player\/PlayViewUnite$, script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.airborne.js, requires-body=true, binary-body-mode=true
 
-bilibili.airborneDm = type=http-request, pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$, script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.airborne.js, requires-body=true, binary-body-mode=true
+{{{bilibili_enable}}} = type=http-request, pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$, script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.airborne.js, requires-body=true, binary-body-mode=true
 
-bilibili.protobuf = type=http-response, pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.(?:show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(?:unite)?\.v1\.View\/(?:View|ViewProgress|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$, script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.js, requires-body=true, binary-body-mode=true, argument="[{showUpList}, {filterTopReplies}, {airborneDm}]"
+{{{bilibili_enable}}} = type=http-response, pattern=^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(?:app\.(?:show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(?:unite)?\.v1\.View\/(?:View|ViewProgress|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$, script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/refs/heads/master/dist/bilibili.protobuf.js, requires-body=true, binary-body-mode=true, argument="[{showUpList}, {filterTopReplies}, {airborneDm}]"
 
 # > 哔哩哔哩漫画
-哔哩哔哩漫画 = type=http-response, pattern=^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterConf, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js, requires-body=true, timeout=60
+{{{bilibili_enable}}} = type=http-response, pattern=^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterConf, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js, requires-body=true, timeout=60
 
-哔哩哔哩漫画 = type=http-response, pattern=^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/GetInitInfo, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js, requires-body=true, timeout=60
+{{{bilibili_enable}}} = type=http-response, pattern=^https?:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/GetInitInfo, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/bilibiliManga.js, requires-body=true, timeout=60
 
 # 记录 大家都在看data.recom_cards / 底部按钮data.recom_btns
-薄荷健康 = type=http-response, pattern=^https:\/\/api\.boohee\.com\/meta-interface\/v2\/index\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/bohe/bohe_ads.js, requires-body=true, timeout=60
+{{{bohejmkh_enable}}} = type=http-response, pattern=^https:\/\/api\.boohee\.com\/meta-interface\/v2\/index\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/bohe/bohe_ads.js, requires-body=true, timeout=60
 
 # 广场 推荐 红标data.tabs[1].badge /轮播图data.recommend_ads
-薄荷健康 = type=http-response, pattern=^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/plaza\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/bohe/bohe_ads.js, requires-body=true, timeout=60
+{{{bohejmkh_enable}}} = type=http-response, pattern=^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/plaza\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/bohe/bohe_ads.js, requires-body=true, timeout=60
 
 # 代谢中心 顶部轮播图top_banner / 免费问诊推广diagnos_config / 合作医疗机构partner_hospital / 医患问答question_answer / 热门商品product / 品牌大事件brand_story
-薄荷健康 = type=http-response, pattern=^https:\/\/api\.boohee\.com\/open-interface\/v1\/string\/market_page\?title=metabolism_config$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/bohe/bohe_ads.js, requires-body=true, timeout=60
+{{{bohejmkh_enable}}} = type=http-response, pattern=^https:\/\/api\.boohee\.com\/open-interface\/v1\/string\/market_page\?title=metabolism_config$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/bohe/bohe_ads.js, requires-body=true, timeout=60
 
 # > 彩云天气
-彩云天气 = type=http-request, pattern=^https?:\/\/wrapper\.cyapi\.cn\/v1\/activity\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/caiyun.json.js, timeout=60
+{{{cdyytmqi_enable}}} = type=http-request, pattern=^https?:\/\/wrapper\.cyapi\.cn\/v1\/activity\?, script-path=https://github.com/lucking7/esdeath/raw/main/Surge/Scripts/caiyun.json.js, timeout=60
 
 # > 菜鸟裹裹
-菜鸟裹裹 = type=http-response, pattern=^https?:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/header.js, timeout=60
+{{{cdnngogo_enable}}} = type=http-response, pattern=^https?:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/header.js, timeout=60
 
-菜鸟裹裹 = type=http-response, pattern=^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show\.cn, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60
+{{{cdnngogo_enable}}} = type=http-response, pattern=^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show\.cn, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60
 
-菜鸟裹裹 = type=http-response, pattern=^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get\.cn, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60
+{{{cdnngogo_enable}}} = type=http-response, pattern=^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get\.cn, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60
 
 # 消息中心
-菜鸟裹裹 = type=http-response, pattern=^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60
+{{{cdnngogo_enable}}} = type=http-response, pattern=^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/cainiao/cainiao.js, requires-body=true, timeout=60
 
 # > 财新
-财新广告 = type=http-response, pattern=^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/caixin/caixinAd.js, requires-body=true, timeout=60
+{{{cdxb_enable}}} = type=http-response, pattern=^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/caixin/caixinAd.js, requires-body=true, timeout=60
 
 # 开屏广告
-大众点评开屏广告 = type=http-response, pattern=^https?:\/\/img\.meituan\.net\/dpmobile\/, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/dianping.js, requires-body=true, timeout=60
+{{{davsdmpk_enable}}} = type=http-response, pattern=^https?:\/\/img\.meituan\.net\/dpmobile\/, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/dianping.js, requires-body=true, timeout=60
 
 # (黑屏25秒)
-动画疯 = type=http-response, pattern=^https?:\/\/api\.gamer\.com\.tw\/mobile_app\/anime\/v\d/(token|m3u8).php\?, script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutAnimeAds.js, requires-body=true, timeout=60
+{{{dshxfg_enable}}} = type=http-response, pattern=^https?:\/\/api\.gamer\.com\.tw\/mobile_app\/anime\/v\d/(token|m3u8).php\?, script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutAnimeAds.js, requires-body=true, timeout=60
 
 # > 滴滴出行
-滴滴出行 = type=http-response, pattern=^https?:\/\/ct\.xiaojukeji\.com\/agent\/v3\/feeds, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
+{{{didiiuxk_enable}}} = type=http-response, pattern=^https?:\/\/ct\.xiaojukeji\.com\/agent\/v3\/feeds, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
 
-滴滴出行 = type=http-response, pattern=^https?:\/\/freight\.xiaojukeji\.com\/gateway, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
+{{{didiiuxk_enable}}} = type=http-response, pattern=^https?:\/\/freight\.xiaojukeji\.com\/gateway, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
 
-滴滴出行 = type=http-response, pattern=^https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/xpget, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
+{{{didiiuxk_enable}}} = type=http-response, pattern=^https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/xpget, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
 
-滴滴出行 = type=http-response, pattern=^https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/mget, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
+{{{didiiuxk_enable}}} = type=http-response, pattern=^https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/mget, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
 
-滴滴出行 = type=http-response, pattern=^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/other\/fast, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
+{{{didiiuxk_enable}}} = type=http-response, pattern=^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/other\/fast, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
 
 #http-response ^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/core script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60, tag=滴滴出行
-滴滴出行 = type=http-response, pattern=^https?:\/\/conf\.diditaxi\.com\.cn\/dynamic\/conf, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
+{{{didiiuxk_enable}}} = type=http-response, pattern=^https?:\/\/conf\.diditaxi\.com\.cn\/dynamic\/conf, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
 
-滴滴出行 = type=http-response, pattern=^https?:\/\/common\.diditaxi\.com\.cn\/common\/v\d\/usercenter\/me, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
+{{{didiiuxk_enable}}} = type=http-response, pattern=^https?:\/\/common\.diditaxi\.com\.cn\/common\/v\d\/usercenter\/me, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
 
-滴滴出行 = type=http-response, pattern=^https?:\/\/daijia\.kuaidadi\.com\/gateway, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
+{{{didiiuxk_enable}}} = type=http-response, pattern=^https?:\/\/daijia\.kuaidadi\.com\/gateway, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
 
-滴滴出行 = type=http-response, pattern=^https?:\/\/daijia\.kuaidadi\.com:443\/gateway, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
+{{{didiiuxk_enable}}} = type=http-response, pattern=^https?:\/\/daijia\.kuaidadi\.com:443\/gateway, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
 
 # 微信小程序个人中心净化 感谢【TEXAS】分享
 微信小程序个人中心净化 = type=http-response, pattern=^https?:\/\/common\.diditaxi\.com\.cn\/common\/v5, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi/didiAds.js, requires-body=true, timeout=60
@@ -3246,99 +3246,99 @@ bilibili.protobuf = type=http-response, pattern=^https:\/\/(?:grpc\.biliapi\.net
 电影猎手去广告 = type=http-response, pattern=^https:\/\/app-v1\.ecoliving168\.com\/api\/v1\/movie\/index_recommend\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/dianyinglieshou.js, requires-body=true, timeout=60
 
 # 开屏广告及首页推荐流及底部状态栏优化
-叮咚买菜 = type=http-response, pattern=^https?:\/\/maicai\.api\.ddxq\.mobi\/homeApi\/(?>bottomNavi|homeFlowDetail), script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/ddxq.js, requires-body=true, timeout=60
+{{{ddmc_enable}}} = type=http-response, pattern=^https?:\/\/maicai\.api\.ddxq\.mobi\/homeApi\/(?>bottomNavi|homeFlowDetail), script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/ddxq.js, requires-body=true, timeout=60
 
 # 右下角AI
-叮咚买菜 = type=http-response, pattern=^https?:\/\/maicai\.api\.ddxq\.mobi\/tool\/getConfig, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/ddxq.js, requires-body=true, timeout=60
+{{{ddmc_enable}}} = type=http-response, pattern=^https?:\/\/maicai\.api\.ddxq\.mobi\/tool\/getConfig, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/ddxq.js, requires-body=true, timeout=60
 
 # 我的页净化
-叮咚买菜 = type=http-response, pattern=^https?:\/\/user\.api\.ddxq\.mobi\/userportal-service\/api\/v\d\/user\/queryMyPage, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/ddxq.js, requires-body=true, timeout=60
+{{{ddmc_enable}}} = type=http-response, pattern=^https?:\/\/user\.api\.ddxq\.mobi\/userportal-service\/api\/v\d\/user\/queryMyPage, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/ddxq.js, requires-body=true, timeout=60
 
 # > Flightradar24
-Flightradar24解锁 = type=http-response, pattern=^https?:\/\/mobile\.flightradar24\.com\/mobile\/(user-session|subscribe), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/scripts/Flightradar24.js, requires-body=true, timeout=60
+{{{flightradar24_enable}}} = type=http-response, pattern=^https?:\/\/mobile\.flightradar24\.com\/mobile\/(user-session|subscribe), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/scripts/Flightradar24.js, requires-body=true, timeout=60
 
 # > 飞客茶馆
-飞客茶馆 = type=http-response, pattern=^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/fly.js, requires-body=true, timeout=60
+{{{fwke_enable}}} = type=http-response, pattern=^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/fly.js, requires-body=true, timeout=60
 
-飞客茶馆 = type=http-response, pattern=^https?:\/\/www\.flyert\.com(\.cn)?\/.*plugin, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/flyert.js, requires-body=true, timeout=60
+{{{fwke_enable}}} = type=http-response, pattern=^https?:\/\/www\.flyert\.com(\.cn)?\/.*plugin, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/flyert.js, requires-body=true, timeout=60
 
 # > 粉笔
-粉笔开屏广告 = type=http-response, pattern=^https?:\/\/tiku\.fenbi\.com\/activity\/app\/launcher\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/fenbi.js, requires-body=true, timeout=60
+{{{ffbi_enable}}} = type=http-response, pattern=^https?:\/\/tiku\.fenbi\.com\/activity\/app\/launcher\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/fenbi.js, requires-body=true, timeout=60
 
 # hostname = apis.folidaymall.com
 复游会微信小程序 = type=http-response, pattern=^https?:\/\/apis\.folidaymall\.com\/online\/capi\/component\/getPageComponents, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/foliday.js, requires-body=true, timeout=60
 
 # > 航旅纵横
-航旅纵横 = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/umetrip/umetrip_ads.js, requires-body=true, timeout=60
+{{{hlzh_enable}}} = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/umetrip/umetrip_ads.js, requires-body=true, timeout=60
 
 # > 盒马
-盒马 = type=http-response, pattern=^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.render\.query(?>indexpage|mypage|tabfeedstream), script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/freshippo.js, requires-body=true, timeout=60
+{{{hema_enable}}} = type=http-response, pattern=^https?:\/\/acs(\.|-)m\.(taobao|freshippo)\.com\/gw\/mtop\.wdk\.render\.query(?>indexpage|mypage|tabfeedstream), script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/freshippo.js, requires-body=true, timeout=60
 
 # 感谢【可莉】分享
-汇付天下 = type=http-response, pattern=^https:\/\/mcsp\.cloudpnr\.com\/api\/miniapp\/popular\/T_MINIAPP$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/huifutianxia_ads.js, requires-body=true, timeout=60
+{{{hftx_enable}}} = type=http-response, pattern=^https:\/\/mcsp\.cloudpnr\.com\/api\/miniapp\/popular\/T_MINIAPP$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/huifutianxia_ads.js, requires-body=true, timeout=60
 
-汇付天下 = type=http-response, pattern=^https:\/\/saas-ad\.cloudpnr\.com\/huifuad-base-api\/api\/tactics\/ad, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/huifutianxia_ads.js, requires-body=true, timeout=60
+{{{hftx_enable}}} = type=http-response, pattern=^https:\/\/saas-ad\.cloudpnr\.com\/huifuad-base-api\/api\/tactics\/ad, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/huifutianxia_ads.js, requires-body=true, timeout=60
 
 # 移除 轮播图 置顶文章 信息流广告
-ithome = type=http-response, pattern=^https?:\/\/napi\.ithome\.com\/api\/(news\/index|topmenu\/getfeeds), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/ithome/ithome.js, requires-body=true, timeout=60
+{{{itzj_enable}}} = type=http-response, pattern=^https?:\/\/napi\.ithome\.com\/api\/(news\/index|topmenu\/getfeeds), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/ithome/ithome.js, requires-body=true, timeout=60
 
 # > 建行生活
-建行生活 = type=http-response, pattern=^https?:\/\/yunbusiness\.ccb\.com\/basic_service\/txCtrl\?txcode=A3341AB04, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/ccbLife/ccbLifeAds.js, requires-body=true, timeout=60
+{{{jhsh_enable}}} = type=http-response, pattern=^https?:\/\/yunbusiness\.ccb\.com\/basic_service\/txCtrl\?txcode=A3341AB04, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/ccbLife/ccbLifeAds.js, requires-body=true, timeout=60
 
 # 删除首页+金融+我的多个横幅等乱七八糟的广告
-建行生活 = type=http-request, pattern=^https?:\/\/yunbusiness\.ccb\.com\/basic_service\/txCtrl\?txcode=A3341AB05, script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/ccbLife/A3341AB05.json/_end_/A3341AB05.json?type=mock&target-app=loon-plugin, timeout=60
+{{{jhsh_enable}}} = type=http-request, pattern=^https?:\/\/yunbusiness\.ccb\.com\/basic_service\/txCtrl\?txcode=A3341AB05, script-path=http://script.hub/convert/_start_/https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/ccbLife/A3341AB05.json/_end_/A3341AB05.json?type=mock&target-app=loon-plugin, timeout=60
 
 # 内置饿了么
-建行生活内置饿了么 = type=http-response, pattern=^https?:\/\/g\.alicdn\.com\/.*o2o-ad, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/alicdn.js, requires-body=true, timeout=60
+{{{jhsh_enable}}} = type=http-response, pattern=^https?:\/\/g\.alicdn\.com\/.*o2o-ad, script-path=https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/alicdn.js, requires-body=true, timeout=60
 
 # > 京东
-京东 = type=http-response, pattern=^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/jingdong/jingdong.js, requires-body=true, timeout=60
+{{{jkds_enable}}} = type=http-response, pattern=^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/jingdong/jingdong.js, requires-body=true, timeout=60
 
 # > 京喜
-京喜 = type=http-response, pattern=^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/jingxiAd.js, requires-body=true, timeout=60
+{{{jkxi_enable}}} = type=http-response, pattern=^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/jingxiAd.js, requires-body=true, timeout=60
 
 # 我的页面去推广
-keep = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/athena\/v\d\/people\/my$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
+{{{keep_enable}}} = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/athena\/v\d\/people\/my$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
 
 # 应用底部栏净化
-keep = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/config\/v\d\/basic, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
+{{{keep_enable}}} = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/config\/v\d\/basic, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
 
 # 发现页处理
-keep = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/homepage\/v\d\/tab, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
+{{{keep_enable}}} = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/homepage\/v\d\/tab, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
 
 # 课程预览页广告
-keep = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/nuocha\/course\/v\d/\w+\/preview, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
+{{{keep_enable}}} = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/nuocha\/course\/v\d/\w+\/preview, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
 
 # 我的运动页面去除下方推荐
-keep = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/sportpage\/sport\/v\d\/mysport, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
+{{{keep_enable}}} = type=http-response, pattern=^https?:\/\/api\.gotokeep\.com\/sportpage\/sport\/v\d\/mysport, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/keep.js, requires-body=true, timeout=60
 
 # > 快手
-快手 = type=http-response, pattern=^https?:\/\/open\.e\.kuaishou\.com\/rest\/e\/v\d\/open\/univ$, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/adsense.js, requires-body=true, timeout=60
+{{{kkuz_enable}}} = type=http-response, pattern=^https?:\/\/open\.e\.kuaishou\.com\/rest\/e\/v\d\/open\/univ$, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/adsense.js, requires-body=true, timeout=60
 
 # > 夸克
-夸克 = type=http-response, pattern=^https?:\/\/open-cms-api\.(uc|quark)\.cn\/open-cms, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/quark.js, requires-body=true, timeout=60
+{{{kxke_enable}}} = type=http-response, pattern=^https?:\/\/open-cms-api\.(uc|quark)\.cn\/open-cms, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/quark.js, requires-body=true, timeout=60
 
 # > 酷我音乐
-酷我音乐 = type=http-response, pattern=^https?:\/\/(mgxhtj|nmobi|searchrecterm)\.kuwo\.cn\/(mgxh|mobi|recterm)\.s, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
+{{{kuwoybyt_enable}}} = type=http-response, pattern=^https?:\/\/(mgxhtj|nmobi|searchrecterm)\.kuwo\.cn\/(mgxh|mobi|recterm)\.s, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
 
 # 会员
-酷我音乐 = type=http-response, pattern=^https?:\/\/audiobookpay\.kuwo\.cn\/a\.p, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
+{{{kuwoybyt_enable}}} = type=http-response, pattern=^https?:\/\/audiobookpay\.kuwo\.cn\/a\.p, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
 
-酷我音乐 = type=http-response, pattern=^https?:\/\/musicpay\.kuwo\.cn\/music\.pay, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
+{{{kuwoybyt_enable}}} = type=http-response, pattern=^https?:\/\/musicpay\.kuwo\.cn\/music\.pay, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
 
-酷我音乐 = type=http-response, pattern=^https?:\/\/vip1\.kuwo\.cn\/vip\/(enc\/user\/vip\?op=ui|v\d\/theme\?op=gd), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
+{{{kuwoybyt_enable}}} = type=http-response, pattern=^https?:\/\/vip1\.kuwo\.cn\/vip\/(enc\/user\/vip\?op=ui|v\d\/theme\?op=gd), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
 
-酷我音乐 = type=http-response, pattern=^https?:\/\/vip1\.kuwo\.cn\/vip\/v\d\/user\/vip\?op=ui, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
+{{{kuwoybyt_enable}}} = type=http-response, pattern=^https?:\/\/vip1\.kuwo\.cn\/vip\/v\d\/user\/vip\?op=ui, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js, requires-body=true, timeout=60
 
 # > 快手联盟,优量汇,穿山甲「广告联盟」
-快手联盟,优量汇,穿山甲「广告联盟」 = type=http-response, pattern=^https:\/\/(api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads|open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ$|mi\.gdt\.qq\.com\/gdt_mview\.fcg\?), script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/adsense.js, requires-body=true, timeout=60
+{{{kkuz_enable}}} = type=http-response, pattern=^https:\/\/(api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads|open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ$|mi\.gdt\.qq\.com\/gdt_mview\.fcg\?), script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/adsense.js, requires-body=true, timeout=60
 
 # > 酷安
-酷安 = type=http-response, pattern=^https?:\/\/api\.coolapk\.com\/v6\/feed\/(detail|replyList)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/coolapk.js, requires-body=true, timeout=60
+{{{kuan_enable}}} = type=http-response, pattern=^https?:\/\/api\.coolapk\.com\/v6\/feed\/(detail|replyList)\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/coolapk.js, requires-body=true, timeout=60
 
-酷安 = type=http-response, pattern=^https?:\/\/api\.coolapk\.com\/v6\/main\/(dataList|indexV8|init), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/coolapk.js, requires-body=true, timeout=60
+{{{kuan_enable}}} = type=http-response, pattern=^https?:\/\/api\.coolapk\.com\/v6\/main\/(dataList|indexV8|init), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/coolapk.js, requires-body=true, timeout=60
 
-酷安 = type=http-response, pattern=^https?:\/\/api\.coolapk\.com\/v6\/page\/dataList\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/coolapk.js, requires-body=true, timeout=60
+{{{kuan_enable}}} = type=http-response, pattern=^https?:\/\/api\.coolapk\.com\/v6\/page\/dataList\?, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/coolapk.js, requires-body=true, timeout=60
 
 # 首页北京城市导览图片,首页上方轮播图片净化
 旅途随身听 = type=http-response, pattern=^https?:\/\/www\.1314zhilv\.com\/ltsstnew\/(common\/getJGQIconNew|city\/getAllBannelByCity), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/lvtusuishenting/ltsst-ad.js, requires-body=true, timeout=60
