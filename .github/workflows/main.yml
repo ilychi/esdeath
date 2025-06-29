@@ -221,7 +221,8 @@ jobs:
             
             # 使用 Script Hub 转换
             encoded_name=$(echo "$plugin_name" | jq -sRr @uri)
-            download_url="http://localhost:9101/file/_start_/${clean_url}/_end_/${plugin_name}.sgmodule?type=loon-plugin&target=surge-module&del=true"
+            # 使用标准 Script Hub 格式而不是 file 格式
+            download_url="http://localhost:9101/convert/_start_/${clean_url}/_end_/${plugin_name}.sgmodule?type=loon-plugin&target=surge-module"
             
             # 为 Remove_ads_by_fmz 添加特殊处理
             if [[ "$plugin_name" == "blockAds" || "$plugin_name" == "Remove_ads_by_fmz" ]]; then
@@ -513,7 +514,7 @@ jobs:
             encoded_name=$(echo "$name" | jq -sRr @uri)
             
             # 使用 Script Hub 转换 QX 重写到 Surge 模块
-            download_url="http://localhost:9101/file/_start_/${url}/_end_/${name}.sgmodule?type=qx-rewrite&target=surge-module&del=true"
+            download_url="http://localhost:9101/convert/_start_/${url}/_end_/${name}.sgmodule?type=qx-rewrite&target=surge-module"
             
             # 添加主动预防参数
             fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
