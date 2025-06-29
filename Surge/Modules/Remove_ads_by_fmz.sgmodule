@@ -15,6 +15,7 @@
 
 
 
+
 [Rule]
 RULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list ,REJECT,pre-matching,extended-matching,no-resolve
 # > 哔哩哔哩
