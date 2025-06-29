@@ -423,16 +423,39 @@ jobs:
           
           # 处理 Remove_ads_by_fmz 的参数
           if [[ -f "Surge/Modules/Remove_ads_by_fmz.sgmodule" ]]; then
+            # 修复元数据顺序和格式问题
+            echo "修复模块元数据顺序和格式..."
+            
+            # 创建临时文件存储修复后的内容
+            temp_file="/tmp/fixed_sgmodule.txt"
+            
+            # 提取所有元数据
+            name=$(grep -m1 '^#!name=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            desc=$(grep -m1 '^#!desc=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            author=$(grep -m1 '^#!author=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            icon=$(grep -m1 '^#!icon=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            category=$(grep -m1 '^#!category=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            homepage=$(grep -m1 '^#!homepage=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            raw_url=$(grep -m1 '^#!raw-url=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            tg_group=$(grep -m1 '^#!tg-group=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            tag=$(grep -m1 '^#!tag=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            system=$(grep -m1 '^#!system=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            date=$(grep -m1 '^#!date=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            remark=$(grep -m1 '^#!remark=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            
+            # 修复链接格式（去除 Markdown 格式）
+            author=$(echo "$author" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1[\2]/g' | sed 's/\[\[/[/g' | sed 's/\]\]/]/g')
+            icon=$(echo "$icon" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
+            homepage=$(echo "$homepage" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
+            raw_url=$(echo "$raw_url" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
+            tg_group=$(echo "$tg_group" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
+            
             # 从原始 Loon 插件提取参数
             loon_url="https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin"
             
             # 下载原始文件提取参数和脚本
             if curl -s -L "$loon_url" > /tmp/loon_plugin.txt 2>/dev/null; then
               echo "提取到 Loon 插件，开始转换..."
-              
-              # 清理现有的重复参数定义
-              sed -i '/^#!arguments=/d' "Surge/Modules/Remove_ads_by_fmz.sgmodule"
-              sed -i '/^#!arguments-desc=/d' "Surge/Modules/Remove_ads_by_fmz.sgmodule"
               
               # 提取参数并转换格式
               args=""
@@ -467,28 +490,43 @@ jobs:
               args="${args%,}"
               args_desc="${args_desc%\\n}"
               
-              # 创建临时文件
-              cp "Surge/Modules/Remove_ads_by_fmz.sgmodule" "/tmp/sgmodule_temp.txt"
-              
-              # 在文件开头插入参数定义（仅一次）
+              # 构建正确顺序的元数据
               {
+                echo "#!name=$name"
+                echo "#!desc=$desc"
+                echo "#!author=$author"
+                echo "#!icon=$icon"
+                echo "#!category=$category"
                 echo "#!arguments=$args"
                 echo "#!arguments-desc=$args_desc"
+                [ -n "$homepage" ] && echo "#!homepage=$homepage"
+                [ -n "$raw_url" ] && echo "#!raw-url=$raw_url"
+                [ -n "$tg_group" ] && echo "#!tg-group=$tg_group"
+                [ -n "$tag" ] && echo "#!tag=$tag"
+                [ -n "$system" ] && echo "#!system=$system"
+                [ -n "$date" ] && echo "#!date=$date"
+                [ -n "$remark" ] && echo "#!remark=$remark"
                 echo ""
-                cat "/tmp/sgmodule_temp.txt"
-              } > "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+                
+                # 添加模块内容（排除所有元数据行）
+                grep -v '^#!' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | grep -v '^[[:space:]]*$' | head -1 | grep -q '^\[' || echo ""
+                grep -v '^#!' "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+              } > "$temp_file"
               
+              # 替换原文件
+              mv "$temp_file" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+              
+              echo "✅ 元数据修复完成"
               echo "✅ 参数转换完成，共转换 $(echo "$args" | tr ',' '\n' | wc -l) 个参数"
               
               # 确保脚本使用参数占位符
-              # Script Hub 转换应该已经处理了这部分，这里只是验证
               if grep -q '{{{[a-zA-Z0-9_]+}}}' "Surge/Modules/Remove_ads_by_fmz.sgmodule"; then
                 echo "✅ 脚本已使用参数占位符"
               else
                 echo "⚠️ 警告：脚本未使用参数占位符，参数控制可能无效"
               fi
               
-              rm -f /tmp/loon_plugin.txt /tmp/loon_args.txt /tmp/sgmodule_temp.txt
+              rm -f /tmp/loon_plugin.txt /tmp/loon_args.txt
             else
               echo "⚠️ 无法下载 Loon 插件，跳过参数转换"
             fi
