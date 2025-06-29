@@ -106,7 +106,7 @@ jobs:
           mkdir -p Surge/Modules Surge/Scripts .cache/plugin-checksums
           
           # 配置并发参数
-          CONCURRENCY=${LOON_CONVERSION_CONCURRENCY:-2}
+          CONCURRENCY=${LOON_CONVERSION_CONCURRENCY:-3}
           echo "转换并发数: $CONCURRENCY"
           
           # 下载插件源列表
@@ -116,10 +116,8 @@ jobs:
           grep -oP 'https://www\.nsloon\.com/openloon/import\?plugin=[^"]+' README.md > nsloon_urls.txt
           > plugin_urls.txt
           while IFS= read -r line; do
-            plugin_url=$(echo "$line" | grep -oP '(?<=plugin=)[^"]+' | sed 's/&amp;/\&/g')
+            plugin_url=$(echo "$line" | grep -oP '(?<=plugin=)[^"]+')
             if [[ -n "$plugin_url" ]]; then
-              # URL解码处理
-              plugin_url=$(echo "$plugin_url" | sed 's/%3A/:/g; s/%2F/\//g; s/%3F/?/g; s/%3D/=/g')
               echo "$plugin_url" >> plugin_urls.txt
             fi
           done < nsloon_urls.txt
@@ -127,17 +125,6 @@ jobs:
           # 添加特殊插件
           echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
           echo "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule?rename=Netease_Music_Purification" >> plugin_urls.txt
-          
-          # 显示插件列表信息
-          echo "插件URL总数: $(wc -l < plugin_urls.txt)"
-          echo "前5个插件URL:"
-          head -5 plugin_urls.txt
-          echo "最后5个插件URL:"
-          tail -5 plugin_urls.txt
-          
-          # 检查是否有无效的URL
-          echo "检查URL格式..."
-          grep -v "^https\?://" plugin_urls.txt || echo "所有URL格式正确"
           
           # 直接下载已经是 Surge 格式的模块
           echo "下载原生 Surge 模块..."
@@ -169,12 +156,11 @@ jobs:
           
           # 等待转换服务就绪
           echo "等待转换服务就绪..."
-          max_wait=60
+          max_wait=30
           wait_count=0
           while ! nc -z localhost 9101 && [ $wait_count -lt $max_wait ]; do
             sleep 3
-            wait_count=$((wait_count + 3))
-            echo "等待 Script Hub 服务... ($wait_count/$max_wait 秒)"
+            wait_count=$((wait_count + 1))
           done
           
           if ! nc -z localhost 9101; then
@@ -191,161 +177,77 @@ jobs:
             fi
           fi
           
-          # 额外等待服务稳定
-          echo "等待服务稳定..."
-          sleep 5
-          
-          # 定义转换函数
+          # 创建转换任务函数
           convert_plugin() {
             local plugin_url="$1"
             local job_id="$2"
             
-            # 处理带有 ?rename= 参数的URL
-            local clean_url="${plugin_url%%\?*}"
-            local rename_param="${plugin_url#*\?rename=}"
-            
-            if [[ "$rename_param" != "$plugin_url" ]]; then
-              # 有 rename 参数
-              local plugin_name="$rename_param"
+            # 解析插件信息
+            if [[ "$plugin_url" == *"?rename="* ]]; then
+              plugin_name=$(echo "$plugin_url" | grep -oP '(?<=rename=)[^&]*')
+              base_url=$(echo "$plugin_url" | cut -d'?' -f1)
             else
-              # 没有 rename 参数，使用文件名
-              local plugin_name=$(basename "$clean_url" .plugin)
+              plugin_name=$(basename "$plugin_url" .plugin)
+              base_url="$plugin_url"
             fi
             
-            local output_file="Surge/Modules/${plugin_name}.sgmodule"
-            local result_file=".cache/conversion_results_${job_id}.txt"
+            output_file="Surge/Modules/${plugin_name}.sgmodule"
             
-            echo "[Job $job_id] 开始转换: $plugin_name"
-            echo "[Job $job_id] 插件URL: $clean_url"
-            echo "[Job $job_id] 输出文件: $output_file"
+            # 检查是否需要转换
+            skip_conversion=false
             
-            # 使用 Script Hub 转换
-            encoded_name=$(echo "$plugin_name" | jq -sRr @uri)
-            # 使用标准 Script Hub 格式而不是 file 格式
-            download_url="http://localhost:9101/convert/_start_/${clean_url}/_end_/${plugin_name}.sgmodule?type=loon-plugin&target=surge-module"
-            
-            # 为 Remove_ads_by_fmz 添加特殊处理
-            if [[ "$plugin_name" == "blockAds" || "$plugin_name" == "Remove_ads_by_fmz" ]]; then
-              echo "[Job $job_id] 处理带参数的插件: $plugin_name"
-              
-              # 下载原始 Loon 插件以提取参数
-              if curl -s -L "$clean_url" > "/tmp/loon_${job_id}.txt" 2>/dev/null; then
-                echo "[Job $job_id] 成功下载 Loon 插件"
-                
-                # 创建动态的 evalScriptmodi 脚本（使用base64编码避免YAML语法问题）
-                echo 'Ly8g6Ieq5Yqo5qOA5rWL5bm26L2s5o2i5Y+C5pWw5qC85byPCihmdW5jdGlvbigpIHsKICAvLyDmj5Dlj5bnjrDmnInnmoTlj4LmlbDlrprkuYkKICBjb25zdCBhcmdzTWF0Y2ggPSBib2R5Lm1hdGNoKC9eIyFhcmd1bWVudHM9KC4rKSQvbSk7CiAgY29uc3QgYXJnc0Rlc2NNYXRjaCA9IGJvZHkubWF0Y2goL14jIWFyZ3VtZW50cy1kZXNjPSguKykkL20pOwogIAogIGlmICghYXJnc01hdGNoKSB7CiAgICAvLyDmsqHmnInlj4LmlbDlrprkuYnvvIznm7TmjqXov5Tlm54KICAgIHJldHVybiBib2R5OwogIH0KICAKICAvLyDop6PmnpDlj4LmlbAKICBjb25zdCBhcmdzID0gYXJnc01hdGNoWzFdOwogIGNvbnN0IGFyZ3NNYXAgPSB7fTsKICBhcmdzLnNwbGl0KCcsJykuZm9yRWFjaChhcmcgPT4gewogICAgY29uc3QgW25hbWUsIGRlZmF1bHRWYWx1ZV0gPSBhcmcuc3BsaXQoJzonKTsKICAgIGlmIChuYW1lICYmIGRlZmF1bHRWYWx1ZSkgewogICAgICBhcmdzTWFwW25hbWVdID0gZGVmYXVsdFZhbHVlOwogICAgfQogIH0pOwogIAogIC8vIOafpeaJvuW5tuabv+aNouaJgOaciSB7e3twYXJhbX19fSDmoLzlvI/nmoTljaDkvY3nrKYKICBjb25zdCBzY3JpcHRTZWN0aW9uID0gYm9keS5tYXRjaCgvXFtTY3JpcHRcXShbXHNcU10qPykoPz1cW3wkKS8pOwogIGlmIChzY3JpcHRTZWN0aW9uKSB7CiAgICBsZXQgc2NyaXB0Q29udGVudCA9IHNjcmlwdFNlY3Rpb25bMF07CiAgICAKICAgIC8vIOabv+aNouWNoOS9jeespuagvOW8j+S4uuagh+WHhuagvOW8jwogICAgc2NyaXB0Q29udGVudCA9IHNjcmlwdENvbnRlbnQucmVwbGFjZSgvXnt7eyhbXn1dKyl9fX0gPSAoLispJC9nbSwgZnVuY3Rpb24obWF0Y2gsIHBhcmFtTmFtZSwgc2NyaXB0RGVmKSB7CiAgICAgIC8vIOiHquWKqOajgOa1i+iEmuacrOWQjeensCAgICAgIAogICAgICBsZXQgc2NyaXB0TmFtZSA9IHBhcmFtTmFtZS5yZXBsYWNlKC9fZW5hYmxlJC8sICcnKTsKICAgICAgCiAgICAgIC8vIOWwneivleS7juazqOmHiuaIluiEmuacrOi3r+W+hOS4reaPkOWPluabtOWlveeahOWQjeensCAgICAgIAogICAgICBjb25zdCBwYXRoTWF0Y2ggPSBzY3JpcHREZWYubWF0Y2goL3NjcmlwdC1wYXRoPSouXC8oW15cL10rKVwuanMvKTsKICAgICAgaWYgKHBhdGhNYXRjaCAmJiBwYXRoTWF0Y2hbMV0pIHsKICAgICAgICAvLyDkvb/nlKjohJrmnKzmlofku7blkI3kvZzkuLrlj4LogIMKICAgICAgICBjb25zdCBmaWxlTmFtZSA9IHBhdGhNYXRjaFsxXTsKICAgICAgICAvLyDmmKDlsITkuIDkupvluLjop4HnmoTohJrmnKzlkI0KICAgICAgICBjb25zdCBuYW1lTWFwID0gewogICAgICAgICAgJzEyMzA2JzogJzEyMzA2JywKICAgICAgICAgICc1NTVBZCc6ICc1NTXlvbHop4YnLAogICAgICAgICAgJzUxY2FyZCc6ICc1MeS/oeeUqOWNoeeuoeWutiAnLAogICAgICAgICAgJ2JpbGliaWxpJzogJ+WTlOWTqeWTlOWTqScsCiAgICAgICAgICAnY2NiTGlmZSc6ICflu7rooYznlJ/mtLsnLAogICAgICAgICAgJ2ppbmdkb25nJzogJ+S6rOS4nCcsCiAgICAgICAgICAneGlhb2hvbmdzaHUnOiAn5bCP57qi5LmmJywKICAgICAgICAgICd4aWFueXVfYWRzJzogJ+mXsumxvCcsCiAgICAgICAgICAnY2FpeXVuJzogJ+W9qeS6keWkqeawlCcKICAgICAgICB9OwogICAgICAgIHNjcmlwdE5hbWUgPSBuYW1lTWFwW2ZpbGVOYW1lXSB8fCBzY3JpcHROYW1lOwogICAgICB9CiAgICAgIAogICAgICAvLyDmo4Dmn6XmmK/lkKblt7LmnIkgYXJndW1lbnQg5Y+C5pWwCiAgICAgIGlmICghc2NyaXB0RGVmLmluY2x1ZGVzKCdhcmd1bWVudD0nKSkgewogICAgICAgIC8vIOWcqOmAguW9k+S9jee9ruaeguWKoCBhcmd1bWVudCDlj4LmlbAKICAgICAgICBpZiAoc2NyaXB0RGVmLmluY2x1ZGVzKCcsIHRpbWVvdXQ9JykpIHsKICAgICAgICAgIHNjcmlwdERlZiA9IHNjcmlwdERlZi5yZXBsYWNlKC8sIHRpbWVvdXQ9LywgJywgYXJndW1lbnQ9ZW5hYmxlPSR7JyArIHBhcmFtTmFtZSArICd9LCB0aW1lb3V0PScpOwogICAgICAgIH0gZWxzZSBpZiAoc2NyaXB0RGVmLmluY2x1ZGVzKCcsIHJlcXVpcmVzLWJvZHk9JykpIHsKICAgICAgICAgIHNjcmlwdERlZiA9IHNjcmlwdERlZi5yZXBsYWNlKC8sIHJlcXVpcmVzLWJvZHk9LywgJywgYXJndW1lbnQ9ZW5hYmxlPSR7JyArIHBhcmFtTmFtZSArICd9LCByZXF1aXJlcy1ib2R5PScpOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAvLyDlnKjohJrmnKzot6/lvoTlkI7mt7vliqAKICAgICAgICAgIHNjcmlwdERlZiA9IHNjcmlwdERlZi5yZXBsYWNlKC9zY3JpcHQtcGF0aD0oW14sXSspLywgJ3NjcmlwdC1wYXRoPSQxLCBhcmd1bWVudD1lbmFibGU9JHsnICsgcGFyYW1OYW1lICsgJ30nKTsKICAgICAgICB9CiAgICAgIH0KICAgICAgCiAgICAgIHJldHVybiBzY3JpcHROYW1lICsgJyA9ICcgKyBzY3JpcHREZWY7CiAgICB9KTsKICAgIAogICAgLy8g5pu/5o2i5ZueIGJvZHkKICAgIGJvZHkgPSBib2R5LnJlcGxhY2UoL1xbU2NyaXB0XF0oW1xzXFNdKj8pKD89XFt8JCkvLCBzY3JpcHRDb250ZW50KTsKICB9CiAgCiAgLy8g5L+u5aSN5pys5Zyw5Zyw5Z2A6Zeu6aKYCiAgYm9keSA9IGJvZHkucmVwbGFjZSgvaHR0cDpcL1wvMTI3XC4wXC4wXC4xOjkxMFswMV0vZywgJ2h0dHA6Ly9zY3JpcHQuaHViJyk7CiAgCiAgcmV0dXJuIGJvZHk7Cn0pKCk7' | base64 -d > "/tmp/eval_script_${job_id}.js"
-                
-                # 读取脚本内容并进行URL编码
-                eval_script_content=$(cat "/tmp/eval_script_${job_id}.js")
-                encoded_eval=$(echo "$eval_script_content" | jq -sRr @uri)
-                download_url="${download_url}&evalScriptmodi=${encoded_eval}"
-                echo "[Job $job_id] 添加了 evalScriptmodi 参数"
+            # 1. 检查文件是否存在且有效
+            if [[ -f "$output_file" ]] && [[ $(wc -c < "$output_file") -gt 100 ]]; then
+              # 2. 检查文件修改时间（24小时内）
+              if [[ $(find "$output_file" -mmin -1440 2>/dev/null | wc -l) -gt 0 ]]; then
+                skip_conversion=true
               else
-                echo "[Job $job_id] 无法下载 Loon 插件"
-              fi
-            else
-              # 其他模块不使用 evalScriptmodi，直接转换
-              echo "[Job $job_id] 标准插件转换（无特殊处理）"
-            fi
-            
-            echo "[Job $job_id] 转换URL: $download_url"
-            
-            # 验证远程文件是否存在并获取修改时间
-            echo "[Job $job_id] 检查远程文件..."
-            remote_headers=$(curl -A "script-hub/1.0.0" -I -L --connect-timeout 5 --max-time 10 "$clean_url" 2>&1)
-            curl_status=$?
-            
-            if [[ $curl_status -ne 0 ]]; then
-              echo "[Job $job_id] curl 返回错误代码: $curl_status"
-              echo "[Job $job_id] 错误信息: $remote_headers"
-              echo "$plugin_name:failed_remote_unavailable" >> "$result_file"
-              return 1
-            fi
-            
-            if [[ -z "$remote_headers" ]] || ! echo "$remote_headers" | grep -q "200 OK\|200 ok"; then
-              echo "[Job $job_id] 远程文件不可用"
-              echo "[Job $job_id] Headers: $remote_headers"
-              echo "$plugin_name:failed_remote_unavailable" >> "$result_file"
-              return 1
-            fi
-            
-            remote_modified=$(echo "$remote_headers" | grep -i "last-modified" | cut -d' ' -f2- | xargs -I {} date -u -d "{}" "+%s" 2>/dev/null || echo "0")
-            
-            # 检查本地文件
-            if [[ -f "$output_file" ]]; then
-              local_modified=$(stat -c "%Y" "$output_file" 2>/dev/null || echo "0")
-              
-              # 仅当远程文件较新时才更新
-              if [[ "$remote_modified" -le "$local_modified" ]]; then
-                echo "[Job $job_id] 跳过未更新的文件"
-                echo "$plugin_name:skipped" >> "$result_file"
-                return 0
+                # 3. 检查源文件是否有更新（通过 HEAD 请求）
+                if curl -s -I "$base_url" | grep -i "last-modified:" > "/tmp/remote_mod_${job_id}" 2>/dev/null; then
+                  remote_mod=$(cat "/tmp/remote_mod_${job_id}" | cut -d' ' -f2-)
+                  local_mod=$(stat -f "%Sm" -t "%a, %d %b %Y %T %Z" "$output_file" 2>/dev/null || echo "")
+                  
+                  if [[ "$remote_mod" == "$local_mod" ]]; then
+                    skip_conversion=true
+                  fi
+                  rm -f "/tmp/remote_mod_${job_id}"
+                fi
               fi
             fi
+            
+            if [[ "$skip_conversion" == "true" ]]; then
+              echo "[并发$job_id] 跳过未更新的插件: $plugin_name"
+              echo "$plugin_name:skipped" >> ".cache/conversion_results_${job_id}.txt"
+              return 0
+            fi
+            
+            echo "[并发$job_id] 转换插件: $plugin_name"
             
             # 执行转换
-            echo "[Job $job_id] 开始下载转换..."
+            encoded_name=$(echo "$plugin_name" | jq -sRr @uri)
+            download_url="http://localhost:9101/api/v1/convert?type=loon-plugin&target=surge-module&url=$(echo "$base_url" | jq -sRr @uri)&filename=$encoded_name"
             
-            # 重试机制
-            max_retries=3
-            retry_count=0
+            # 对特定插件添加修复参数
+            if [[ "$plugin_name" == "Remove_ads_by_fmz" ]]; then
+              # 添加 evalUrlmodi 参数来修复转换后的 URL
+              fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
+              encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
+              download_url="${download_url}&evalScriptmodi=${encoded_fix}"
+            fi
             
-            while [ $retry_count -lt $max_retries ]; do
-              curl_output=$(curl -A "script-hub/1.0.0" -L --connect-timeout 20 --max-time 60 -o "$output_file" -w "\n%{http_code}\n" "$download_url" 2>&1)
-              http_code=$(echo "$curl_output" | tail -n 1)
-              
-              echo "[Job $job_id] HTTP状态码: $http_code (尝试 $((retry_count + 1))/$max_retries)"
-              
-              if [[ "$http_code" == "200" ]] && [[ -s "$output_file" ]]; then
-                if grep -q "#!name=" "$output_file"; then
-                  echo "[Job $job_id] 转换成功"
-                  
-                  # 对特定模块进行额外处理
-                  case "$plugin_name" in
-                    "Remove_ads_by_fmz"|"blockAds")
-                      # 确保模块名称正确
-                      sed -i 's/#!name=.*/#!name=广告拦截&净化合集/' "$output_file"
-                      mv "$output_file" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
-                      output_file="Surge/Modules/Remove_ads_by_fmz.sgmodule"
-                      ;;
-                    "Netease_Music_Purification")
-                      sed -i 's/网易云音乐全面净化/Netease_Music_Purification/g' "$output_file"
-                      ;;
-                  esac
-                  
-                  echo "$plugin_name:success" >> "$result_file"
-                  return 0
-                else
-                  echo "[Job $job_id] 转换后的文件无效（缺少 #!name=）"
-                  echo "[Job $job_id] 文件内容前100字符: $(head -c 100 "$output_file" 2>/dev/null || echo "无法读取")"
-                  
-                  # 如果是 HTML 错误页面，显示部分内容
-                  if grep -q "<html" "$output_file" 2>/dev/null; then
-                    echo "[Job $job_id] 收到HTML响应，可能是错误页面"
-                    echo "[Job $job_id] HTML内容: $(head -n 5 "$output_file" 2>/dev/null)"
-                  fi
-                  
-                  rm -f "$output_file"
-                fi
+            if curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" "$download_url" 2>/dev/null; then
+              if [[ -f "$output_file" ]] && [[ $(wc -c < "$output_file") -gt 100 ]]; then
+                echo "[并发$job_id] 转换成功: $plugin_name ($(wc -c < "$output_file") bytes)"
+                echo "$plugin_name:success" >> ".cache/conversion_results_${job_id}.txt"
               else
-                echo "[Job $job_id] 下载失败"
-                echo "[Job $job_id] Curl输出: $curl_output"
-                rm -f "$output_file" 2>/dev/null || true
+                echo "[并发$job_id] 转换失败 (文件无效): $plugin_name"
+                rm -f "$output_file"
+                echo "$plugin_name:failed_invalid" >> ".cache/conversion_results_${job_id}.txt"
               fi
-              
-              retry_count=$((retry_count + 1))
-              if [ $retry_count -lt $max_retries ]; then
-                echo "[Job $job_id] 等待5秒后重试..."
-                sleep 5
-              fi
-            done
-            
-            echo "[Job $job_id] 达到最大重试次数，转换失败"
-            echo "$plugin_name:failed_download" >> "$result_file"
-            return 1
-            
-            # 清理临时文件
-            rm -f "/tmp/loon_${job_id}.txt" "/tmp/eval_script_${job_id}.js" 2>/dev/null || true
+            else
+              echo "[并发$job_id] 转换失败 (网络错误): $plugin_name"
+              echo "$plugin_name:failed_network" >> ".cache/conversion_results_${job_id}.txt"
+            fi
           }
           
           # 导出函数供子进程使用
@@ -356,137 +258,110 @@ jobs:
           
           # 清理旧的结果文件
           rm -f .cache/conversion_results_*.txt
-            
-            # 先测试单个插件以排查问题
-            echo "测试单个插件转换..."
-            test_url="https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/12306_remove_ads.plugin"
-            echo "测试URL: $test_url"
-            
-            # 直接测试 Script Hub 服务
-            test_response=$(curl -s -w "\n%{http_code}" "http://localhost:9101/health" 2>&1 || echo "服务健康检查失败")
-            echo "Script Hub 健康检查: $test_response"
-            
-            # 也尝试一个简单的转换请求
-            echo "测试 Script Hub 转换功能..."
-            test_conversion=$(curl -s -w "\n%{http_code}" "http://localhost:9101/convert/_start_/https://example.com/test.txt/_end_/test.txt?type=surge-script&target=surge-module" 2>&1 | tail -n 1)
-            echo "测试转换响应代码: $test_conversion"
-            
-            # 测试转换
-            if [[ -n "$test_url" ]]; then
-              convert_plugin "$test_url" "test" || echo "测试转换失败"
-              
-              # 检查测试结果
-              if [[ -f ".cache/conversion_results_test.txt" ]]; then
-                echo "测试结果: $(cat .cache/conversion_results_test.txt)"
-              fi
-            fi
-            
-            # 创建并发任务
-            job_count=0
-            while IFS= read -r plugin_url; do
-              # 跳过空行
-              [[ -z "$plugin_url" ]] && continue
-              
-              # 等待有空闲进程槽
-              while [ $(jobs -r | wc -l) -ge $CONCURRENCY ]; do
-                sleep 0.1
-              done
-              
-              # 启动后台转换任务
-              convert_plugin "$plugin_url" "$job_count" &
-              job_count=$((job_count + 1))
-              
-              # 避免过快启动
+          
+          # 创建并发任务
+          job_count=0
+          while IFS= read -r plugin_url; do
+            # 等待有空闲进程槽
+            while [ $(jobs -r | wc -l) -ge $CONCURRENCY ]; do
               sleep 0.1
-            done < plugin_urls.txt
-            
-            # 等待所有任务完成
-            echo "等待所有转换任务完成..."
-            wait
-            
-            # 合并结果
-            echo "合并转换结果..."
-            declare -A conversion_results
-            successful_count=0
-            failed_count=0
-            skipped_count=0
-            
-            for result_file in .cache/conversion_results_*.txt; do
-              if [[ -f "$result_file" ]]; then
-                while IFS=':' read -r plugin_name status; do
-                  conversion_results["$plugin_name"]="$status"
-                  case "$status" in
-                    "success")
-                      successful_count=$((successful_count + 1))
-                      ;;
-                    "skipped")
-                      skipped_count=$((skipped_count + 1))
-                      ;;
-                    *)
-                      failed_count=$((failed_count + 1))
-                      ;;
-                  esac
-                done < "$result_file"
-              fi
             done
             
-            # 创建转换清单
-            echo "{" > "$manifest_file"
-            echo "  \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"," >> "$manifest_file"
-            echo "  \"total_plugins\": $(wc -l < plugin_urls.txt)," >> "$manifest_file"
-            echo "  \"successful\": $successful_count," >> "$manifest_file"
-            echo "  \"failed\": $failed_count," >> "$manifest_file"
-            echo "  \"skipped\": $skipped_count," >> "$manifest_file"
-            echo "  \"concurrency\": $CONCURRENCY," >> "$manifest_file"
-            echo "  \"results\": {" >> "$manifest_file"
+            # 启动后台转换任务
+            convert_plugin "$plugin_url" "$job_count" &
+            job_count=$((job_count + 1))
             
-            first=true
-            for plugin in "${!conversion_results[@]}"; do
-              if [[ "$first" == "true" ]]; then
-                first=false
-              else
-                echo "," >> "$manifest_file"
-              fi
-              echo "    \"$plugin\": \"${conversion_results[$plugin]}\"" >> "$manifest_file"
-            done
-            
-            echo "" >> "$manifest_file"
-            echo "  }" >> "$manifest_file"
-            echo "}" >> "$manifest_file"
-            
-            # 创建缓存
-            if [[ $successful_count -gt 0 ]] || [[ $skipped_count -gt 0 ]]; then
-              echo "创建转换缓存..."
-              tar -czf "$cache_file" -C Surge/Modules/ . 2>/dev/null || true
+            # 避免过快启动
+            sleep 0.1
+          done < plugin_urls.txt
+          
+          # 等待所有任务完成
+          echo "等待所有转换任务完成..."
+          wait
+          
+          # 合并结果
+          echo "合并转换结果..."
+          declare -A conversion_results
+          successful_count=0
+          failed_count=0
+          skipped_count=0
+          
+          for result_file in .cache/conversion_results_*.txt; do
+            if [[ -f "$result_file" ]]; then
+              while IFS=':' read -r plugin_name status; do
+                conversion_results["$plugin_name"]="$status"
+                case "$status" in
+                  "success")
+                    successful_count=$((successful_count + 1))
+                    ;;
+                  "skipped")
+                    skipped_count=$((skipped_count + 1))
+                    ;;
+                  *)
+                    failed_count=$((failed_count + 1))
+                    ;;
+                esac
+              done < "$result_file"
             fi
-            
-            # 输出统计
-            total_plugins=$(wc -l < plugin_urls.txt)
-            success_rate=$((((successful_count + skipped_count) * 100) / total_plugins))
-            
-            echo "============================================"
-            echo "转换完成统计:"
-            echo "  总插件数: $total_plugins"
-            echo "  转换成功: $successful_count"
-            echo "  跳过未更新: $skipped_count"
-            echo "  转换失败: $failed_count"
-            echo "  成功率: ${success_rate}%"
-            echo "  并发数: $CONCURRENCY"
-            echo "============================================"
-            
-            # 设置 GitHub Actions 输出
-            echo "conversion_success_rate=$success_rate" >> $GITHUB_OUTPUT
-            echo "converted_plugins=$successful_count" >> $GITHUB_OUTPUT
-            echo "skipped_plugins=$skipped_count" >> $GITHUB_OUTPUT
-            
-            # 清理旧缓存（保留最新5个）
-            ls -t .cache/converted-modules-*.tar.gz 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null || true
-            ls -t .cache/conversion-manifest-*.json 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null || true
-            
-            # 清理临时文件
-            rm -f .cache/conversion_results_*.txt
+          done
+          
+          # 创建转换清单
+          echo "{" > "$manifest_file"
+          echo "  \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"," >> "$manifest_file"
+          echo "  \"total_plugins\": $(wc -l < plugin_urls.txt)," >> "$manifest_file"
+          echo "  \"successful\": $successful_count," >> "$manifest_file"
+          echo "  \"failed\": $failed_count," >> "$manifest_file"
+          echo "  \"skipped\": $skipped_count," >> "$manifest_file"
+          echo "  \"concurrency\": $CONCURRENCY," >> "$manifest_file"
+          echo "  \"results\": {" >> "$manifest_file"
+          
+          first=true
+          for plugin in "${!conversion_results[@]}"; do
+            if [[ "$first" == "true" ]]; then
+              first=false
+            else
+              echo "," >> "$manifest_file"
+            fi
+            echo "    \"$plugin\": \"${conversion_results[$plugin]}\"" >> "$manifest_file"
+          done
+          
+          echo "" >> "$manifest_file"
+          echo "  }" >> "$manifest_file"
+          echo "}" >> "$manifest_file"
+          
+          # 创建缓存
+          if [[ $successful_count -gt 0 ]] || [[ $skipped_count -gt 0 ]]; then
+            echo "创建转换缓存..."
+            tar -czf "$cache_file" -C Surge/Modules/ . 2>/dev/null || true
+          fi
+          
+          # 输出统计
+          total_plugins=$(wc -l < plugin_urls.txt)
+          success_rate=$((((successful_count + skipped_count) * 100) / total_plugins))
+          
+          echo "============================================"
+          echo "转换完成统计:"
+          echo "  总插件数: $total_plugins"
+          echo "  转换成功: $successful_count"
+          echo "  跳过未更新: $skipped_count"
+          echo "  转换失败: $failed_count"
+          echo "  成功率: ${success_rate}%"
+          echo "  并发数: $CONCURRENCY"
+          echo "============================================"
+          
+          # 设置 GitHub Actions 输出
+          echo "conversion_success_rate=$success_rate" >> $GITHUB_OUTPUT
+          echo "converted_plugins=$successful_count" >> $GITHUB_OUTPUT
+          echo "skipped_plugins=$skipped_count" >> $GITHUB_OUTPUT
+          
+          # 清理旧缓存（保留最新5个）
+          ls -t .cache/converted-modules-*.tar.gz 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null || true
+          ls -t .cache/conversion-manifest-*.json 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null || true
+          
+          # 清理临时文件
+          rm -f .cache/conversion_results_*.txt
         env:
-          LOON_CONVERSION_CONCURRENCY: 2
+          LOON_CONVERSION_CONCURRENCY: 5
 
       - name: 转换 QX 重写规则
         run: |
@@ -512,7 +387,7 @@ jobs:
             encoded_name=$(echo "$name" | jq -sRr @uri)
             
             # 使用 Script Hub 转换 QX 重写到 Surge 模块
-            download_url="http://localhost:9101/convert/_start_/${url}/_end_/${name}.sgmodule?type=qx-rewrite&target=surge-module"
+            download_url="http://localhost:9101/file/_start_/${url}/_end_/${name}.sgmodule?type=qx-rewrite&target=surge-module&del=true"
             
             # 添加主动预防参数
             fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
@@ -555,6 +430,10 @@ jobs:
             if curl -s -L "$loon_url" > /tmp/loon_plugin.txt 2>/dev/null; then
               echo "提取到 Loon 插件，开始转换..."
               
+              # 清理现有的重复参数定义
+              sed -i '/^#!arguments=/d' "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+              sed -i '/^#!arguments-desc=/d' "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+              
               # 提取参数并转换格式
               args=""
               args_desc=""
@@ -569,10 +448,9 @@ jobs:
                 if [[ "$line" =~ ^([a-zA-Z0-9_]+)[[:space:]]*=[[:space:]]*switch,([^,]+),([^,]+),tag=(.*)$ ]]; then
                   name="${BASH_REMATCH[1]}"
                   default="${BASH_REMATCH[2]}"
-                  desc="${BASH_REMATCH[4]%%,*}"
+                  desc="${BASH_REMATCH[4]%%,*}" # 移除desc部分
                   args="${args}${name}:${default},"
                   args_desc="${args_desc}${name}:${desc}\\n"
-                  
                 # 处理 select 类型参数
                 elif [[ "$line" =~ ^([a-zA-Z0-9_]+)=select,(.+),tag=([^,]+) ]]; then
                   name="${BASH_REMATCH[1]}"
@@ -585,49 +463,38 @@ jobs:
                 fi
               done < /tmp/loon_args.txt
               
-              # 移除最后的逗号
+              # 移除最后的逗号和换行
               args="${args%,}"
               args_desc="${args_desc%\\n}"
               
               # 创建临时文件
-              cp "Surge/Modules/Remove_ads_by_fmz.sgmodule" "/tmp/module_temp.sgmodule"
+              cp "Surge/Modules/Remove_ads_by_fmz.sgmodule" "/tmp/sgmodule_temp.txt"
               
-              # 在第6行后插入参数定义
-              sed -i '6a #!arguments='"$args" "/tmp/module_temp.sgmodule"
-              sed -i '7a #!arguments-desc='"$args_desc" "/tmp/module_temp.sgmodule"
+              # 在文件开头插入参数定义（仅一次）
+              {
+                echo "#!arguments=$args"
+                echo "#!arguments-desc=$args_desc"
+                echo ""
+                cat "/tmp/sgmodule_temp.txt"
+              } > "Surge/Modules/Remove_ads_by_fmz.sgmodule"
               
-              # 使用 sed 修改脚本格式
-              echo "修改脚本为标准 Surge 格式..."
+              echo "✅ 参数转换完成，共转换 $(echo "$args" | tr ',' '\n' | wc -l) 个参数"
               
-              # 创建转换脚本（使用base64避免YAML语法冲突）
-              echo 'IyEvYmluL2Jhc2gKIyDovazmjaLohJrmnKzlrprkuYnkuLrmoIflh4YgU3VyZ2Ug5qC85byPCgojIOWumuS5ieiEmuacrOWQjeaYoOWwhApkZWNsYXJlIC1BIHN0cmlwdF9uYW1lcz0oCiAgWyIxMjMwNl9lbmFibGUiXT0iMTIzMDYiCiAgWyI1NTVfZW5hYmxlIl09IjU1NeW9seinhiIKICBbIjUxeHlrX2VuYWJsZSJdPSI1MeS/oeeUqOWNoeeuoeWutiIKICBbImJsdWVkX2VuYWJsZSJdPSJCbHVlZCIKICBbImJkZHVkaXR1X2VuYWJsZSJdPSLnmb7luqblnLDlm74iCiAgWyJiZGR1dHBiYV9lbmFibGUiXT0i55m+5bqm6LS05ZCnIgogIFsiYmlsaWJpbGlfZW5hYmxlIl09IuWTlOWTqeWTlOWTqSIKICBbImJvaGVqbWtoX2VuYWJsZSJdPSLokYTojbflgaXlurciCiAgWyJjZHl5dG1xaV9lbmFibGUiXT0i5b2p5LqR5aSp5rCUIgogIFsiY2RubmdvZ29fZW5hYmxlIl09IuiPnOm4n+ijueijiSIKICBbImNkeGJfZW5hYmxlIl09Iui0ouaWsCIKICBbImRhdnNkbXBrX2VuYWJsZSJdPSLlpKfkvJfngrnor4QiCiAgWyJkc2h4ZmdfZW5hYmxlIl09IuWKqOeUu+eWryIKICBbImRpZGlpdXhrX2VuYWJsZSJdPSLmu7Tmu7Tlh7rooYwiCiAgWyJkZG1jX2VuYWJsZSJdPSLlj67lkrTkubDoj5wiCiAgWyJmbGlnaHRyYWRhcjI0X2VuYWJsZSJdPSJGbGlnaHRyYWRhcjI0IgogIFsiZndrZV9lbmFibGUiXT0i6aOe5a6i6Iy26aaGIgogIFsiZmZiaV9lbmFibGUiXT0i57KJ56yUIgogIFsiaGx6aF9lbmFibGUiXT0i6Iiq5peF57qq5qiqIgogIFsiaGVtYV9lbmFibGUiXT0i55uS6amiIgogIFsiaGZ0eF9lbmFibGUiXT0i5rGH5LuY5aSp5LiLIgogIFsiaXR6al9lbmFibGUiXT0iSVTkuYvlrrYiCiAgWyJqaHNoX2VuYWJsZSJdPSLlu7rooYznlJ/mtLsiCiAgWyJqa2RzX2VuYWJsZSJdPSLkuqzkuJwiCiAgWyJqa3hpX2VuYWJsZSJdPSLkuqzllpwiCiAgWyJrZWVwX2VuYWJsZSJdPSJrZWVwIgogIFsia2t1el9lbmFibGUiXT0i5b+r5omLIgogIFsia3hrZV9lbmFibGUiXT0i5aSu5YWLIgogIFsia3V3b3lidHlfZW5hYmxlIl09IumFt+aIkemfs+S5kCIKICBbImt1YW5fZW5hYmxlIl09IumFt+WuiSIKKQoKZmlsZT0iJDEiCgojIOaJvuWIsOS/ruaUueeahOadoeS7tgp3aGlsZSBJRlM9IHJlYWQgLXIgbGluZTsgZG8KICBpZiBbWyAiJGxpbmUiID1+IF5ce3t7KFteXV0rKVx9XH1cID1cICguKykkIF1dOyB0aGVuCiAgICBwYXJhbV9uYW1lPSIke0JBU0hfUkVNQVRDSFsxXX0iCiAgICBzY3JpcHRfZGVmPSIke0JBU0hfUkVNQVRDSFsyXX0iCiAgICAKICAgICMg6I635Y+W6ISa5pys5ZCNCiAgICBzY3JpcHRfbmFtZT0iJHtzY3JpcHRfbmFtZXNbJHBhcmFtX25hbWVdfSIKICAgIGlmIFtbIC16ICIkc2NyaXB0X25hbWUiIF1dOyB0aGVuCiAgICAgIHNjcmlwdF9uYW1lPSIke3BhcmFtX25hbWUlX2VuYWJsZX0iCiAgICBmaQogICAgCiAgICAjIOa3u+WKoCBhcmd1bWVudCDlj4LmlbAKICAgIGlmIFtbICEgIiRzY3JpcHRfZGVmIiA9fiBhcmd1bWVudD0gXV07IHRoZW4KICAgICAgaWYgW1sgIiRzY3JpcHRfZGVmIiA9fiAoLiopKCxcIHRpbWVvdXQ9WzAtOV0rKSguKikgXV07IHRoZW4KICAgICAgICBzY3JpcHRfZGVmPSIke0JBU0hfUkVNQVRDSFsxXX0ke0JBU0hfUkVNQVRDSFsyXX0sIGFyZ3VtZW50PWVuYWJsZT1cJHskcGFyYW1fbmFtZX0ke0JBU0hfUkVNQVRDSFszXX0iCiAgICAgIGVsaWYgW1sgIiRzY3JpcHRfZGVmIiA9fiAoLiopKCxcIHJlcXVpcmVzLWJvZHk9W2Etel0rKSguKikgXV07IHRoZW4KICAgICAgICBzY3JpcHRfZGVmPSIke0JBU0hfUkVNQVRDSFsxXX0ke0JBU0hfUkVNQVRDSFsyXX0sIGFyZ3VtZW50PWVuYWJsZT1cJHskcGFyYW1fbmFtZX0ke0JBU0hfUkVNQVRDSFszXX0iCiAgICAgIGVsc2UKICAgICAgICBzY3JpcHRfZGVmPSQoZWNobyAiJHNjcmlwdF9kZWYiIHwgc2VkIC1FICJzfChzY3JpcHQtcGF0aD1bXixdKyl8XDEsIGFyZ3VtZW50PWVuYWJsZT1cJHskcGFyYW1fbmFtZX18IikKICAgICAgZmkKICAgIGZpCiAgICAKICAgIGVjaG8gIiRzY3JpcHRfbmFtZSA9ICRzY3JpcHRfZGVmIgogIGVsc2UKICAgIGVjaG8gIiRsaW5lIgogIGZpCmRvbmUgPCAiJGZpbGUiID4gIiR7ZmlsZX0udG1wIgoKbXYgIiR7ZmlsZX0udG1wIiAiJGZpbGUi' | base64 -d > /tmp/convert_scripts.sh
-              
-              # 执行转换脚本
-              chmod +x /tmp/convert_scripts.sh
-              /tmp/convert_scripts.sh "/tmp/module_temp.sgmodule"
-              
-              # 替换原文件
-              mv "/tmp/module_temp.sgmodule" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
-              
-              # 清理临时文件
-              rm -f /tmp/loon_plugin.txt /tmp/loon_args.txt /tmp/convert_scripts.sh
-              
-              echo "✅ Remove_ads_by_fmz 参数转换完成"
-              
-              # 验证参数是否正确添加
-              if grep -q "^#!arguments=" "Surge/Modules/Remove_ads_by_fmz.sgmodule"; then
-                echo "参数定义已成功添加"
-                echo "显示前30行内容："
-                head -30 "Surge/Modules/Remove_ads_by_fmz.sgmodule"
-                
-                # 显示一些转换后的脚本示例
-                echo -e "\n转换后的脚本示例："
-                grep -E "^[^{].*= type=http-.*, argument=" "Surge/Modules/Remove_ads_by_fmz.sgmodule" | head -5
+              # 确保脚本使用参数占位符
+              # Script Hub 转换应该已经处理了这部分，这里只是验证
+              if grep -q '{{{[a-zA-Z0-9_]+}}}' "Surge/Modules/Remove_ads_by_fmz.sgmodule"; then
+                echo "✅ 脚本已使用参数占位符"
+              else
+                echo "⚠️ 警告：脚本未使用参数占位符，参数控制可能无效"
               fi
+              
+              rm -f /tmp/loon_plugin.txt /tmp/loon_args.txt /tmp/sgmodule_temp.txt
+            else
+              echo "⚠️ 无法下载 Loon 插件，跳过参数转换"
             fi
           fi
           
-          echo "参数转换完成"
+          echo "参数转换步骤完成"
 
       - name: 合并 Surge 模块
         run: |
