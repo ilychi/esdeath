@@ -395,14 +395,23 @@ jobs:
             download_url="${download_url}&evalScriptmodi=${encoded_fix}"
             
             if curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" "$download_url" 2>/dev/null; then
-              if [[ -f "$output_file" ]] && [[ $(wc -c < "$output_file") -gt 100 ]]; then
-                echo "✅ 转换成功: $name ($(wc -c < "$output_file") bytes)"
-              else
-                echo "❌ 转换失败 (文件无效): $name"
-                rm -f "$output_file"
+              echo "✅ 转换成功: $name"
+              
+              # 为 MiniApp_Cleaner 添加规则
+              if [[ "$name" == "MiniApp_Cleaner" ]]; then
+                echo "为 MiniApp_Cleaner 添加规则..."
+                
+                # 检查是否已有 [Rule] 部分
+                if grep -q "^\[Rule\]" "$output_file"; then
+                  # 在 [Rule] 部分后添加规则
+                  sed -i '/^\[Rule\]/a RULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list,REJECT,pre-matching,extended-matching,no-resolve' "$output_file"
+                else
+                  # 添加 [Rule] 部分和规则
+                  echo -e "\n[Rule]\nRULE-SET,https://ruleset.chichi.sh/Rulesets/reject/reject_fmz200.list,REJECT,pre-matching,extended-matching,no-resolve" >> "$output_file"
+                fi
               fi
             else
-              echo "❌ 转换失败 (网络错误): $name"
+              echo "❌ 转换失败: $name"
             fi
           done
           
