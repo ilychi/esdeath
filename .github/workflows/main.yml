@@ -124,11 +124,11 @@ jobs:
           
           # 添加特殊插件
           echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
-          echo "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule?rename=网易云音乐全面净化" >> plugin_urls.txt
+          echo "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule?rename=Netease_Music_Purification" >> plugin_urls.txt
           
           # 直接下载已经是 Surge 格式的模块
           echo "下载原生 Surge 模块..."
-          curl -L -o "Surge/Modules/网易云音乐全面净化.sgmodule" "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule" 2>/dev/null || echo "下载网易云音乐模块失败"
+          curl -L -o "Surge/Modules/Netease_Music_Purification.sgmodule" "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule" 2>/dev/null || echo "下载网易云音乐模块失败"
           
           # 从转换列表中移除已经是 sgmodule 的文件
           grep -v "\.sgmodule" plugin_urls.txt > plugin_urls_filtered.txt || true
