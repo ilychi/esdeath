@@ -440,60 +440,65 @@ jobs:
               while IFS= read -r line; do
                 [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
                 
+                # 处理 switch 类型参数
                 if [[ "$line" =~ ^([a-zA-Z0-9_]+)[[:space:]]*=[[:space:]]*switch,([^,]+),([^,]+),tag=(.*)$ ]]; then
                   name="${BASH_REMATCH[1]}"
                   default="${BASH_REMATCH[2]}"
                   desc="${BASH_REMATCH[4]%%,*}"
                   args="${args}${name}:${default},"
                   args_desc="${args_desc}${name}:${desc}\\n"
+                  
+                # 处理 select 类型参数
                 elif [[ "$line" =~ ^([a-zA-Z0-9_]+)=select,(.+),tag=([^,]+) ]]; then
                   name="${BASH_REMATCH[1]}"
                   options="${BASH_REMATCH[2]}"
                   desc="${BASH_REMATCH[3]%%,*}"
+                  # 获取第一个选项作为默认值
                   default=$(echo "$options" | cut -d',' -f1 | tr -d '"')
                   args="${args}${name}:${default},"
                   args_desc="${args_desc}${name}:${desc}\\n"
                 fi
               done < /tmp/loon_args.txt
               
-              # 移除尾部逗号
+              # 移除最后的逗号
               args="${args%,}"
               args_desc="${args_desc%\\n}"
               
-              if [[ -n "$args" ]]; then
-                # 修改 sgmodule 文件，添加参数并更新脚本
-                awk -v args="$args" -v args_desc="$args_desc" '
-                  /^#!category=/ {
-                    print $0
-                    print "#!arguments=" args
-                    print "#!arguments-desc=" args_desc
-                    next
-                  }
-                  # 为脚本添加参数占位符
-                  /^(.*脚本名.*) = type=http-/ {
-                    # 提取脚本名并检查是否有对应的参数
-                    script_name = $0
-                    # 如果是特定的脚本，添加参数占位符
-                    if (match(script_name, /12306/) && index(args, "12306_enable") > 0) {
-                      print "{{{12306_enable}}} = " substr($0, index($0, "type="))
-                    } else if (match(script_name, /555/) && index(args, "555_enable") > 0) {
-                      print "{{{555_enable}}} = " substr($0, index($0, "type="))
-                    } else if (match(script_name, /哔哩哔哩/) && index(args, "bilibili_enable") > 0) {
-                      print "{{{bilibili_enable}}} = " substr($0, index($0, "type="))
-                    } else {
-                      print $0
-                    }
-                    next
-                  }
-                  {print}
-                ' "Surge/Modules/Remove_ads_by_fmz.sgmodule" > "/tmp/module_temp.sgmodule"
-                
-                mv "/tmp/module_temp.sgmodule" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
-                
-                echo "✅ 成功转换参数到 Surge 格式"
-              fi
+              # 创建临时文件
+              cp "Surge/Modules/Remove_ads_by_fmz.sgmodule" "/tmp/module_temp.sgmodule"
               
-              rm -f /tmp/loon_plugin.txt /tmp/loon_args.txt
+              # 在第6行后插入参数定义
+              sed -i '6a #!arguments='"$args" "/tmp/module_temp.sgmodule"
+              sed -i '7a #!arguments-desc='"$args_desc" "/tmp/module_temp.sgmodule"
+              
+              # 使用 sed 修改脚本格式
+              echo "修改脚本为标准 Surge 格式..."
+              
+              # 创建转换脚本（使用base64避免YAML语法冲突）
+              echo 'IyEvYmluL2Jhc2gKIyDovazmjaLohJrmnKzlrprkuYnkuLrmoIflh4YgU3VyZ2Ug5qC85byPCgojIOWumuS5ieiEmuacrOWQjeaYoOWwhApkZWNsYXJlIC1BIHN0cmlwdF9uYW1lcz0oCiAgWyIxMjMwNl9lbmFibGUiXT0iMTIzMDYiCiAgWyI1NTVfZW5hYmxlIl09IjU1NeW9seinhiIKICBbIjUxeHlrX2VuYWJsZSJdPSI1MeS/oeeUqOWNoeeuoeWutiIKICBbImJsdWVkX2VuYWJsZSJdPSJCbHVlZCIKICBbImJkZHVkaXR1X2VuYWJsZSJdPSLnmb7luqblnLDlm74iCiAgWyJiZGR1dHBiYV9lbmFibGUiXT0i55m+5bqm6LS05ZCnIgogIFsiYmlsaWJpbGlfZW5hYmxlIl09IuWTlOWTqeWTlOWTqSIKICBbImJvaGVqbWtoX2VuYWJsZSJdPSLokYTojbflgaXlurciCiAgWyJjZHl5dG1xaV9lbmFibGUiXT0i5b2p5LqR5aSp5rCUIgogIFsiY2RubmdvZ29fZW5hYmxlIl09IuiPnOm4n+ijueijiSIKICBbImNkeGJfZW5hYmxlIl09Iui0ouaWsCIKICBbImRhdnNkbXBrX2VuYWJsZSJdPSLlpKfkvJfngrnor4QiCiAgWyJkc2h4ZmdfZW5hYmxlIl09IuWKqOeUu+eWryIKICBbImRpZGlpdXhrX2VuYWJsZSJdPSLmu7Tmu7Tlh7rooYwiCiAgWyJkZG1jX2VuYWJsZSJdPSLlj67lkrTkubDoj5wiCiAgWyJmbGlnaHRyYWRhcjI0X2VuYWJsZSJdPSJGbGlnaHRyYWRhcjI0IgogIFsiZndrZV9lbmFibGUiXT0i6aOe5a6i6Iy26aaGIgogIFsiZmZiaV9lbmFibGUiXT0i57KJ56yUIgogIFsiaGx6aF9lbmFibGUiXT0i6Iiq5peF57qq5qiqIgogIFsiaGVtYV9lbmFibGUiXT0i55uS6amiIgogIFsiaGZ0eF9lbmFibGUiXT0i5rGH5LuY5aSp5LiLIgogIFsiaXR6al9lbmFibGUiXT0iSVTkuYvlrrYiCiAgWyJqaHNoX2VuYWJsZSJdPSLlu7rooYznlJ/mtLsiCiAgWyJqa2RzX2VuYWJsZSJdPSLkuqzkuJwiCiAgWyJqa3hpX2VuYWJsZSJdPSLkuqzllpwiCiAgWyJrZWVwX2VuYWJsZSJdPSJrZWVwIgogIFsia2t1el9lbmFibGUiXT0i5b+r5omLIgogIFsia3hrZV9lbmFibGUiXT0i5aSu5YWLIgogIFsia3V3b3lidHlfZW5hYmxlIl09IumFt+aIkemfs+S5kCIKICBbImt1YW5fZW5hYmxlIl09IumFt+WuiSIKKQoKZmlsZT0iJDEiCgojIOaJvuWIsOS/ruaUueeahOadoeS7tgp3aGlsZSBJRlM9IHJlYWQgLXIgbGluZTsgZG8KICBpZiBbWyAiJGxpbmUiID1+IF5ce3t7KFteXV0rKVx9XH1cID1cICguKykkIF1dOyB0aGVuCiAgICBwYXJhbV9uYW1lPSIke0JBU0hfUkVNQVRDSFsxXX0iCiAgICBzY3JpcHRfZGVmPSIke0JBU0hfUkVNQVRDSFsyXX0iCiAgICAKICAgICMg6I635Y+W6ISa5pys5ZCNCiAgICBzY3JpcHRfbmFtZT0iJHtzY3JpcHRfbmFtZXNbJHBhcmFtX25hbWVdfSIKICAgIGlmIFtbIC16ICIkc2NyaXB0X25hbWUiIF1dOyB0aGVuCiAgICAgIHNjcmlwdF9uYW1lPSIke3BhcmFtX25hbWUlX2VuYWJsZX0iCiAgICBmaQogICAgCiAgICAjIOa3u+WKoCBhcmd1bWVudCDlj4LmlbAKICAgIGlmIFtbICEgIiRzY3JpcHRfZGVmIiA9fiBhcmd1bWVudD0gXV07IHRoZW4KICAgICAgaWYgW1sgIiRzY3JpcHRfZGVmIiA9fiAoLiopKCxcIHRpbWVvdXQ9WzAtOV0rKSguKikgXV07IHRoZW4KICAgICAgICBzY3JpcHRfZGVmPSIke0JBU0hfUkVNQVRDSFsxXX0ke0JBU0hfUkVNQVRDSFsyXX0sIGFyZ3VtZW50PWVuYWJsZT1cJHskcGFyYW1fbmFtZX0ke0JBU0hfUkVNQVRDSFszXX0iCiAgICAgIGVsaWYgW1sgIiRzY3JpcHRfZGVmIiA9fiAoLiopKCxcIHJlcXVpcmVzLWJvZHk9W2Etel0rKSguKikgXV07IHRoZW4KICAgICAgICBzY3JpcHRfZGVmPSIke0JBU0hfUkVNQVRDSFsxXX0ke0JBU0hfUkVNQVRDSFsyXX0sIGFyZ3VtZW50PWVuYWJsZT1cJHskcGFyYW1fbmFtZX0ke0JBU0hfUkVNQVRDSFszXX0iCiAgICAgIGVsc2UKICAgICAgICBzY3JpcHRfZGVmPSQoZWNobyAiJHNjcmlwdF9kZWYiIHwgc2VkIC1FICJzfChzY3JpcHQtcGF0aD1bXixdKyl8XDEsIGFyZ3VtZW50PWVuYWJsZT1cJHskcGFyYW1fbmFtZX18IikKICAgICAgZmkKICAgIGZpCiAgICAKICAgIGVjaG8gIiRzY3JpcHRfbmFtZSA9ICRzY3JpcHRfZGVmIgogIGVsc2UKICAgIGVjaG8gIiRsaW5lIgogIGZpCmRvbmUgPCAiJGZpbGUiID4gIiR7ZmlsZX0udG1wIgoKbXYgIiR7ZmlsZX0udG1wIiAiJGZpbGUi' | base64 -d > /tmp/convert_scripts.sh
+              
+              # 执行转换脚本
+              chmod +x /tmp/convert_scripts.sh
+              /tmp/convert_scripts.sh "/tmp/module_temp.sgmodule"
+              
+              # 替换原文件
+              mv "/tmp/module_temp.sgmodule" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+              
+              # 清理临时文件
+              rm -f /tmp/loon_plugin.txt /tmp/loon_args.txt /tmp/convert_scripts.sh
+              
+              echo "✅ Remove_ads_by_fmz 参数转换完成"
+              
+              # 验证参数是否正确添加
+              if grep -q "^#!arguments=" "Surge/Modules/Remove_ads_by_fmz.sgmodule"; then
+                echo "参数定义已成功添加"
+                echo "显示前30行内容："
+                head -30 "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+                
+                # 显示一些转换后的脚本示例
+                echo -e "\n转换后的脚本示例："
+                grep -E "^[^{].*= type=http-.*, argument=" "Surge/Modules/Remove_ads_by_fmz.sgmodule" | head -5
+              fi
             fi
           fi
           
