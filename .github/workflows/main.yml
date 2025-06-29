@@ -244,10 +244,8 @@ jobs:
                 echo "[Job $job_id] 无法下载 Loon 插件"
               fi
             else
-              # 主动预防所有模块的本地地址问题
-              fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
-              encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
-              download_url="${download_url}&evalScriptmodi=${encoded_fix}"
+              # 其他模块不使用 evalScriptmodi，直接转换
+              echo "[Job $job_id] 标准插件转换（无特殊处理）"
             fi
             
             echo "[Job $job_id] 转换URL: $download_url"
@@ -370,7 +368,7 @@ jobs:
             
             # 也尝试一个简单的转换请求
             echo "测试 Script Hub 转换功能..."
-            test_conversion=$(curl -s -w "\n%{http_code}" "http://localhost:9101/file/_start_/https://example.com/test.txt/_end_/test.txt" 2>&1 | tail -n 1)
+            test_conversion=$(curl -s -w "\n%{http_code}" "http://localhost:9101/convert/_start_/https://example.com/test.txt/_end_/test.txt?type=surge-script&target=surge-module" 2>&1 | tail -n 1)
             echo "测试转换响应代码: $test_conversion"
             
             # 测试转换
@@ -487,8 +485,8 @@ jobs:
             
             # 清理临时文件
             rm -f .cache/conversion_results_*.txt
-          env:
-            LOON_CONVERSION_CONCURRENCY: 2
+        env:
+          LOON_CONVERSION_CONCURRENCY: 2
 
       - name: 转换 QX 重写规则
         run: |
