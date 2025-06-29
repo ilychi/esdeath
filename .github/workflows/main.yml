@@ -6,13 +6,14 @@ on:
       - main
   pull_request:
   schedule:
-    # 每天午夜运行
-    - cron: "0 0 * * *"
-    # 每天中午运行
-    - cron: "0 12 * * *"
-    # 每周三傍晚额外运行
-    - cron: "0 18 * * 3"
+    - cron: '0 */3 * * *'  # 每3小时执行一次
   workflow_dispatch:
+    inputs:
+      clearCache:
+        description: '清理缓存'
+        required: false
+        type: boolean
+        default: false
   repository_dispatch:
     types: [trigger-main-build]
 
@@ -123,7 +124,17 @@ jobs:
           
           # 添加特殊插件
           echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
-          echo "https://raw.githubusercontent.com/Keywos/rule/main/loon/NeteaseCloudMusic.plugin?rename=网易云音乐净化" >> plugin_urls.txt
+          echo "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule?rename=网易云音乐全面净化" >> plugin_urls.txt
+          
+          # 直接下载已经是 Surge 格式的模块
+          echo "下载原生 Surge 模块..."
+          curl -L -o "Surge/Modules/网易云音乐全面净化.sgmodule" "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule" 2>/dev/null || echo "下载网易云音乐模块失败"
+          
+          # 从转换列表中移除已经是 sgmodule 的文件
+          grep -v "\.sgmodule" plugin_urls.txt > plugin_urls_filtered.txt || true
+          if [[ -f plugin_urls_filtered.txt ]]; then
+            mv plugin_urls_filtered.txt plugin_urls.txt
+          fi
           
           # 智能缓存策略
           plugins_hash=$(md5sum plugin_urls.txt | cut -d' ' -f1)
@@ -215,6 +226,14 @@ jobs:
             # 执行转换
             encoded_name=$(echo "$plugin_name" | jq -sRr @uri)
             download_url="http://localhost:9101/api/v1/convert?type=loon-plugin&target=surge-module&url=$(echo "$base_url" | jq -sRr @uri)&filename=$encoded_name"
+            
+            # 对特定插件添加修复参数
+            if [[ "$plugin_name" == "Remove_ads_by_fmz" ]]; then
+              # 添加 evalUrlmodi 参数来修复转换后的 URL
+              fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
+              encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
+              download_url="${download_url}&evalScriptmodi=${encoded_fix}"
+            fi
             
             if curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" "$download_url" 2>/dev/null; then
               if [[ -f "$output_file" ]] && [[ $(wc -c < "$output_file") -gt 100 ]]; then
@@ -343,6 +362,113 @@ jobs:
           rm -f .cache/conversion_results_*.txt
         env:
           LOON_CONVERSION_CONCURRENCY: 5
+
+      - name: 转换 QX 重写规则
+        run: |
+          echo "开始 QX 到 Surge 规则转换..."
+          
+          # 确保转换服务就绪
+          if ! nc -z localhost 9101; then
+            echo "转换服务未就绪，跳过 QX 转换"
+            exit 0
+          fi
+          
+          # 定义要转换的 QX 规则
+          declare -A qx_rules=(
+            ["App小程序净化合集"]="https://github.com/fmz200/wool_scripts/raw/main/QuantumultX/rewrite/chongxie.txt"
+          )
+          
+          # 转换 QX 规则
+          for name in "${!qx_rules[@]}"; do
+            url="${qx_rules[$name]}"
+            output_file="Surge/Modules/${name}.sgmodule"
+            
+            echo "转换 QX 规则: $name"
+            encoded_name=$(echo "$name" | jq -sRr @uri)
+            encoded_url=$(echo "$url" | jq -sRr @uri)
+            
+            # 使用 Script Hub 转换 QX 重写到 Surge 模块
+            download_url="http://localhost:9101/file/_start_/${encoded_url}/_end_/${encoded_name}.sgmodule?type=qx-rewrite&target=surge-module"
+            
+            # 添加主动预防参数
+            fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
+            encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
+            download_url="${download_url}&evalScriptmodi=${encoded_fix}"
+            
+            if curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" "$download_url" 2>/dev/null; then
+              if [[ -f "$output_file" ]] && [[ $(wc -c < "$output_file") -gt 100 ]]; then
+                echo "✅ 转换成功: $name ($(wc -c < "$output_file") bytes)"
+              else
+                echo "❌ 转换失败 (文件无效): $name"
+                rm -f "$output_file"
+              fi
+            else
+              echo "❌ 转换失败 (网络错误): $name"
+            fi
+          done
+          
+          echo "QX 规则转换完成"
+
+      - name: 转换 Loon 参数到 Surge 格式
+        run: |
+          echo "开始转换 Loon 参数..."
+          
+          # 处理 Remove_ads_by_fmz 的参数
+          if [[ -f "Surge/Modules/Remove_ads_by_fmz.sgmodule" ]]; then
+            # 从原始 Loon 插件提取参数
+            loon_url="https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin"
+            
+            # 下载原始文件提取参数
+            if curl -s -L "$loon_url" | grep -A 200 "^\[Argument\]" > /tmp/loon_args.txt 2>/dev/null; then
+              echo "提取到 Loon 参数，开始转换..."
+              
+              # 创建临时文件存储转换后的内容
+              cp "Surge/Modules/Remove_ads_by_fmz.sgmodule" "/tmp/module_temp.sgmodule"
+              
+              # 提取参数并转换格式
+              args=""
+              args_desc=""
+              
+              while IFS= read -r line; do
+                if [[ "$line" =~ ^([a-zA-Z0-9_]+)[[:space:]]*=[[:space:]]*switch,([^,]+),([^,]+),tag=(.+)$ ]]; then
+                  name="${BASH_REMATCH[1]}"
+                  default="${BASH_REMATCH[2]}"
+                  desc="${BASH_REMATCH[4]}"
+                  args="${args}${name}:${default},"
+                  args_desc="${args_desc}${name}:${desc}\\n"
+                elif [[ "$line" =~ ^([a-zA-Z0-9_]+)=select,(.+),tag=([^,]+),desc=(.+)$ ]]; then
+                  name="${BASH_REMATCH[1]}"
+                  options="${BASH_REMATCH[2]}"
+                  tag="${BASH_REMATCH[3]}"
+                  desc="${BASH_REMATCH[4]}"
+                  # 获取默认值（第一个选项）
+                  default=$(echo "$options" | cut -d',' -f1 | tr -d '"')
+                  args="${args}${name}:${default},"
+                  args_desc="${args_desc}${name}:${tag}\\n"
+                fi
+              done < <(sed -n '/^\[Argument\]/,/^\[/p' /tmp/loon_args.txt | grep -v '^\[' | grep -v '^$')
+              
+              # 移除尾部逗号
+              args="${args%,}"
+              args_desc="${args_desc%\\n}"
+              
+              if [[ -n "$args" ]]; then
+                # 在文件开头添加参数
+                {
+                  echo "#!arguments=$args"
+                  echo "#!arguments-desc=$args_desc"
+                  echo ""
+                  cat "/tmp/module_temp.sgmodule"
+                } > "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+                
+                echo "✅ 成功转换参数到 Surge 格式"
+              fi
+              
+              rm -f /tmp/loon_args.txt /tmp/module_temp.sgmodule
+            fi
+          fi
+          
+          echo "参数转换完成"
 
       - name: 合并 Surge 模块
         run: |
