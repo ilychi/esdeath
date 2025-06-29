@@ -344,6 +344,31 @@ jobs:
         env:
           LOON_CONVERSION_CONCURRENCY: 5
 
+      - name: 修复转换错误
+        run: |
+          echo "开始修复 Script Hub 转换错误..."
+          
+          # 修复 Script Hub 转换服务的嵌套 URL 问题
+          # 当转换服务处理包含嵌套转换 URL 的插件时，会错误地将 script.hub 替换为本地地址
+          
+          # 修复本地地址问题
+          find Surge/Modules -name "*.sgmodule" -type f | while read -r file; do
+            if grep -q "http://127\.0\.0\.1:910[01]" "$file"; then
+              echo "修复文件: $file"
+              sed -i.bak 's|http://127\.0\.0\.1:9100|http://script.hub|g' "$file"
+              sed -i 's|http://127\.0\.0\.1:9101|http://script.hub|g' "$file"
+              rm -f "$file.bak"
+            fi
+          done
+          
+          # 统计修复结果
+          fixed_count=$(find Surge/Modules -name "*.sgmodule" -type f -exec grep -l "http://script\.hub/convert/_start_" {} \; | wc -l)
+          if [[ $fixed_count -gt 0 ]]; then
+            echo "✅ 修复了 $fixed_count 个文件中的本地地址问题"
+          else
+            echo "✅ 没有发现需要修复的本地地址问题"
+          fi
+
       - name: 合并 Surge 模块
         run: |
           echo "开始合并 Surge 模块..."
