@@ -100,158 +100,87 @@ jobs:
             sleep 10
           done
 
-      - name: 智能转换 Loon 插件
+      - name: 并发转换 Loon 插件
+        id: convert-loon
         run: |
-          echo "开始智能 Loon 到 Surge 插件转换..."
-          mkdir -p Surge/Modules Surge/Scripts .cache/plugin-checksums
+          echo "开始并发转换 Loon 插件到 Surge 模块..."
           
-          # 配置并发参数
-          CONCURRENCY=${LOON_CONVERSION_CONCURRENCY:-3}
-          echo "转换并发数: $CONCURRENCY"
-          
-          # 下载插件源列表
-          curl -s -o README.md https://raw.githubusercontent.com/luestr/ProxyResource/main/README.md
-          
-          # 提取插件 URLs
-          grep -oP 'https://www\.nsloon\.com/openloon/import\?plugin=[^"]+' README.md > nsloon_urls.txt
-          > plugin_urls.txt
-          while IFS= read -r line; do
-            plugin_url=$(echo "$line" | grep -oP '(?<=plugin=)[^"]+')
-            if [[ -n "$plugin_url" ]]; then
-              echo "$plugin_url" >> plugin_urls.txt
-            fi
-          done < nsloon_urls.txt
-          
-          # 添加特殊插件
-          echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
-          echo "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule?rename=Netease_Music_Purification" >> plugin_urls.txt
-          
-          # 直接下载已经是 Surge 格式的模块
-          echo "下载原生 Surge 模块..."
-          curl -L -o "Surge/Modules/Netease_Music_Purification.sgmodule" "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule" 2>/dev/null || echo "下载网易云音乐模块失败"
-          
-          # 从转换列表中移除已经是 sgmodule 的文件
-          grep -v "\.sgmodule" plugin_urls.txt > plugin_urls_filtered.txt || true
-          if [[ -f plugin_urls_filtered.txt ]]; then
-            mv plugin_urls_filtered.txt plugin_urls.txt
-          fi
-          
-          # 智能缓存策略
-          plugins_hash=$(md5sum plugin_urls.txt | cut -d' ' -f1)
-          cache_file=".cache/converted-modules-${plugins_hash}.tar.gz"
-          manifest_file=".cache/conversion-manifest-${plugins_hash}.json"
-          
-          # 检查完整缓存
-          if [[ -f "$cache_file" ]] && [[ -f "$manifest_file" ]]; then
-            cached_count=$(jq length "$manifest_file" 2>/dev/null || echo "0")
-            current_count=$(wc -l < plugin_urls.txt)
-            
-            if [[ "$cached_count" -eq "$current_count" ]]; then
-              echo "发现完整插件缓存 ($cached_count 个插件)，解压使用..."
-              tar -xzf "$cache_file" -C Surge/Modules/ 2>/dev/null
-              echo "缓存解压完成，跳过转换"
-              exit 0
-            fi
-          fi
-          
-          # 等待转换服务就绪
-          echo "等待转换服务就绪..."
-          max_wait=30
-          wait_count=0
-          while ! nc -z localhost 9101 && [ $wait_count -lt $max_wait ]; do
-            sleep 3
-            wait_count=$((wait_count + 1))
-          done
-          
+          # 确保转换服务就绪
           if ! nc -z localhost 9101; then
-            echo "转换服务启动失败，尝试使用备用方案..."
-            # 尝试使用最新可用缓存
-            latest_cache=$(ls -t .cache/converted-modules-*.tar.gz 2>/dev/null | head -1)
-            if [[ -f "$latest_cache" ]]; then
-              echo "使用备用缓存: $latest_cache"
-              tar -xzf "$latest_cache" -C Surge/Modules/ 2>/dev/null
-              exit 0
-            else
-              echo "无可用备用方案，退出"
+            echo "转换服务未就绪，等待..."
+            sleep 5
+            if ! nc -z localhost 9101; then
+              echo "转换服务启动失败"
               exit 1
             fi
           fi
           
-          # 创建转换任务函数
+          # 创建插件列表
+          cat > plugin_urls.txt << 'EOF'
+          blockAds|https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin|Remove_ads_by_fmz
+          EOF
+          
+          # 设置并发数
+          CONCURRENCY="${LOON_CONVERSION_CONCURRENCY:-5}"
+          echo "使用并发数: $CONCURRENCY"
+          
+          # 创建目录和缓存文件
+          mkdir -p Surge/Modules
+          mkdir -p .cache
+          
+          # 检查缓存
+          cache_file=".cache/converted-modules-$(date +%Y%m%d).tar.gz"
+          manifest_file=".cache/conversion-manifest-$(date +%Y%m%d).json"
+          
+          declare -A conversion_results
+          successful_count=0
+          failed_count=0
+          skipped_count=0
+          
+          # 转换函数
           convert_plugin() {
-            local plugin_url="$1"
-            local job_id="$2"
+            local line="$1"
+            local idx="$2"
+            local result_file=".cache/conversion_results_${idx}.txt"
             
-            # 解析插件信息
-            if [[ "$plugin_url" == *"?rename="* ]]; then
-              plugin_name=$(echo "$plugin_url" | grep -oP '(?<=rename=)[^&]*')
-              base_url=$(echo "$plugin_url" | cut -d'?' -f1)
-            else
-              plugin_name=$(basename "$plugin_url" .plugin)
-              base_url="$plugin_url"
+            IFS='|' read -r plugin_name plugin_url output_name <<< "$line"
+            [[ -z "$output_name" ]] && output_name="$plugin_name"
+            
+            echo "[任务 $idx] 开始转换: $plugin_name -> $output_name"
+            
+            # 特殊处理某些插件
+            fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
+            
+            # 为 Remove_ads_by_fmz 添加额外的修复
+            if [[ "$output_name" == "Remove_ads_by_fmz" ]]; then
+              # 修复元数据问题
+              fix_script="${fix_script}; "
+              fix_script="${fix_script}body = body.replace(/^#!name=.*$/m, '#!name=广告拦截&净化合集'); "
+              fix_script="${fix_script}body = body.replace(/^#!desc=.*$/m, '#!desc=(支持约564款APP/小程序)针对部分APP和小程序广告进行拦截，某些APP要清除缓存或者重新安装拦截广告才会生效！规则明细可以查看本插件的注释'); "
+              fix_script="${fix_script}body = body.replace(/\\[([^\\[]+)\\]\\(([^)]+)\\)/g, '\$1[\$2]'); " # 修复链接格式
+              fix_script="${fix_script}body = body.replace(/\\n{3,}/g, '\\n\\n'); " # 移除多余空行
             fi
             
-            output_file="Surge/Modules/${plugin_name}.sgmodule"
+            encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
             
-            # 检查是否需要转换
-            skip_conversion=false
+            # 构建下载 URL
+            download_url="http://localhost:9101/file/_start_/${plugin_url}/_end_/${output_name}.sgmodule?type=loon-plugin&target=surge-module&del=true&evalScriptmodi=${encoded_fix}"
             
-            # 1. 检查文件是否存在且有效
-            if [[ -f "$output_file" ]] && [[ $(wc -c < "$output_file") -gt 100 ]]; then
-              # 2. 检查文件修改时间（24小时内）
-              if [[ $(find "$output_file" -mmin -1440 2>/dev/null | wc -l) -gt 0 ]]; then
-                skip_conversion=true
+            # 下载并保存
+            if curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "Surge/Modules/${output_name}.sgmodule" "$download_url" 2>/dev/null; then
+              # 验证转换结果
+              if [[ -f "Surge/Modules/${output_name}.sgmodule" ]] && [[ -s "Surge/Modules/${output_name}.sgmodule" ]]; then
+                echo "[任务 $idx] ✅ 转换成功: $output_name"
+                echo "$plugin_name|SUCCESS" > "$result_file"
               else
-                # 3. 检查源文件是否有更新（通过 HEAD 请求）
-                if curl -s -I "$base_url" | grep -i "last-modified:" > "/tmp/remote_mod_${job_id}" 2>/dev/null; then
-                  remote_mod=$(cat "/tmp/remote_mod_${job_id}" | cut -d' ' -f2-)
-                  local_mod=$(stat -f "%Sm" -t "%a, %d %b %Y %T %Z" "$output_file" 2>/dev/null || echo "")
-                  
-                  if [[ "$remote_mod" == "$local_mod" ]]; then
-                    skip_conversion=true
-                  fi
-                  rm -f "/tmp/remote_mod_${job_id}"
-                fi
-              fi
-            fi
-            
-            if [[ "$skip_conversion" == "true" ]]; then
-              echo "[并发$job_id] 跳过未更新的插件: $plugin_name"
-              echo "$plugin_name:skipped" >> ".cache/conversion_results_${job_id}.txt"
-              return 0
-            fi
-            
-            echo "[并发$job_id] 转换插件: $plugin_name"
-            
-            # 执行转换
-            encoded_name=$(echo "$plugin_name" | jq -sRr @uri)
-            download_url="http://localhost:9101/api/v1/convert?type=loon-plugin&target=surge-module&url=$(echo "$base_url" | jq -sRr @uri)&filename=$encoded_name"
-            
-            # 对特定插件添加修复参数
-            if [[ "$plugin_name" == "Remove_ads_by_fmz" ]]; then
-              # 添加 evalUrlmodi 参数来修复转换后的 URL
-              fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
-              encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
-              download_url="${download_url}&evalScriptmodi=${encoded_fix}"
-            fi
-            
-            if curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" "$download_url" 2>/dev/null; then
-              if [[ -f "$output_file" ]] && [[ $(wc -c < "$output_file") -gt 100 ]]; then
-                echo "[并发$job_id] 转换成功: $plugin_name ($(wc -c < "$output_file") bytes)"
-                echo "$plugin_name:success" >> ".cache/conversion_results_${job_id}.txt"
-              else
-                echo "[并发$job_id] 转换失败 (文件无效): $plugin_name"
-                rm -f "$output_file"
-                echo "$plugin_name:failed_invalid" >> ".cache/conversion_results_${job_id}.txt"
+                echo "[任务 $idx] ❌ 转换失败: $output_name (文件为空)"
+                echo "$plugin_name|FAILED" > "$result_file"
               fi
             else
-              echo "[并发$job_id] 转换失败 (网络错误): $plugin_name"
-              echo "$plugin_name:failed_network" >> ".cache/conversion_results_${job_id}.txt"
+              echo "[任务 $idx] ❌ 转换失败: $output_name (下载错误)"
+              echo "$plugin_name|FAILED" > "$result_file"
             fi
           }
-          
-          # 导出函数供子进程使用
-          export -f convert_plugin
           
           # 并发转换逻辑
           echo "开始并发转换插件 (并发数: $CONCURRENCY)..."
@@ -261,14 +190,14 @@ jobs:
           
           # 创建并发任务
           job_count=0
-          while IFS= read -r plugin_url; do
+          while IFS= read -r line; do
             # 等待有空闲进程槽
             while [ $(jobs -r | wc -l) -ge $CONCURRENCY ]; do
               sleep 0.1
             done
             
             # 启动后台转换任务
-            convert_plugin "$plugin_url" "$job_count" &
+            convert_plugin "$line" "$job_count" &
             job_count=$((job_count + 1))
             
             # 避免过快启动
@@ -281,23 +210,15 @@ jobs:
           
           # 合并结果
           echo "合并转换结果..."
-          declare -A conversion_results
-          successful_count=0
-          failed_count=0
-          skipped_count=0
-          
           for result_file in .cache/conversion_results_*.txt; do
             if [[ -f "$result_file" ]]; then
-              while IFS=':' read -r plugin_name status; do
+              while IFS='|' read -r plugin_name status; do
                 conversion_results["$plugin_name"]="$status"
                 case "$status" in
-                  "success")
+                  "SUCCESS")
                     successful_count=$((successful_count + 1))
                     ;;
-                  "skipped")
-                    skipped_count=$((skipped_count + 1))
-                    ;;
-                  *)
+                  "FAILED")
                     failed_count=$((failed_count + 1))
                     ;;
                 esac
@@ -343,7 +264,6 @@ jobs:
           echo "转换完成统计:"
           echo "  总插件数: $total_plugins"
           echo "  转换成功: $successful_count"
-          echo "  跳过未更新: $skipped_count"
           echo "  转换失败: $failed_count"
           echo "  成功率: ${success_rate}%"
           echo "  并发数: $CONCURRENCY"
@@ -429,26 +349,21 @@ jobs:
             # 创建临时文件存储修复后的内容
             temp_file="/tmp/fixed_sgmodule.txt"
             
-            # 提取所有元数据
-            name=$(grep -m1 '^#!name=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            desc=$(grep -m1 '^#!desc=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            author=$(grep -m1 '^#!author=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            icon=$(grep -m1 '^#!icon=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            category=$(grep -m1 '^#!category=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            homepage=$(grep -m1 '^#!homepage=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            raw_url=$(grep -m1 '^#!raw-url=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            tg_group=$(grep -m1 '^#!tg-group=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            tag=$(grep -m1 '^#!tag=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            system=$(grep -m1 '^#!system=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            date=$(grep -m1 '^#!date=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            remark=$(grep -m1 '^#!remark=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+            # 直接设置正确的元数据值（防止 Script Hub 转换错误）
+            name="广告拦截&净化合集"
+            desc="(支持约564款APP/小程序)针对部分APP和小程序广告进行拦截，某些APP要清除缓存或者重新安装拦截广告才会生效！规则明细可以查看本插件的注释"
+            author="奶思[https://github.com/fmz200]"
+            icon="https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png"
+            category="🚫 AD Block"
+            homepage="https://github.com/fmz200/wool_scripts"
+            raw_url="https://github.com/fmz200/wool_scripts/raw/main/Loon/plugin/blockAds.plugin"
+            tg_group="https://t.me/lanjieguanggao"
+            tag="去广告, fmz200, 奶思"
+            system="ios"
+            remark="下方的所有规则都标注了对应的hostname，可能存在错误或者遗漏，欢迎反馈"
             
-            # 修复链接格式（去除 Markdown 格式）
-            author=$(echo "$author" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1[\2]/g' | sed 's/\[\[/[/g' | sed 's/\]\]/]/g')
-            icon=$(echo "$icon" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
-            homepage=$(echo "$homepage" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
-            raw_url=$(echo "$raw_url" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
-            tg_group=$(echo "$tg_group" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
+            # 提取其他可能存在的元数据
+            date=$(grep -m1 '^#!date=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
             
             # 从原始 Loon 插件提取参数
             loon_url="https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin"
@@ -469,20 +384,20 @@ jobs:
                 
                 # 处理 switch 类型参数
                 if [[ "$line" =~ ^([a-zA-Z0-9_]+)[[:space:]]*=[[:space:]]*switch,([^,]+),([^,]+),tag=(.*)$ ]]; then
-                  name="${BASH_REMATCH[1]}"
+                  param_name="${BASH_REMATCH[1]}"
                   default="${BASH_REMATCH[2]}"
-                  desc="${BASH_REMATCH[4]%%,*}" # 移除desc部分
-                  args="${args}${name}:${default},"
-                  args_desc="${args_desc}${name}:${desc}\\n"
+                  param_desc="${BASH_REMATCH[4]%%,*}" # 移除desc部分
+                  args="${args}${param_name}:${default},"
+                  args_desc="${args_desc}${param_name}:${param_desc}\\n"
                 # 处理 select 类型参数
                 elif [[ "$line" =~ ^([a-zA-Z0-9_]+)=select,(.+),tag=([^,]+) ]]; then
-                  name="${BASH_REMATCH[1]}"
+                  param_name="${BASH_REMATCH[1]}"
                   options="${BASH_REMATCH[2]}"
-                  desc="${BASH_REMATCH[3]%%,*}"
+                  param_desc="${BASH_REMATCH[3]%%,*}"
                   # 获取第一个选项作为默认值
                   default=$(echo "$options" | cut -d',' -f1 | tr -d '"')
-                  args="${args}${name}:${default},"
-                  args_desc="${args_desc}${name}:${desc}\\n"
+                  args="${args}${param_name}:${default},"
+                  args_desc="${args_desc}${param_name}:${param_desc}\\n"
                 fi
               done < /tmp/loon_args.txt
               
@@ -499,18 +414,17 @@ jobs:
                 echo "#!category=$category"
                 echo "#!arguments=$args"
                 echo "#!arguments-desc=$args_desc"
-                [ -n "$homepage" ] && echo "#!homepage=$homepage"
-                [ -n "$raw_url" ] && echo "#!raw-url=$raw_url"
-                [ -n "$tg_group" ] && echo "#!tg-group=$tg_group"
-                [ -n "$tag" ] && echo "#!tag=$tag"
-                [ -n "$system" ] && echo "#!system=$system"
+                echo "#!homepage=$homepage"
+                echo "#!raw-url=$raw_url"
+                echo "#!tg-group=$tg_group"
+                echo "#!tag=$tag"
+                echo "#!system=$system"
                 [ -n "$date" ] && echo "#!date=$date"
-                [ -n "$remark" ] && echo "#!remark=$remark"
+                echo "#!remark=$remark"
                 echo ""
                 
-                # 添加模块内容（排除所有元数据行）
-                grep -v '^#!' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | grep -v '^[[:space:]]*$' | head -1 | grep -q '^\[' || echo ""
-                grep -v '^#!' "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+                # 添加模块内容（排除所有元数据行和多余空行）
+                grep -v '^#!' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | sed '/^[[:space:]]*$/d' | sed '1{/^$/d;}' | sed -e :a -e '/^\n*$/{$d;N;ba' -e '}'
               } > "$temp_file"
               
               # 替换原文件
