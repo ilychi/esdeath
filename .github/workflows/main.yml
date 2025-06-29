@@ -116,8 +116,10 @@ jobs:
           grep -oP 'https://www\.nsloon\.com/openloon/import\?plugin=[^"]+' README.md > nsloon_urls.txt
           > plugin_urls.txt
           while IFS= read -r line; do
-            plugin_url=$(echo "$line" | grep -oP '(?<=plugin=)[^"]+')
+            plugin_url=$(echo "$line" | grep -oP '(?<=plugin=)[^"]+' | sed 's/&amp;/\&/g')
             if [[ -n "$plugin_url" ]]; then
+              # URL解码处理
+              plugin_url=$(echo "$plugin_url" | sed 's/%3A/:/g; s/%2F/\//g; s/%3F/?/g; s/%3D/=/g')
               echo "$plugin_url" >> plugin_urls.txt
             fi
           done < nsloon_urls.txt
@@ -125,6 +127,17 @@ jobs:
           # 添加特殊插件
           echo "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin?rename=Remove_ads_by_fmz" >> plugin_urls.txt
           echo "https://github.com/Keywos/rule/raw/main/script/wy/wy.sgmodule?rename=Netease_Music_Purification" >> plugin_urls.txt
+          
+          # 显示插件列表信息
+          echo "插件URL总数: $(wc -l < plugin_urls.txt)"
+          echo "前5个插件URL:"
+          head -5 plugin_urls.txt
+          echo "最后5个插件URL:"
+          tail -5 plugin_urls.txt
+          
+          # 检查是否有无效的URL
+          echo "检查URL格式..."
+          grep -v "^https\?://" plugin_urls.txt || echo "所有URL格式正确"
           
           # 直接下载已经是 Surge 格式的模块
           echo "下载原生 Surge 模块..."
@@ -181,99 +194,170 @@ jobs:
           convert_plugin() {
             local plugin_url="$1"
             local job_id="$2"
-            local plugin_name=$(basename "$plugin_url" .plugin)
+            
+            # 处理带有 ?rename= 参数的URL
+            local clean_url="${plugin_url%%\?*}"
+            local rename_param="${plugin_url#*\?rename=}"
+            
+            if [[ "$rename_param" != "$plugin_url" ]]; then
+              # 有 rename 参数
+              local plugin_name="$rename_param"
+            else
+              # 没有 rename 参数，使用文件名
+              local plugin_name=$(basename "$clean_url" .plugin)
+            fi
+            
             local output_file="Surge/Modules/${plugin_name}.sgmodule"
             local result_file=".cache/conversion_results_${job_id}.txt"
             
+            echo "[Job $job_id] 开始转换: $plugin_name"
+            echo "[Job $job_id] 插件URL: $clean_url"
+            echo "[Job $job_id] 输出文件: $output_file"
+            
             # 使用 Script Hub 转换
             encoded_name=$(echo "$plugin_name" | jq -sRr @uri)
-            download_url="http://localhost:9101/file/_start_/${plugin_url}/_end_/${plugin_name}.sgmodule?type=loon-plugin&target=surge-module&del=true"
+            download_url="http://localhost:9101/file/_start_/${clean_url}/_end_/${plugin_name}.sgmodule?type=loon-plugin&target=surge-module&del=true"
             
             # 为 Remove_ads_by_fmz 添加特殊处理
             if [[ "$plugin_name" == "blockAds" || "$plugin_name" == "Remove_ads_by_fmz" ]]; then
-              echo "处理带参数的插件: $plugin_name"
+              echo "[Job $job_id] 处理带参数的插件: $plugin_name"
               
               # 下载原始 Loon 插件以提取参数
-              if curl -s -L "$plugin_url" > "/tmp/loon_${job_id}.txt" 2>/dev/null; then
+              if curl -s -L "$clean_url" > "/tmp/loon_${job_id}.txt" 2>/dev/null; then
+                echo "[Job $job_id] 成功下载 Loon 插件"
+                
                 # 创建动态的 evalScriptmodi 脚本（使用base64编码避免YAML语法问题）
                 echo 'Ly8g6Ieq5Yqo5qOA5rWL5bm26L2s5o2i5Y+C5pWw5qC85byPCihmdW5jdGlvbigpIHsKICAvLyDmj5Dlj5bnjrDmnInnmoTlj4LmlbDlrprkuYkKICBjb25zdCBhcmdzTWF0Y2ggPSBib2R5Lm1hdGNoKC9eIyFhcmd1bWVudHM9KC4rKSQvbSk7CiAgY29uc3QgYXJnc0Rlc2NNYXRjaCA9IGJvZHkubWF0Y2goL14jIWFyZ3VtZW50cy1kZXNjPSguKykkL20pOwogIAogIGlmICghYXJnc01hdGNoKSB7CiAgICAvLyDmsqHmnInlj4LmlbDlrprkuYnvvIznm7TmjqXov5Tlm54KICAgIHJldHVybiBib2R5OwogIH0KICAKICAvLyDop6PmnpDlj4LmlbAKICBjb25zdCBhcmdzID0gYXJnc01hdGNoWzFdOwogIGNvbnN0IGFyZ3NNYXAgPSB7fTsKICBhcmdzLnNwbGl0KCcsJykuZm9yRWFjaChhcmcgPT4gewogICAgY29uc3QgW25hbWUsIGRlZmF1bHRWYWx1ZV0gPSBhcmcuc3BsaXQoJzonKTsKICAgIGlmIChuYW1lICYmIGRlZmF1bHRWYWx1ZSkgewogICAgICBhcmdzTWFwW25hbWVdID0gZGVmYXVsdFZhbHVlOwogICAgfQogIH0pOwogIAogIC8vIOafpeaJvuW5tuabv+aNouaJgOaciSB7e3twYXJhbX19fSDmoLzlvI/nmoTljaDkvY3nrKYKICBjb25zdCBzY3JpcHRTZWN0aW9uID0gYm9keS5tYXRjaCgvXFtTY3JpcHRcXShbXHNcU10qPykoPz1cW3wkKS8pOwogIGlmIChzY3JpcHRTZWN0aW9uKSB7CiAgICBsZXQgc2NyaXB0Q29udGVudCA9IHNjcmlwdFNlY3Rpb25bMF07CiAgICAKICAgIC8vIOabv+aNouWNoOS9jeespuagvOW8j+S4uuagh+WHhuagvOW8jwogICAgc2NyaXB0Q29udGVudCA9IHNjcmlwdENvbnRlbnQucmVwbGFjZSgvXnt7eyhbXn1dKyl9fX0gPSAoLispJC9nbSwgZnVuY3Rpb24obWF0Y2gsIHBhcmFtTmFtZSwgc2NyaXB0RGVmKSB7CiAgICAgIC8vIOiHquWKqOajgOa1i+iEmuacrOWQjeensCAgICAgIAogICAgICBsZXQgc2NyaXB0TmFtZSA9IHBhcmFtTmFtZS5yZXBsYWNlKC9fZW5hYmxlJC8sICcnKTsKICAgICAgCiAgICAgIC8vIOWwneivleS7juazqOmHiuaIluiEmuacrOi3r+W+hOS4reaPkOWPluabtOWlveeahOWQjeensCAgICAgIAogICAgICBjb25zdCBwYXRoTWF0Y2ggPSBzY3JpcHREZWYubWF0Y2goL3NjcmlwdC1wYXRoPSouXC8oW15cL10rKVwuanMvKTsKICAgICAgaWYgKHBhdGhNYXRjaCAmJiBwYXRoTWF0Y2hbMV0pIHsKICAgICAgICAvLyDkvb/nlKjohJrmnKzmlofku7blkI3kvZzkuLrlj4LogIMKICAgICAgICBjb25zdCBmaWxlTmFtZSA9IHBhdGhNYXRjaFsxXTsKICAgICAgICAvLyDmmKDlsITkuIDkupvluLjop4HnmoTohJrmnKzlkI0KICAgICAgICBjb25zdCBuYW1lTWFwID0gewogICAgICAgICAgJzEyMzA2JzogJzEyMzA2JywKICAgICAgICAgICc1NTVBZCc6ICc1NTXlvbHop4YnLAogICAgICAgICAgJzUxY2FyZCc6ICc1MeS/oeeUqOWNoeeuoeWutiAnLAogICAgICAgICAgJ2JpbGliaWxpJzogJ+WTlOWTqeWTlOWTqScsCiAgICAgICAgICAnY2NiTGlmZSc6ICflu7rooYznlJ/mtLsnLAogICAgICAgICAgJ2ppbmdkb25nJzogJ+S6rOS4nCcsCiAgICAgICAgICAneGlhb2hvbmdzaHUnOiAn5bCP57qi5LmmJywKICAgICAgICAgICd4aWFueXVfYWRzJzogJ+mXsumxvCcsCiAgICAgICAgICAnY2FpeXVuJzogJ+W9qeS6keWkqeawlCcKICAgICAgICB9OwogICAgICAgIHNjcmlwdE5hbWUgPSBuYW1lTWFwW2ZpbGVOYW1lXSB8fCBzY3JpcHROYW1lOwogICAgICB9CiAgICAgIAogICAgICAvLyDmo4Dmn6XmmK/lkKblt7LmnIkgYXJndW1lbnQg5Y+C5pWwCiAgICAgIGlmICghc2NyaXB0RGVmLmluY2x1ZGVzKCdhcmd1bWVudD0nKSkgewogICAgICAgIC8vIOWcqOmAguW9k+S9jee9ruaeguWKoCBhcmd1bWVudCDlj4LmlbAKICAgICAgICBpZiAoc2NyaXB0RGVmLmluY2x1ZGVzKCcsIHRpbWVvdXQ9JykpIHsKICAgICAgICAgIHNjcmlwdERlZiA9IHNjcmlwdERlZi5yZXBsYWNlKC8sIHRpbWVvdXQ9LywgJywgYXJndW1lbnQ9ZW5hYmxlPSR7JyArIHBhcmFtTmFtZSArICd9LCB0aW1lb3V0PScpOwogICAgICAgIH0gZWxzZSBpZiAoc2NyaXB0RGVmLmluY2x1ZGVzKCcsIHJlcXVpcmVzLWJvZHk9JykpIHsKICAgICAgICAgIHNjcmlwdERlZiA9IHNjcmlwdERlZi5yZXBsYWNlKC8sIHJlcXVpcmVzLWJvZHk9LywgJywgYXJndW1lbnQ9ZW5hYmxlPSR7JyArIHBhcmFtTmFtZSArICd9LCByZXF1aXJlcy1ib2R5PScpOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAvLyDlnKjohJrmnKzot6/lvoTlkI7mt7vliqAKICAgICAgICAgIHNjcmlwdERlZiA9IHNjcmlwdERlZi5yZXBsYWNlKC9zY3JpcHQtcGF0aD0oW14sXSspLywgJ3NjcmlwdC1wYXRoPSQxLCBhcmd1bWVudD1lbmFibGU9JHsnICsgcGFyYW1OYW1lICsgJ30nKTsKICAgICAgICB9CiAgICAgIH0KICAgICAgCiAgICAgIHJldHVybiBzY3JpcHROYW1lICsgJyA9ICcgKyBzY3JpcHREZWY7CiAgICB9KTsKICAgIAogICAgLy8g5pu/5o2i5ZueIGJvZHkKICAgIGJvZHkgPSBib2R5LnJlcGxhY2UoL1xbU2NyaXB0XF0oW1xzXFNdKj8pKD89XFt8JCkvLCBzY3JpcHRDb250ZW50KTsKICB9CiAgCiAgLy8g5L+u5aSN5pys5Zyw5Zyw5Z2A6Zeu6aKYCiAgYm9keSA9IGJvZHkucmVwbGFjZSgvaHR0cDpcL1wvMTI3XC4wXC4wXC4xOjkxMFswMV0vZywgJ2h0dHA6Ly9zY3JpcHQuaHViJyk7CiAgCiAgcmV0dXJuIGJvZHk7Cn0pKCk7' | base64 -d > "/tmp/eval_script_${job_id}.js"
-                 
-                 # 读取脚本内容并进行URL编码
-                 eval_script_content=$(cat "/tmp/eval_script_${job_id}.js")
-                 encoded_eval=$(echo "$eval_script_content" | jq -sRr @uri)
-                 download_url="${download_url}&evalScriptmodi=${encoded_eval}"
-               fi
-             else
-               # 主动预防所有模块的本地地址问题
-               fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
-               encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
-               download_url="${download_url}&evalScriptmodi=${encoded_fix}"
-             fi
-             
-             # 验证远程文件是否存在并获取修改时间
-             remote_headers=$(curl -A "script-hub/1.0.0" -I -L --connect-timeout 5 --max-time 10 "$plugin_url" 2>/dev/null)
-             if [[ -z "$remote_headers" ]] || ! echo "$remote_headers" | grep -q "200 OK"; then
-               echo "$plugin_name:failed_remote_unavailable" >> "$result_file"
-               return 1
-             fi
-             
-             remote_modified=$(echo "$remote_headers" | grep -i "last-modified" | cut -d' ' -f2- | xargs -I {} date -u -d "{}" "+%s" 2>/dev/null || echo "0")
-             
-             # 检查本地文件
-             if [[ -f "$output_file" ]]; then
-               local_modified=$(stat -c "%Y" "$output_file" 2>/dev/null || echo "0")
-               
-               # 仅当远程文件较新时才更新
-               if [[ "$remote_modified" -le "$local_modified" ]]; then
-                 echo "$plugin_name:skipped" >> "$result_file"
-                 return 0
-               fi
-             fi
-             
-             # 执行转换
-             if curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" "$download_url" 2>/dev/null; then
-               if [[ -s "$output_file" ]] && grep -q "#!name=" "$output_file"; then
-                 # 对特定模块进行额外处理
-                 case "$plugin_name" in
-                   "Remove_ads_by_fmz"|"blockAds")
-                     # 确保模块名称正确
-                     sed -i 's/#!name=.*/#!name=广告拦截&净化合集/' "$output_file"
-                     mv "$output_file" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
-                     output_file="Surge/Modules/Remove_ads_by_fmz.sgmodule"
-                     ;;
-                   "Netease_Music_Purification")
-                     sed -i 's/网易云音乐全面净化/Netease_Music_Purification/g' "$output_file"
-                     ;;
-                 esac
-                 
-                 echo "$plugin_name:success" >> "$result_file"
-                 return 0
-               else
-                 rm -f "$output_file"
-                 echo "$plugin_name:failed_invalid_content" >> "$result_file"
-                 return 1
-               fi
-             else
-               echo "$plugin_name:failed_download" >> "$result_file"
-               return 1
-             fi
-             
-             # 清理临时文件
-             rm -f "/tmp/loon_${job_id}.txt" "/tmp/eval_script_${job_id}.js" 2>/dev/null || true
-           }
-           
-           # 导出函数供子进程使用
-           export -f convert_plugin
-           
-           # 并发转换逻辑
-           echo "开始并发转换插件 (并发数: $CONCURRENCY)..."
-           
-           # 清理旧的结果文件
-           rm -f .cache/conversion_results_*.txt
+                
+                # 读取脚本内容并进行URL编码
+                eval_script_content=$(cat "/tmp/eval_script_${job_id}.js")
+                encoded_eval=$(echo "$eval_script_content" | jq -sRr @uri)
+                download_url="${download_url}&evalScriptmodi=${encoded_eval}"
+                echo "[Job $job_id] 添加了 evalScriptmodi 参数"
+              else
+                echo "[Job $job_id] 无法下载 Loon 插件"
+              fi
+            else
+              # 主动预防所有模块的本地地址问题
+              fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
+              encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
+              download_url="${download_url}&evalScriptmodi=${encoded_fix}"
+            fi
+            
+            echo "[Job $job_id] 转换URL: $download_url"
+            
+            # 验证远程文件是否存在并获取修改时间
+            echo "[Job $job_id] 检查远程文件..."
+            remote_headers=$(curl -A "script-hub/1.0.0" -I -L --connect-timeout 5 --max-time 10 "$clean_url" 2>&1)
+            curl_status=$?
+            
+            if [[ $curl_status -ne 0 ]]; then
+              echo "[Job $job_id] curl 返回错误代码: $curl_status"
+              echo "[Job $job_id] 错误信息: $remote_headers"
+              echo "$plugin_name:failed_remote_unavailable" >> "$result_file"
+              return 1
+            fi
+            
+            if [[ -z "$remote_headers" ]] || ! echo "$remote_headers" | grep -q "200 OK\|200 ok"; then
+              echo "[Job $job_id] 远程文件不可用"
+              echo "[Job $job_id] Headers: $remote_headers"
+              echo "$plugin_name:failed_remote_unavailable" >> "$result_file"
+              return 1
+            fi
+            
+            remote_modified=$(echo "$remote_headers" | grep -i "last-modified" | cut -d' ' -f2- | xargs -I {} date -u -d "{}" "+%s" 2>/dev/null || echo "0")
+            
+            # 检查本地文件
+            if [[ -f "$output_file" ]]; then
+              local_modified=$(stat -c "%Y" "$output_file" 2>/dev/null || echo "0")
+              
+              # 仅当远程文件较新时才更新
+              if [[ "$remote_modified" -le "$local_modified" ]]; then
+                echo "[Job $job_id] 跳过未更新的文件"
+                echo "$plugin_name:skipped" >> "$result_file"
+                return 0
+              fi
+            fi
+            
+            # 执行转换
+            echo "[Job $job_id] 开始下载转换..."
+            curl_output=$(curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" -w "\n%{http_code}\n" "$download_url" 2>&1)
+            http_code=$(echo "$curl_output" | tail -n 1)
+            
+            echo "[Job $job_id] HTTP状态码: $http_code"
+            
+            if [[ "$http_code" == "200" ]] && [[ -s "$output_file" ]]; then
+              if grep -q "#!name=" "$output_file"; then
+                echo "[Job $job_id] 转换成功"
+                
+                # 对特定模块进行额外处理
+                case "$plugin_name" in
+                  "Remove_ads_by_fmz"|"blockAds")
+                    # 确保模块名称正确
+                    sed -i 's/#!name=.*/#!name=广告拦截&净化合集/' "$output_file"
+                    mv "$output_file" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+                    output_file="Surge/Modules/Remove_ads_by_fmz.sgmodule"
+                    ;;
+                  "Netease_Music_Purification")
+                    sed -i 's/网易云音乐全面净化/Netease_Music_Purification/g' "$output_file"
+                    ;;
+                esac
+                
+                echo "$plugin_name:success" >> "$result_file"
+                return 0
+              else
+                echo "[Job $job_id] 转换后的文件无效（缺少 #!name=）"
+                echo "[Job $job_id] 文件内容前100字符: $(head -c 100 "$output_file" 2>/dev/null || echo "无法读取")"
+                rm -f "$output_file"
+                echo "$plugin_name:failed_invalid_content" >> "$result_file"
+                return 1
+              fi
+            else
+              echo "[Job $job_id] 下载失败"
+              echo "[Job $job_id] Curl输出: $curl_output"
+              rm -f "$output_file" 2>/dev/null || true
+              echo "$plugin_name:failed_download" >> "$result_file"
+              return 1
+            fi
+            
+            # 清理临时文件
+            rm -f "/tmp/loon_${job_id}.txt" "/tmp/eval_script_${job_id}.js" 2>/dev/null || true
+          }
+          
+          # 导出函数供子进程使用
+          export -f convert_plugin
+          
+          # 并发转换逻辑
+          echo "开始并发转换插件 (并发数: $CONCURRENCY)..."
+          
+          # 清理旧的结果文件
+          rm -f .cache/conversion_results_*.txt
+            
+            # 先测试单个插件以排查问题
+            echo "测试单个插件转换..."
+            test_url="https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/12306_remove_ads.plugin"
+            echo "测试URL: $test_url"
+            
+            # 直接测试 Script Hub 服务
+            test_response=$(curl -s -w "\n%{http_code}" "http://localhost:9101/health" 2>&1 || echo "服务健康检查失败")
+            echo "Script Hub 健康检查: $test_response"
+            
+            # 测试转换
+            if [[ -n "$test_url" ]]; then
+              convert_plugin "$test_url" "test" || echo "测试转换失败"
+              
+              # 检查测试结果
+              if [[ -f ".cache/conversion_results_test.txt" ]]; then
+                echo "测试结果: $(cat .cache/conversion_results_test.txt)"
+              fi
+            fi
             
             # 创建并发任务
             job_count=0
             while IFS= read -r plugin_url; do
+              # 跳过空行
+              [[ -z "$plugin_url" ]] && continue
+              
               # 等待有空闲进程槽
               while [ $(jobs -r | wc -l) -ge $CONCURRENCY ]; do
                 sleep 0.1
