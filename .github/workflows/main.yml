@@ -216,6 +216,14 @@ jobs:
             encoded_name=$(echo "$plugin_name" | jq -sRr @uri)
             download_url="http://localhost:9101/api/v1/convert?type=loon-plugin&target=surge-module&url=$(echo "$base_url" | jq -sRr @uri)&filename=$encoded_name"
             
+            # 对特定插件添加修复参数
+            if [[ "$plugin_name" == "Remove_ads_by_fmz" ]]; then
+              # 添加 evalUrlmodi 参数来修复转换后的 URL
+              fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
+              encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
+              download_url="${download_url}&evalScriptmodi=${encoded_fix}"
+            fi
+            
             if curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" "$download_url" 2>/dev/null; then
               if [[ -f "$output_file" ]] && [[ $(wc -c < "$output_file") -gt 100 ]]; then
                 echo "[并发$job_id] 转换成功: $plugin_name ($(wc -c < "$output_file") bytes)"
@@ -344,26 +352,79 @@ jobs:
         env:
           LOON_CONVERSION_CONCURRENCY: 5
 
-      - name: 修复转换错误
+      - name: 转换 QX 重写规则
         run: |
-          echo "开始修复 Script Hub 转换错误..."
+          echo "开始 QX 到 Surge 规则转换..."
           
-          # 修复 Script Hub 转换服务的嵌套 URL 问题
-          # 当转换服务处理包含嵌套转换 URL 的插件时，会错误地将 script.hub 替换为本地地址
+          # 确保转换服务就绪
+          if ! nc -z localhost 9101; then
+            echo "转换服务未就绪，跳过 QX 转换"
+            exit 0
+          fi
           
-          # 修复本地地址问题
-          find Surge/Modules -name "*.sgmodule" -type f | while read -r file; do
-            if grep -q "http://127\.0\.0\.1:910[01]" "$file"; then
-              echo "修复文件: $file"
-              sed -i.bak 's|http://127\.0\.0\.1:9100|http://script.hub|g' "$file"
-              sed -i 's|http://127\.0\.0\.1:9101|http://script.hub|g' "$file"
-              rm -f "$file.bak"
+          # 定义要转换的 QX 规则
+          declare -A qx_rules=(
+            ["App小程序净化合集"]="https://github.com/fmz200/wool_scripts/raw/main/QuantumultX/rewrite/cleanup.snippet"
+          )
+          
+          # 转换 QX 规则
+          for name in "${!qx_rules[@]}"; do
+            url="${qx_rules[$name]}"
+            output_file="Surge/Modules/${name}.sgmodule"
+            
+            echo "转换 QX 规则: $name"
+            encoded_name=$(echo "$name" | jq -sRr @uri)
+            encoded_url=$(echo "$url" | jq -sRr @uri)
+            
+            # 使用 Script Hub 转换 QX 重写到 Surge 模块
+            download_url="http://localhost:9101/file/_start_/${encoded_url}/_end_/${encoded_name}.sgmodule?type=qx-rewrite&target=surge-module"
+            
+            if curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" "$download_url" 2>/dev/null; then
+              if [[ -f "$output_file" ]] && [[ $(wc -c < "$output_file") -gt 100 ]]; then
+                echo "✅ 转换成功: $name ($(wc -c < "$output_file") bytes)"
+                
+                # 修复可能的本地地址问题
+                if grep -q "http://127\.0\.0\.1:910[01]" "$output_file"; then
+                  echo "  修复本地地址问题..."
+                  sed -i.bak 's|http://127\.0\.0\.1:9100|http://script.hub|g' "$output_file"
+                  sed -i 's|http://127\.0\.0\.1:9101|http://script.hub|g' "$output_file"
+                  rm -f "$output_file.bak"
+                fi
+              else
+                echo "❌ 转换失败 (文件无效): $name"
+                rm -f "$output_file"
+              fi
+            else
+              echo "❌ 转换失败 (网络错误): $name"
             fi
           done
           
-          # 统计修复结果
-          fixed_count=$(find Surge/Modules -name "*.sgmodule" -type f -exec grep -l "http://script\.hub/convert/_start_" {} \; | wc -l)
-          if [[ $fixed_count -gt 0 ]]; then
+          echo "QX 规则转换完成"
+
+      - name: 修复转换错误（可选）
+        if: ${{ vars.ENABLE_URL_FIX != 'false' }}
+        run: |
+          echo "检查是否需要修复 Script Hub 转换错误..."
+          
+          # 先检查是否存在本地地址问题
+          if find Surge/Modules -name "*.sgmodule" -type f -exec grep -l "http://127\.0\.0\.1:910[01]" {} \; | head -n 1 > /dev/null; then
+            echo "发现本地地址问题，开始修复..."
+            
+            # 修复 Script Hub 转换服务的嵌套 URL 问题
+            # 当转换服务处理包含嵌套转换 URL 的插件时，会错误地将 script.hub 替换为本地地址
+            
+            # 修复本地地址问题
+            find Surge/Modules -name "*.sgmodule" -type f | while read -r file; do
+              if grep -q "http://127\.0\.0\.1:910[01]" "$file"; then
+                echo "修复文件: $file"
+                sed -i.bak 's|http://127\.0\.0\.1:9100|http://script.hub|g' "$file"
+                sed -i 's|http://127\.0\.0\.1:9101|http://script.hub|g' "$file"
+                rm -f "$file.bak"
+              fi
+            done
+            
+            # 统计修复结果
+            fixed_count=$(find Surge/Modules -name "*.sgmodule" -type f -exec grep -l "http://script\.hub/convert/_start_" {} \; | wc -l)
             echo "✅ 修复了 $fixed_count 个文件中的本地地址问题"
           else
             echo "✅ 没有发现需要修复的本地地址问题"
