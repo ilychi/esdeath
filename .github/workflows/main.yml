@@ -106,7 +106,7 @@ jobs:
           mkdir -p Surge/Modules Surge/Scripts .cache/plugin-checksums
           
           # 配置并发参数
-          CONCURRENCY=${LOON_CONVERSION_CONCURRENCY:-3}
+          CONCURRENCY=${LOON_CONVERSION_CONCURRENCY:-2}
           echo "转换并发数: $CONCURRENCY"
           
           # 下载插件源列表
@@ -169,11 +169,12 @@ jobs:
           
           # 等待转换服务就绪
           echo "等待转换服务就绪..."
-          max_wait=30
+          max_wait=60
           wait_count=0
           while ! nc -z localhost 9101 && [ $wait_count -lt $max_wait ]; do
             sleep 3
-            wait_count=$((wait_count + 1))
+            wait_count=$((wait_count + 3))
+            echo "等待 Script Hub 服务... ($wait_count/$max_wait 秒)"
           done
           
           if ! nc -z localhost 9101; then
@@ -189,6 +190,10 @@ jobs:
               exit 1
             fi
           fi
+          
+          # 额外等待服务稳定
+          echo "等待服务稳定..."
+          sleep 5
           
           # 定义转换函数
           convert_plugin() {
@@ -281,44 +286,64 @@ jobs:
             
             # 执行转换
             echo "[Job $job_id] 开始下载转换..."
-            curl_output=$(curl -A "script-hub/1.0.0" -L --connect-timeout 10 --max-time 30 -o "$output_file" -w "\n%{http_code}\n" "$download_url" 2>&1)
-            http_code=$(echo "$curl_output" | tail -n 1)
             
-            echo "[Job $job_id] HTTP状态码: $http_code"
+            # 重试机制
+            max_retries=3
+            retry_count=0
             
-            if [[ "$http_code" == "200" ]] && [[ -s "$output_file" ]]; then
-              if grep -q "#!name=" "$output_file"; then
-                echo "[Job $job_id] 转换成功"
-                
-                # 对特定模块进行额外处理
-                case "$plugin_name" in
-                  "Remove_ads_by_fmz"|"blockAds")
-                    # 确保模块名称正确
-                    sed -i 's/#!name=.*/#!name=广告拦截&净化合集/' "$output_file"
-                    mv "$output_file" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
-                    output_file="Surge/Modules/Remove_ads_by_fmz.sgmodule"
-                    ;;
-                  "Netease_Music_Purification")
-                    sed -i 's/网易云音乐全面净化/Netease_Music_Purification/g' "$output_file"
-                    ;;
-                esac
-                
-                echo "$plugin_name:success" >> "$result_file"
-                return 0
+            while [ $retry_count -lt $max_retries ]; do
+              curl_output=$(curl -A "script-hub/1.0.0" -L --connect-timeout 20 --max-time 60 -o "$output_file" -w "\n%{http_code}\n" "$download_url" 2>&1)
+              http_code=$(echo "$curl_output" | tail -n 1)
+              
+              echo "[Job $job_id] HTTP状态码: $http_code (尝试 $((retry_count + 1))/$max_retries)"
+              
+              if [[ "$http_code" == "200" ]] && [[ -s "$output_file" ]]; then
+                if grep -q "#!name=" "$output_file"; then
+                  echo "[Job $job_id] 转换成功"
+                  
+                  # 对特定模块进行额外处理
+                  case "$plugin_name" in
+                    "Remove_ads_by_fmz"|"blockAds")
+                      # 确保模块名称正确
+                      sed -i 's/#!name=.*/#!name=广告拦截&净化合集/' "$output_file"
+                      mv "$output_file" "Surge/Modules/Remove_ads_by_fmz.sgmodule"
+                      output_file="Surge/Modules/Remove_ads_by_fmz.sgmodule"
+                      ;;
+                    "Netease_Music_Purification")
+                      sed -i 's/网易云音乐全面净化/Netease_Music_Purification/g' "$output_file"
+                      ;;
+                  esac
+                  
+                  echo "$plugin_name:success" >> "$result_file"
+                  return 0
+                else
+                  echo "[Job $job_id] 转换后的文件无效（缺少 #!name=）"
+                  echo "[Job $job_id] 文件内容前100字符: $(head -c 100 "$output_file" 2>/dev/null || echo "无法读取")"
+                  
+                  # 如果是 HTML 错误页面，显示部分内容
+                  if grep -q "<html" "$output_file" 2>/dev/null; then
+                    echo "[Job $job_id] 收到HTML响应，可能是错误页面"
+                    echo "[Job $job_id] HTML内容: $(head -n 5 "$output_file" 2>/dev/null)"
+                  fi
+                  
+                  rm -f "$output_file"
+                fi
               else
-                echo "[Job $job_id] 转换后的文件无效（缺少 #!name=）"
-                echo "[Job $job_id] 文件内容前100字符: $(head -c 100 "$output_file" 2>/dev/null || echo "无法读取")"
-                rm -f "$output_file"
-                echo "$plugin_name:failed_invalid_content" >> "$result_file"
-                return 1
+                echo "[Job $job_id] 下载失败"
+                echo "[Job $job_id] Curl输出: $curl_output"
+                rm -f "$output_file" 2>/dev/null || true
               fi
-            else
-              echo "[Job $job_id] 下载失败"
-              echo "[Job $job_id] Curl输出: $curl_output"
-              rm -f "$output_file" 2>/dev/null || true
-              echo "$plugin_name:failed_download" >> "$result_file"
-              return 1
-            fi
+              
+              retry_count=$((retry_count + 1))
+              if [ $retry_count -lt $max_retries ]; then
+                echo "[Job $job_id] 等待5秒后重试..."
+                sleep 5
+              fi
+            done
+            
+            echo "[Job $job_id] 达到最大重试次数，转换失败"
+            echo "$plugin_name:failed_download" >> "$result_file"
+            return 1
             
             # 清理临时文件
             rm -f "/tmp/loon_${job_id}.txt" "/tmp/eval_script_${job_id}.js" 2>/dev/null || true
@@ -341,6 +366,11 @@ jobs:
             # 直接测试 Script Hub 服务
             test_response=$(curl -s -w "\n%{http_code}" "http://localhost:9101/health" 2>&1 || echo "服务健康检查失败")
             echo "Script Hub 健康检查: $test_response"
+            
+            # 也尝试一个简单的转换请求
+            echo "测试 Script Hub 转换功能..."
+            test_conversion=$(curl -s -w "\n%{http_code}" "http://localhost:9101/file/_start_/https://example.com/test.txt/_end_/test.txt" 2>&1 | tail -n 1)
+            echo "测试转换响应代码: $test_conversion"
             
             # 测试转换
             if [[ -n "$test_url" ]]; then
@@ -457,7 +487,7 @@ jobs:
             # 清理临时文件
             rm -f .cache/conversion_results_*.txt
           env:
-            LOON_CONVERSION_CONCURRENCY: 5
+            LOON_CONVERSION_CONCURRENCY: 2
 
       - name: 转换 QX 重写规则
         run: |
