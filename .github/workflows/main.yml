@@ -148,18 +148,22 @@ jobs:
             
             echo "[任务 $idx] 开始转换: $plugin_name -> $output_name"
             
-            # 特殊处理某些插件
-            fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub")'
+            # 基础修复脚本 - 适用于所有插件
+            fix_script='body = body.replace(/http:\/\/127\.0\.0\.1:910[01]/g, "http://script.hub"); '
             
-            # 为 Remove_ads_by_fmz 添加额外的修复
-            if [[ "$output_name" == "Remove_ads_by_fmz" ]]; then
-              # 修复元数据问题
-              fix_script="${fix_script}; "
-              fix_script="${fix_script}body = body.replace(/^#!name=.*$/m, '#!name=广告拦截&净化合集'); "
-              fix_script="${fix_script}body = body.replace(/^#!desc=.*$/m, '#!desc=(支持约564款APP/小程序)针对部分APP和小程序广告进行拦截，某些APP要清除缓存或者重新安装拦截广告才会生效！规则明细可以查看本插件的注释'); "
-              fix_script="${fix_script}body = body.replace(/\\[([^\\[]+)\\]\\(([^)]+)\\)/g, '\$1[\$2]'); " # 修复链接格式
-              fix_script="${fix_script}body = body.replace(/\\n{3,}/g, '\\n\\n'); " # 移除多余空行
-            fi
+            # 通用的格式修复
+            fix_script="${fix_script}body = body.replace(/\\[([^\\[]+)\\]\\(([^)]+)\\)/g, '\$1[\$2]'); " # 修复链接格式
+            fix_script="${fix_script}body = body.replace(/\\n{3,}/g, '\\n\\n'); " # 移除多余空行
+            
+            # 通用的元数据修复逻辑
+            # 检查 name 和 desc 是否被错误地设置为参数名或参数描述
+            fix_script="${fix_script}"
+            fix_script="${fix_script}if (/^#!name=.*_enable$/m.test(body)) { "
+            fix_script="${fix_script}  body = body.replace(/^#!name=.*$/m, '#!name=' + body.match(/#!name=(.*?)(?=\\n)/)?.[1] || '模块名称'); "
+            fix_script="${fix_script}} "
+            fix_script="${fix_script}if (/^#!desc=.*-脚本开关$/m.test(body)) { "
+            fix_script="${fix_script}  body = body.replace(/^#!desc=.*$/m, '#!desc=' + body.match(/#!desc=(.*?)(?=\\n)/)?.[1] || '模块描述'); "
+            fix_script="${fix_script}} "
             
             encoded_fix=$(echo "$fix_script" | jq -sRr @uri)
             
@@ -349,28 +353,60 @@ jobs:
             # 创建临时文件存储修复后的内容
             temp_file="/tmp/fixed_sgmodule.txt"
             
-            # 直接设置正确的元数据值（防止 Script Hub 转换错误）
-            name="广告拦截&净化合集"
-            desc="(支持约564款APP/小程序)针对部分APP和小程序广告进行拦截，某些APP要清除缓存或者重新安装拦截广告才会生效！规则明细可以查看本插件的注释"
-            author="奶思[https://github.com/fmz200]"
-            icon="https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/AdblockPlus.png"
-            category="🚫 AD Block"
-            homepage="https://github.com/fmz200/wool_scripts"
-            raw_url="https://github.com/fmz200/wool_scripts/raw/main/Loon/plugin/blockAds.plugin"
-            tg_group="https://t.me/lanjieguanggao"
-            tag="去广告, fmz200, 奶思"
-            system="ios"
-            remark="下方的所有规则都标注了对应的hostname，可能存在错误或者遗漏，欢迎反馈"
-            
-            # 提取其他可能存在的元数据
-            date=$(grep -m1 '^#!date=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
-            
             # 从原始 Loon 插件提取参数
             loon_url="https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin"
             
-            # 下载原始文件提取参数和脚本
+            # 下载原始文件提取参数和元数据
             if curl -s -L "$loon_url" > /tmp/loon_plugin.txt 2>/dev/null; then
               echo "提取到 Loon 插件，开始转换..."
+              
+              # 从 Loon 插件提取元数据
+              echo "从原始插件提取元数据..."
+              
+              # 提取 Loon 插件的元数据部分
+              name=$(grep -m1 '^#!name *=' /tmp/loon_plugin.txt | sed 's/^#!name *= *//')
+              desc=$(grep -m1 '^#!desc *=' /tmp/loon_plugin.txt | sed 's/^#!desc *= *//')
+              icon=$(grep -m1 '^#!icon *=' /tmp/loon_plugin.txt | sed 's/^#!icon *= *//')
+              author=$(grep -m1 '^#!author *=' /tmp/loon_plugin.txt | sed 's/^#!author *= *//')
+              homepage=$(grep -m1 '^#!homepage *=' /tmp/loon_plugin.txt | sed 's/^#!homepage *= *//')
+              date=$(grep -m1 '^#!date *=' /tmp/loon_plugin.txt | sed 's/^#!date *= *//')
+              tag=$(grep -m1 '^#!tag *=' /tmp/loon_plugin.txt | sed 's/^#!tag *= *//')
+              system=$(grep -m1 '^#!system *=' /tmp/loon_plugin.txt | sed 's/^#!system *= *//')
+              loon_version=$(grep -m1 '^#!loon_version *=' /tmp/loon_plugin.txt | sed 's/^#!loon_version *= *//')
+              
+              # 如果某些元数据缺失，尝试从转换后的文件中提取（Script Hub 可能添加了一些）
+              if [[ -z "$name" ]]; then
+                name=$(grep -m1 '^#!name=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+                # 如果 name 被错误地设置为参数名，使用默认值
+                if [[ "$name" =~ _enable$ ]]; then
+                  name="广告拦截&净化合集"
+                fi
+              fi
+              
+              if [[ -z "$desc" ]]; then
+                desc=$(grep -m1 '^#!desc=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+                # 如果 desc 被错误地设置为参数描述，使用默认值
+                if [[ "$desc" =~ -脚本开关$ ]]; then
+                  desc="(支持约564款APP/小程序)针对部分APP和小程序广告进行拦截，某些APP要清除缓存或者重新安装拦截广告才会生效！规则明细可以查看本插件的注释"
+                fi
+              fi
+              
+              # 处理额外的 Surge 特定元数据
+              category=$(grep -m1 '^#!category=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+              [[ -z "$category" ]] && category="🚫 AD Block"
+              
+              raw_url=$(grep -m1 '^#!raw-url=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+              [[ -z "$raw_url" ]] && raw_url="$loon_url"
+              
+              tg_group=$(grep -m1 '^#!tg-group=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+              remark=$(grep -m1 '^#!remark=' "Surge/Modules/Remove_ads_by_fmz.sgmodule" | cut -d'=' -f2-)
+              
+              # 修复链接格式（去除可能的 Markdown 格式）
+              author=$(echo "$author" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1[\2]/g')
+              icon=$(echo "$icon" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
+              homepage=$(echo "$homepage" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
+              raw_url=$(echo "$raw_url" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
+              tg_group=$(echo "$tg_group" | sed -E 's/\[([^\[]+)\]\(([^)]+)\)/\1/g')
               
               # 提取参数并转换格式
               args=""
@@ -407,20 +443,23 @@ jobs:
               
               # 构建正确顺序的元数据
               {
+                # 必须的元数据
                 echo "#!name=$name"
                 echo "#!desc=$desc"
-                echo "#!author=$author"
-                echo "#!icon=$icon"
-                echo "#!category=$category"
+                [[ -n "$author" ]] && echo "#!author=$author"
+                [[ -n "$icon" ]] && echo "#!icon=$icon"
+                [[ -n "$category" ]] && echo "#!category=$category"
                 echo "#!arguments=$args"
                 echo "#!arguments-desc=$args_desc"
-                echo "#!homepage=$homepage"
-                echo "#!raw-url=$raw_url"
-                echo "#!tg-group=$tg_group"
-                echo "#!tag=$tag"
-                echo "#!system=$system"
-                [ -n "$date" ] && echo "#!date=$date"
-                echo "#!remark=$remark"
+                
+                # 可选的元数据
+                [[ -n "$homepage" ]] && echo "#!homepage=$homepage"
+                [[ -n "$raw_url" ]] && echo "#!raw-url=$raw_url"
+                [[ -n "$tg_group" ]] && echo "#!tg-group=$tg_group"
+                [[ -n "$tag" ]] && echo "#!tag=$tag"
+                [[ -n "$system" ]] && echo "#!system=$system"
+                [[ -n "$date" ]] && echo "#!date=$date"
+                [[ -n "$remark" ]] && echo "#!remark=$remark"
                 echo ""
                 
                 # 添加模块内容（排除所有元数据行和多余空行）
@@ -432,6 +471,13 @@ jobs:
               
               echo "✅ 元数据修复完成"
               echo "✅ 参数转换完成，共转换 $(echo "$args" | tr ',' '\n' | wc -l) 个参数"
+              
+              # 输出提取的元数据信息
+              echo "提取的元数据："
+              echo "  - name: $name"
+              echo "  - desc: ${desc:0:50}..."
+              echo "  - author: $author"
+              echo "  - 参数数量: $(echo "$args" | tr ',' '\n' | wc -l)"
               
               # 确保脚本使用参数占位符
               if grep -q '{{{[a-zA-Z0-9_]+}}}' "Surge/Modules/Remove_ads_by_fmz.sgmodule"; then
